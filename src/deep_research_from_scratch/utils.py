@@ -8,7 +8,7 @@ including web search capabilities and content summarization tools.
 from pathlib import Path
 from datetime import datetime
 from typing_extensions import Annotated, List, Literal
-
+import os
 from langchain.chat_models import init_chat_model 
 from langchain_core.messages import HumanMessage
 from langchain_core.runnables import RunnableConfig

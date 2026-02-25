@@ -16,6 +16,10 @@ from deep_research_from_scratch.state_research import ResearcherState, Researche
 from deep_research_from_scratch.utils import tavily_search, get_today_str, think_tool
 from deep_research_from_scratch.prompts import research_agent_prompt, compress_research_system_prompt, compress_research_human_message
 
+import os
+from deep_research_from_scratch.Helper import GenAIToken
+from dotenv import load_dotenv
+load_dotenv()
 # ===== CONFIGURATION =====
 
 # Set up tools and model binding
@@ -23,10 +27,37 @@ tools = [tavily_search, think_tool]
 tools_by_name = {tool.name: tool for tool in tools}
 
 # Initialize models
-model = init_chat_model(model="anthropic:claude-sonnet-4-20250514")
+model = init_chat_model(model="azure_openai:gpt-4.1", 
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                        api_key = GenAIToken().token(),
+                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                        default_headers={
+                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                            "userid": os.getenv("HEADERS_USERID")
+                            },
+                        temperature=0.0)
 model_with_tools = model.bind_tools(tools)
-summarization_model = init_chat_model(model="openai:gpt-4.1-mini")
-compress_model = init_chat_model(model="openai:gpt-4.1", max_tokens=32000) # model="anthropic:claude-sonnet-4-20250514", max_tokens=64000
+summarization_model = init_chat_model(model="azure_openai:gpt-4.1-mini",
+                                      azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                                      azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                                      api_key = GenAIToken().token(),
+                                      api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                                      default_headers={
+                                          "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                                          "userid": os.getenv("HEADERS_USERID")
+                                        },
+                                      temperature=0.0)
+compress_model = init_chat_model(model="azure_openai:gpt-4.1", max_tokens=16384,
+                                azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                                azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                                api_key = GenAIToken().token(),
+                                api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                                default_headers={
+                                "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                                "userid": os.getenv("HEADERS_USERID")
+                                },
+                                temperature=0.0)
 
 # ===== AGENT NODES =====
 
