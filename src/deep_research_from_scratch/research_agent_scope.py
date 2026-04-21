@@ -9,18 +9,29 @@ The workflow uses structured output to make deterministic decisions about
 whether sufficient context exists to proceed with research.
 """
 
-from datetime import datetime
-from typing_extensions import Literal
 import os
-from langchain.chat_models import init_chat_model
-from langchain_core.messages import HumanMessage, AIMessage, get_buffer_string
-from langgraph.graph import StateGraph, START, END
-from langgraph.types import Command
+from datetime import datetime
 
-from deep_research_from_scratch.prompts import clarify_with_user_instructions, transform_messages_into_research_topic_prompt
-from deep_research_from_scratch.state_scope import AgentState, ClarifyWithUser, ResearchQuestion, AgentInputState
-from deep_research_from_scratch.Helper import GenAIToken
 from dotenv import load_dotenv
+from langchain.chat_models import init_chat_model
+from langchain_core.messages import AIMessage, HumanMessage, get_buffer_string
+from langchain_core.runnables import RunnableConfig
+from langgraph.graph import END, START, StateGraph
+from langgraph.types import Command
+from typing_extensions import Literal
+
+from deep_research_from_scratch.Helper import GenAIToken
+from deep_research_from_scratch.prompts import (
+    clarify_with_user_instructions,
+    transform_messages_into_research_topic_prompt,
+)
+from deep_research_from_scratch.state_scope import (
+    AgentInputState,
+    AgentState,
+    ClarifyWithUser,
+    ResearchQuestion,
+)
+
 load_dotenv()
 
 # ===== UTILITY FUNCTIONS =====
@@ -31,61 +42,78 @@ def get_today_str() -> str:
 
 # ===== CONFIGURATION =====
 
-# Initialize model
-model = init_chat_model(model="azure_openai:gpt-4.1", 
-                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-                        api_key = GenAIToken().token(),
-                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
-                        default_headers={
-                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
-                            "userid": os.getenv("HEADERS_USERID")
-                            },
-                        temperature=0.0)
+_DEFAULT_SCOPE_MODEL = "azure_openai:gpt-4.1"
+
+
+def _build_model(model_id: str, **kwargs):
+    """Build an Azure OpenAI model instance from a model identifier string.
+
+    Extracts the deployment name from the model identifier using the
+    convention that model name equals deployment name (e.g.,
+    "azure_openai:gpt-4.1" -> deployment "gpt-4.1").
+    """
+    deployment = model_id.split(":")[-1]
+    return init_chat_model(
+        model=model_id,
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        azure_deployment=deployment,
+        api_key=GenAIToken().token(),
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+        default_headers={
+            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+            "userid": os.getenv("HEADERS_USERID"),
+        },
+        **kwargs,
+    )
+
 
 # ===== WORKFLOW NODES =====
 
-def clarify_with_user(state: AgentState) -> Command[Literal["write_research_brief", "__end__"]]:
-    """
-    Determine if the user's request contains sufficient information to proceed with research.
+def clarify_with_user(state: AgentState, config: RunnableConfig) -> Command[Literal["write_research_brief", "__end__"]]:
+    """Determine if the user's request contains sufficient information to proceed with research.
 
     Uses structured output to make deterministic decisions and avoid hallucination.
     Routes to either research brief generation or ends with a clarification question.
+
+    Model is controlled by config["configurable"]["scope_model"]
+    (default: "azure_openai:gpt-4.1").
     """
-    # Set up structured output model
+    configurable = config.get("configurable", {})
+    model = _build_model(configurable.get("scope_model", _DEFAULT_SCOPE_MODEL), temperature=0.0)
     structured_output_model = model.with_structured_output(ClarifyWithUser)
 
-    # Invoke the model with clarification instructions
     response = structured_output_model.invoke([
         HumanMessage(content=clarify_with_user_instructions.format(
-            messages=get_buffer_string(messages=state["messages"]), 
+            messages=get_buffer_string(messages=state["messages"]),
             date=get_today_str()
         ))
     ])
 
-    # Route based on clarification need
     if response.need_clarification:
         return Command(
-            goto=END, 
+            goto=END,
             update={"messages": [AIMessage(content=response.question)]}
         )
     else:
         return Command(
-            goto="write_research_brief", 
+            goto="write_research_brief",
             update={"messages": [AIMessage(content=response.verification)]}
         )
 
-def write_research_brief(state: AgentState):
-    """
-    Transform the conversation history into a comprehensive research brief.
+
+def write_research_brief(state: AgentState, config: RunnableConfig):
+    """Transform the conversation history into a comprehensive research brief.
 
     Uses structured output to ensure the brief follows the required format
     and contains all necessary details for effective research.
+
+    Model is controlled by config["configurable"]["scope_model"]
+    (default: "azure_openai:gpt-4.1").
     """
-    # Set up structured output model
+    configurable = config.get("configurable", {})
+    model = _build_model(configurable.get("scope_model", _DEFAULT_SCOPE_MODEL), temperature=0.0)
     structured_output_model = model.with_structured_output(ResearchQuestion)
 
-    # Generate research brief from conversation history
     response = structured_output_model.invoke([
         HumanMessage(content=transform_messages_into_research_topic_prompt.format(
             messages=get_buffer_string(state.get("messages", [])),
@@ -93,24 +121,20 @@ def write_research_brief(state: AgentState):
         ))
     ])
 
-    # Update state with generated research brief and pass it to the supervisor
     return {
         "research_brief": response.research_brief,
         "supervisor_messages": [HumanMessage(content=f"{response.research_brief}.")]
     }
 
+
 # ===== GRAPH CONSTRUCTION =====
 
-# Build the scoping workflow
 deep_researcher_builder = StateGraph(AgentState, input_schema=AgentInputState)
 
-# Add workflow nodes
 deep_researcher_builder.add_node("clarify_with_user", clarify_with_user)
 deep_researcher_builder.add_node("write_research_brief", write_research_brief)
 
-# Add workflow edges
 deep_researcher_builder.add_edge(START, "clarify_with_user")
 deep_researcher_builder.add_edge("write_research_brief", END)
 
-# Compile the workflow
 scope_research = deep_researcher_builder.compile()
