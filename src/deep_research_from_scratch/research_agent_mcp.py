@@ -26,7 +26,9 @@ from langgraph.graph import StateGraph, START, END
 from deep_research_from_scratch.prompts import research_agent_prompt_with_mcp, compress_research_system_prompt, compress_research_human_message
 from deep_research_from_scratch.state_research import ResearcherState, ResearcherOutputState
 from deep_research_from_scratch.utils import get_today_str, think_tool, get_current_dir
-
+from deep_research_from_scratch.Helper import GenAIToken
+from dotenv import load_dotenv
+load_dotenv()
 # ===== CONFIGURATION =====
 
 # MCP server configuration for filesystem access
@@ -53,8 +55,27 @@ def get_mcp_client():
     return _client
 
 # Initialize models
-compress_model = init_chat_model(model="openai:gpt-4.1", max_tokens=32000)
-model = init_chat_model(model="anthropic:claude-sonnet-4-20250514")
+compress_model = model = init_chat_model(model="azure_openai:gpt-5.1", 
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                        api_key = GenAIToken().token(),
+                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                        default_headers={
+                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                            "userid": os.getenv("HEADERS_USERID")
+                            },
+                        temperature=1.0,
+                        max_tokens=16000)
+model = init_chat_model(model="azure_openai:gpt-5.2", 
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                        api_key = GenAIToken().token(),
+                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                        default_headers={
+                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                            "userid": os.getenv("HEADERS_USERID")
+                            },
+                        temperature=1.0)
 
 # ===== AGENT NODES =====
 

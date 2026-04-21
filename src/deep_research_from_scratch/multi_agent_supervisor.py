@@ -11,7 +11,7 @@ maintaining isolated context windows for each research topic.
 """
 
 import asyncio
-
+import os
 from typing_extensions import Literal
 
 from langchain.chat_models import init_chat_model
@@ -33,6 +33,9 @@ from deep_research_from_scratch.state_multi_agent_supervisor import (
     ResearchComplete
 )
 from deep_research_from_scratch.utils import get_today_str, think_tool
+from deep_research_from_scratch.Helper import GenAIToken
+from dotenv import load_dotenv
+load_dotenv()
 
 def get_notes_from_tool_calls(messages: list[BaseMessage]) -> list[str]:
     """Extract research notes from ToolMessage objects in supervisor message history.
@@ -68,7 +71,16 @@ except ImportError:
 # ===== CONFIGURATION =====
 
 supervisor_tools = [ConductResearch, ResearchComplete, think_tool]
-supervisor_model = init_chat_model(model="anthropic:claude-sonnet-4-20250514")
+supervisor_model = init_chat_model(model="azure_openai:gpt-5.3", 
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                        api_key = GenAIToken().token(),
+                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                        default_headers={
+                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                            "userid": os.getenv("HEADERS_USERID")
+                            },
+                        temperature=1.0)
 supervisor_model_with_tools = supervisor_model.bind_tools(supervisor_tools)
 
 # System constants

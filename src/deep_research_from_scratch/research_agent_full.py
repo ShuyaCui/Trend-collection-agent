@@ -14,17 +14,28 @@ input through final report delivery.
 
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph, START, END
-
+import os 
 from deep_research_from_scratch.utils import get_today_str
 from deep_research_from_scratch.prompts import final_report_generation_prompt
 from deep_research_from_scratch.state_scope import AgentState, AgentInputState
 from deep_research_from_scratch.research_agent_scope import clarify_with_user, write_research_brief
 from deep_research_from_scratch.multi_agent_supervisor import supervisor_agent
-
+from deep_research_from_scratch.Helper import GenAIToken
+from dotenv import load_dotenv
+load_dotenv()
 # ===== Config =====
 
 from langchain.chat_models import init_chat_model
-writer_model = init_chat_model(model="openai:gpt-4.1", max_tokens=32000) # model="anthropic:claude-sonnet-4-20250514", max_tokens=64000
+writer_model = init_chat_model(model="azure_openai:gpt-5.3", 
+                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+                        api_key = GenAIToken().token(),
+                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
+                        default_headers={
+                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+                            "userid": os.getenv("HEADERS_USERID")
+                            },
+                        temperature=1.0)
 
 # ===== FINAL REPORT GENERATION =====
 
