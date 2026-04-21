@@ -44,6 +44,14 @@ When drafting constitution or specs:
 - keep language concrete and actionable
 - avoid vague statements like "high quality" or "good UX" without measurable meaning
 
+# Git branching policy
+
+## Development branch workflow
+- All Copilot-made code changes must be committed to the `development` branch, never directly to `main`.
+- Before starting work, ensure you are on the `development` branch (create it from `main` if it does not exist).
+- After completing changes and committing, do **not** merge into `main`. Open a pull request from `development` → `main` and leave it for a human to review and merge.
+- Users are responsible for reviewing the pull request and merging after verification.
+
 # Git commit policy
 
 After completing a set of code changes, create a git commit with:
