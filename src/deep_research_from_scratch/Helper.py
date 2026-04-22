@@ -1,7 +1,7 @@
-import time
-from functools import cached_property
-from azure.identity import ChainedTokenCredential, DefaultAzureCredential
 import json
+import time
+
+from azure.identity import ChainedTokenCredential, DefaultAzureCredential
 from dotenv import load_dotenv as _load_dotenv
 
 _load_dotenv()
@@ -9,8 +9,10 @@ _load_dotenv()
 class GenAIToken:
     """Module provides a class, GenAIToken, that represents a token for the GenAI service."""
 
-    _token: str
-    _expires_on: int
+    _shared_token: str | None = None
+    _shared_expires_on: int | None = None
+    _shared_refresh_threshold: int | None = None
+    _credentials: ChainedTokenCredential | None = None
 
     def __init__(
         self,
@@ -27,16 +29,27 @@ class GenAIToken:
         """
         self._refresh_threshold = refresh_threshold
         self._cognitive_services = cognitive_services
-        self._token, self._expires_on = self._get_token()
+        if self.__class__._shared_refresh_threshold is None:
+            self.__class__._shared_refresh_threshold = refresh_threshold
+        else:
+            self.__class__._shared_refresh_threshold = max(
+                self.__class__._shared_refresh_threshold,
+                refresh_threshold,
+            )
 
-    @cached_property
-    def _credentials(self) -> ChainedTokenCredential:
+        if self.__class__._shared_token is None or self.__class__._shared_expires_on is None:
+            self.__class__._shared_token, self.__class__._shared_expires_on = self._get_token()
+
+    @classmethod
+    def _get_credentials(cls) -> ChainedTokenCredential:
         """Return the credentials for accessing the Azure services.
 
         Returns:
             ChainedTokenCredential: The credentials object.
         """
-        return DefaultAzureCredential(exclude_interactive_browser_credential=False)
+        if cls._credentials is None:
+            cls._credentials = DefaultAzureCredential(exclude_interactive_browser_credential=False)
+        return cls._credentials
 
     def _get_token(self) -> tuple[str, int]:
         """Get the token and its expiration time.
@@ -44,7 +57,7 @@ class GenAIToken:
         Returns:
             tuple[str, int]: The token and its expiration time.
         """
-        token = self._credentials.get_token(self._cognitive_services)
+        token = self._get_credentials().get_token(self._cognitive_services)
         return token.token, token.expires_on
 
     def token(self) -> str:
@@ -55,9 +68,13 @@ class GenAIToken:
         Returns:
             str: The token.
         """
-        if self._expires_on < time.time() + self._refresh_threshold:
-            self._token, self._expires_on = self._get_token()
-        return self._token
+        if (
+            self.__class__._shared_expires_on is None
+            or self.__class__._shared_token is None
+            or self.__class__._shared_expires_on < time.time() + self._refresh_threshold
+        ):
+            self.__class__._shared_token, self.__class__._shared_expires_on = self._get_token()
+        return self.__class__._shared_token
 
 def determine_mime_type(filename: str) -> str:
     """Determine the MIME type of a file based on its extension."""

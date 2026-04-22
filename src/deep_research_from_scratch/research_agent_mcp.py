@@ -18,6 +18,7 @@ import os
 
 from typing_extensions import Literal
 
+from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, filter_messages
 from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -27,7 +28,7 @@ from deep_research_from_scratch.prompts import research_agent_prompt_with_mcp, c
 from deep_research_from_scratch.state_research import ResearcherState, ResearcherOutputState
 from deep_research_from_scratch.utils import get_today_str, think_tool, get_current_dir
 from deep_research_from_scratch.Helper import GenAIToken
-from dotenv import load_dotenv
+
 load_dotenv()
 # ===== CONFIGURATION =====
 
@@ -47,6 +48,10 @@ mcp_config = {
 # Global client variable - will be initialized lazily
 _client = None
 
+_DEFAULT_MCP_MODEL = "azure_openai:gpt-5.2"
+_DEFAULT_MCP_COMPRESS_MODEL = "azure_openai:gpt-5.1"
+
+
 def get_mcp_client():
     """Get or initialize MCP client lazily to avoid issues with LangGraph Platform."""
     global _client
@@ -54,28 +59,30 @@ def get_mcp_client():
         _client = MultiServerMCPClient(mcp_config)
     return _client
 
-# Initialize models
-compress_model = model = init_chat_model(model="azure_openai:gpt-5.1", 
-                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-                        api_key = GenAIToken().token(),
-                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
-                        default_headers={
-                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
-                            "userid": os.getenv("HEADERS_USERID")
-                            },
-                        temperature=1.0,
-                        max_tokens=16000)
-model = init_chat_model(model="azure_openai:gpt-5.2", 
-                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-                        api_key = GenAIToken().token(),
-                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
-                        default_headers={
-                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
-                            "userid": os.getenv("HEADERS_USERID")
-                            },
-                        temperature=1.0)
+
+def _build_model(
+    model_id: str,
+    *,
+    temperature: float = 1.0,
+    max_tokens: int | None = None,
+):
+    """Build an MCP research model with a fresh GenAI token."""
+    deployment = model_id.split(":")[-1]
+    model_kwargs = {
+        "model": model_id,
+        "azure_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
+        "azure_deployment": deployment,
+        "api_key": GenAIToken().token(),
+        "api_version": os.getenv("AZURE_OPENAI_API_VERSION"),
+        "default_headers": {
+            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+            "userid": os.getenv("HEADERS_USERID"),
+        },
+        "temperature": temperature,
+    }
+    if max_tokens is not None:
+        model_kwargs["max_tokens"] = max_tokens
+    return init_chat_model(**model_kwargs)
 
 # ===== AGENT NODES =====
 
@@ -96,8 +103,8 @@ async def llm_call(state: ResearcherState):
     # Use MCP tools for local document access
     tools = mcp_tools + [think_tool]
 
-    # Initialize model with tool binding
-    model_with_tools = model.bind_tools(tools)
+    # Initialize model with tool binding using a fresh token-backed model
+    model_with_tools = _build_model(_DEFAULT_MCP_MODEL).bind_tools(tools)
 
     # Process user input with system prompt
     return {
@@ -170,6 +177,11 @@ def compress_research(state: ResearcherState) -> dict:
     system_message = compress_research_system_prompt.format(date=get_today_str())
     messages = [SystemMessage(content=system_message)] + state.get("researcher_messages", []) + [HumanMessage(content=compress_research_human_message)]
 
+    compress_model = _build_model(
+        _DEFAULT_MCP_COMPRESS_MODEL,
+        temperature=1.0,
+        max_tokens=16000,
+    )
     response = compress_model.invoke(messages)
 
     # Extract raw notes from tool and AI messages

@@ -60,16 +60,29 @@ def get_current_dir() -> Path:
 
 # ===== CONFIGURATION =====
 
-summarization_model = init_chat_model(model="azure_openai:gpt-4.1", 
-                                        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-                                        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-                                        api_key = GenAIToken().token(),
-                                        api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
-                                        default_headers={
-                                            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
-                                            "userid": os.getenv("HEADERS_USERID")
-                                            },
-                                        temperature=0.0)
+_DEFAULT_SUMMARIZATION_MODEL = "azure_openai:gpt-4.1"
+
+
+def _build_summarization_model(
+    model_id: str = _DEFAULT_SUMMARIZATION_MODEL,
+    temperature: float = 0.0,
+):
+    """Build the summarization model with a fresh GenAI token."""
+    deployment = model_id.split(":")[-1]
+    return init_chat_model(
+        model=model_id,
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        azure_deployment=deployment,
+        api_key=GenAIToken().token(),
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+        default_headers={
+            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+            "userid": os.getenv("HEADERS_USERID"),
+        },
+        temperature=temperature,
+    )
+
+
 tavily_client = TavilyClient()
 
 # ===== SEARCH FUNCTIONS =====
@@ -114,8 +127,8 @@ def summarize_webpage_content(webpage_content: str) -> str:
         Formatted summary with key excerpts
     """
     try:
-        # Set up structured output model for summarization
-        structured_model = summarization_model.with_structured_output(Summary)
+        # Rebuild the model for each call so expired GenAI tokens are refreshed.
+        structured_model = _build_summarization_model().with_structured_output(Summary)
 
         # Generate summary
         summary = structured_model.invoke([
@@ -186,7 +199,7 @@ def format_search_output(summarized_results: dict) -> str:
     """Format search results into a well-structured string output.
 
     Args:
-        summarized_results: Dictionary of processed search results
+        summarized_results: Dictionary of processed results
 
     Returns:
         Formatted string of search results with clear source separation
