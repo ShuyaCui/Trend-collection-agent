@@ -84,23 +84,26 @@ def to_langsmith_result(
     result: dict = {
         "key": key,
         "score": normalize_score(judge_result.score),
-        "reasoning": judge_result.reasoning,
-        "evidence": judge_result.evidence,
-        "confidence": judge_result.confidence,
+        "comment": (
+            f"Evidence: {judge_result.evidence}\n\n"
+            f"Reasoning: {judge_result.reasoning}\n\n"
+            f"Confidence: {judge_result.confidence}"
+        ),
     }
 
     if hasattr(judge_result, "improvement_note"):
-        result["improvement_note"] = judge_result.improvement_note
+        result["comment"] += f"\n\nImprovement: {judge_result.improvement_note}"
 
-    result["metadata"] = {
+    result["evaluator_info"] = {
         "evaluator_type": evaluator_type,
         "rubric_strictness": rubric_strictness,
         "raw_score": judge_result.score,
+        "confidence": judge_result.confidence,
     }
     if prompt_name:
-        result["metadata"]["prompt_name"] = prompt_name
+        result["evaluator_info"]["prompt_name"] = prompt_name
     if judge_model:
-        result["metadata"]["judge_model"] = judge_model
+        result["evaluator_info"]["judge_model"] = judge_model
 
     return result
 
@@ -111,8 +114,10 @@ def init_judge_model(
 ):
     """Initialize the LLM used for judge evaluations.
 
-    Encapsulates Azure OpenAI auth via GenAIToken so each notebook eval
-    section does not need to repeat boilerplate.
+    Extracts the Azure deployment name from the model identifier string
+    (e.g. ``"azure_openai:GPT-54-2026-03-05"`` → deployment
+    ``"GPT-54-2026-03-05"``), matching the ``_build_model`` pattern used
+    by the research agent.
 
     Args:
         model: Model identifier (default is the spec-designated judge model).
@@ -124,10 +129,12 @@ def init_judge_model(
     from langchain.chat_models import init_chat_model as _init_chat_model
     from deep_research_from_scratch.Helper import GenAIToken
 
+    deployment = model.split(":")[-1]
+
     return _init_chat_model(
         model=model,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-        azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+        azure_deployment=deployment,
         api_key=GenAIToken().token(),
         api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
         default_headers={
