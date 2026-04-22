@@ -23,7 +23,6 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - `REPORT_SOURCE_COVERAGE_PROMPT`
 - `REPORT_FACTUAL_CONSISTENCY_PROMPT`
 - `REPORT_COMPLETENESS_PROMPT`
-- `MCP_PARITY_PAIRWISE_PROMPT`
 
 0.3. Make every LLM-judge prompt follow the same rubric contract:
 
@@ -39,7 +38,7 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - score normalization helper (`1–5` → `0.0–1.0`)
 - structured output parser / schema
 - confidence extraction
-- pairwise position-swap reconciliation helper for MCP parity
+- optional pairwise position-swap reconciliation helper for future head-to-head evals
 
 0.5. Ensure `azure_openai:GPT-54-2026-03-05` is available as the judge model and document one known limitation in notebook markdown:
 
@@ -54,76 +53,38 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 ---
 
-## Group 1 — Notebook 3: MCP Agent (fill gap)
+## Group 1 — Notebook 5: Full System E2E (fill gap)
 
-1.1. Design 3+ eval examples for `deep_research_mcp_tools` LangSmith dataset:
-
-- Example A: query that should use the filesystem MCP tool
-- Example B: query that should use the search MCP tool
-- Example C: query requiring both tools in sequence
-- Include one edge case where both tools are plausible so parity scoring has a meaningful comparison.
-
-1.2. Implement `evaluate_tool_selection(outputs, reference_outputs)`:
-
-- Heuristic gate.
-- Check that the agent's tool calls match the expected MCP tool name(s) and required ordering when sequence matters.
-
-1.3. Implement `evaluate_mcp_parity(outputs, reference_outputs)`:
-
-- Pairwise LLM-as-judge using `MCP_PARITY_PAIRWISE_PROMPT`.
-- Compare MCP-agent output against the equivalent custom-tool baseline response for the same query.
-- Run two passes with swapped response order to mitigate position bias.
-- If passes disagree, emit `score=0.5`, verdict `TIE`, and reduced confidence.
-
-1.4. Write the evaluation section at the end of `notebooks/3_research_agent_mcp.ipynb`:
-
-- dataset creation
-- baseline generation or baseline fixture loading
-- evaluator functions
-- `langsmith_client.evaluate()` call
-- notebook markdown with the live MCP server startup command
-
-1.5. Run the MCP evals and verify results appear in LangSmith with:
-
-- heuristic pass/fail for tool selection
-- parity verdict
-- parity confidence
-- position-consistency evidence
-
----
-
-## Group 2 — Notebook 5: Full System E2E (fill gap)
-
-2.1. Design 3–5 eval examples for `deep_research_e2e` LangSmith dataset:
+1.1. Design 3–5 eval examples for `deep_research_e2e` LangSmith dataset:
 
 - Each example includes a full research query plus expected report characteristics.
 - Reference outputs should capture `expected_sources`, `expected_facts`, and `expected_sections`.
 - Cover diverse topics: commercial trend, niche technical, and at least one query with multiple sub-questions.
 
-2.2. Implement `evaluate_report_source_coverage(outputs, reference_outputs)`:
+1.2. Implement `evaluate_report_source_coverage(outputs, reference_outputs)`:
 
 - Direct-scoring LLM judge.
 - Rubric checks source relevance, source diversity, and whether claims are grounded in cited material.
 - Require explicit evidence extracted from the report before the score.
 
-2.3. Implement `evaluate_report_factual_consistency(outputs, reference_outputs)`:
+1.3. Implement `evaluate_report_factual_consistency(outputs, reference_outputs)`:
 
 - Direct-scoring LLM judge.
 - Rubric checks whether key claims are supported by cited sources and flags unsupported assertions.
 - Include an edge case for partial citation support rather than treating all mixed-quality reports as full failures.
 
-2.4. Implement `evaluate_report_completeness(outputs, reference_outputs)`:
+1.4. Implement `evaluate_report_completeness(outputs, reference_outputs)`:
 
 - Direct-scoring LLM judge.
 - Rubric checks whether every material aspect of the original research question is addressed.
 - Penalize omission more than brevity.
 
-2.5. Implement `evaluate_report_structure(outputs, reference_outputs)`:
+1.5. Implement `evaluate_report_structure(outputs, reference_outputs)`:
 
 - Heuristic gate.
 - Check for expected sections such as introduction, findings, conclusion, and references.
 
-2.6. Write the evaluation section at the end of `notebooks/5_full_agent.ipynb`:
+1.6. Write the evaluation section at the end of `notebooks/5_full_agent.ipynb`:
 
 - dataset creation
 - judge rubric definitions
@@ -131,13 +92,13 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - `langsmith_client.evaluate()` call
 - explicit note that E2E evals always run and are not marked slow
 
-2.7. Run the E2E evals and verify results appear in LangSmith with normalized scores, evidence, and confidence for every LLM-judge output.
+1.7. Run the E2E evals and verify results appear in LangSmith with normalized scores, evidence, and confidence for every LLM-judge output.
 
 ---
 
-## Group 3 — Notebook 1: Scoping (strengthen)
+## Group 2 — Notebook 1: Scoping (strengthen)
 
-3.1. Expand `deep_research_scoping` dataset from 2 → 5+ examples:
+2.1. Expand `deep_research_scoping` dataset from 2 → 5+ examples:
 
 - ambiguous query
 - multi-topic query
@@ -145,25 +106,25 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - very short query
 - query with conflicting requirements
 
-3.2. Implement `evaluate_clarification_routing(outputs, reference_outputs)`:
+2.2. Implement `evaluate_clarification_routing(outputs, reference_outputs)`:
 
 - Heuristic gate.
 - Verify `ClarifyWithUser.need_clarification` matches the expected routing decision.
 
-3.3. Implement `evaluate_brief_completeness(outputs, reference_outputs)`:
+2.3. Implement `evaluate_brief_completeness(outputs, reference_outputs)`:
 
 - Heuristic gate.
 - Check all required `ResearchQuestion` fields are populated and non-empty.
 
-3.4. Add the new evaluators to the existing `langsmith_client.evaluate()` call in `notebooks/1_scoping.ipynb`.
+2.4. Add the new evaluators to the existing `langsmith_client.evaluate()` call in `notebooks/1_scoping.ipynb`.
 
-3.5. Run and verify in LangSmith, with special attention to systematic disagreements on the ambiguous-query cases.
+2.5. Run and verify in LangSmith, with special attention to systematic disagreements on the ambiguous-query cases.
 
 ---
 
-## Group 4 — Notebook 2: Research Agent (strengthen)
+## Group 3 — Notebook 2: Research Agent (strengthen)
 
-4.1. Expand `deep_research_agent_termination` dataset from 2 → 5+ examples:
+3.1. Expand `deep_research_agent_termination` dataset from 2 → 5+ examples:
 
 - multi-step search needed
 - topic drift scenario
@@ -171,26 +132,26 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - sufficient after one search
 - conflicting sources
 
-4.2. Implement `evaluate_research_depth(outputs, reference_outputs)`:
+3.2. Implement `evaluate_research_depth(outputs, reference_outputs)`:
 
 - Direct-scoring LLM judge using `RESEARCH_DEPTH_JUDGE_PROMPT`.
 - Rubric checks depth, breadth, and usefulness of compressed notes.
 - Require evidence before score and return one concrete improvement note for debugging weak runs.
 
-4.3. Implement `evaluate_citation_presence(outputs, reference_outputs)`:
+3.3. Implement `evaluate_citation_presence(outputs, reference_outputs)`:
 
 - Heuristic gate.
 - Check that URLs or source references appear in compressed research notes.
 
-4.4. Add the new evaluators to `notebooks/2_research_agent.ipynb` and keep the existing termination heuristic as a separate deterministic signal.
+3.4. Add the new evaluators to `notebooks/2_research_agent.ipynb` and keep the existing termination heuristic as a separate deterministic signal.
 
-4.5. Run and verify in LangSmith, watching for length bias by comparing short but high-quality notes against longer but repetitive notes.
+3.5. Run and verify in LangSmith, watching for length bias by comparing short but high-quality notes against longer but repetitive notes.
 
 ---
 
-## Group 5 — Notebook 4: Supervisor (strengthen)
+## Group 4 — Notebook 4: Supervisor (strengthen)
 
-5.1. Expand `deep_research_supervisor_parallelism` dataset from 2 → 5+ examples:
+4.1. Expand `deep_research_supervisor_parallelism` dataset from 2 → 5+ examples:
 
 - single-topic (1 thread)
 - 3+ subtopics
@@ -223,7 +184,6 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 - all heuristic evaluators pass on every example
 - all LLM-as-judge evaluators return normalized scores, evidence, and confidence
-- MCP pairwise parity records position-consistency results
 
 6.3. Review score distributions, not just means:
 
