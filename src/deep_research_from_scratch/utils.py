@@ -23,7 +23,7 @@ from typing_extensions import Annotated, List, Literal
 
 from deep_research_from_scratch.Helper import GenAIToken
 from deep_research_from_scratch.prompts import summarize_webpage_prompt
-from deep_research_from_scratch.state_research import Summary
+from deep_research_from_scratch.state_research import ImageResult, Summary
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -80,6 +80,20 @@ def get_runtime_config() -> dict:
     return dict(_runtime_config.get())
 
 
+_last_search_images: contextvars.ContextVar[list[ImageResult]] = (
+    contextvars.ContextVar("last_search_images", default=[])
+)
+
+
+def get_last_search_images() -> list[ImageResult]:
+    """Retrieve images extracted from the most recent search call.
+
+    Used by tool_node to pass image metadata into the agent state
+    without changing the tool's string return interface.
+    """
+    return list(_last_search_images.get())
+
+
 def _build_summarization_model(
     model_id: str | None = None,
     temperature: float = 0.0,
@@ -123,6 +137,7 @@ def tavily_search_multiple(
     max_results: int = 3,
     topic: Literal["general", "news", "finance"] = "general",
     include_raw_content: bool = True,
+    include_images: bool = True,
 ) -> List[dict]:
     """Perform search using Tavily API for multiple queries.
 
@@ -131,6 +146,7 @@ def tavily_search_multiple(
         max_results: Maximum number of results per query
         topic: Topic filter for search results
         include_raw_content: Whether to include raw webpage content
+        include_images: Whether to include image URLs in results
 
     Returns:
         List of search result dictionaries
@@ -142,11 +158,48 @@ def tavily_search_multiple(
             query,
             max_results=max_results,
             include_raw_content=include_raw_content,
-            topic=topic
+            topic=topic,
+            include_images=include_images,
         )
         search_docs.append(result)
 
     return search_docs
+
+
+def extract_images_from_search_results(
+    search_results: List[dict],
+) -> list[ImageResult]:
+    """Extract deduplicated image metadata from Tavily search responses.
+
+    Handles both plain URL strings and dict-format image entries
+    (when Tavily returns descriptions).
+
+    Args:
+        search_results: List of raw Tavily search response dicts
+
+    Returns:
+        Deduplicated list of ImageResult objects
+    """
+    seen_urls: set[str] = set()
+    images: list[ImageResult] = []
+
+    for response in search_results:
+        for img in response.get("images", []):
+            if isinstance(img, str):
+                url, description = img, ""
+            elif isinstance(img, dict):
+                url = img.get("url", "")
+                description = img.get("description", "")
+            else:
+                continue
+
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                images.append(
+                    ImageResult(url=url, description=description)
+                )
+
+    return images
 
 def summarize_webpage_content(webpage_content: str) -> str:
     """Summarize webpage content using the configured summarization model.
@@ -226,11 +279,15 @@ def process_search_results(unique_results: dict) -> dict:
 
     return summarized_results
 
-def format_search_output(summarized_results: dict) -> str:
+def format_search_output(
+    summarized_results: dict,
+    images: list[ImageResult] | None = None,
+) -> str:
     """Format search results into a well-structured string output.
 
     Args:
         summarized_results: Dictionary of processed results
+        images: Optional list of image metadata to append
 
     Returns:
         Formatted string of search results with clear source separation
@@ -245,6 +302,14 @@ def format_search_output(summarized_results: dict) -> str:
         formatted_output += f"URL: {url}\n\n"
         formatted_output += f"SUMMARY:\n{result['content']}\n\n"
         formatted_output += "-" * 80 + "\n"
+
+    if images:
+        formatted_output += "\n\n--- IMAGES FOUND ---\n"
+        for i, img in enumerate(images, 1):
+            formatted_output += f"\n[Image {i}]: {img.url}"
+            if img.description:
+                formatted_output += f"\n  Description: {img.description}"
+            formatted_output += "\n"
 
     return formatted_output
 
@@ -272,7 +337,12 @@ def tavily_search(
         max_results=max_results,
         topic=topic,
         include_raw_content=True,
+        include_images=True,
     )
+
+    # Extract image metadata and store for retrieval by tool_node
+    images = extract_images_from_search_results(search_results)
+    _last_search_images.set(images)
 
     # Deduplicate results by URL to avoid processing duplicate content
     unique_results = deduplicate_search_results(search_results)
@@ -280,8 +350,8 @@ def tavily_search(
     # Process results with summarization
     summarized_results = process_search_results(unique_results)
 
-    # Format output for consumption
-    return format_search_output(summarized_results)
+    # Format output for consumption (includes images section)
+    return format_search_output(summarized_results, images=images)
 
 @tool(parse_docstring=True)
 def think_tool(reflection: str) -> str:
@@ -309,3 +379,84 @@ def think_tool(reflection: str) -> str:
         Confirmation that reflection was recorded for decision-making
     """
     return f"Reflection recorded: {reflection}"
+
+
+# ===== IMAGE DOWNLOAD =====
+
+def download_images(
+    images: list[ImageResult],
+    output_dir: str | Path,
+    timeout: int = 5,
+) -> list[ImageResult]:
+    """Download images to local disk with best-effort error handling.
+
+    Each image is downloaded individually with a timeout. Failures are
+    logged but do not prevent other images from being downloaded.
+    A metadata JSON file is written alongside the downloaded images.
+
+    Args:
+        images: List of ImageResult objects to download
+        output_dir: Directory to save downloaded images
+        timeout: Per-image download timeout in seconds
+
+    Returns:
+        Updated list of ImageResult objects with local_path populated
+        for successfully downloaded images
+    """
+    import json
+    from urllib.parse import urlparse
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    verify_ssl = os.getenv("DISABLE_SSL_VERIFY", "").lower() not in (
+        "1", "true", "yes",
+    )
+
+    _VALID_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"}
+    _CONTENT_TYPE_MAP = {
+        "png": ".png",
+        "gif": ".gif",
+        "webp": ".webp",
+        "svg": ".svg",
+        "jpeg": ".jpg",
+        "jpg": ".jpg",
+    }
+
+    updated: list[ImageResult] = []
+
+    for img in images:
+        try:
+            resp = requests.get(img.url, timeout=timeout, verify=verify_ssl)
+            resp.raise_for_status()
+
+            # Derive filename from URL path
+            parsed = urlparse(img.url)
+            filename = Path(parsed.path).name or ""
+            suffix = Path(filename).suffix.lower() if filename else ""
+
+            if suffix not in _VALID_EXTENSIONS:
+                # Infer extension from Content-Type header
+                content_type = resp.headers.get("content-type", "")
+                ext = ".jpg"  # fallback
+                for key, val in _CONTENT_TYPE_MAP.items():
+                    if key in content_type:
+                        ext = val
+                        break
+                filename = f"image_{abs(hash(img.url)) % 10**8}{ext}"
+
+            filepath = output_path / filename
+            filepath.write_bytes(resp.content)
+            updated.append(img.model_copy(update={"local_path": str(filepath)}))
+            logger.info("Downloaded image: %s -> %s", img.url, filepath)
+
+        except Exception as e:
+            logger.warning("Failed to download image %s: %s", img.url, e)
+            updated.append(img)  # keep original without local_path
+
+    # Persist structured metadata alongside downloaded images
+    metadata_path = output_path / "images_metadata.json"
+    metadata = [i.model_dump() for i in updated]
+    metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
+
+    return updated
