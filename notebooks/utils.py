@@ -118,6 +118,37 @@ def to_langfuse_evaluation(
 to_langsmith_result = to_langfuse_evaluation
 
 
+def init_langfuse():
+    """Initialize a Langfuse client with fail-fast validation.
+
+    Reads ``LANGFUSE_PUBLIC_KEY``, ``LANGFUSE_SECRET_KEY``, and
+    ``LANGFUSE_HOST`` from the environment.  Raises immediately if
+    credentials are missing so notebooks surface a clear error instead
+    of silently creating a disabled client.
+
+    Returns:
+        A configured ``langfuse.Langfuse`` instance.
+    """
+    from langfuse import Langfuse
+
+    missing = [
+        k for k in ("LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY", "LANGFUSE_HOST")
+        if not os.getenv(k)
+    ]
+    if missing:
+        raise EnvironmentError(
+            f"Langfuse credentials not configured. "
+            f"Missing env vars: {', '.join(missing)}. "
+            f"Set them in your .env file."
+        )
+
+    return Langfuse(
+        public_key=os.getenv("LANGFUSE_PUBLIC_KEY"),
+        secret_key=os.getenv("LANGFUSE_SECRET_KEY"),
+        host=os.getenv("LANGFUSE_HOST"),
+    )
+
+
 def init_judge_model(
     model: str = "azure_openai:GPT-54-2026-03-05",
     temperature: float = 0.0,
