@@ -30,6 +30,7 @@ from deep_research_from_scratch.state_research import (
     ResearcherState,
 )
 from deep_research_from_scratch.utils import (
+    get_last_search_images,
     get_today_str,
     set_runtime_config,
     tavily_search,
@@ -41,9 +42,9 @@ load_dotenv()
 # ===== CONFIGURATION =====
 
 # Model role defaults
-_DEFAULT_RESEARCH_MODEL = "azure_openai:gpt-4.1"
-_DEFAULT_SUMMARIZATION_MODEL = "azure_openai:gpt-4.1-mini"  # used by tool-side webpage summarization when configured
-_DEFAULT_COMPRESS_MODEL = "azure_openai:gpt-4.1"
+_DEFAULT_RESEARCH_MODEL = "azure_openai:GPT-54-2026-03-05"
+_DEFAULT_SUMMARIZATION_MODEL = "azure_openai:GPT-54-2026-03-05"  # used by tool-side webpage summarization when configured
+_DEFAULT_COMPRESS_MODEL = "azure_openai:GPT-54-2026-03-05"
 
 # Tools are module-level (no model dependency)
 tools = [tavily_search, think_tool]
@@ -107,14 +108,24 @@ def tool_node(state: ResearcherState):
     """Execute all tool calls from the previous LLM response.
 
     Executes all tool calls from the previous LLM responses.
-    Returns updated state with tool execution results.
+    After each tavily_search call, captures image metadata via
+    contextvars and deduplicates against already-collected images.
+    Returns updated state with tool execution results and new images.
     """
     tool_calls = state["researcher_messages"][-1].tool_calls
 
     observations = []
+    new_images = []
+    seen_urls = {img.url for img in state.get("images", [])}
+
     for tool_call in tool_calls:
         tool = tools_by_name[tool_call["name"]]
         observations.append(tool.invoke(tool_call["args"]))
+        if tool_call["name"] == "tavily_search":
+            for img in get_last_search_images():
+                if img.url not in seen_urls:
+                    seen_urls.add(img.url)
+                    new_images.append(img)
 
     tool_outputs = [
         ToolMessage(
@@ -124,7 +135,7 @@ def tool_node(state: ResearcherState):
         ) for observation, tool_call in zip(observations, tool_calls)
     ]
 
-    return {"researcher_messages": tool_outputs}
+    return {"researcher_messages": tool_outputs, "images": new_images}
 
 
 def compress_research(state: ResearcherState, config: RunnableConfig) -> dict:

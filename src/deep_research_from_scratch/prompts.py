@@ -102,6 +102,13 @@ You have access to two main tools:
 **CRITICAL: Use think_tool after each search to reflect on results and plan next steps**
 </Available Tools>
 
+<Image Collection>
+Search results may include relevant images (charts, diagrams, screenshots, data visualizations).
+Note any images that are directly relevant to the research topic in your thinking — these will be
+preserved and embedded in the final report. You do not need to take any special action to collect
+images; they are captured automatically from search results.
+</Image Collection>
+
 <Instructions>
 Think like a human researcher with limited time. Follow these steps:
 
@@ -328,6 +335,7 @@ The think_tool calls contain strategic reflections and decision-making notes tha
 4. You should include a "Sources" section at the end of the report that lists all of the sources the researcher found with corresponding citations, cited against statements in the report.
 5. Make sure to include ALL of the sources that the researcher gathered in the report, and how they were used to answer the question!
 6. It's really important not to lose any sources. A later LLM will be used to merge this report with others, so having all of the sources is critical.
+7. If images were found during research (listed under "IMAGES FOUND" in search results), preserve references to relevant images and briefly note why each is relevant to the research topic.
 </Guidelines>
 
 <Output Format>
@@ -381,12 +389,18 @@ Here are the findings from the research that you conducted:
 {findings}
 </Findings>
 
+Here are the images collected during research:
+<Images>
+{images}
+</Images>
+
 Please create a detailed answer to the overall research brief that:
 1. Is well-organized with proper headings (# for title, ## for sections, ### for subsections)
 2. Includes specific facts and insights from the research
 3. References relevant sources using [Title](URL) format
 4. Provides a balanced, thorough analysis. Be as comprehensive as possible, and include all information that is relevant to the overall research question. People are using you for deep research and will expect detailed, comprehensive answers.
 5. Includes a "Sources" section at the end with all referenced links
+6. Embeds relevant images using Markdown syntax: ![description](image_url). Only include images that directly support the content of the section they appear in. Place images near the text they illustrate. If no images are relevant, simply omit them.
 
 You can structure your report in a number of different ways. Here are some examples:
 

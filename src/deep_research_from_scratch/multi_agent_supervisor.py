@@ -35,6 +35,7 @@ from deep_research_from_scratch.state_multi_agent_supervisor import (
     ResearchComplete,
     SupervisorState,
 )
+from deep_research_from_scratch.state_research import ImageResult
 from deep_research_from_scratch.utils import get_today_str, think_tool
 
 load_dotenv()
@@ -248,6 +249,17 @@ async def supervisor_tools(state: SupervisorState, config: RunnableConfig) -> Co
                     for result in tool_results
                 ]
 
+                # Aggregate images from sub-agents with URL dedup
+                seen_urls = {
+                    img.url for img in state.get("images", [])
+                }
+                all_images: list[ImageResult] = []
+                for result in tool_results:
+                    for img in result.get("images", []):
+                        if img.url not in seen_urls:
+                            seen_urls.add(img.url)
+                            all_images.append(img)
+
         except Exception as e:
             print(f"Error in supervisor tools: {e}")
             should_end = True
@@ -266,7 +278,8 @@ async def supervisor_tools(state: SupervisorState, config: RunnableConfig) -> Co
             goto=next_step,
             update={
                 "supervisor_messages": tool_messages,
-                "raw_notes": all_raw_notes
+                "raw_notes": all_raw_notes,
+                "images": all_images,
             }
         )
 
