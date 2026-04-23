@@ -156,10 +156,27 @@ def compress_research(state: ResearcherState, config: RunnableConfig) -> dict:
     )
 
     system_message = compress_research_system_prompt.format(date=get_today_str())
+
+    # Append structured image metadata so references survive compression
+    human_content = compress_research_human_message
+    images = state.get("images", [])
+    if images:
+        image_lines = [
+            f"- {img.url}"
+            + (f" — {img.description}" if img.description else "")
+            for img in images
+        ]
+        human_content += (
+            "\n\n--- IMAGES COLLECTED DURING RESEARCH ---\n"
+            + "\n".join(image_lines)
+            + "\nPreserve references to relevant images in your "
+            "compressed output."
+        )
+
     messages = (
         [SystemMessage(content=system_message)]
         + state.get("researcher_messages", [])
-        + [HumanMessage(content=compress_research_human_message)]
+        + [HumanMessage(content=human_content)]
     )
     response = compress_model.invoke(messages)
 

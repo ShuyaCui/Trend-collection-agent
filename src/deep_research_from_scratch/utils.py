@@ -172,7 +172,9 @@ def extract_images_from_search_results(
     """Extract deduplicated image metadata from Tavily search responses.
 
     Handles both plain URL strings and dict-format image entries
-    (when Tavily returns descriptions).
+    (when Tavily returns descriptions). Populates ``title`` from dict
+    entries when available; ``source_page`` is left empty because the
+    Tavily API does not attribute images to specific result pages.
 
     Args:
         search_results: List of raw Tavily search response dicts
@@ -186,17 +188,22 @@ def extract_images_from_search_results(
     for response in search_results:
         for img in response.get("images", []):
             if isinstance(img, str):
-                url, description = img, ""
+                url, description, title = img, "", ""
             elif isinstance(img, dict):
                 url = img.get("url", "")
                 description = img.get("description", "")
+                title = img.get("title", "")
             else:
                 continue
 
             if url and url not in seen_urls:
                 seen_urls.add(url)
                 images.append(
-                    ImageResult(url=url, description=description)
+                    ImageResult(
+                        url=url,
+                        description=description,
+                        title=title,
+                    )
                 )
 
     return images
@@ -425,7 +432,7 @@ def download_images(
 
     updated: list[ImageResult] = []
 
-    for img in images:
+    for idx, img in enumerate(images):
         try:
             resp = requests.get(img.url, timeout=timeout, verify=verify_ssl)
             resp.raise_for_status()
@@ -438,12 +445,25 @@ def download_images(
             if suffix not in _VALID_EXTENSIONS:
                 # Infer extension from Content-Type header
                 content_type = resp.headers.get("content-type", "")
-                ext = ".jpg"  # fallback
+                ext = None
                 for key, val in _CONTENT_TYPE_MAP.items():
                     if key in content_type:
                         ext = val
                         break
-                filename = f"image_{abs(hash(img.url)) % 10**8}{ext}"
+                if ext is None:
+                    logger.warning(
+                        "Skipping image with unsupported format: %s "
+                        "(content-type: %s)",
+                        img.url,
+                        content_type,
+                    )
+                    updated.append(img)
+                    continue
+                filename = f"image_{idx:03d}{ext}"
+            else:
+                # Prefix index to avoid filename collisions across domains
+                stem = Path(filename).stem
+                filename = f"{idx:03d}_{stem}{suffix}"
 
             filepath = output_path / filename
             filepath.write_bytes(resp.content)

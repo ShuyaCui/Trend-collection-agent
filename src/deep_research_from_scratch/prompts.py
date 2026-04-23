@@ -400,7 +400,7 @@ Please create a detailed answer to the overall research brief that:
 3. References relevant sources using [Title](URL) format
 4. Provides a balanced, thorough analysis. Be as comprehensive as possible, and include all information that is relevant to the overall research question. People are using you for deep research and will expect detailed, comprehensive answers.
 5. Includes a "Sources" section at the end with all referenced links
-6. Embeds relevant images using Markdown syntax: ![description](image_url). Only include images that directly support the content of the section they appear in. Place images near the text they illustrate. If no images are relevant, simply omit them.
+6. Embeds relevant images using Markdown syntax: ![description](path). When a local path is provided for an image, use it (e.g., `images/filename.png`) for offline portability. Otherwise fall back to the original URL. Only include images that directly support the content of the section they appear in. Place images near the text they illustrate. If no images are relevant, simply omit them.
 
 You can structure your report in a number of different ways. Here are some examples:
 

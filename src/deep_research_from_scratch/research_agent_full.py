@@ -65,8 +65,9 @@ def _build_model(model_id: str, **kwargs):
 async def final_report_generation(state: AgentState, config: RunnableConfig):
     """Generate the final research report.
 
-    Synthesizes all research findings into a comprehensive final report.
-    Downloads collected images to local storage for offline access.
+    Downloads collected images to local storage first, then synthesizes
+    all research findings into a comprehensive final report with
+    relative image paths for portability.
 
     Model is controlled by config["configurable"]["writer_model"]
     (default: "azure_openai:gpt-5.3").
@@ -80,15 +81,32 @@ async def final_report_generation(state: AgentState, config: RunnableConfig):
     notes = state.get("notes", [])
     findings = "\n".join(notes)
 
-    # Format image metadata for the report writer
+    # Download images BEFORE report generation so local paths are available
     images = state.get("images", [])
+    thread_id = configurable.get("thread_id") or uuid.uuid4().hex[:12]
+    report_dir = os.path.join("reports", thread_id)
+    downloaded_images: list = []
+
     if images:
-        images_text = "\n".join(
-            f"- URL: {img.url}"
-            + (f"\n  Title: {img.title}" if img.title else "")
-            + (f"\n  Description: {img.description}" if img.description else "")
-            for img in images
+        output_dir = os.path.join(report_dir, "images")
+        downloaded_images = await asyncio.to_thread(
+            download_images, images, output_dir,
         )
+
+    # Format image metadata with relative paths for the report writer
+    if downloaded_images:
+        images_text_lines = []
+        for img in downloaded_images:
+            line = f"- URL: {img.url}"
+            if img.local_path:
+                rel = os.path.relpath(img.local_path, report_dir)
+                line += f"\n  Local path: {rel}"
+            if img.title:
+                line += f"\n  Title: {img.title}"
+            if img.description:
+                line += f"\n  Description: {img.description}"
+            images_text_lines.append(line)
+        images_text = "\n".join(images_text_lines)
     else:
         images_text = "No images were found during research."
 
@@ -99,13 +117,9 @@ async def final_report_generation(state: AgentState, config: RunnableConfig):
         images=images_text,
     )
 
-    final_report = await writer_model.ainvoke([HumanMessage(content=final_report_prompt)])
-
-    # Download images to local storage (best-effort, non-blocking)
-    if images:
-        thread_id = configurable.get("thread_id") or uuid.uuid4().hex[:12]
-        output_dir = os.path.join("reports", thread_id, "images")
-        await asyncio.to_thread(download_images, images, output_dir)
+    final_report = await writer_model.ainvoke(
+        [HumanMessage(content=final_report_prompt)],
+    )
 
     return {
         "final_report": final_report.content,
