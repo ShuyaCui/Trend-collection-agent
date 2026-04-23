@@ -6,11 +6,13 @@ including web search capabilities and content summarization tools.
 """
 
 import contextvars
+import json
 import logging
 import os
 from datetime import datetime
 from functools import wraps
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 import urllib3
@@ -410,9 +412,6 @@ def download_images(
         Updated list of ImageResult objects with local_path populated
         for successfully downloaded images
     """
-    import json
-    from urllib.parse import urlparse
-
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
