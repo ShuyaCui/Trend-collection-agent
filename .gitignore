@@ -4,3 +4,11 @@ __pycache__
 .langgraph_api/
 deep_research_from_scratch.egg-info/
 *.pyc
+# Ignore the generated trend dimensions file since it's a derived artifact that can be regenerated from the source documents and LLM extraction pipeline
+trend_knowledge/dimensions.json
+# Ignore the history trend report files since they are large binary files that are not suitable for version control and can be regenerated from the source documents and LLM extraction pipeline
+trend_knowledge/history_trend_report_*.json
+# Ignore report files
+reports/
+# Ignore history report files
+history_reports/
