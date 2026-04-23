@@ -10,6 +10,7 @@ whether sufficient context exists to proceed with research.
 """
 
 import os
+import urllib.parse  # noqa: F401 — ensure stdlib urllib.parse is cached before urllib3
 from datetime import datetime
 
 from dotenv import load_dotenv

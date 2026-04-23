@@ -1,5 +1,6 @@
 import json
 import time
+import urllib.parse  # noqa: F401 — pre-load before urllib3 can shadow it
 
 from azure.identity import ChainedTokenCredential, DefaultAzureCredential
 from dotenv import load_dotenv as _load_dotenv
