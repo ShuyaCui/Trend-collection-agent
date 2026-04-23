@@ -181,6 +181,7 @@ async def supervisor_tools(state: SupervisorState, config: RunnableConfig) -> Co
 
     tool_messages = []
     all_raw_notes = []
+    all_images: list[ImageResult] = []
     next_step = "supervisor"
     should_end = False
 
@@ -253,7 +254,6 @@ async def supervisor_tools(state: SupervisorState, config: RunnableConfig) -> Co
                 seen_urls = {
                     img.url for img in state.get("images", [])
                 }
-                all_images: list[ImageResult] = []
                 for result in tool_results:
                     for img in result.get("images", []):
                         if img.url not in seen_urls:
