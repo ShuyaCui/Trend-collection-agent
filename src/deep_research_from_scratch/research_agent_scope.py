@@ -32,6 +32,10 @@ from deep_research_from_scratch.state_scope import (
     ClarifyWithUser,
     ResearchQuestion,
 )
+from deep_research_from_scratch.trend_dimensions import (
+    format_dimensions_for_prompt,
+    load_trend_dimensions,
+)
 
 load_dotenv()
 
@@ -40,6 +44,24 @@ load_dotenv()
 def get_today_str() -> str:
     """Get current date in a human-readable format."""
     return datetime.now().strftime("%a %b %-d, %Y")
+
+
+def _build_scope_dimensions_section() -> str:
+    """Build the expert dimensions section for the scope prompt.
+
+    Returns a formatted section string when dimensions are available,
+    or an empty string for graceful degradation.
+    """
+    dims = format_dimensions_for_prompt(load_trend_dimensions())
+    if not dims:
+        return ""
+    return (
+        "7. Expert Analytical Dimensions\n"
+        "- The following dimensions reflect how industry experts structure trend analysis "
+        "in this domain. In the research brief, enumerate the most relevant dimensions "
+        "so researchers know which angles to investigate:\n"
+        f"{dims}"
+    )
 
 # ===== CONFIGURATION =====
 
@@ -118,7 +140,8 @@ def write_research_brief(state: AgentState, config: RunnableConfig):
     response = structured_output_model.invoke([
         HumanMessage(content=transform_messages_into_research_topic_prompt.format(
             messages=get_buffer_string(state.get("messages", [])),
-            date=get_today_str()
+            date=get_today_str(),
+            trend_dimensions=_build_scope_dimensions_section()
         ))
     ])
 

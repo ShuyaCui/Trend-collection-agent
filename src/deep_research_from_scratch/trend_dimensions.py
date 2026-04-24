@@ -12,6 +12,7 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 _CACHE: list[dict] | None = None
+_LOADED: bool = False  # sentinel: distinguishes "not yet loaded" from "loaded but missing"
 
 
 def _find_dimensions_file() -> Path | None:
@@ -32,10 +33,10 @@ def load_trend_dimensions() -> list[dict] | None:
     """Load trend analysis dimensions from the pre-generated knowledge file.
 
     Returns a list of dimension dicts on success, or None if the file is not
-    found. Result is cached in memory to avoid repeated disk reads.
+    found. Both hits and misses are cached to avoid repeated disk reads.
     """
-    global _CACHE
-    if _CACHE is not None:
+    global _CACHE, _LOADED
+    if _LOADED:
         return _CACHE
 
     path = _find_dimensions_file()
@@ -45,15 +46,20 @@ def load_trend_dimensions() -> list[dict] | None:
             "Run notebooks/6_trend_skill.ipynb to generate it. "
             "Continuing without trend dimension guidance."
         )
+        _LOADED = True
+        _CACHE = None
         return None
 
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         _CACHE = data.get("dimensions", [])
+        _LOADED = True
         logger.info("Loaded %d trend dimensions from %s", len(_CACHE), path)
         return _CACHE
     except Exception as e:
         logger.warning("Failed to load trend dimensions: %s", e)
+        _LOADED = True
+        _CACHE = None
         return None
 
 

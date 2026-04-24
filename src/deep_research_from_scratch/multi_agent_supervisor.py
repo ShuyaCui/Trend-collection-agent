@@ -36,6 +36,10 @@ from deep_research_from_scratch.state_multi_agent_supervisor import (
     SupervisorState,
 )
 from deep_research_from_scratch.state_research import ImageResult
+from deep_research_from_scratch.trend_dimensions import (
+    format_dimensions_for_prompt,
+    load_trend_dimensions,
+)
 from deep_research_from_scratch.utils import get_today_str, think_tool
 
 load_dotenv()
@@ -110,6 +114,26 @@ def _build_model(model_id: str, **kwargs):
 
 # ===== SUPERVISOR NODES =====
 
+def _build_supervisor_dimensions_section() -> str:
+    """Build the expert dimensions section for the supervisor prompt.
+
+    Returns a full XML section string when dimensions are available,
+    or an empty string for graceful degradation (no empty XML block).
+    """
+    dims = format_dimensions_for_prompt(load_trend_dimensions())
+    if not dims:
+        return ""
+    return (
+        "<Expert Dimensions>\n"
+        "When decomposing the research question into parallel sub-tasks, consider "
+        "structuring ConductResearch calls around these expert analytical dimensions:\n"
+        f"{dims}\n"
+        "Adapt them to the research question — not all dimensions apply to every topic. "
+        "Do not create more sub-tasks than your concurrency limit allows.\n"
+        "</Expert Dimensions>\n"
+    )
+
+
 async def supervisor(state: SupervisorState, config: RunnableConfig) -> Command[Literal["supervisor_tools"]]:
     """Coordinate research activities.
 
@@ -137,10 +161,12 @@ async def supervisor(state: SupervisorState, config: RunnableConfig) -> Command[
 
     supervisor_messages = state.get("supervisor_messages", [])
 
+    trend_dims = _build_supervisor_dimensions_section()
     system_message = lead_researcher_prompt.format(
         date=get_today_str(),
         max_concurrent_research_units=max_concurrent_researchers,
-        max_researcher_iterations=max_researcher_iterations
+        max_researcher_iterations=max_researcher_iterations,
+        trend_dimensions=trend_dims
     )
     messages = [SystemMessage(content=system_message)] + supervisor_messages
 
