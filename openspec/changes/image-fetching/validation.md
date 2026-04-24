@@ -9,50 +9,50 @@ The feature is considered complete and ready to merge when **all** of the follow
 ## Functional Validation
 
 ### V1 — Image URL Collection
-- [ ] `tavily_search` tool output includes image URLs when Tavily returns images
-- [ ] `ImageResult` objects are correctly constructed with `url`, `title`, `source_page` fields
-- [ ] When Tavily returns no images, the tool output is unchanged from current behavior
+- [x] `tavily_search` tool output includes image URLs when Tavily returns images
+- [x] `ImageResult` objects are correctly constructed with `url`, `title`, `source_page` fields
+- [x] When Tavily returns no images, the tool output is unchanged from current behavior
 
 ### V2 — Image Download
-- [ ] Images are downloaded to `reports/<session_id>/images/` directory
-- [ ] Download failures (timeout, 404, invalid format) are logged but do not block research
-- [ ] `images_metadata.json` is written with correct metadata for all downloaded images
-- [ ] `DISABLE_SSL_VERIFY` setting is respected during image downloads
+- [x] Images are downloaded to `reports/<session_id>/images/` directory
+- [x] Download failures (timeout, 404, invalid format) are logged but do not block research
+- [x] `images_metadata.json` is written with correct metadata for all downloaded images
+- [x] `DISABLE_SSL_VERIFY` setting is respected during image downloads
 
 ### V3 — State Flow
-- [ ] `images` field accumulates correctly across multiple tool call iterations in `ResearcherState`
-- [ ] Images from multiple parallel sub-agents are aggregated in `SupervisorState`
-- [ ] Images flow from `SupervisorState` through to `AgentState` in the full pipeline
+- [x] `images` field accumulates correctly across multiple tool call iterations in `ResearcherState`
+- [x] Images from multiple parallel sub-agents are aggregated in `SupervisorState`
+- [x] Images flow from `SupervisorState` through to `AgentState` in the full pipeline
 
 ### V4 — Compressed Research
-- [ ] `compress_research` output includes references to relevant images
-- [ ] Image references survive compression (not dropped by summarization)
+- [x] `compress_research` output includes references to relevant images
+- [x] Image references survive compression (not dropped by summarization)
 
 ### V5 — Final Report
-- [ ] Final report contains `![caption](path)` Markdown image references
-- [ ] Image paths in report are valid relative paths to downloaded files
-- [ ] Report is still well-structured when no images are available
+- [x] Final report contains `![caption](path)` Markdown image references
+- [x] Image paths in report are valid relative paths to downloaded files
+- [x] Report is still well-structured when no images are available
 
 ---
 
 ## Backward Compatibility
 
 ### V6 — No Regression
-- [ ] Existing text-only research flow works without errors when no images are returned
-- [ ] Empty `images: []` default does not cause state errors
-- [ ] All existing LangGraph entry points still compile (`research_agent_full.py:agent`, `research_agent.py:researcher_agent`, `multi_agent_supervisor.py:supervisor_agent`)
+- [x] Existing text-only research flow works without errors when no images are returned
+- [x] Empty `images: []` default does not cause state errors
+- [x] All existing LangGraph entry points still compile (`research_agent_full.py:agent`, `research_agent.py:researcher_agent`, `multi_agent_supervisor.py:supervisor_agent`)
 
 ---
 
 ## Code Quality
 
 ### V7 — Lint & Style
-- [ ] `ruff check src/` passes with no errors
-- [ ] All new code follows existing conventions (Google-style docstrings, import ordering)
+- [x] `ruff check src/` passes with no errors
+- [x] All new code follows existing conventions (Google-style docstrings, import ordering)
 
 ### V8 — Notebook Workflow
-- [ ] Modified notebook cells (2, 4, 5) regenerate `src/` files correctly via `%%writefile`
-- [ ] No direct edits to `src/` files exist outside of `%%writefile` generation
+- [x] Modified notebook cells (2, 4, 5) regenerate `src/` files correctly via `%%writefile`
+- [x] No direct edits to `src/` files exist outside of `%%writefile` generation
 
 ---
 
