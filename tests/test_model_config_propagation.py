@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from deep_research_from_scratch import research_agent
+from deep_research_from_scratch import research_agent_scope
 from deep_research_from_scratch import utils as research_utils
 
 
@@ -58,6 +59,22 @@ class ResearchAgentRuntimeConfigTests(unittest.TestCase):
             )
 
         set_runtime_config.assert_called_once_with(configurable)
+
+
+class ScopeModelNormalizationTests(unittest.TestCase):
+    def test_scope_model_normalizes_lowercase_deployment_names(self) -> None:
+        with patch.object(research_agent_scope, "init_chat_model") as init_chat_model:
+            research_agent_scope._build_model("azure_openai:gpt-54-2026-03-05")
+
+        kwargs = init_chat_model.call_args.kwargs
+        self.assertEqual(kwargs["model"], "azure_openai:GPT-54-2026-03-05")
+        self.assertEqual(kwargs["azure_deployment"], "GPT-54-2026-03-05")
+
+    def test_scope_model_leaves_bare_model_ids_unchanged(self) -> None:
+        self.assertEqual(
+            research_agent_scope._normalize_model_id("gpt-54-2026-03-05"),
+            "gpt-54-2026-03-05",
+        )
 
 
 if __name__ == "__main__":

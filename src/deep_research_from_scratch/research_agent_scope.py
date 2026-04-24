@@ -68,16 +68,25 @@ def _build_scope_dimensions_section() -> str:
 _DEFAULT_SCOPE_MODEL = "azure_openai:gpt-4.1"
 
 
+def _normalize_model_id(model_id: str) -> str:
+    """Normalize Azure model identifiers to use the expected deployment casing."""
+    provider, separator, deployment = model_id.partition(":")
+    if not separator:
+        return model_id
+    return f"{provider}{separator}{deployment.upper()}"
+
+
 def _build_model(model_id: str, **kwargs):
     """Build an Azure OpenAI model instance from a model identifier string.
 
     Extracts the deployment name from the model identifier using the
     convention that model name equals deployment name (e.g.,
-    "azure_openai:gpt-4.1" -> deployment "gpt-4.1").
+    "azure_openai:gpt-54-2026-03-05" -> deployment "GPT-54-2026-03-05").
     """
-    deployment = model_id.split(":")[-1]
+    normalized_model_id = _normalize_model_id(model_id)
+    deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
-        model=model_id,
+        model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
         api_key=GenAIToken().token(),
