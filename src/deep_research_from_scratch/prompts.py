@@ -86,6 +86,12 @@ Guidelines:
 - For people, try linking directly to their LinkedIn profile, or their personal website if they have one.
 - If the query is in a specific language, prioritize sources published in that language.
 
+7. Trend Research Decomposition
+- If the user's request is about researching a trend (e.g., "what is the trend in X", "how is X trending", "latest trends in X", "how has X evolved"), decompose the research brief into 4–6 numbered sub-questions, each targeting a distinct analytical dimension.
+- If analytical dimensions are provided below, select the most relevant 4–6 dimensions and prefix each sub-question with the dimension name in brackets: "[Dimension Name] ..." Otherwise, use appropriate analytical categories for the trend domain (e.g., geographic market, consumer demographics, product category).
+- Each sub-question must be specific and actionable, incorporating all user-stated details.
+- If the topic is NOT trend-related, produce a single unified research brief without decomposition.
+
 {trend_dimensions}
 """
 
