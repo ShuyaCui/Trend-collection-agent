@@ -8,7 +8,7 @@ Evaluation is performed **at the end of each module notebook**, not as a standal
 
 ## Agent Validation  ← current focus
 
-Evaluation lives at the bottom of each module notebook. Every notebook follows the same pattern: create a LangSmith dataset → define evaluator(s) → run `langsmith_client.evaluate()`.
+Evaluation lives at the bottom of each module notebook. Every notebook follows the same pattern: create a Langfuse dataset → define evaluator(s) → run `langfuse.run_experiment()`.
 
 ### Notebook 1 — Scoping (`1_scoping.ipynb`) — strengthen existing evals
 **Existing evaluators**: `evaluate_success_criteria` (LLM-as-judge), `evaluate_no_assumptions` (LLM-as-judge).
@@ -24,7 +24,7 @@ Evaluation lives at the bottom of each module notebook. Every notebook follows t
 
 ### Notebook 3 — MCP Agent (`3_research_agent_mcp.ipynb`) — add evals (gap)
 **Existing evaluators**: None.
-- [ ] Create LangSmith dataset `deep_research_mcp_tools` with 3+ examples testing MCP tool selection and results
+- [ ] Create Langfuse dataset `deep_research_mcp_tools` with 3+ examples testing MCP tool selection and results
 - [ ] Add evaluator: `evaluate_tool_selection` — verify the agent selects the correct MCP tool for a given query type (filesystem vs. search)
 - [ ] Add evaluator: `evaluate_mcp_parity` — compare MCP agent output quality against custom-tool agent output on same input (functional parity check)
 
@@ -36,7 +36,7 @@ Evaluation lives at the bottom of each module notebook. Every notebook follows t
 
 ### Notebook 5 — Full System (`5_full_agent.ipynb`) — add end-to-end eval (gap)
 **Existing evaluators**: None.
-- [ ] Create LangSmith dataset `deep_research_e2e` with 3–5 full research queries + expected report characteristics (source domains, key facts, required sections)
+- [ ] Create Langfuse dataset `deep_research_e2e` with 3–5 full research queries + expected report characteristics (source domains, key facts, required sections)
 - [ ] Add evaluator: `evaluate_report_source_coverage` — LLM-as-judge scoring how well the report cites diverse, relevant sources
 - [ ] Add evaluator: `evaluate_report_factual_consistency` — LLM-as-judge checking claims against cited sources
 - [ ] Add evaluator: `evaluate_report_completeness` — LLM-as-judge verifying all aspects of the research question are addressed in the report
@@ -44,7 +44,7 @@ Evaluation lives at the bottom of each module notebook. Every notebook follows t
 
 ### Shared infrastructure
 - [ ] Add eval prompt templates to `prompts.py` via `%%writefile` (criteria judge, depth judge, report quality judge)
-- [ ] Ensure `LANGSMITH_API_KEY` is in `.env.example` with instructions
+- [ ] Ensure `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL` are in `.env.example` with instructions
 
 ---
 

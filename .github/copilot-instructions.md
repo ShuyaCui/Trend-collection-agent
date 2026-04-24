@@ -133,4 +133,4 @@ The system implements a three-phase deep research pipeline using LangGraph:
 
 - **Prompts**: All prompt templates live in `src/deep_research_from_scratch/prompts.py` (generated from notebooks). They use `.format()` string interpolation with variables like `{date}`, `{messages}`, `{research_brief}`.
 
-- **Environment variables**: Required: `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_API_VERSION`, `HEADERS_PROJECT_NAME`, `HEADERS_USERID`, `TAVILY_API_KEY`. Optional: `LANGSMITH_API_KEY`, `LANGSMITH_TRACING`.
+- **Environment variables**: Required: `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_DEPLOYMENT`, `AZURE_OPENAI_API_VERSION`, `HEADERS_PROJECT_NAME`, `HEADERS_USERID`, `TAVILY_API_KEY`. Optional: `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL`.

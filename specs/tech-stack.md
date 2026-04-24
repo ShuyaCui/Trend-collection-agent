@@ -13,7 +13,7 @@
 | Package management | [uv](https://docs.astral.sh/uv/) | Fast, reproducible Python environments |
 | Notebooks | Jupyter | Executable tutorials; source of truth for `src/` |
 | Auth (Azure) | GenAIToken (Azure AD) | Token-based LLM auth with auto-refresh |
-| Tracing | LangSmith (optional) | Observability and run tracing |
+| Tracing | [Langfuse](https://langfuse.com/) (self-hosted or cloud) | Observability and run tracing |
 
 ## Architecture Constraints
 
@@ -32,7 +32,7 @@
 ### 2. Evaluation Framework
 **Status**: Not implemented — no automated quality measurement of research outputs.  
 **Need**: Teams must be able to assess report quality, source coverage, and factual accuracy over time.  
-**Candidates**: LangSmith evaluators, custom rubric-based LLM-as-judge, ragas, or ARES.
+**Candidates**: Langfuse experiments with custom rubric-based LLM-as-judge, ragas, or ARES.
 
 ## Deliberately Out of Scope
 
@@ -51,5 +51,6 @@
 | `AZURE_OPENAI_ENDPOINT` | Azure only | Azure OpenAI endpoint |
 | `AZURE_OPENAI_DEPLOYMENT` | Azure only | Model deployment name |
 | `AZURE_OPENAI_API_VERSION` | Azure only | API version |
-| `LANGSMITH_API_KEY` | No | Tracing |
-| `LANGSMITH_TRACING` | No | Enable tracing |
+| `LANGFUSE_PUBLIC_KEY` | No | Langfuse tracing auth |
+| `LANGFUSE_SECRET_KEY` | No | Langfuse tracing auth |
+| `LANGFUSE_BASE_URL` | No | Langfuse host (default: cloud) |

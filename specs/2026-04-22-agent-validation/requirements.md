@@ -2,7 +2,7 @@
 
 ## Objective
 
-Add or strengthen LangSmith-based evaluations at the end of the selected module notebooks so that changes to prompts, agent logic, or tool configuration produce measurable, comparable experiment results.
+Add or strengthen Langfuse-based evaluations at the end of the selected module notebooks so that changes to prompts, agent logic, or tool configuration produce measurable, comparable experiment results.
 
 The current rollout covers:
 
@@ -26,7 +26,7 @@ The deep research pipeline has five independently shippable modules, but the cur
 - Add new LLM-as-judge evaluators for notebooks 2, 4, and 5.
 - Create an evaluation section from scratch for notebook 5.
 - Add shared eval prompt templates to `prompts.py` via `%%writefile`.
-- Document minimum LangSmith and model configuration in `.env.example`.
+- Document minimum Langfuse and model configuration in `.env.example`.
 - Standardize evaluator metadata, structured outputs, and score normalization across all selected notebooks.
 
 ### Out of scope
@@ -60,7 +60,7 @@ Every LLM-as-judge evaluator in scope must:
 - use a clear criterion definition with one measurable aspect per criterion
 - require evidence before score
 - include edge-case guidance for partial answers, sparse citations, and overlapping coverage
-- return structured JSON that can be converted into the existing LangSmith evaluator result shape
+- return structured JSON that can be converted into the existing Langfuse Evaluation result shape
 - expose confidence so low-confidence judgments can be spot-checked by humans
 
 ### Bias mitigation
@@ -79,16 +79,16 @@ Pairwise comparison is not part of the selected notebook rollout. If future work
 ## Constraints
 
 - **Notebooks are source of truth.** All evaluation code lives in notebook cells. Any `%%writefile` cells regenerate files in `src/`. Never edit `src/` directly.
-- **LangSmith dependency.** All evals require `LANGSMITH_API_KEY`. No offline fallback is required.
+- **Langfuse dependency.** All evals require `LANGFUSE_PUBLIC_KEY`. No offline fallback is required.
 - **Azure OpenAI auth.** Evaluator LLM calls use `GenAIToken`, consistent with the rest of the codebase.
-- **Existing eval pattern.** Evaluators must follow the established LangSmith callback shape and integrate into `langsmith_client.evaluate()`.
+- **Existing eval pattern.** Evaluators must follow the established Langfuse callback shape and integrate into `langfuse.run_experiment()`.
 - **Normalized reporting.** LLM-judge evaluators must expose normalized `0.0–1.0` scores even if the underlying rubric uses `1–5`.
 
 ## Inputs and outputs
 
 ### Inputs per notebook
 
-| Notebook | LangSmith dataset | Example format |
+| Notebook | Langfuse dataset | Example format |
 |---|---|---|
 | 1 — Scoping | `deep_research_scoping` (expand) | `inputs: {messages}`, `outputs: {criteria}` |
 | 2 — Research | `deep_research_agent_termination` (expand) | `inputs: {researcher_messages}`, `outputs: {next_step}` |
@@ -97,7 +97,7 @@ Pairwise comparison is not part of the selected notebook rollout. If future work
 
 ### Outputs
 
-- LangSmith experiment results per selected notebook.
+- Langfuse experiment results per selected notebook.
 - Heuristic evaluators return `score: bool`.
 - LLM-as-judge evaluators return normalized `score: float (0.0–1.0)` and include `reasoning`, `evidence`, and `confidence`.
 
@@ -133,8 +133,8 @@ Pairwise comparison is not part of the selected notebook rollout. If future work
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `LANGSMITH_API_KEY` | Yes | LangSmith SDK auth |
-| `LANGSMITH_TRACING` | No | Enable tracing during eval runs |
+| `LANGFUSE_PUBLIC_KEY` | Yes | Langfuse auth (public key) |
+| `LANGFUSE_BASE_URL` | No | Langfuse host URL |
 | `AZURE_OPENAI_ENDPOINT` | Yes | Judge model endpoint |
 | `AZURE_OPENAI_DEPLOYMENT` | Yes | Judge model deployment |
 | `AZURE_OPENAI_API_VERSION` | Yes | API version |
@@ -145,4 +145,4 @@ Pairwise comparison is not part of the selected notebook rollout. If future work
 - Each selected notebook ends with a runnable evaluation section.
 - Heuristic evaluators detect structural regressions deterministically.
 - LLM-judge evaluators produce inspectable advisory signals with evidence and confidence.
-- LangSmith experiments support trend analysis across prompt and agent changes.
+- Langfuse experiments support trend analysis across prompt and agent changes.

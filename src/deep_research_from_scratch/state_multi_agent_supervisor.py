@@ -1,5 +1,5 @@
 
-"""State Definitions for Multi-Agent Research Supervisor
+"""State Definitions for Multi-Agent Research Supervisor.
 
 This module defines the state objects and tools used for the multi-agent
 research supervisor workflow, including coordination state and research tools.

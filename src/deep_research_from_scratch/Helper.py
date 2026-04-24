@@ -1,3 +1,4 @@
+"""Azure OpenAI authentication helper and shared utilities."""
 import json
 import time
 import urllib.parse  # noqa: F401 — pre-load before urllib3 can shadow it
@@ -108,10 +109,10 @@ def determine_mime_type(filename: str) -> str:
     return mime_type
     """Load cached results from a JSON file"""
     try:
-        with open(filename, 'r', encoding='utf-8') as f:
+        with open(filename, encoding='utf-8') as f:
             cached_results = json.load(f)
-        print(f"Cached results loaded from {filename}")
+        print(f"Cached results loaded from {filename}")  # noqa: T201
         return cached_results
     except FileNotFoundError:
-        print(f"File {filename} not found. Starting with empty cache.")
+        print(f"File {filename} not found. Starting with empty cache.")  # noqa: T201
         return {}

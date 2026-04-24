@@ -1,5 +1,5 @@
 
-"""State Definitions and Pydantic Schemas for Research Agent
+"""State Definitions and Pydantic Schemas for Research Agent.
 
 This module defines the state objects and structured schemas used for
 the research agent workflow, including researcher state management and output schemas.

@@ -115,10 +115,6 @@ def to_langfuse_evaluation(
     )
 
 
-# Backward-compatible alias — will be removed once all notebooks are migrated.
-to_langsmith_result = to_langfuse_evaluation
-
-
 def init_langfuse():
     """Initialize a Langfuse client with fail-fast validation.
 

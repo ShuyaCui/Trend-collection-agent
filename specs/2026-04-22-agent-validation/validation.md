@@ -37,38 +37,38 @@ Every selected notebook eval run should also preserve enough metadata to identif
 
 ### Notebook 1 — Scoping
 
-- [ ] `deep_research_scoping` dataset has at least 5 examples in LangSmith
+- [ ] `deep_research_scoping` dataset has at least 5 examples in Langfuse
 - [ ] `evaluate_success_criteria` runs without error on all examples
 - [ ] `evaluate_no_assumptions` runs without error on all examples
 - [ ] `evaluate_clarification_routing` passes on all examples
 - [ ] `evaluate_brief_completeness` passes on all examples
-- [ ] LangSmith experiment completes with all evaluators attached
+- [ ] Langfuse experiment completes with all evaluators attached
 
 ### Notebook 2 — Research Agent
 
-- [ ] `deep_research_agent_termination` dataset has at least 5 examples in LangSmith
+- [ ] `deep_research_agent_termination` dataset has at least 5 examples in Langfuse
 - [ ] `evaluate_next_step` passes on all examples
 - [ ] `evaluate_research_depth` runs without error and records score, evidence, and confidence
 - [ ] `evaluate_citation_presence` passes on all examples
-- [ ] LangSmith experiment completes with all evaluators attached
+- [ ] Langfuse experiment completes with all evaluators attached
 
 ### Notebook 4 — Supervisor
 
-- [ ] `deep_research_supervisor_parallelism` dataset has at least 5 examples in LangSmith
+- [ ] `deep_research_supervisor_parallelism` dataset has at least 5 examples in Langfuse
 - [ ] `evaluate_parallelism` passes on all examples
 - [ ] `evaluate_topic_coverage` runs without error and records score, evidence, and confidence
 - [ ] `evaluate_aggregation_quality` runs without error and records score, evidence, and confidence
-- [ ] LangSmith experiment completes with all evaluators attached
+- [ ] Langfuse experiment completes with all evaluators attached
 
 ### Notebook 5 — Full System
 
-- [ ] `deep_research_e2e` dataset is created with 3 to 5 examples in LangSmith
+- [ ] `deep_research_e2e` dataset is created with 3 to 5 examples in Langfuse
 - [ ] E2E evals always run and are not hidden behind a slow marker or skip flag
 - [ ] `evaluate_report_structure` passes on all examples
 - [ ] `evaluate_report_source_coverage` runs without error and records score, evidence, and confidence
 - [ ] `evaluate_report_factual_consistency` runs without error and records score, evidence, and confidence
 - [ ] `evaluate_report_completeness` runs without error and records score, evidence, and confidence
-- [ ] LangSmith experiment completes with all evaluators attached
+- [ ] Langfuse experiment completes with all evaluators attached
 
 ### Notebook 3 — MCP Agent
 
@@ -80,7 +80,7 @@ Every selected notebook eval run should also preserve enough metadata to identif
 ## Shared infrastructure checks
 
 - [ ] New eval prompt templates are present in generated `prompts.py` output via notebook `%%writefile`
-- [ ] `.env.example` documents LangSmith and Azure OpenAI eval setup
+- [ ] `.env.example` documents Langfuse and Azure OpenAI eval setup
 - [ ] All touched notebook `%%writefile` cells have been re-run so `src/` stays up to date
 - [ ] `ruff check src/` passes with no errors
 
@@ -102,7 +102,7 @@ These checks are required because a judge that is consistently wrong in one clas
 ```bash
 # 1. Ensure environment variables are set
 cp .env.example .env
-# Fill in LANGSMITH_API_KEY, AZURE_OPENAI_*, and TAVILY_API_KEY
+# Fill in LANGFUSE_PUBLIC_KEY, AZURE_OPENAI_*, and TAVILY_API_KEY
 
 # 2. Run each selected notebook's eval section
 uv run jupyter nbconvert --to notebook --execute notebooks/1_scoping.ipynb
@@ -110,7 +110,7 @@ uv run jupyter nbconvert --to notebook --execute notebooks/2_research_agent.ipyn
 uv run jupyter nbconvert --to notebook --execute notebooks/4_research_supervisor.ipynb
 uv run jupyter nbconvert --to notebook --execute notebooks/5_full_agent.ipynb
 
-# 3. Verify experiments in LangSmith UI
+# 3. Verify experiments in Langfuse UI
 # Check that all experiments completed and heuristic evals pass
 
 # 4. Lint generated source
@@ -128,7 +128,7 @@ The work can be considered complete when:
 1. All selected notebooks have working evaluation sections at the end.
 2. All heuristic evaluators pass on every dataset example.
 3. All LLM-as-judge evaluators run without error and produce normalized scores with evidence and confidence.
-4. LangSmith shows completed experiments for notebooks 1, 2, 4, and 5.
+4. Langfuse shows completed experiments for notebooks 1, 2, 4, and 5.
 5. `ruff check src/` passes.
 6. No existing non-eval notebook functionality is broken.
 7. Notebook 3 remains out of scope for this validation phase.

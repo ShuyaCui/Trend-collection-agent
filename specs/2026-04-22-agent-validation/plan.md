@@ -8,8 +8,8 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 0.1. Create `.env.example` at the repo root and document the minimum eval setup:
 
-- `LANGSMITH_API_KEY`
-- `LANGSMITH_TRACING`
+- `LANGFUSE_PUBLIC_KEY`
+- `LANGFUSE_BASE_URL`
 - `AZURE_OPENAI_ENDPOINT`
 - `AZURE_OPENAI_DEPLOYMENT`
 - `AZURE_OPENAI_API_VERSION`
@@ -30,7 +30,7 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - Use pairwise comparison only where two outputs are being compared directly.
 - Require evidence before score.
 - Return structured JSON with `score`, `reasoning`, `evidence`, and `confidence`.
-- Use a balanced 1–5 rubric internally, then normalize to `0.0–1.0` for LangSmith.
+- Use a balanced 1–5 rubric internally, then normalize to `0.0–1.0` for Langfuse.
 - Include edge-case guidance so judges handle partial answers, sparse citations, and overlapping topics consistently.
 
 0.4. Add small shared judge helpers in notebook eval cells:
@@ -55,7 +55,7 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 ## Group 1 — Notebook 5: Full System E2E (fill gap)
 
-1.1. Design 3–5 eval examples for `deep_research_e2e` LangSmith dataset:
+1.1. Design 3–5 eval examples for `deep_research_e2e` Langfuse dataset:
 
 - Each example includes a full research query plus expected report characteristics.
 - Reference outputs should capture `expected_sources`, `expected_facts`, and `expected_sections`.
@@ -89,10 +89,10 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - dataset creation
 - judge rubric definitions
 - evaluator functions
-- `langsmith_client.evaluate()` call
+- `langfuse.run_experiment()` call
 - explicit note that E2E evals always run and are not marked slow
 
-1.7. Run the E2E evals and verify results appear in LangSmith with normalized scores, evidence, and confidence for every LLM-judge output.
+1.7. Run the E2E evals and verify results appear in Langfuse with normalized scores, evidence, and confidence for every LLM-judge output.
 
 ---
 
@@ -116,9 +116,9 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 - Heuristic gate.
 - Check all required `ResearchQuestion` fields are populated and non-empty.
 
-2.4. Add the new evaluators to the existing `langsmith_client.evaluate()` call in `notebooks/1_scoping.ipynb`.
+2.4. Add the new evaluators to the existing `langfuse.run_experiment()` call in `notebooks/1_scoping.ipynb`.
 
-2.5. Run and verify in LangSmith, with special attention to systematic disagreements on the ambiguous-query cases.
+2.5. Run and verify in Langfuse, with special attention to systematic disagreements on the ambiguous-query cases.
 
 ---
 
@@ -145,7 +145,7 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 3.4. Add the new evaluators to `notebooks/2_research_agent.ipynb` and keep the existing termination heuristic as a separate deterministic signal.
 
-3.5. Run and verify in LangSmith, watching for length bias by comparing short but high-quality notes against longer but repetitive notes.
+3.5. Run and verify in Langfuse, watching for length bias by comparing short but high-quality notes against longer but repetitive notes.
 
 ---
 
@@ -172,13 +172,13 @@ Task groups are ordered gaps-first, then strengthening existing evals. This revi
 
 5.4. Add the new evaluators to `notebooks/4_research_supervisor.ipynb` alongside the existing `evaluate_parallelism` heuristic.
 
-5.5. Run and verify in LangSmith, especially on broad-survey examples where topic omission is more likely than outright failure.
+5.5. Run and verify in Langfuse, especially on broad-survey examples where topic omission is more likely than outright failure.
 
 ---
 
 ## Group 6 — Final validation and merge readiness
 
-6.1. Run all notebook eval sections sequentially (NB1 → NB2 → NB3 → NB4 → NB5) and confirm all LangSmith experiments complete.
+6.1. Run all notebook eval sections sequentially (NB1 → NB2 → NB3 → NB4 → NB5) and confirm all Langfuse experiments complete.
 
 6.2. Verify merge criteria:
 

@@ -287,7 +287,7 @@ async def supervisor_tools(state: SupervisorState, config: RunnableConfig) -> Co
                             all_images.append(img)
 
         except Exception as e:
-            print(f"Error in supervisor tools: {e}")
+            print(f"Error in supervisor tools: {e}")  # noqa: T201
             should_end = True
             next_step = END
 

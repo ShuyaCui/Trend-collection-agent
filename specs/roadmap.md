@@ -59,7 +59,7 @@ Phases 6–7 address known gaps identified in the constitution.
 
 ## 🔄 Phase 6 — Agent Validation (per-module)  ← current
 **Status**: In progress  
-**Approach**: Evaluation lives at the end of each module notebook (not a standalone phase). Every notebook follows the LangSmith pattern: dataset → evaluator(s) → `langsmith_client.evaluate()`.
+**Approach**: Evaluation lives at the end of each module notebook (not a standalone phase). Every notebook follows the Langfuse pattern: dataset → evaluator(s) → `langfuse.run_experiment()`.
 
 ### Notebook 1 — Scoping (strengthen)
 Existing evals: `evaluate_success_criteria`, `evaluate_no_assumptions`.
@@ -81,7 +81,7 @@ Existing eval: `evaluate_parallelism`.
 
 ### Notebook 5 — Full System (gap — add end-to-end eval)
 No existing evals.
-- [ ] Create `deep_research_e2e` LangSmith dataset (3–5 full queries)
+- [ ] Create `deep_research_e2e` Langfuse dataset (3–5 full queries)
 - [ ] Add `evaluate_report_source_coverage` — LLM-as-judge for source diversity
 - [ ] Add `evaluate_report_factual_consistency` — claims match cited sources
 - [ ] Add `evaluate_report_completeness` — all aspects of question addressed
@@ -89,9 +89,9 @@ No existing evals.
 
 ### Shared
 - [ ] Add eval prompt templates to `prompts.py` via `%%writefile`
-- [ ] Document `LANGSMITH_API_KEY` setup in `.env.example`
+- [ ] Document `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_BASE_URL` setup in `.env.example`
 
-**Done when**: Every module notebook (1–5) has a working evaluation section; running all evals produces LangSmith experiment results that detect regressions when prompts or agent logic change.
+**Done when**: Every module notebook (1–5) has a working evaluation section; running all evals produces Langfuse experiment results that detect regressions when prompts or agent logic change.
 
 ---
 
