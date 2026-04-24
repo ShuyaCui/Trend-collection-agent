@@ -38,7 +38,12 @@ from deep_research_from_scratch.state_research import (
     ResearcherOutputState,
     ResearcherState,
 )
-from deep_research_from_scratch.utils import get_current_dir, get_today_str, think_tool
+from deep_research_from_scratch.utils import (
+    get_current_dir,
+    get_today_str,
+    normalize_model_id,
+    think_tool,
+)
 
 load_dotenv()
 # ===== CONFIGURATION =====
@@ -78,9 +83,10 @@ def _build_model(
     max_tokens: int | None = None,
 ):
     """Build an MCP research model with a fresh GenAI token."""
-    deployment = model_id.split(":")[-1]
+    normalized_model_id = normalize_model_id(model_id)
+    deployment = normalized_model_id.split(":")[-1]
     model_kwargs = {
-        "model": model_id,
+        "model": normalized_model_id,
         "azure_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
         "azure_deployment": deployment,
         "api_key": GenAIToken().token(),

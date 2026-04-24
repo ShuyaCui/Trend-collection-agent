@@ -1,41 +1,41 @@
 
-"""Full Multi-Agent Research System.
+"""End-to-end deep research system combining scope, research, and report synthesis.
 
-This module integrates all components of the research system:
-- User clarification and scoping
-- Research brief generation
-- Multi-agent research coordination
-- Final report generation
+This module composes the scoping, multi-agent research, and report generation
+components into a single LangGraph workflow. The pipeline:
+1. Clarifies user intent and generates a research brief
+2. Conducts parallel research on multiple sub-topics
+3. Synthesizes findings into a comprehensive markdown report
 
-The system orchestrates the complete research workflow from initial user
-input through final report delivery.
+This is the main entry point for the complete deep research system.
 """
 
-import asyncio
 import os
-import uuid
 
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 
 from deep_research_from_scratch.Helper import GenAIToken
 from deep_research_from_scratch.multi_agent_supervisor import supervisor_agent
 from deep_research_from_scratch.prompts import final_report_generation_prompt
-from deep_research_from_scratch.research_agent_scope import (
-    clarify_with_user,
-    write_research_brief,
+from deep_research_from_scratch.research_agent_scope import scope_research
+from deep_research_from_scratch.state_multi_agent_supervisor import SupervisorState
+from deep_research_from_scratch.state_scope import ResearchQuestion
+from deep_research_from_scratch.trend_dimensions import (
+    format_dimensions_for_prompt,
+    load_trend_dimensions,
 )
-from deep_research_from_scratch.state_scope import AgentInputState, AgentState
-from deep_research_from_scratch.utils import download_images, get_today_str
+from deep_research_from_scratch.utils import get_today_str, normalize_model_id
 
 load_dotenv()
 
+
 # ===== CONFIGURATION =====
 
-_DEFAULT_WRITER_MODEL = "azure_openai:gpt-5.3"
+_DEFAULT_FINAL_REPORT_MODEL = "azure_openai:gpt-5.3"
 
 
 def _build_model(model_id: str, **kwargs):
@@ -43,11 +43,12 @@ def _build_model(model_id: str, **kwargs):
 
     Extracts the deployment name from the model identifier using the
     convention that model name equals deployment name (e.g.,
-    "azure_openai:gpt-5.3" -> deployment "gpt-5.3").
+    "azure_openai:gpt-5.3" -> deployment "GPT-5.3").
     """
-    deployment = model_id.split(":")[-1]
+    normalized_model_id = normalize_model_id(model_id)
+    deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
-        model=model_id,
+        model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
         api_key=GenAIToken().token(),
@@ -60,85 +61,87 @@ def _build_model(model_id: str, **kwargs):
     )
 
 
-# ===== FINAL REPORT GENERATION =====
+# ===== REPORT GENERATION =====
 
-async def final_report_generation(state: AgentState, config: RunnableConfig):
-    """Generate the final research report.
+def _build_report_dimensions_section() -> str:
+    """Build the expert dimensions section for the final report prompt.
 
-    Downloads collected images to local storage first, then synthesizes
-    all research findings into a comprehensive final report with
-    relative image paths for portability.
+    Returns a full XML section string when dimensions are available,
+    or an empty string for graceful degradation (no empty XML block).
+    """
+    dims = format_dimensions_for_prompt(load_trend_dimensions())
+    if not dims:
+        return ""
+    return (
+        "<Expert Dimensions>\n"
+        "Use these expert analytical dimensions where relevant to structure the final report, "
+        "organize findings, and identify gaps or future opportunities:\n"
+        f"{dims}\n"
+        "Apply them selectively based on the research topic rather than forcing every dimension.\n"
+        "</Expert Dimensions>\n"
+    )
 
-    Model is controlled by config["configurable"]["writer_model"]
+
+async def final_report_generation(
+    state: SupervisorState,
+    config: RunnableConfig,
+):
+    """Generate the final comprehensive report from research findings.
+
+    Takes the accumulated research notes from the supervisor phase and synthesizes
+    them into a well-structured markdown report. The report includes analysis,
+    findings, and actionable insights based on the research brief.
+
+    Model is controlled by config["configurable"]["final_report_model"]
     (default: "azure_openai:gpt-5.3").
+
+    Args:
+        state: Output from supervisor phase containing notes and research brief
+        config: LangGraph runtime config; supports configurable["final_report_model"]
+
+    Returns:
+        Dictionary containing the final markdown report and propagated images.
     """
     configurable = config.get("configurable", {})
-    writer_model = _build_model(
-        configurable.get("writer_model", _DEFAULT_WRITER_MODEL),
-        temperature=1.0,
+    final_report_model = _build_model(
+        configurable.get("final_report_model", _DEFAULT_FINAL_REPORT_MODEL),
+        temperature=0,
     )
 
     notes = state.get("notes", [])
-    findings = "\n".join(notes)
+    research_brief = state.get("research_brief", ResearchQuestion()).research_brief
 
-    # Download images BEFORE report generation so local paths are available
-    images = state.get("images", [])
-    thread_id = configurable.get("thread_id") or uuid.uuid4().hex[:12]
-    report_dir = os.path.join("reports", thread_id)
-    downloaded_images: list = []
-
-    if images:
-        output_dir = os.path.join(report_dir, "images")
-        downloaded_images = await asyncio.to_thread(
-            download_images, images, output_dir,
-        )
-
-    # Format image metadata with relative paths for the report writer
-    if downloaded_images:
-        images_text_lines = []
-        for img in downloaded_images:
-            line = f"- URL: {img.url}"
-            if img.local_path:
-                rel = os.path.relpath(img.local_path, report_dir)
-                line += f"\n  Local path: {rel}"
-            if img.title:
-                line += f"\n  Title: {img.title}"
-            if img.description:
-                line += f"\n  Description: {img.description}"
-            images_text_lines.append(line)
-        images_text = "\n".join(images_text_lines)
-    else:
-        images_text = "No images were found during research."
-
-    final_report_prompt = final_report_generation_prompt.format(
-        research_brief=state.get("research_brief", ""),
-        findings=findings,
+    system_prompt = final_report_generation_prompt.format(
         date=get_today_str(),
-        images=images_text,
+        trend_dimensions=_build_report_dimensions_section(),
+    )
+    user_prompt = (
+        f"<research_brief>\n{research_brief}\n</research_brief>\n\n"
+        f"<notes>\n{notes}\n</notes>"
     )
 
-    final_report = await writer_model.ainvoke(
-        [HumanMessage(content=final_report_prompt)],
-    )
+    result = await final_report_model.ainvoke([
+        SystemMessage(content=system_prompt),
+        HumanMessage(content=user_prompt),
+    ])
 
     return {
-        "final_report": final_report.content,
-        "messages": ["Here is the final report: " + final_report.content],
+        "final_report": result.content,
+        "images": state.get("images", []),
     }
 
 
 # ===== GRAPH CONSTRUCTION =====
 
-deep_researcher_builder = StateGraph(AgentState, input_schema=AgentInputState)
+builder = StateGraph(SupervisorState)
 
-deep_researcher_builder.add_node("clarify_with_user", clarify_with_user)
-deep_researcher_builder.add_node("write_research_brief", write_research_brief)
-deep_researcher_builder.add_node("supervisor_subgraph", supervisor_agent)
-deep_researcher_builder.add_node("final_report_generation", final_report_generation)
+builder.add_node("scope_research", scope_research)
+builder.add_node("supervisor_agent", supervisor_agent)
+builder.add_node("final_report_generation", final_report_generation)
 
-deep_researcher_builder.add_edge(START, "clarify_with_user")
-deep_researcher_builder.add_edge("write_research_brief", "supervisor_subgraph")
-deep_researcher_builder.add_edge("supervisor_subgraph", "final_report_generation")
-deep_researcher_builder.add_edge("final_report_generation", END)
+builder.add_edge(START, "scope_research")
+builder.add_edge("scope_research", "supervisor_agent")
+builder.add_edge("supervisor_agent", "final_report_generation")
+builder.add_edge("final_report_generation", END)
 
-agent = deep_researcher_builder.compile()
+agent = builder.compile()

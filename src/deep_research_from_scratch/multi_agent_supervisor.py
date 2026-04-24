@@ -40,7 +40,7 @@ from deep_research_from_scratch.trend_dimensions import (
     format_dimensions_for_prompt,
     load_trend_dimensions,
 )
-from deep_research_from_scratch.utils import get_today_str, think_tool
+from deep_research_from_scratch.utils import get_today_str, normalize_model_id, think_tool
 
 load_dotenv()
 
@@ -95,11 +95,12 @@ def _build_model(model_id: str, **kwargs):
 
     Extracts the deployment name from the model identifier using the
     convention that model name equals deployment name (e.g.,
-    "azure_openai:gpt-5.3" -> deployment "gpt-5.3").
+    "azure_openai:gpt-5.3" -> deployment "GPT-5.3").
     """
-    deployment = model_id.split(":")[-1]
+    normalized_model_id = normalize_model_id(model_id)
+    deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
-        model=model_id,
+        model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
         api_key=GenAIToken().token(),

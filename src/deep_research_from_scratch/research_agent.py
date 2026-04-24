@@ -32,6 +32,7 @@ from deep_research_from_scratch.state_research import (
 from deep_research_from_scratch.utils import (
     get_last_search_images,
     get_today_str,
+    normalize_model_id,
     set_runtime_config,
     tavily_search,
     think_tool,
@@ -58,9 +59,10 @@ def _build_model(model_id: str, **kwargs):
     convention that model name equals deployment name (e.g.,
     "azure_openai:gpt-4.1" -> deployment "gpt-4.1").
     """
-    deployment = model_id.split(":")[-1]
+    normalized_model_id = normalize_model_id(model_id)
+    deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
-        model=model_id,
+        model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
         api_key=GenAIToken().token(),

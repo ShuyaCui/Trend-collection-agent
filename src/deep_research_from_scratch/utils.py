@@ -96,6 +96,14 @@ def get_last_search_images() -> list[ImageResult]:
     return list(_last_search_images.get())
 
 
+def normalize_model_id(model_id: str) -> str:
+    """Normalize Azure model identifiers to use the expected deployment casing."""
+    provider, separator, deployment = model_id.partition(":")
+    if not separator:
+        return model_id
+    return f"{provider}{separator}{deployment.upper()}"
+
+
 def _build_summarization_model(
     model_id: str | None = None,
     temperature: float = 0.0,
@@ -115,9 +123,10 @@ def _build_summarization_model(
         or runtime_config.get("research_model")
         or _DEFAULT_SUMMARIZATION_MODEL
     )
-    deployment = resolved_model_id.split(":")[-1]
+    normalized_model_id = normalize_model_id(resolved_model_id)
+    deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
-        model=resolved_model_id,
+        model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
         api_key=GenAIToken().token(),
