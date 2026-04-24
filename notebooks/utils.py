@@ -67,12 +67,11 @@ def to_langfuse_evaluation(
     judge_model: str | None = None,
     evaluator_type: str = "direct_scoring",
     rubric_strictness: str = "balanced",
-) -> dict:
-    """Convert a JudgeResult into a Langfuse Evaluation-compatible dict.
+):
+    """Convert a JudgeResult into a Langfuse ``Evaluation`` object.
 
-    Returns a dict with ``name``, ``value``, ``comment``, and ``metadata``
-    fields matching the ``langfuse.experiment.Evaluation`` protocol used
-    by ``Langfuse.run_experiment()`` evaluators.
+    Returns an ``Evaluation`` compatible with ``Langfuse.run_experiment()``
+    evaluators.
 
     Args:
         key: Evaluator metric name (e.g. ``"research_depth_score"``).
@@ -83,9 +82,11 @@ def to_langfuse_evaluation(
         rubric_strictness: Rubric strictness level (default ``"balanced"``).
 
     Returns:
-        Dict compatible with Langfuse ``Evaluation`` (``name``, ``value``,
-        ``comment``, ``metadata``).
+        ``langfuse.Evaluation`` object with ``name``, ``value``,
+        ``comment``, and ``metadata`` populated.
     """
+    from langfuse import Evaluation
+
     comment = (
         f"Evidence: {judge_result.evidence}\n\n"
         f"Reasoning: {judge_result.reasoning}\n\n"
@@ -106,12 +107,12 @@ def to_langfuse_evaluation(
     if judge_model:
         metadata["judge_model"] = judge_model
 
-    return {
-        "name": key,
-        "value": normalize_score(judge_result.score),
-        "comment": comment,
-        "metadata": metadata,
-    }
+    return Evaluation(
+        name=key,
+        value=normalize_score(judge_result.score),
+        comment=comment,
+        metadata=metadata,
+    )
 
 
 # Backward-compatible alias — will be removed once all notebooks are migrated.
