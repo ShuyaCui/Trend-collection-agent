@@ -39,31 +39,24 @@ if _DISABLE_SSL:
 
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    # Patch Python's SSL module at the lowest level so ALL HTTP libraries
-    # (requests, httpx, urllib3, aiohttp, TavilyClient) skip certificate
-    # verification regardless of whether they use sessions, direct calls,
-    # or custom transports.
+    # --- Layer 1: patch Python's ssl module ---
     ssl._create_default_https_context = ssl._create_unverified_context  # noqa: SLF001
 
-    # Also patch requests.Session.request and requests.post for libraries
-    # that check the `verify` kwarg rather than relying on the SSL context.
-    _orig_session_request = requests.Session.request
+    # --- Layer 2: patch urllib3 at the connection-pool level ---
+    # This is the most reliable hook because %autoreload in Jupyter
+    # can reload `requests` / `requests.sessions` (resetting any
+    # monkey-patches on Session.request or requests.post) but it does
+    # NOT reload urllib3's compiled connection pool classes.
+    _orig_urlopen = urllib3.HTTPSConnectionPool.urlopen
 
-    @wraps(_orig_session_request)
-    def _unverified_session_request(self, method, url, **kwargs):  # noqa: ANN001
-        kwargs.setdefault("verify", False)
-        return _orig_session_request(self, method, url, **kwargs)
+    @wraps(_orig_urlopen)
+    def _unverified_urlopen(self, *args, **kwargs):  # noqa: ANN001
+        # Force no cert verification at the urllib3 level
+        self.cert_reqs = "CERT_NONE"
+        self.assert_hostname = False
+        return _orig_urlopen(self, *args, **kwargs)
 
-    requests.Session.request = _unverified_session_request
-
-    _orig_requests_post = requests.post
-
-    @wraps(_orig_requests_post)
-    def _unverified_post(*args, **kwargs):
-        kwargs.setdefault("verify", False)
-        return _orig_requests_post(*args, **kwargs)
-
-    requests.post = _unverified_post
+    urllib3.HTTPSConnectionPool.urlopen = _unverified_urlopen
 
 # ===== UTILITY FUNCTIONS =====
 
