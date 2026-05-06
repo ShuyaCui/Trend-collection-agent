@@ -42,35 +42,31 @@ if _DISABLE_SSL:
     # http.client) also skip verification.
     ssl._create_default_https_context = ssl._create_unverified_context  # noqa: SLF001
 
+    # Patch TavilyClient._search to inject verify=False into its
+    # requests.post call. This is the most reliable hook because:
+    # 1. It's a CLASS-level patch — %autoreload won't reset it (tavily
+    #    is in site-packages, so its mtime never changes).
+    # 2. It targets the exact code path that makes the HTTPS call.
+    # 3. No fragile monkey-patching of requests/urllib3 module functions.
+    # Guard: only patch once to avoid recursion on module reload.
+    if not getattr(TavilyClient._search, "_ssl_patched", False):
+        _orig = TavilyClient._search
 
-def _no_ssl_verify():
-    """Context manager that forces ``verify=False`` on ``requests.post``.
+        def _ssl_bypass_tavily_search(self, *args, _orig_fn=_orig, **kwargs):  # noqa: ANN001
+            _real_post = requests.post
 
-    Jupyter's ``%autoreload 2`` can reload ``requests`` / ``requests.sessions``
-    at any time, wiping module-level monkey-patches. This context manager
-    re-applies the patch right before each call, so it's immune to reload
-    timing. It restores the original function on exit.
-    """
-    import contextlib
+            def _post_no_verify(*a, **kw):
+                kw["verify"] = False
+                return _real_post(*a, **kw)
 
-    @contextlib.contextmanager
-    def _ctx():
-        if not _DISABLE_SSL:
-            yield
-            return
-        _real_post = requests.post
+            requests.post = _post_no_verify
+            try:
+                return _orig_fn(self, *args, **kwargs)
+            finally:
+                requests.post = _real_post
 
-        def _patched_post(*args, **kwargs):
-            kwargs["verify"] = False
-            return _real_post(*args, **kwargs)
-
-        requests.post = _patched_post
-        try:
-            yield
-        finally:
-            requests.post = _real_post
-
-    return _ctx()
+        _ssl_bypass_tavily_search._ssl_patched = True  # type: ignore[attr-defined]
+        TavilyClient._search = _ssl_bypass_tavily_search
 
 # ===== UTILITY FUNCTIONS =====
 
@@ -192,16 +188,15 @@ def tavily_search_multiple(
     """
     # Execute searches sequentially. Note: yon can use AsyncTavilyClient to parallelize this step.
     search_docs = []
-    with _no_ssl_verify():
-        for query in search_queries:
-            result = tavily_client.search(
-                query,
-                max_results=max_results,
-                include_raw_content=include_raw_content,
-                topic=topic,
-                include_images=include_images,
-            )
-            search_docs.append(result)
+    for query in search_queries:
+        result = tavily_client.search(
+            query,
+            max_results=max_results,
+            include_raw_content=include_raw_content,
+            topic=topic,
+            include_images=include_images,
+        )
+        search_docs.append(result)
 
     return search_docs
 
