@@ -10,7 +10,6 @@ import json
 import logging
 import os
 from datetime import datetime
-from functools import wraps
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -39,24 +38,39 @@ if _DISABLE_SSL:
 
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    # --- Layer 1: patch Python's ssl module ---
+    # Patch Python's ssl module so stdlib HTTPS clients (urllib.request,
+    # http.client) also skip verification.
     ssl._create_default_https_context = ssl._create_unverified_context  # noqa: SLF001
 
-    # --- Layer 2: patch urllib3 at the connection-pool level ---
-    # This is the most reliable hook because %autoreload in Jupyter
-    # can reload `requests` / `requests.sessions` (resetting any
-    # monkey-patches on Session.request or requests.post) but it does
-    # NOT reload urllib3's compiled connection pool classes.
-    _orig_urlopen = urllib3.HTTPSConnectionPool.urlopen
 
-    @wraps(_orig_urlopen)
-    def _unverified_urlopen(self, *args, **kwargs):  # noqa: ANN001
-        # Force no cert verification at the urllib3 level
-        self.cert_reqs = "CERT_NONE"
-        self.assert_hostname = False
-        return _orig_urlopen(self, *args, **kwargs)
+def _no_ssl_verify():
+    """Context manager that forces ``verify=False`` on ``requests.post``.
 
-    urllib3.HTTPSConnectionPool.urlopen = _unverified_urlopen
+    Jupyter's ``%autoreload 2`` can reload ``requests`` / ``requests.sessions``
+    at any time, wiping module-level monkey-patches. This context manager
+    re-applies the patch right before each call, so it's immune to reload
+    timing. It restores the original function on exit.
+    """
+    import contextlib
+
+    @contextlib.contextmanager
+    def _ctx():
+        if not _DISABLE_SSL:
+            yield
+            return
+        _real_post = requests.post
+
+        def _patched_post(*args, **kwargs):
+            kwargs["verify"] = False
+            return _real_post(*args, **kwargs)
+
+        requests.post = _patched_post
+        try:
+            yield
+        finally:
+            requests.post = _real_post
+
+    return _ctx()
 
 # ===== UTILITY FUNCTIONS =====
 
@@ -178,15 +192,16 @@ def tavily_search_multiple(
     """
     # Execute searches sequentially. Note: yon can use AsyncTavilyClient to parallelize this step.
     search_docs = []
-    for query in search_queries:
-        result = tavily_client.search(
-            query,
-            max_results=max_results,
-            include_raw_content=include_raw_content,
-            topic=topic,
-            include_images=include_images,
-        )
-        search_docs.append(result)
+    with _no_ssl_verify():
+        for query in search_queries:
+            result = tavily_client.search(
+                query,
+                max_results=max_results,
+                include_raw_content=include_raw_content,
+                topic=topic,
+                include_images=include_images,
+            )
+            search_docs.append(result)
 
     return search_docs
 
