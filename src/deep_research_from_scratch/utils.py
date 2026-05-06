@@ -35,10 +35,18 @@ logger = logging.getLogger(__name__)
 # operating behind a corporate proxy with self-signed certificates.
 _DISABLE_SSL = os.getenv("DISABLE_SSL_VERIFY", "").lower() in ("1", "true", "yes")
 if _DISABLE_SSL:
+    import ssl
+
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    # Patch Session.request so ALL requests (including TavilyClient's internal
-    # session) bypass SSL verification. Patching only requests.post is insufficient
-    # because TavilyClient uses requests.Session internally.
+
+    # Patch Python's SSL module at the lowest level so ALL HTTP libraries
+    # (requests, httpx, urllib3, aiohttp, TavilyClient) skip certificate
+    # verification regardless of whether they use sessions, direct calls,
+    # or custom transports.
+    ssl._create_default_https_context = ssl._create_unverified_context  # noqa: SLF001
+
+    # Also patch requests.Session.request and requests.post for libraries
+    # that check the `verify` kwarg rather than relying on the SSL context.
     _orig_session_request = requests.Session.request
 
     @wraps(_orig_session_request)
@@ -47,6 +55,15 @@ if _DISABLE_SSL:
         return _orig_session_request(self, method, url, **kwargs)
 
     requests.Session.request = _unverified_session_request
+
+    _orig_requests_post = requests.post
+
+    @wraps(_orig_requests_post)
+    def _unverified_post(*args, **kwargs):
+        kwargs.setdefault("verify", False)
+        return _orig_requests_post(*args, **kwargs)
+
+    requests.post = _unverified_post
 
 # ===== UTILITY FUNCTIONS =====
 
