@@ -173,15 +173,15 @@ async def final_report_generation(
 
 # ===== GRAPH CONSTRUCTION =====
 
-builder = StateGraph(SupervisorState)
+deep_researcher_builder = StateGraph(SupervisorState)
 
-builder.add_node("scope_research", scope_research)
-builder.add_node("supervisor_agent", supervisor_agent)
-builder.add_node("final_report_generation", final_report_generation)
+deep_researcher_builder.add_node("scope_research", scope_research)
+deep_researcher_builder.add_node("supervisor_agent", supervisor_agent)
+deep_researcher_builder.add_node("final_report_generation", final_report_generation)
 
-builder.add_edge(START, "scope_research")
-builder.add_edge("scope_research", "supervisor_agent")
-builder.add_edge("supervisor_agent", "final_report_generation")
-builder.add_edge("final_report_generation", END)
+deep_researcher_builder.add_edge(START, "scope_research")
+deep_researcher_builder.add_edge("scope_research", "supervisor_agent")
+deep_researcher_builder.add_edge("supervisor_agent", "final_report_generation")
+deep_researcher_builder.add_edge("final_report_generation", END)
 
-agent = builder.compile()
+agent = deep_researcher_builder.compile()
