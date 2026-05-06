@@ -57,7 +57,7 @@ def _build_model(model_id: str, **kwargs):
 
     Extracts the deployment name from the model identifier using the
     convention that model name equals deployment name (e.g.,
-    "azure_openai:gpt-4.1" -> deployment "gpt-4.1").
+    "azure_openai:gpt-54-2026-03-05" -> deployment "GPT-54-2026-03-05").
     """
     normalized_model_id = normalize_model_id(model_id)
     deployment = normalized_model_id.split(":")[-1]

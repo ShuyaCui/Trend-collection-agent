@@ -40,7 +40,11 @@ from deep_research_from_scratch.trend_dimensions import (
     format_dimensions_for_prompt,
     load_trend_dimensions,
 )
-from deep_research_from_scratch.utils import get_today_str, normalize_model_id, think_tool
+from deep_research_from_scratch.utils import (
+    get_today_str,
+    normalize_model_id,
+    think_tool,
+)
 
 load_dotenv()
 
