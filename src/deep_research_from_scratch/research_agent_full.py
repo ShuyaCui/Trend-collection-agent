@@ -40,7 +40,7 @@ load_dotenv()
 
 # ===== CONFIGURATION =====
 
-_DEFAULT_FINAL_REPORT_MODEL = "azure_openai:gpt-5.3"
+_DEFAULT_WRITER_MODEL = "azure_openai:GPT-54-2026-03-05"
 
 
 def _build_model(model_id: str, **kwargs):
@@ -97,21 +97,26 @@ async def final_report_generation(
     research notes into a well-structured markdown report with embedded
     image references.
 
-    Model is controlled by config["configurable"]["final_report_model"]
-    (default: "azure_openai:gpt-5.3").
+    Model is controlled by config["configurable"]["writer_model"]
+    (default: "azure_openai:GPT-54-2026-03-05").
+    Backward compatibility: also accepts "final_report_model".
 
     Args:
         state: Output from supervisor phase containing notes, research brief,
             and accumulated images.
-        config: LangGraph runtime config; supports configurable["final_report_model"]
-            and configurable["thread_id"] for output directory naming.
+        config: LangGraph runtime config; supports configurable["writer_model"]
+            (or legacy configurable["final_report_model"]) and
+            configurable["thread_id"] for output directory naming.
 
     Returns:
         Dictionary containing the final markdown report and downloaded images.
     """
     configurable = config.get("configurable", {})
-    final_report_model = _build_model(
-        configurable.get("final_report_model", _DEFAULT_FINAL_REPORT_MODEL),
+    writer_model = _build_model(
+        configurable.get(
+            "writer_model",
+            configurable.get("final_report_model", _DEFAULT_WRITER_MODEL),
+        ),
         temperature=0,
     )
 
@@ -160,7 +165,7 @@ async def final_report_generation(
     if dims:
         user_content = f"{dims}\n\n{user_content}"
 
-    result = await final_report_model.ainvoke([
+    result = await writer_model.ainvoke([
         SystemMessage(content=system_prompt),
         HumanMessage(content=user_content),
     ])
