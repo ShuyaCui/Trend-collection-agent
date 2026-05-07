@@ -1,83 +1,369 @@
 {
   "dimension": "透明度与质地",
   "dimension_en": "texture",
-  "last_updated": "2026-05-06T08:43:09",
+  "last_updated": "2026-05-06T09:10:17",
   "主流": [
     {
-      "id": "31c325ee-texture-9e5061fb-5de621",
+      "id": "31c325ee-texture-2660bef0-7edf0c",
       "dimension": "透明度与质地",
-      "name": "顺滑绵密厚乳",
-      "name_en": "Smooth Dense Thick Cream",
+      "name": "顺滑绵密厚乳感",
+      "name_en": "Smooth Dense Thick-Milk Texture",
       "visual_keywords": [
         "液面平整",
         "奶感饱满",
-        "流动性适中",
-        "丝滑",
-        "醇厚",
-        "绵云感"
+        "顺滑流动",
+        "绵云感",
+        "厚乳基底",
+        "中等黏度"
       ],
       "aesthetic_persona": "感官甜品",
       "signals": [
         "稳定好喝",
-        "大众偏好",
-        "乳制品升级"
+        "醇厚满足",
+        "大众熟悉感",
+        "乳制品升级感"
       ],
       "maturity": "主流",
-      "year_range": "2023-2026",
-      "typical_use": "奶茶、鲜奶茶、厚乳拿铁",
-      "source_section": "6.1",
+      "year_range": "2025-2026",
+      "typical_use": "奶茶、鲜奶茶、厚乳拿铁、甜品化奶咖、法酪系茶饮",
+      "source_section": "§6.1",
       "source_heading": "趋势 13：顺滑、绵密、厚乳仍是奶茶与奶咖的基础主流",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-texture-fe0705af-9b1d74",
+      "id": "31c325ee-texture-f7ace332-781120",
       "dimension": "透明度与质地",
-      "name": "清透冰感气泡",
-      "name_en": "Clear Ice Bubble",
+      "name": "清透冰感轻饮",
+      "name_en": "Clear Icy Light-Drink Texture",
       "visual_keywords": [
         "清澈液体",
         "冰块折射",
-        "细密气泡",
-        "冷冽视觉"
+        "高通透度",
+        "冷冽视觉",
+        "轻薄水感",
+        "液面干净"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
-        "解渴",
-        "轻饮",
-        "干净"
+        "解渴清爽",
+        "低负担",
+        "干净轻盈",
+        "适合夏季"
       ],
       "maturity": "主流",
-      "year_range": "2023-2026",
-      "typical_use": "冷萃、气泡咖啡、苏打特调",
-      "source_section": "6.1",
+      "year_range": "2025-2026",
+      "typical_use": "冷萃、清爽果茶、苏打特调、鸡尾酒、夏季现制饮品",
+      "source_section": "§6.1",
       "source_heading": "趋势 14：清透感、冰感、气泡感是夏季与轻饮方向的稳定结构",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-texture-2774882f-f05115",
+      "id": "31c325ee-texture-c99a949e-8a8458",
       "dimension": "透明度与质地",
-      "name": "分层流动感",
-      "name_en": "Layered Flowing Texture",
+      "name": "清爽气泡水感",
+      "name_en": "Refreshing Sparkling Water Texture",
       "visual_keywords": [
-        "明显界面",
-        "搅拌",
-        "倾倒",
-        "摇晃",
-        "流动过程"
+        "细密气泡",
+        "透明基底",
+        "上升泡点",
+        "冰块反光",
+        "轻盈流动",
+        "苏打感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "清凉刺激",
+        "轻饮属性",
+        "动态视觉强",
+        "社交画面感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "气泡咖啡、苏打特调、清爽果茶、无酒精特调",
+      "source_section": "§6.1",
+      "source_heading": "趋势 14：清透感、冰感、气泡感是夏季与轻饮方向的稳定结构",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-0f98ae43-1a4aa1",
+      "dimension": "透明度与质地",
+      "name": "分层流动界面",
+      "name_en": "Layered Flowing Interface",
+      "visual_keywords": [
+        "明显液层边界",
+        "倾倒流线",
+        "搅开瞬间",
+        "奶茶分界",
+        "果泥沉降",
+        "渐变混合"
       ],
       "aesthetic_persona": "可视科技",
       "signals": [
-        "视觉戏剧性",
-        "风味结构",
-        "短视频传播"
+        "风味层次可见",
+        "喝前有戏剧性",
+        "短视频友好",
+        "产品结构更丰富"
       ],
       "maturity": "主流",
-      "year_range": "2023-2026",
-      "typical_use": "奶茶、奶咖、果咖",
-      "source_section": "6.1",
+      "year_range": "2025-2026",
+      "typical_use": "奶茶、奶咖、果咖、气泡咖啡、鸡尾酒、无酒精特调",
+      "source_section": "§6.1",
       "source_heading": "趋势 15：分层流动感成为“喝之前就有戏”的视觉手法",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-1ae65dfb-130c63",
+      "dimension": "透明度与质地",
+      "name": "厚乳绵密奶茶质地",
+      "name_en": "Dense Thick-Milk Milk-Tea Texture",
+      "visual_keywords": [
+        "奶白厚实",
+        "米色乳感",
+        "茶褐基底",
+        "顶部奶盖",
+        "轻泡层",
+        "顺滑稠润"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "经典升级",
+        "稳定高接受度",
+        "醇厚奶感",
+        "冬季暖饮满足"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "鲜奶茶、厚乳奶茶、经典奶茶升级款、咸奶茶、冬季暖饮",
+      "source_section": "§8.1",
+      "source_heading": "趋势名称：厚乳绵密奶茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-6f861c6c-c1c3f8",
+      "dimension": "透明度与质地",
+      "name": "可见小料异质颗粒感",
+      "name_en": "Visible Inclusion Heterogeneous Texture",
+      "visual_keywords": [
+        "珍珠沉底",
+        "冻类块感",
+        "米布布颗粒",
+        "椰果透明块",
+        "谷物粒",
+        "多密度结构"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "配料价值可见",
+        "口感丰富",
+        "产品更有料",
+        "传统小料创新延续"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "米乳感奶茶、谷物奶茶、经典小料奶茶、配料型鲜奶茶",
+      "source_section": "§8.1",
+      "source_heading": "趋势名称：配料可见型奶茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-b9015750-8f7f92",
+      "dimension": "透明度与质地",
+      "name": "局部透明鲜果水感",
+      "name_en": "Partially Transparent Fresh-Fruit Watery Texture",
+      "visual_keywords": [
+        "局部透明",
+        "果肉可见",
+        "茶底水感",
+        "清亮液体",
+        "水果块折射",
+        "轻盈果汁感"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "水果真实感",
+        "清爽易饮",
+        "看得见新鲜",
+        "社交传播效果强"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "鲜果茶、柑橘茶、莓果茶、鲜果杯",
+      "source_section": "§8.2",
+      "source_heading": "趋势名称：鲜果原色果茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-bc1f713d-c145d8",
+      "dimension": "透明度与质地",
+      "name": "多层果感结构",
+      "name_en": "Multi-Layer Fruit Texture Structure",
+      "visual_keywords": [
+        "果肉沉底",
+        "茶底清透",
+        "冰块折射",
+        "顶部果片",
+        "上下分层",
+        "多相结构"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "看得见水果",
+        "值感更强",
+        "层次丰富",
+        "增强消费信任"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "大果肉茶、水果桶、鲜果杯、经典水果茶",
+      "source_section": "§8.2",
+      "source_heading": "趋势名称：多层果感结构",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-959014eb-d5964e",
+      "dimension": "透明度与质地",
+      "name": "奶咖甜品慕斯感",
+      "name_en": "Dessert-Latte Mousse Texture",
+      "visual_keywords": [
+        "顶部奶油感",
+        "慕斯感",
+        "厚乳拿铁",
+        "可可绒面",
+        "甜品厚度",
+        "软滑表面"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "甜品风味迁移",
+        "节日化上新",
+        "大众易接受",
+        "温暖满足"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "提拉米苏拿铁、巧克力季拿铁、厚乳拿铁、创意奶咖",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：奶咖甜品化",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-fe396ace-bdcd96",
+      "dimension": "透明度与质地",
+      "name": "粉末绒面奶咖",
+      "name_en": "Powdered Velour Latte Surface",
+      "visual_keywords": [
+        "粉末感",
+        "哑光表面",
+        "可可粉层",
+        "细腻绒面",
+        "奶油承托",
+        "干湿对比"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "烘焙甜点联想",
+        "风味提示直观",
+        "表面质感更丰富",
+        "节日限定感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "提拉米苏拿铁、巧克力拿铁、可可奶咖、冬季甜品化咖啡",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：奶咖甜品化",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-9bd66cf2-172ec9",
+      "dimension": "透明度与质地",
+      "name": "冷萃清透冰感",
+      "name_en": "Clear Icy Cold-Brew Texture",
+      "visual_keywords": [
+        "透明感强",
+        "深棕清亮",
+        "琥珀透光",
+        "冰感强",
+        "装饰克制",
+        "低黏度"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "专业咖啡感",
+        "轻负担",
+        "冷饮清爽",
+        "配方自信"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "冷萃、冰震浓缩、黑咖冷饮、精品咖啡冷饮",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：冷萃清透化",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-7bc107b0-b7b45c",
+      "dimension": "透明度与质地",
+      "name": "平滑拉花液面",
+      "name_en": "Smooth Latte-Art Surface",
+      "visual_keywords": [
+        "表面平滑",
+        "奶咖高对比",
+        "纹样稳定",
+        "细腻奶泡",
+        "均匀液面",
+        "工艺型表层"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "咖啡制作标准",
+        "专业体验",
+        "稳定品质",
+        "手作工艺感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "拿铁、馥芮白、热奶咖、精品咖啡门店出品",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：拉花工艺型视觉",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-f524bf82-02033f",
+      "dimension": "透明度与质地",
+      "name": "花果草本半透明气泡基底",
+      "name_en": "Semi-Transparent Sparkling Botanical-Fruit Base",
+      "visual_keywords": [
+        "透明或半透明基底",
+        "气泡感",
+        "花果轻色",
+        "草本清透",
+        "果皮折射",
+        "低度微醺感"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "低度化与无酒精化",
+        "酒吧风味迁移",
+        "清爽社交饮",
+        "花果草本自然感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "鸡尾酒、贝里尼风味饮、桑格里亚风味饮、莫斯科骡子风味无酒精饮",
+      "source_section": "§8.4",
+      "source_heading": "趋势名称：花果草本与微醺/无酒精迁移",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
@@ -87,49 +373,137 @@
       "name": "清透水感",
       "name_en": "Clear Watery Texture",
       "visual_keywords": [
-        "清透",
-        "流动性好",
-        "轻盈",
-        "净澈"
+        "高透明度",
+        "水样流动",
+        "轻薄不稀",
+        "镜头干净",
+        "折光清爽",
+        "低负担感"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
-        "干净",
-        "轻盈",
-        "头皮友好",
-        "科学配方"
+        "头皮净澈",
+        "控油去屑",
+        "科学配方",
+        "轻负担护理"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "头皮护理洗发水",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮净澈洗发水、控油去屑洗发水、防脱洗发水、日常头皮护理线",
       "source_section": "§5.2",
-      "source_heading": "清透水感/清透精华感",
+      "source_heading": "1）清透水感/清透精华感",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
     {
-      "id": "a8425dfe-texture-72abe0da-c77bb2",
+      "id": "a8425dfe-texture-d0b4f46d-5f1490",
       "dimension": "透明度与质地",
-      "name": "凝胶感",
-      "name_en": "Gel-like Texture",
+      "name": "清透精华感",
+      "name_en": "Clear Serum-Like Texture",
       "visual_keywords": [
-        "凝胶",
-        "精华浓度",
-        "轻盈",
-        "修护"
+        "透明精华液",
+        "轻盈流动",
+        "高活性联想",
+        "温泉水感",
+        "护肤化质地",
+        "专业净澈"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
-        "高活性",
+        "头皮护理精华化",
+        "配方自信",
+        "高活性成分",
+        "专业高端护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮精华洗发水、防脱育发精华液、洗前导入液、头皮护理液",
+      "source_section": "§5.2",
+      "source_heading": "1）清透水感/清透精华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-af262999-623e8e",
+      "dimension": "透明度与质地",
+      "name": "凝露感",
+      "name_en": "Gelée Texture",
+      "visual_keywords": [
+        "半透明凝露",
+        "水润但有厚度",
+        "清透胶感",
+        "流动缓慢",
+        "精华浓度感",
+        "清洁中带护理"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "精华浓度更高",
+        "头皮友好",
         "精准护理",
-        "清洁中带护理",
         "专业沙龙感"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "头皮护理洗发水",
+      "year_range": "2025–2026",
+      "typical_use": "头皮护理洗发水、净澈修护洗发水、男士高端头皮护理线、防脱洗发水",
       "source_section": "§5.2",
-      "source_heading": "凝胶感/啫喱感",
+      "source_heading": "2）凝胶感/啫喱感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-e4c99ffb-ebbc8e",
+      "dimension": "透明度与质地",
+      "name": "啫喱凝胶感",
+      "name_en": "Jelly Gel Texture",
+      "visual_keywords": [
+        "啫喱状",
+        "透明或半透明",
+        "弹性质地",
+        "结构感明显",
+        "不厚重",
+        "高流动控制"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "高活性配方",
+        "科技护理",
+        "清爽修护平衡",
+        "比水感更有价值感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮护理洗发水、控油平衡洗发水、头皮抗老精华、防脱线产品",
+      "source_section": "§5.2",
+      "source_heading": "2）凝胶感/啫喱感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-bf7f1448-68b2c6",
+      "dimension": "透明度与质地",
+      "name": "轻乳浊感",
+      "name_en": "Light Milky Translucent Texture",
+      "visual_keywords": [
+        "轻微乳浊",
+        "柔白半透",
+        "不发灰",
+        "不厚重",
+        "温和修护",
+        "细腻均匀"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "修护更强",
+        "温和高级",
+        "柔顺护理",
+        "滋养但不油腻"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "受损修护洗发水、染烫后护理洗发水、高端修护系列、秋冬护理洗发水",
+      "source_section": "§5.2",
+      "source_heading": "3）乳霜感/轻乳浊感/丝缎感",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
@@ -139,23 +513,53 @@
       "name": "乳霜感",
       "name_en": "Creamy Texture",
       "visual_keywords": [
-        "乳霜",
-        "柔顺",
-        "高级",
-        "滋养"
+        "乳霜质地",
+        "丰润细腻",
+        "柔滑包裹",
+        "rich texture",
+        "滋养感",
+        "低厚重感"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "深度修护",
+        "滋养力强",
+        "柔顺护发",
+        "高端护理感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "受损修护洗发水、染烫后护理洗发水、奢养型洗护系列、秋冬高端护理系列",
+      "source_section": "§5.2",
+      "source_heading": "3）乳霜感/轻乳浊感/丝缎感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-efc772cb-628ee4",
+      "dimension": "透明度与质地",
+      "name": "丝缎感",
+      "name_en": "Satin-Smooth Texture",
+      "visual_keywords": [
+        "丝缎光泽",
+        "柔滑流动",
+        "细腻挂壁",
+        "均匀铺展",
+        "顺滑不黏",
+        "低调高级"
       ],
       "aesthetic_persona": "奢华克制",
       "signals": [
-        "修护更强",
-        "更柔顺",
-        "更高级",
-        "更滋养但不油腻"
+        "奢护顺滑",
+        "精密工艺",
+        "沙龙级护理",
+        "贵价但克制"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "染烫后护理洗发水",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、护发素、发膜、护发精华、柔亮顺滑线",
       "source_section": "§5.2",
-      "source_heading": "乳霜感/轻乳浊感/丝缎感",
+      "source_heading": "3）乳霜感/轻乳浊感/丝缎感",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
@@ -163,75 +567,564 @@
       "id": "a8425dfe-texture-25b6230d-265531",
       "dimension": "透明度与质地",
       "name": "轻油润感",
-      "name_en": "Light Oily Texture",
+      "name_en": "Light Oily Nourishing Texture",
       "visual_keywords": [
-        "光泽",
-        "顺滑",
-        "流动慢",
-        "挂壁感适中"
+        "轻油质地",
+        "柔亮光泽",
+        "慢速流动",
+        "适度挂壁",
+        "油润不塌",
+        "顺滑膜感"
       ],
       "aesthetic_persona": "天然奢养",
       "signals": [
-        "柔亮而不塌",
-        "高端感",
-        "奢护",
-        "滋养"
+        "高端奢护",
+        "植物油滋养",
+        "柔亮不厚重",
+        "顺滑抗毛躁"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "护发精华油",
+      "year_range": "2025–2026",
+      "typical_use": "护发油、前导精华、双相喷雾、修护型高端洗发水、发尾护理产品",
       "source_section": "§5.2",
-      "source_heading": "轻油润感/琥珀精华油感",
+      "source_heading": "4）轻油润感/琥珀精华油感",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
     {
-      "id": "d384cc19-texture-e9826d3a-af7a2e",
+      "id": "a8425dfe-texture-668c3b63-adb508",
       "dimension": "透明度与质地",
-      "name": "高通透液态基底",
-      "name_en": "High Transparency Liquid Base",
+      "name": "琥珀精华油感",
+      "name_en": "Amber Serum-Oil Texture",
       "visual_keywords": [
-        "透明",
-        "液态",
-        "均匀反光",
-        "丝绸状流痕"
+        "琥珀油相",
+        "高光泽",
+        "透明油润",
+        "慢流挂壁",
+        "柔亮不塌",
+        "精华油质地"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "珍稀植物油",
+        "奢华滋养",
+        "发丝柔亮",
+        "高端护发仪式感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端护发油、护发精华油、双相喷雾油相、奢养修护洗护系列",
+      "source_section": "§5.2",
+      "source_heading": "4）轻油润感/琥珀精华油感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-ec7bb189-e08d02",
+      "dimension": "透明度与质地",
+      "name": "清透但不稀薄",
+      "name_en": "Clear Yet Substantial Texture",
+      "visual_keywords": [
+        "高透明",
+        "有厚度",
+        "不水薄",
+        "清洁感",
+        "轻盈挂壁",
+        "精华支撑感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "高级而专业",
+        "轻负担但有效",
+        "配方浓度可信",
+        "头皮友好"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端主流洗发水、头皮净澈洗发水、控油防脱洗发水",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-b1ea5523-e642f3",
+      "dimension": "透明度与质地",
+      "name": "顺滑但不黏腻",
+      "name_en": "Smooth Yet Non-Sticky Texture",
+      "visual_keywords": [
+        "顺滑流动",
+        "不粘手",
+        "不假滑",
+        "冲洗友好",
+        "轻盈铺展",
+        "洁净尾感"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "高级顺滑",
+        "使用负担低",
+        "不影响清洁认知",
+        "专业洗护体验"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "日常高端洗发水、修护洗发水、柔顺洗发水、头皮护理洗发水",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-376646b6-b13f3d",
+      "dimension": "透明度与质地",
+      "name": "乳浊但不厚重",
+      "name_en": "Milky Yet Lightweight Texture",
+      "visual_keywords": [
+        "轻乳浊",
+        "不发灰",
+        "不厚闷",
+        "柔白细腻",
+        "修护感",
+        "易冲洗"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "修护温和",
+        "高端柔顺",
+        "滋养不油腻",
+        "成熟配方工艺"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、染烫护理洗发水、秋冬护理系列",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-0a8bf2ce-2c3095",
+      "dimension": "透明度与质地",
+      "name": "油润但不塌发",
+      "name_en": "Nourishing Oiliness Without Weighing Hair Down",
+      "visual_keywords": [
+        "轻油光泽",
+        "柔亮发丝",
+        "不扁塌",
+        "轻膜感",
+        "顺滑发尾",
+        "不厚腻"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "奢护滋养",
+        "柔亮而不塌",
+        "适合中国市场偏好",
+        "精油护理联想"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "护发油、护发精华油、柔亮洗护系列、受损修护洗发水",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-1e5bf142-7360de",
+      "dimension": "透明度与质地",
+      "name": "浓稠但易起泡易冲洗",
+      "name_en": "Thick Yet Easy-Foaming and Easy-Rinsing Texture",
+      "visual_keywords": [
+        "浓稠液体",
+        "起泡快速",
+        "冲洗干净",
+        "无残留感",
+        "厚而不闷",
+        "高端洗感"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "高浓度价值感",
+        "洗发水本体适配",
+        "清洁效率高",
+        "不牺牲使用体验"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端洗发水、修护洗发水、控油洗发水、专业沙龙洗护线",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-a62e0261-62a239",
+      "dimension": "透明度与质地",
+      "name": "有结构感但无廉价胶感",
+      "name_en": "Structured Texture Without Cheap Gel Feel",
+      "visual_keywords": [
+        "结构化流体",
+        "克制胶感",
+        "不廉价",
+        "细腻弹性",
+        "专业质地",
+        "高级流变"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "技术含量高",
+        "配方精密",
+        "差异化感官",
+        "避免低端胶水联想"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮护理洗发水、修护洗发水、精华型洗发水、专业沙龙线",
+      "source_section": "§5.4",
+      "source_heading": "最适合高端洗发水的质地组合",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-c38cd5ef-22e155",
+      "dimension": "透明度与质地",
+      "name": "柔滑流动",
+      "name_en": "Silky Fluid Flow",
+      "visual_keywords": [
+        "流动顺畅",
+        "柔滑下落",
+        "连续液柱",
+        "镜头友好",
+        "细腻流线",
+        "不黏连"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "高级洗感",
+        "沙龙护理",
+        "顺滑发丝联想",
+        "社媒传播友好"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端洗发水、柔顺洗发水、修护护发素、护发精华",
+      "source_section": "§5.4",
+      "source_heading": "容易显贵的质地关键词",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-ecc28408-53ccdf",
+      "dimension": "透明度与质地",
+      "name": "细腻挂壁",
+      "name_en": "Fine Wall-Clinging Texture",
+      "visual_keywords": [
+        "瓶壁缓慢滑落",
+        "薄膜均匀",
+        "挂壁适中",
+        "浓度可视",
+        "不厚腻",
+        "镜头显质感"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "一眼有浓度",
+        "高端感强",
+        "配方细腻",
+        "使用体验可预期"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "透明瓶高端洗发水、头皮精华、护发精华油、双相喷雾",
+      "source_section": "§5.4",
+      "source_heading": "容易显贵的质地关键词",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-54a403aa-17b8b5",
+      "dimension": "透明度与质地",
+      "name": "水凝露",
+      "name_en": "Water Gelée",
+      "visual_keywords": [
+        "水润凝胶",
+        "清透半透",
+        "轻弹质地",
+        "低黏腻",
+        "冷感清爽",
+        "精华水感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "清爽头皮护理",
+        "控油平衡",
+        "科技净澈",
+        "轻负担修护"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "头皮净澈洗发水、控油洗发水、头皮护理精华、男士高端头皮线",
+      "source_section": "§5.4",
+      "source_heading": "容易显贵的质地关键词",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-92677a22-ee106e",
+      "dimension": "透明度与质地",
+      "name": "透明或半透明镜头质地",
+      "name_en": "Transparent or Semi-Transparent Camera-Friendly Texture",
+      "visual_keywords": [
+        "透明液体",
+        "半透明质地",
+        "镜头干净",
+        "折光明显",
+        "社媒友好",
+        "非普通洗发水感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "清透滋润",
+        "专业洁净",
+        "容易被拍好",
+        "高级克制"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "透明瓶高端洗发水、头皮精华、控油护理线、社媒传播型新品",
+      "source_section": "§7.3",
+      "source_heading": "社媒审美驱动",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-19b3a470-3b5e41",
+      "dimension": "透明度与质地",
+      "name": "轻乳浊珠光质地",
+      "name_en": "Light Milky Pearlescent Texture",
+      "visual_keywords": [
+        "珍珠白乳浊",
+        "细腻珠光",
+        "轻盈乳霜",
+        "柔和光泽",
+        "不粗糙",
+        "贵而温和"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "成熟高端工艺",
+        "修护与丝滑",
+        "温和奢护",
+        "低调贵价感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、染烫护理洗发水、柔顺洗发水、奢护系列",
+      "source_section": "§8.1",
+      "source_heading": "2）珍珠白/轻乳浊珠光",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-2a859cbf-318f50",
+      "dimension": "透明度与质地",
+      "name": "丝缎流变",
+      "name_en": "Satin Rheology",
+      "visual_keywords": [
+        "丝缎延展",
+        "流变控制",
+        "柔滑成膜",
+        "顺滑不黏",
+        "细腻光泽",
+        "高级流线"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "奢护顺滑",
+        "柔亮不塌",
+        "技术型高级感",
+        "专业沙龙护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、护发素、发膜、护发精华、护发油",
+      "source_section": "§8.1",
+      "source_heading": "4）丝缎流变与轻油光泽",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-5b63f790-36efcf",
+      "dimension": "透明度与质地",
+      "name": "轻油光泽",
+      "name_en": "Light Oil Gloss",
+      "visual_keywords": [
+        "轻薄油光",
+        "高亮反射",
+        "柔亮膜感",
+        "不油腻",
+        "不塌发",
+        "顺滑发丝联想"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "奢护柔亮",
+        "顺滑修护",
+        "轻量化滋养",
+        "高端护发油联想"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "护发油、护发精华油、发尾修护产品、柔亮洗护系列",
+      "source_section": "§8.1",
+      "source_heading": "4）丝缎流变与轻油光泽",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "d384cc19-texture-6dd63eb9-f1d82f",
+      "dimension": "透明度与质地",
+      "name": "高通透精华液态基底",
+      "name_en": "Highly Transparent Essence Liquid Base",
+      "visual_keywords": [
+        "高通透",
+        "清而不薄",
+        "透而不寡",
+        "高折光",
+        "均匀反光面",
+        "透明液态基底"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
         "高纯净度",
-        "高科技感",
+        "实验室级精炼",
+        "配方杂质少",
+        "轻盈但有密度",
         "高价合理性"
       ],
       "maturity": "主流",
       "year_range": "2025",
-      "typical_use": "高端奢华精华",
+      "typical_use": "高端奢华面部精华、透明型抗老精华、修护精华",
       "source_section": "§2.2",
-      "source_heading": "透明度与通透感：2025年的“贵”，不是浑浊厚重，而是高纯、高净、高折光",
+      "source_heading": "2.2 透明度与通透感：2025年的“贵”，不是浑浊厚重，而是高纯、高净、高折光",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     },
     {
-      "id": "d384cc19-texture-52a1fbb1-8a4e4f",
+      "id": "d384cc19-texture-a6a6ae0b-aef42d",
       "dimension": "透明度与质地",
-      "name": "中低到中等黏度",
-      "name_en": "Medium to Low Viscosity",
+      "name": "微胶感精华质地",
+      "name_en": "Subtle Gel-Essence Texture",
       "visual_keywords": [
-        "中低黏度",
-        "连续性",
-        "细腻光泽",
-        "柔润感"
+        "微微胶感",
+        "精华感",
+        "不稀薄",
+        "轻盈有分量",
+        "细密光泽",
+        "非厚闷"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
+        "高浓度配方感",
+        "轻盈但不廉价",
         "肤感升级",
-        "现代科技感",
-        "精密递送"
+        "现代功效护肤",
+        "稳定精密体系"
       ],
       "maturity": "主流",
       "year_range": "2025",
-      "typical_use": "高端奢华精华",
+      "typical_use": "高端功效精华、保湿精华、抗老精华、修护精华",
+      "source_section": "§2.2",
+      "source_heading": "2.2 透明度与通透感：2025年的“贵”，不是浑浊厚重，而是高纯、高净、高折光",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-355e23b3-d6d351",
+      "dimension": "透明度与质地",
+      "name": "丝绸状挂壁流痕",
+      "name_en": "Silk-Like Wall-Clinging Flow Trails",
+      "visual_keywords": [
+        "局部挂壁",
+        "丝绸状流痕",
+        "缓慢滑落",
+        "流痕细腻",
+        "非水样速滑",
+        "均匀连续"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "质地高级",
+        "配方有分量",
+        "流动可控",
+        "低调贵气",
+        "不是普通化妆水质感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "滴管精华展示、玻璃瓶挂壁视觉、手背试用演示",
+      "source_section": "§2.2",
+      "source_heading": "2.2 透明度与通透感：2025年的“贵”，不是浑浊厚重，而是高纯、高净、高折光",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-669555eb-b55733",
+      "dimension": "透明度与质地",
+      "name": "中低黏轻膜感",
+      "name_en": "Medium-Low Viscosity Lightweight Film Feel",
+      "visual_keywords": [
+        "中低到中等黏度",
+        "连续提拉",
+        "不夸张拉丝",
+        "迅速成膜",
+        "细腻光泽",
+        "柔润不粘腻"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "有分量但轻盈",
+        "吸收快",
+        "不厚闷",
+        "技术先进",
+        "高端肤感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "高端精华上脸肤感、抗老精华、医研功效精华、修护精华",
       "source_section": "§2.3",
-      "source_heading": "质地、黏度与流动性：从“厚重即高端”转向“有分量但轻盈”",
+      "source_heading": "2025年主流黏度特征",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-42638963-bd19a9",
+      "dimension": "透明度与质地",
+      "name": "完整液滴缓滑流动",
+      "name_en": "Intact Droplet Slow-Glide Flow",
+      "visual_keywords": [
+        "完整液滴",
+        "缓慢滑行",
+        "边缘整齐",
+        "不易断裂",
+        "连续薄膜",
+        "均匀反光"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "高浓度但稳定",
+        "柔滑可控",
+        "精密递送",
+        "吸收快但有内容",
+        "昂贵原料被高级体系包裹"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "滴管滴落画面、手背流动演示、玻璃表面质地传播视频",
+      "source_section": "§2.3",
+      "source_heading": "2025年典型流动语言",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     },
@@ -239,104 +1132,905 @@
       "id": "d384cc19-texture-9975290a-9cb9eb",
       "dimension": "透明度与质地",
       "name": "丝缎光",
-      "name_en": "Silky Satin Glow",
+      "name_en": "Satin Glow",
       "visual_keywords": [
-        "丝缎光",
-        "水润镜面光",
-        "柔润内发光",
-        "液晶感反光"
+        "微微发光",
+        "丝缎反光",
+        "不显油膜",
+        "细腻低调",
+        "推开后柔亮",
+        "均匀光泽"
       ],
       "aesthetic_persona": "奢华克制",
       "signals": [
-        "精细化光泽",
+        "精细高级感",
         "低调贵气",
-        "皮肤自然光感"
+        "润而不油",
+        "肤感舒适",
+        "像皮肤变好后的光"
       ],
       "maturity": "主流",
       "year_range": "2025",
-      "typical_use": "高端奢华精华",
+      "typical_use": "高端精华推开后的肤面光泽、抗老精华、修护精华",
       "source_section": "§2.4",
-      "source_heading": "光泽感：从“油亮”进化为“丝缎光、液晶光、润泽光”",
+      "source_heading": "主流光泽类型",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e03ba2fb-d64c6d",
+      "dimension": "透明度与质地",
+      "name": "水润镜面光",
+      "name_en": "Hydrated Mirror Gloss",
+      "visual_keywords": [
+        "水润",
+        "镜面光",
+        "透明型精华",
+        "高反光",
+        "高保湿感",
+        "高纯净感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "高保湿",
+        "高纯净",
+        "清透科技感",
+        "即时水润效果",
+        "配方透明自信"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "透明保湿精华、玻尿酸精华、补水修护精华的视觉呈现",
+      "source_section": "§2.4",
+      "source_heading": "主流光泽类型",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6aa92feb-519449",
+      "dimension": "透明度与质地",
+      "name": "柔润内发光",
+      "name_en": "Soft Nourishing Inner Glow",
+      "visual_keywords": [
+        "柔润",
+        "内发光",
+        "润而不油",
+        "滋养型",
+        "修护型",
+        "自然皮肤光"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "深层滋养",
+        "屏障修护",
+        "温润不油腻",
+        "健康肌肤状态",
+        "贵价养护感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "滋养型精华、修护精华、抗老精华、夜间护理精华",
+      "source_section": "§2.4",
+      "source_heading": "主流光泽类型",
+      "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-0b7007aa-af25b4",
+      "dimension": "透明度与质地",
+      "name": "液晶感反光",
+      "name_en": "Liquid-Crystal Reflective Sheen",
+      "visual_keywords": [
+        "液晶感",
+        "精密反光",
+        "科技联想",
+        "均匀折射",
+        "清透光泽",
+        "非亮粉"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "精密配方",
+        "科技功效感",
+        "分子级护肤联想",
+        "高端工艺",
+        "现代实验室审美"
+      ],
+      "maturity": "主流",
+      "year_range": "2025",
+      "typical_use": "科技型高端精华、抗老精华、精密递送概念精华",
+      "source_section": "§2.4",
+      "source_heading": "主流光泽类型",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     }
   ],
   "上升": [
     {
-      "id": "31c325ee-texture-03ac1fca-33b655",
+      "id": "31c325ee-texture-a0e3aaed-3b5c8e",
       "dimension": "透明度与质地",
-      "name": "果蔬浆纤维浑浊",
-      "name_en": "Vegetable Pulp Fiber Turbidity",
+      "name": "果蔬浆感",
+      "name_en": "Fruit-and-Vegetable Pulp Texture",
       "visual_keywords": [
+        "非完全过滤",
         "轻微颗粒",
-        "纤维",
-        "悬浮感",
-        "新鲜打出来的"
+        "浆状流动",
+        "新鲜现打感",
+        "半浑浊",
+        "果蔬厚度"
       ],
       "aesthetic_persona": "自然清体",
       "signals": [
-        "健康",
-        "功能性",
-        "自然感"
+        "新鲜原料感",
+        "低加工真实感",
+        "健康功能暗示",
+        "比工业饮料更自然"
       ],
       "maturity": "上升",
-      "year_range": "2023-2026",
-      "typical_use": "果蔬茶、果蔬汁",
-      "source_section": "6.2",
+      "year_range": "2025-2026",
+      "typical_use": "果蔬茶、果蔬汁、轻养生饮、超级植物茶",
+      "source_section": "§6.2",
       "source_heading": "趋势 16：果蔬浆感、纤维感、天然浑浊感",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-texture-4e5f6748-55ce75",
+      "id": "31c325ee-texture-35034181-a9b0bd",
+      "dimension": "透明度与质地",
+      "name": "纤维悬浮天然浑浊",
+      "name_en": "Suspended-Fiber Natural Cloudiness",
+      "visual_keywords": [
+        "纤维可见",
+        "悬浮颗粒",
+        "天然浑浊",
+        "不完全均一",
+        "植物碎感",
+        "低加工液体"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "膳食纤维可视化",
+        "功能性更可信",
+        "原料痕迹明确",
+        "健康叙事增强"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "羽衣甘蓝苹果、小麦草、西芹黄瓜、番茄混合果蔬茶",
+      "source_section": "§6.2",
+      "source_heading": "趋势 16：果蔬浆感、纤维感、天然浑浊感",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-4e5f6748-74fc11",
       "dimension": "透明度与质地",
       "name": "奶酪糊感",
-      "name_en": "Cheese Paste Texture",
+      "name_en": "Cheese-Paste Texture",
       "visual_keywords": [
-        "厚糊",
-        "布丁稠度",
-        "米乳感",
-        "绵厚"
+        "高黏稠度",
+        "奶酪般厚度",
+        "局部糊状",
+        "顶层堆积",
+        "勺取感",
+        "甜咸乳脂感"
       ],
       "aesthetic_persona": "感官甜品",
       "signals": [
-        "甜品化",
-        "秋冬暖饮",
-        "咸口趋势"
+        "从饮品转向甜品",
+        "饱腹满足",
+        "咸甜新鲜感",
+        "秋冬暖饮联想"
       ],
       "maturity": "上升",
-      "year_range": "2023-2026",
-      "typical_use": "咸法酪米布布鲜奶茶",
-      "source_section": "6.2",
+      "year_range": "2025-2026",
+      "typical_use": "奶酪顶饮品、咸乳拿铁、咸法酪奶茶",
+      "source_section": "§6.2",
       "source_heading": "趋势 17：奶酪糊感、米布布颗粒糊感、法酪绵厚感",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-texture-3fc659fe-9cb1c5",
+      "id": "31c325ee-texture-f92ec3fe-a7e33a",
       "dimension": "透明度与质地",
-      "name": "气泡细密化",
-      "name_en": "Fine Bubble Texture",
+      "name": "米布布颗粒糊感",
+      "name_en": "Rice-Pudding Granular Paste Texture",
       "visual_keywords": [
-        "精细泡沫层",
+        "米乳稠度",
+        "颗粒糊感",
+        "可咀嚼小粒",
+        "厚实悬浮",
+        "布丁感",
+        "饮品点心化"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "更有吃感",
+        "传统点心联想",
+        "口感层次丰富",
+        "甜品化升级"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "米布布鲜奶茶、米乳感奶茶、谷物奶茶、茶咖融合饮",
+      "source_section": "§6.2",
+      "source_heading": "趋势 17：奶酪糊感、米布布颗粒糊感、法酪绵厚感",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-440b3128-4a64f6",
+      "dimension": "透明度与质地",
+      "name": "法酪绵厚顶感",
+      "name_en": "Dense Fromage-Cream Topping Texture",
+      "visual_keywords": [
+        "绵厚顶层",
+        "圆顶奶盖",
+        "法酪质地",
+        "乳脂厚度",
+        "顶部局部稠化",
+        "软云表面"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "高级甜品感",
+        "厚乳价值感",
+        "顶部结构升级",
+        "风味入口更明确"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "咸法酪米布布鲜奶茶、法酪顶奶茶、咸乳拿铁",
+      "source_section": "§6.2",
+      "source_heading": "趋势 17：奶酪糊感、米布布颗粒糊感、法酪绵厚感",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-e44ce4fc-affa92",
+      "dimension": "透明度与质地",
+      "name": "微气泡细密发泡",
+      "name_en": "Fine Microbubble Foaming Texture",
+      "visual_keywords": [
         "微气泡",
-        "云感表面",
-        "清透基底"
+        "精细泡沫层",
+        "发泡表面",
+        "透明基底对比",
+        "细腻泡点",
+        "吧台质感"
       ],
       "aesthetic_persona": "奢华克制",
       "signals": [
-        "调酒技能",
-        "沉浸式体验",
-        "专业审美"
+        "调制工艺感",
+        "精致轻盈",
+        "专业酒吧联想",
+        "比普通苏打更细腻"
       ],
       "maturity": "上升",
-      "year_range": "2023-2026",
-      "typical_use": "气泡咖啡、鸡尾酒",
-      "source_section": "6.2",
+      "year_range": "2025-2026",
+      "typical_use": "气泡咖啡、精致鸡尾酒、苏打特调、无酒精特调",
+      "source_section": "§6.2",
       "source_heading": "趋势 18：气泡细密化、发泡化、云雾化",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-4284b81b-3784a5",
+      "dimension": "透明度与质地",
+      "name": "云雾泡沫表面",
+      "name_en": "Cloudy Mist-Foam Surface",
+      "visual_keywords": [
+        "云感表面",
+        "雾化视觉",
+        "泡沫浮层",
+        "轻盈白雾",
+        "液面柔焦",
+        "双重质感"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "沉浸式体验",
+        "视觉新鲜感",
+        "调酒技能可见",
+        "高级特调氛围"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "鸡尾酒、气泡咖啡、无酒精特调、酒吧风格现制饮品",
+      "source_section": "§6.2",
+      "source_heading": "趋势 18：气泡细密化、发泡化、云雾化",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-5beac3ec-6d7c7c",
+      "dimension": "透明度与质地",
+      "name": "咸奶盖法酪厚顶",
+      "name_en": "Savory Cheese-Cream Thick Topping",
+      "visual_keywords": [
+        "顶部更厚",
+        "奶酪黄白顶层",
+        "厚奶盖",
+        "法酪稠面",
+        "圆顶结构",
+        "咸口乳脂"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "甜口疲劳后的新鲜感",
+        "顶部风味化",
+        "咸甜对比",
+        "社交记忆点"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "咸法酪米布布、酱香白脱碎银子、牛肝菌碎银子、茶咖融合饮",
+      "source_section": "§8.1",
+      "source_heading": "趋势名称：咸奶盖/法酪顶奶茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-ef608f6a-a52a4b",
+      "dimension": "透明度与质地",
+      "name": "超级植物轻浑浊浆感",
+      "name_en": "Super-Plant Light Cloudy Pulp Texture",
+      "visual_keywords": [
+        "轻浑浊",
+        "绿色浆感",
+        "纤维感",
+        "植物颗粒",
+        "低饱和液体",
+        "自然不均一"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "健康化",
+        "功能性原料",
+        "膳食纤维联想",
+        "轻养生定位"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "羽衣甘蓝苹果、小麦草系列、西芹黄瓜番茄混合茶、轻养生饮",
+      "source_section": "§8.2",
+      "source_heading": "趋势名称：超级植物果蔬茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-d27278d5-25c709",
+      "dimension": "透明度与质地",
+      "name": "番茄芭乐清亮浆汁感",
+      "name_en": "Tomato-Guava Bright Pulpy Juice Texture",
+      "visual_keywords": [
+        "清亮果蔬汁",
+        "轻微浆感",
+        "自然发光感",
+        "不人工的亮面",
+        "半透明果汁",
+        "柔和流动"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "健康感之外保留颜值",
+        "自然原料感",
+        "社交传播力",
+        "果蔬混合新鲜感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "芭乐番茄类果蔬茶、粉橘色果蔬混合饮、夏季健康茶饮",
+      "source_section": "§8.2",
+      "source_heading": "趋势名称：番茄芭乐发光色系",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-f2e5227e-2b0649",
+      "dimension": "透明度与质地",
+      "name": "果咖透明轻分层",
+      "name_en": "Transparent Light-Layered Fruit Coffee Texture",
+      "visual_keywords": [
+        "透明感",
+        "果色叠加",
+        "轻分层",
+        "果汁感",
+        "咖啡液界面",
+        "清爽流动"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "水果矩阵扩容",
+        "风味层次升维",
+        "夏季限定感",
+        "咖啡边界拓展"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "柑橘咖啡、莓果咖啡、葡萄果咖、青提果咖、夏季限定咖啡",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：果咖矩阵扩容",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-6ec65b97-d2b2dd",
+      "dimension": "透明度与质地",
+      "name": "鸡尾酒化气泡咖啡",
+      "name_en": "Cocktailized Sparkling Coffee Texture",
+      "visual_keywords": [
+        "细密气泡",
+        "琥珀液体",
+        "分层咖啡",
+        "吧台感",
+        "果皮浮香",
+        "气泡上升"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "咖啡与酒吧边界模糊",
+        "场景化探索",
+        "精致成人感",
+        "特调价值提升"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "气泡美式、果味气泡浓缩、酒吧感咖啡特调、精品创意咖啡",
+      "source_section": "§8.3",
+      "source_heading": "趋势名称：气泡咖啡与鸡尾酒化咖啡",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-a1b49709-1d0d2e",
+      "dimension": "透明度与质地",
+      "name": "中式色谱清透酒体",
+      "name_en": "Chinese-Palette Clear Cocktail Body",
+      "visual_keywords": [
+        "清透酒体",
+        "季节色液体",
+        "透光杯体",
+        "颜色叙事",
+        "节气氛围",
+        "克制光泽"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "在地文化表达",
+        "高端酒单叙事",
+        "审美本土化",
+        "颜色成为结构"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端创意酒吧酒单、文化主题鸡尾酒、无酒精主题特调",
+      "source_section": "§8.4",
+      "source_heading": "趋势名称：中式色谱与在地文化色彩叙事",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-252dd262-777ae1",
+      "dimension": "透明度与质地",
+      "name": "泡沫分层漂浮演出",
+      "name_en": "Foam-Layer-Float Liquid Performance",
+      "visual_keywords": [
+        "泡沫层",
+        "分层界面",
+        "漂浮结构",
+        "冰块支撑",
+        "局部装饰浮面",
+        "多相液体"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "沉浸式体验",
+        "调酒师技能可见",
+        "饮用前有观看价值",
+        "高端特调感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "酒吧创意鸡尾酒、精致无酒精特调、仪式感现制饮品",
+      "source_section": "§8.4",
+      "source_heading": "趋势名称：沉浸式液体演出",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-texture-30838c51-ee08f6",
+      "dimension": "透明度与质地",
+      "name": "云雾挂壁戏剧质感",
+      "name_en": "Mist-and-Clinging Dramatic Texture",
+      "visual_keywords": [
+        "云雾",
+        "挂壁",
+        "滴落痕迹",
+        "高对比光影",
+        "冰块折射",
+        "戏剧性液面"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "液体过程被放大",
+        "吧台沉浸感",
+        "社交拍摄友好",
+        "专业技能与氛围感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "创意鸡尾酒、无酒精特调、咖啡鸡尾酒化产品、深背景质感拍摄",
+      "source_section": "§8.4",
+      "source_heading": "趋势名称：沉浸式液体演出",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "a8425dfe-texture-6c26888f-379a3e",
+      "dimension": "透明度与质地",
+      "name": "蜜感精华质地",
+      "name_en": "Honey-Like Serum Texture",
+      "visual_keywords": [
+        "高粘流动",
+        "浓润透明",
+        "一滴有分量",
+        "介于水与膏之间",
+        "慢速下落",
+        "浓度可视"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "高浓度精华",
+        "密集修护",
+        "高活性成分",
+        "滋养有分量"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "密集修护洗发水、头皮精华、洗前精华、奢养型护发精华",
+      "source_section": "§5.3",
+      "source_heading": "1）蜜感/浓润精华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-1f9e8b69-613375",
+      "dimension": "透明度与质地",
+      "name": "浓润精华感",
+      "name_en": "Rich Concentrated Serum Texture",
+      "visual_keywords": [
+        "浓稠精华",
+        "高粘度但可流动",
+        "厚而不膏",
+        "饱满液滴",
+        "细腻挂壁",
+        "高活性感"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "配方浓度高",
+        "密集护理",
+        "修护力强",
+        "高价位价值感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、头皮抗老精华、防脱精华、洗前导入精华",
+      "source_section": "§5.3",
+      "source_heading": "1）蜜感/浓润精华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-9817b2ba-518a6e",
+      "dimension": "透明度与质地",
+      "name": "拉丝感",
+      "name_en": "Stringy Texture",
+      "visual_keywords": [
+        "拉丝流动",
+        "高流变结构",
+        "丝线延展",
+        "镜头表现强",
+        "胶原联想",
+        "顺滑黏弹"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "配方有结构",
+        "丝缎修护",
+        "蛋白或胶原修护联想",
+        "技术差异化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、蛋白修护线、胶原护理线、发膜和洗前护理精华",
+      "source_section": "§5.3",
+      "source_heading": "2）拉丝感/高流变顺滑感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-7d325f55-54a9f4",
+      "dimension": "透明度与质地",
+      "name": "高流变顺滑感",
+      "name_en": "High-Rheology Smooth Texture",
+      "visual_keywords": [
+        "受控流动",
+        "顺滑延展",
+        "结构化液体",
+        "不易断流",
+        "柔滑挂壁",
+        "技术质地"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "感官差异化",
+        "精密配方技术",
+        "高级顺滑",
+        "清洁中带护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "高端洗发水、头皮护理洗发水、修护精华、专业沙龙线洗护产品",
+      "source_section": "§5.3",
+      "source_heading": "2）拉丝感/高流变顺滑感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-bb117b02-1413e3",
+      "dimension": "透明度与质地",
+      "name": "微悬浮质地",
+      "name_en": "Micro-Suspended Texture",
+      "visual_keywords": [
+        "透明基底",
+        "少量微悬浮",
+        "内容物可见",
+        "层次感",
+        "克制颗粒",
+        "清透中有结构"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "活性被包裹",
+        "配方有层次",
+        "精萃存在感",
+        "功效可视化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮护理洗发水、精华洗发水、头皮精华、洗前导入液",
+      "source_section": "§5.3",
+      "source_heading": "3）悬浮感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-991fbb59-16fdb9",
+      "dimension": "透明度与质地",
+      "name": "形态转换质地",
+      "name_en": "Transforming Texture",
+      "visual_keywords": [
+        "瓶中浓稠",
+        "使用时变轻",
+        "状态切换",
+        "凝胶转轻雾",
+        "乳霜转喷雾",
+        "可感知科技"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "高级使用体验",
+        "科技感可感知",
+        "高技术门槛",
+        "高价位合理性"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "头皮精华、护发喷雾、前导精华、免洗护发产品、高端护发副线",
+      "source_section": "§5.3",
+      "source_heading": "4）形态转换：在瓶中与使用时呈现不同状态",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-aeca94f6-ba8092",
+      "dimension": "透明度与质地",
+      "name": "头皮精华化质地",
+      "name_en": "Scalp Serumized Texture",
+      "visual_keywords": [
+        "护肤化精华",
+        "轻高活性",
+        "透明或半透明",
+        "滴管感联想",
+        "护理液体",
+        "专业头皮感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "洗护向头皮护理升级",
+        "高活性功效",
+        "抗老防脱联想",
+        "专业化高端定位"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "头皮抗老精华、防脱精华、头皮护理洗发水、洗前导入精华",
+      "source_section": "§6.2",
+      "source_heading": "上升趋势（未来 1–2 年会更明显）",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-4efb4fc6-61fc44",
+      "dimension": "透明度与质地",
+      "name": "微雾油喷质地",
+      "name_en": "Micro-Mist Oil Spray Texture",
+      "visual_keywords": [
+        "轻雾化",
+        "油雾细密",
+        "轻盈喷洒",
+        "双相摇匀",
+        "不压发",
+        "柔亮薄膜"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "轻盈奢护",
+        "柔亮不塌",
+        "高端使用仪式",
+        "护发油轻量化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "护发喷雾、双相喷雾发油、免洗修护喷雾、头皮护理喷雾",
+      "source_section": "§6.2",
+      "source_heading": "上升趋势（未来 1–2 年会更明显）",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-1332e370-70817c",
+      "dimension": "透明度与质地",
+      "name": "分相化流体",
+      "name_en": "Phase-Separated Fluid Texture",
+      "visual_keywords": [
+        "双相或三相",
+        "摇匀激活",
+        "上下分层",
+        "透明油水界面",
+        "使用前变化",
+        "活性分区"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "高活性叙事",
+        "使用前激活",
+        "科技护发",
+        "功效层次可视"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "头皮精华、护发喷雾、洗前导入液、免洗修护产品、高价副线产品",
+      "source_section": "§7.2",
+      "source_heading": "科技护发与头皮护理驱动",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-741c6839-a27bb9",
+      "dimension": "透明度与质地",
+      "name": "摇匀前后变化质地",
+      "name_en": "Shake-Activated Transforming Texture",
+      "visual_keywords": [
+        "摇匀激活",
+        "前后状态变化",
+        "分层转均一",
+        "动态视觉",
+        "使用参与感",
+        "科技仪式感"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "功效激活感",
+        "高端互动体验",
+        "配方有层次",
+        "社媒传播力"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "双相护发喷雾、三相头皮精华、洗前导入液、免洗护发产品",
+      "source_section": "§7.3",
+      "source_heading": "社媒审美驱动",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
     }
   ],
-  "实验性": []
+  "实验性": [
+    {
+      "id": "a8425dfe-texture-0d3f9f4f-f7f1c8",
+      "dimension": "透明度与质地",
+      "name": "极厚重乳霜",
+      "name_en": "Ultra-Heavy Cream Texture",
+      "visual_keywords": [
+        "极高稠度",
+        "厚重乳霜",
+        "流动性低",
+        "冲洗压力",
+        "强包裹感",
+        "概念化奢养"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "极致滋养",
+        "密集修护",
+        "高浓度护理",
+        "但可能不易冲洗"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025–2026",
+      "typical_use": "概念型发膜、深度修护霜、重度受损护理产品，不适合作为主流洗发水本体",
+      "source_section": "§6.3",
+      "source_heading": "实验性趋势（有吸引力，但落地受限）",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-b3c1cc5d-28a5da",
+      "dimension": "透明度与质地",
+      "name": "过强拉丝",
+      "name_en": "Excessively Stringy Texture",
+      "visual_keywords": [
+        "强黏弹",
+        "过度拉丝",
+        "厚重黏连",
+        "冲洗负担",
+        "假滑风险",
+        "镜头夸张"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "强结构感",
+        "视觉记忆点",
+        "概念化技术感",
+        "但易被认为黏腻"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025–2026",
+      "typical_use": "概念型修护精华、发膜、短视频展示型质地；主力洗发水需谨慎使用",
+      "source_section": "§6.3",
+      "source_heading": "实验性趋势（有吸引力，但落地受限）",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-texture-18e9fb9a-cca21b",
+      "dimension": "透明度与质地",
+      "name": "强烈形态切换",
+      "name_en": "Strong In-Use Morphological Switching",
+      "visual_keywords": [
+        "剧烈状态变化",
+        "瓶中与使用时差异大",
+        "凝胶变雾",
+        "乳霜变液",
+        "高技术演示",
+        "落地受限"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "强科技体验",
+        "高端概念感",
+        "使用过程有惊喜",
+        "但泵头和稳定性挑战大"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025–2026",
+      "typical_use": "高端免洗喷雾、头皮精华、概念型护发产品；洗发水本体应用受限",
+      "source_section": "§6.3",
+      "source_heading": "实验性趋势（有吸引力，但落地受限）",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    }
+  ]
 }

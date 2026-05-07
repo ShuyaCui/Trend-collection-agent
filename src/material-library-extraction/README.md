@@ -10,7 +10,7 @@ material_library/
 ├── color.json       # 颜色维度：所有品类的颜色元素，按成熟度分组
 ├── decoration.json  # 装饰物维度：所有品类的装饰物元素，按成熟度分组
 ├── texture.json     # 透明度与质地维度：所有品类的元素，按成熟度分组
-├── personas.json    # Aesthetic persona 目录
+├── style.json    # Aesthetic style 目录
 ├── .cache/          # 每份报告的原始提取结果缓存（支持增量更新）
 └── README.md
 ```
@@ -26,7 +26,7 @@ material_library/
 | `name` | 中文名称 |
 | `name_en` | 英文名称 |
 | `visual_keywords` | 可视化描述关键词（3-8项） |
-| `aesthetic_persona` | 美学人设：科技净澈/天然奢养/奢华克制/感官甜品/自然清体/可视科技 |
+| `aesthetic_style` | 美学风格：科技净澈/天然奢养/奢华克制/感官甜品/自然清体/可视科技 |
 | `signals` | 向消费者传达的信息（2-5项） |
 | `maturity` | 主流 / 上升 / 实验性 |
 | `typical_use` | 典型使用场景 |
@@ -38,37 +38,37 @@ material_library/
 ### 首次提取
 
 ```bash
-uv run python scripts/extract_material_library.py
+uv run python src/material-library-extraction/extract_material_library.py
 ```
 
 ### 增量更新（新增报告后）
 
 ```bash
 # 将新报告放入 reports/ 目录，然后运行：
-uv run python scripts/extract_material_library.py
+uv run python src/material-library-extraction/extract_material_library.py
 # 只会提取新文件，已处理的报告会跳过
 ```
 
 ### 强制全量重新提取
 
 ```bash
-uv run python scripts/extract_material_library.py --force
+uv run python src/material-library-extraction/extract_material_library.py --force
 ```
 
 ### 自定义参数
 
 ```bash
-uv run python scripts/extract_material_library.py \
+uv run python src/material-library-extraction/extract_material_library.py \
   --reports-dir reports/ \
   --output-dir material_library/ \
-  --model azure_openai:GPT-4O-2024-11-20
+  --model azure_openai:GPT-55-2026-04-24
 ```
 
-## Aesthetic Persona 体系
+## Aesthetic Style 体系
 
-下游 AI 通过 persona 匹配判断元素组合兼容性：
+下游 AI 通过 style 匹配判断元素组合兼容性：
 
-| Persona | 典型颜色 | 典型装饰 | 典型质地 |
+| Style | 典型颜色 | 典型装饰 | 典型质地 |
 |---------|---------|---------|---------|
 | 科技净澈 | 无色透明、冷感透明 | 微囊悬浮、双相结构 | 高折光水感、液晶反光 |
 | 天然奢养 | 浅琥珀、蜂蜜金 | 油珠悬浮、双相分层 | 丝缎油感、半透明柔光 |

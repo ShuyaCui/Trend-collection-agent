@@ -1,246 +1,1400 @@
 {
   "dimension": "颜色",
   "dimension_en": "color",
-  "last_updated": "2026-05-06T08:43:09",
+  "last_updated": "2026-05-06T09:10:17",
   "主流": [
     {
-      "id": "31c325ee-color-f60d96b2-cb7d45",
+      "id": "31c325ee-color-f60d96b2-c514e9",
       "dimension": "颜色",
       "name": "茶棕",
       "name_en": "Tea Brown",
       "visual_keywords": [
-        "自然色调",
-        "低饱和",
-        "温暖"
+        "茶汤色",
+        "低人工感",
+        "半透明棕调",
+        "原料本色",
+        "温润"
       ],
       "aesthetic_persona": "天然奢养",
       "signals": [
-        "健康",
-        "天然",
-        "低人工感"
+        "天然茶感",
+        "少添加联想",
+        "原料真实可感",
+        "成熟稳重"
       ],
       "maturity": "主流",
-      "year_range": "2023-2025",
-      "typical_use": "果茶、奶茶",
-      "source_section": "4.1",
+      "year_range": "2024-2025",
+      "typical_use": "果茶、冷萃茶、茶咖融合饮、透明杯液体特写",
+      "source_section": "§4.1",
       "source_heading": "趋势 1：原料本色与低人工感色彩",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-color-d74743ef-222fa7",
+      "id": "31c325ee-color-b7978d37-fe81a7",
       "dimension": "颜色",
-      "name": "透明清澈",
-      "name_en": "Transparent Clarity",
+      "name": "奶白",
+      "name_en": "Milk White",
       "visual_keywords": [
-        "透明",
-        "清澈",
-        "可见层次"
+        "乳白色",
+        "柔和低饱和",
+        "厚乳感",
+        "顺滑",
+        "温暖"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "醇厚奶感",
+        "可饮用的温和感",
+        "甜品化联想",
+        "大众亲和"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "奶茶、厚乳拿铁、奶咖、奶盖茶",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-5839e065-37f648",
+      "dimension": "颜色",
+      "name": "果橙",
+      "name_en": "Fruit Orange",
+      "visual_keywords": [
+        "鲜果橙色",
+        "自然果汁感",
+        "明亮但不荧光",
+        "清爽",
+        "高识别度"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "鲜果含量感",
+        "天然原料",
+        "活力清爽",
+        "社交媒体友好"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "鲜果茶、果咖、果味苏打、柑橘类特调",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-10a3c8aa-606298",
+      "dimension": "颜色",
+      "name": "莓红",
+      "name_en": "Berry Red",
+      "visual_keywords": [
+        "莓果红",
+        "自然浓郁",
+        "酸甜感",
+        "果肉联想",
+        "不荧光"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "真实莓果感",
+        "酸甜鲜活",
+        "天然色泽",
+        "风味直观"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "莓果茶、果汁特调、奶茶风味层",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-be8fe858-3c02a4",
+      "dimension": "颜色",
+      "name": "柑橘黄",
+      "name_en": "Citrus Yellow",
+      "visual_keywords": [
+        "柑橘黄调",
+        "清亮",
+        "酸甜感",
+        "阳光感",
+        "自然果色"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "维生素感",
+        "清爽轻盈",
+        "鲜果原料",
+        "夏季活力"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "柠檬茶、柑橘果茶、气泡特调、果咖",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-9076035c-9cf157",
+      "dimension": "颜色",
+      "name": "葡萄紫",
+      "name_en": "Grape Purple",
+      "visual_keywords": [
+        "葡萄皮紫",
+        "果汁感",
+        "深浅渐层",
+        "真实果色",
+        "轻甜"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "葡萄原料感",
+        "天然果汁联想",
+        "酸甜风味",
+        "视觉记忆点"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "葡萄果茶、葡萄气泡饮、果汁特调",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-d4d4f53f-01b6c3",
+      "dimension": "颜色",
+      "name": "浅粉",
+      "name_en": "Pale Pink",
+      "visual_keywords": [
+        "浅粉色",
+        "柔甜",
+        "低饱和",
+        "轻盈果感",
+        "温和"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "温柔甜感",
+        "低负担甜品化",
+        "年轻化",
+        "适合拍照"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "粉色果茶、草莓奶饮、轻乳茶、花果特调",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-0fb8a24c-e54be0",
+      "dimension": "颜色",
+      "name": "米色",
+      "name_en": "Beige",
+      "visual_keywords": [
+        "米白色",
+        "谷物感",
+        "低饱和暖色",
+        "柔和",
+        "厚实"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "温暖亲和",
+        "谷物与奶感",
+        "低刺激甜感",
+        "日常可饮用"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "奶茶、谷物奶饮、厚乳茶、秋冬热饮",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-58c943fa-a13395",
+      "dimension": "颜色",
+      "name": "焦糖色",
+      "name_en": "Caramel",
+      "visual_keywords": [
+        "焦糖棕",
+        "暖甜",
+        "糖化感",
+        "低饱和",
+        "醇厚"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "甜品联想",
+        "烘焙香气",
+        "醇厚口感",
+        "秋冬舒适感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "焦糖奶茶、拿铁、甜品风味饮品",
+      "source_section": "§4.1",
+      "source_heading": "趋势 1：原料本色与低人工感色彩",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-9c3b6bf2-58b510",
+      "dimension": "颜色",
+      "name": "清透透明色",
+      "name_en": "Crystal Clear Transparent",
+      "visual_keywords": [
+        "无色透明",
+        "清澈基底",
+        "冰块可见",
+        "气泡可见",
+        "高折射",
+        "轻盈"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
-        "品质信任",
-        "专业",
-        "轻盈"
+        "干净专业",
+        "品质可信",
+        "轻负担",
+        "配方清爽"
       ],
       "maturity": "主流",
-      "year_range": "2023-2025",
-      "typical_use": "冷萃、气泡饮",
-      "source_section": "4.1",
+      "year_range": "2024-2025",
+      "typical_use": "冷萃、冰震浓缩、气泡咖啡、果味苏打、无酒精特调",
+      "source_section": "§4.1",
       "source_heading": "趋势 2：透明感与清透感成为“品质信任”的视觉语言",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "31c325ee-color-5179509f-4f98f0",
+      "id": "31c325ee-color-325cc650-02dac3",
       "dimension": "颜色",
-      "name": "柔和暖色系",
-      "name_en": "Soft Warm Tones",
+      "name": "奶白—米白—焦糖—茶褐柔和暖色系",
+      "name_en": "Soft Warm Milk Tea Palette",
       "visual_keywords": [
-        "低饱和",
-        "温暖",
-        "醇厚"
+        "低饱和暖色",
+        "奶白",
+        "米白",
+        "焦糖",
+        "茶褐",
+        "顺滑"
       ],
       "aesthetic_persona": "感官甜品",
       "signals": [
-        "温和",
-        "甜品化",
-        "亲和"
+        "温和醇厚",
+        "厚乳口感",
+        "甜品化体验",
+        "大众化安全感"
       ],
       "maturity": "主流",
-      "year_range": "2023-2025",
-      "typical_use": "奶茶、拿铁",
-      "source_section": "4.1",
+      "year_range": "2024-2025",
+      "typical_use": "拿铁、厚乳拿铁、鲜奶茶、奶盖茶、提拉米苏风味饮品",
+      "source_section": "§4.1",
       "source_heading": "趋势 3：奶白—米白—焦糖—茶褐的“柔和暖色”常态化",
       "source_report": "FY2526中国饮料内容物设计趋势报告.md",
       "product_category": "饮料"
     },
     {
-      "id": "a8425dfe-color-25853a32-7583b9",
+      "id": "31c325ee-color-362a256e-d158bc",
       "dimension": "颜色",
-      "name": "清透无色",
-      "name_en": "Clear Transparent",
+      "name": "谷物棕",
+      "name_en": "Grain Brown",
       "visual_keywords": [
-        "透明",
-        "净澈",
-        "无色",
-        "高折光",
-        "实验室感"
+        "谷物色",
+        "浅棕",
+        "低饱和",
+        "厚重柔和",
+        "自然熟香"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "谷物健康感",
+        "饱腹与醇厚",
+        "天然风味",
+        "秋冬适配"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "谷物奶茶、燕麦奶饮、奶茶基底",
+      "source_section": "§4.3",
+      "source_heading": "奶茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-4a6a687a-e54e80",
+      "dimension": "颜色",
+      "name": "青提绿",
+      "name_en": "Green Grape",
+      "visual_keywords": [
+        "青提浅绿",
+        "清爽果色",
+        "明亮透明感",
+        "酸甜",
+        "轻盈"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "鲜果清爽",
+        "夏季轻盈",
+        "甜酸平衡",
+        "年轻化"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "青提果茶、青提苏打、果茶分层饮",
+      "source_section": "§4.3",
+      "source_heading": "果茶",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-203b097c-880878",
+      "dimension": "颜色",
+      "name": "咖啡棕",
+      "name_en": "Coffee Brown",
+      "visual_keywords": [
+        "浓缩咖啡色",
+        "深棕",
+        "低饱和",
+        "油脂感",
+        "成熟"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "咖啡浓度",
+        "专业萃取",
+        "醇苦风味",
+        "高级日常感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "拿铁、冷萃、咖啡特调、冰震浓缩",
+      "source_section": "§4.3",
+      "source_heading": "咖啡特调",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-103f715d-e3303c",
+      "dimension": "颜色",
+      "name": "琥珀色",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "琥珀金棕",
+        "半透明",
+        "温润光泽",
+        "酒感",
+        "低饱和高级"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "天然萃取感",
+        "成熟高级",
+        "发酵或酒感联想",
+        "温润滋养"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "果咖、冷萃、鸡尾酒、无酒精特调",
+      "source_section": "§4.3",
+      "source_heading": "咖啡特调",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-0cbced26-adaf72",
+      "dimension": "颜色",
+      "name": "黑金",
+      "name_en": "Black Gold",
+      "visual_keywords": [
+        "深黑棕",
+        "金色高光",
+        "浓缩感",
+        "低调奢华",
+        "强对比"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "高级感",
+        "浓郁风味",
+        "精品咖啡调性",
+        "稀缺与工艺"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "咖啡特调、黑糖咖啡、深烘焙饮品、酒吧风咖啡",
+      "source_section": "§4.3",
+      "source_heading": "咖啡特调",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-ae15d6fb-fca8e8",
+      "dimension": "颜色",
+      "name": "宝石色",
+      "name_en": "Jewel Tones",
+      "visual_keywords": [
+        "高饱和",
+        "祖母绿",
+        "宝石红",
+        "蓝紫调",
+        "戏剧化",
+        "通透"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "酒吧仪式感",
+        "戏剧化呈现",
+        "视觉冲击",
+        "夜间社交属性"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "鸡尾酒、酒吧特调、节日限定饮品",
+      "source_section": "§4.3",
+      "source_heading": "鸡尾酒及其他现制饮品",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-024f89a0-8756ca",
+      "dimension": "颜色",
+      "name": "草本绿",
+      "name_en": "Herbal Green",
+      "visual_keywords": [
+        "草本绿色",
+        "植物浸泡感",
+        "清新",
+        "微苦感",
+        "自然"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "草本原料",
+        "清爽解腻",
+        "天然低负担",
+        "成人化风味"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "草本鸡尾酒、无酒精特调、茶饮特调",
+      "source_section": "§4.3",
+      "source_heading": "鸡尾酒及其他现制饮品",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "a8425dfe-color-e7a9b520-262aee",
+      "dimension": "颜色",
+      "name": "清透无色/极浅色",
+      "name_en": "Clear Colorless / Ultra-Pale Tint",
+      "visual_keywords": [
+        "无色透明",
+        "极浅色调",
+        "高净澈感",
+        "水样清亮",
+        "实验室感",
+        "低负担视觉"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
         "净澈清洁",
         "头皮平衡",
         "科学配方",
-        "低负担",
-        "温和但有效"
+        "温和低负担",
+        "高级精华感"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "高端头皮护理产品",
-      "source_section": "3.1",
-      "source_heading": "主流颜色方向：清透无色、浅琥珀、乳白、珍珠白",
+      "year_range": "2025–2026",
+      "typical_use": "高端头皮护理液、净澈洗发水、清爽型洗发水、头皮平衡护理产品",
+      "source_section": "§3.1.1",
+      "source_heading": "1）清透无色/极浅色：最强的“科技净澈”与“头皮护理”信号",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
     {
-      "id": "a8425dfe-color-b9dfbd97-9a6c9c",
+      "id": "a8425dfe-color-d1f4f493-8825af",
       "dimension": "颜色",
-      "name": "浅琥珀",
-      "name_en": "Light Amber",
+      "name": "浅琥珀/金棕/蜂蜜色",
+      "name_en": "Light Amber / Golden Brown / Honey Gold",
       "visual_keywords": [
-        "琥珀色",
+        "浅金琥珀",
         "蜂蜜金",
         "浅茶金",
-        "透明",
-        "自然"
+        "透明暖金",
+        "天然油感",
+        "温润棕金"
       ],
       "aesthetic_persona": "天然奢养",
       "signals": [
-        "植物油/精油真实存在感",
-        "养护浓度",
+        "植物油或精油真实存在感",
+        "滋养修护浓度",
         "奢宠护理",
-        "成分天然性",
-        "使用后柔亮光泽"
+        "天然成分联想",
+        "柔亮光泽"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "高端护发产品",
-      "source_section": "3.1",
-      "source_heading": "主流颜色方向：清透无色、浅琥珀、乳白、珍珠白",
+      "year_range": "2025–2026",
+      "typical_use": "修护型洗发水、滋养型洗发水、护发精华油、发膜前导油、头皮精油/精华",
+      "source_section": "§3.1.2",
+      "source_heading": "2）浅琥珀/金棕/蜂蜜色：天然油养与奢护感的稳定高端色",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
     {
-      "id": "a8425dfe-color-c857ceec-3df88f",
+      "id": "a8425dfe-color-67997073-96277f",
       "dimension": "颜色",
-      "name": "乳白",
-      "name_en": "Milky White",
+      "name": "乳白/珍珠白/雾白",
+      "name_en": "Milky White / Pearl White / Mist White",
       "visual_keywords": [
-        "乳白",
+        "乳白乳浊",
         "珍珠白",
-        "雾白",
-        "珠光",
-        "乳霜感"
+        "雾面白",
+        "白色不透明珠光",
+        "柔和高级光泽",
+        "护肤乳液感"
       ],
-      "aesthetic_persona": "感官甜品",
+      "aesthetic_persona": "奢华克制",
       "signals": [
-        "修护",
-        "柔护",
-        "珠光高级感",
-        "顺滑",
-        "丝缎"
+        "温和修护",
+        "乳霜化高端护理",
+        "顺滑柔亮",
+        "丝缎感",
+        "量产可行的高级感"
       ],
       "maturity": "主流",
-      "year_range": "2025-2026",
-      "typical_use": "高端洗发水",
-      "source_section": "3.1",
-      "source_heading": "主流颜色方向：清透无色、浅琥珀、乳白、珍珠白",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、顺滑洗发水、乳霜感洗发水、柔护型护发产品",
+      "source_section": "§3.1.3",
+      "source_heading": "3）乳白/珍珠白/雾白：修护、柔护、珠光高级感",
       "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
       "product_category": "洗发水"
     },
     {
-      "id": "d384cc19-color-f54c9349-76e6f0",
+      "id": "a8425dfe-color-22d409c0-9863bb",
       "dimension": "颜色",
-      "name": "无色透明 / 高通透水光感",
-      "name_en": "Colorless Transparent / High Transparency Water Gloss",
+      "name": "乳金色",
+      "name_en": "Milky Gold",
       "visual_keywords": [
-        "无色透明",
-        "高折光",
+        "乳化金调",
+        "浅金乳白",
+        "柔和金色",
+        "奢华暖调",
+        "细腻均匀",
+        "贵价护理感"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "奢宠护理",
+        "贵价成分",
+        "精油修护联想",
+        "柔亮发质",
+        "低调奢华"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、奢养护发乳、发膜、精油修护系列",
+      "source_section": "§3.4",
+      "source_heading": "奢华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-4b66b4da-ec56c2",
+      "dimension": "颜色",
+      "name": "丝缎米白",
+      "name_en": "Satin Beige-White",
+      "visual_keywords": [
+        "米白色",
+        "丝缎暖白",
+        "低饱和奢华色",
+        "柔亮白调",
+        "均匀乳感",
+        "克制高级"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "柔亮顺滑",
+        "高端修护",
+        "精致低调",
+        "贵妇护发语境",
+        "温和护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "高端修护洗发水、顺滑护理系列、柔亮护发乳、奢华感洗护产品",
+      "source_section": "§3.4",
+      "source_heading": "奢华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-73ca04b8-584def",
+      "dimension": "颜色",
+      "name": "高光泽透明油相色",
+      "name_en": "High-Gloss Transparent Oil Phase Color",
+      "visual_keywords": [
+        "透明油相",
+        "高光泽暖色",
+        "清亮油感",
+        "折光金调",
+        "精油感",
+        "流动奢华色"
+      ],
+      "aesthetic_persona": "天然奢养",
+      "signals": [
+        "精油修护",
+        "奢宠护理",
+        "高浓度滋养",
+        "柔亮光泽",
+        "贵价天然原料"
+      ],
+      "maturity": "主流",
+      "year_range": "2025–2026",
+      "typical_use": "护发精华油、头皮精油、发膜前导油、双相护发喷雾中的油相",
+      "source_section": "§3.4",
+      "source_heading": "奢华感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "d384cc19-color-0ca039b8-b7a76f",
+      "dimension": "颜色",
+      "name": "无色透明水光",
+      "name_en": "Colorless Transparent Watery Glow",
+      "visual_keywords": [
+        "接近无色",
         "高通透",
+        "清透水光",
+        "高折光",
         "均匀水膜",
         "薄光泽",
-        "顺滑流速"
+        "透明精致液态"
       ],
       "aesthetic_persona": "科技净澈",
       "signals": [
-        "高纯度",
-        "高活性",
-        "高稳定科技",
-        "奢华中的克制"
+        "高纯度、低杂质联想",
+        "高活性成分精炼感",
+        "高稳定科技与实验室级配方感",
+        "奢华但克制的配方自信"
       ],
       "maturity": "主流",
       "year_range": "2025",
-      "typical_use": "高端修护型精华",
-      "source_section": "§2.1",
-      "source_heading": "主流底色：清透、纯净、轻金色成为“高级有效”的基础语法",
+      "typical_use": "高端修护、抗老、肌底、屏障修护类面部精华；常用于滴管滴落、挂壁、延展反光等视觉呈现",
+      "source_section": "§2.1-1",
+      "source_heading": "1）无色透明 / 高通透水光感",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     },
     {
-      "id": "d384cc19-color-bc574420-dcd5c2",
+      "id": "d384cc19-color-30a07889-a1421d",
       "dimension": "颜色",
-      "name": "浅金色 / 蜂蜜色 / 淡琥珀色",
-      "name_en": "Light Gold / Honey / Pale Amber",
+      "name": "浅金蜂蜜琥珀色",
+      "name_en": "Light Gold Honey Amber",
       "visual_keywords": [
+        "淡金色",
+        "浅琥珀",
+        "蜂蜜色",
         "晨光蜂蜜",
         "香槟金",
         "浅茶金",
         "稀释琥珀",
-        "透明基底",
         "温润金色"
       ],
       "aesthetic_persona": "天然奢养",
       "signals": [
-        "贵价天然原料",
-        "高营养密度",
-        "贵妇滋养感",
-        "温润奢华"
+        "贵价天然原料联想",
+        "发酵活性与珍稀植物提取感",
+        "高营养密度与有效物浓缩感",
+        "温润奢华的滋养抗老情绪"
       ],
       "maturity": "主流",
       "year_range": "2025",
-      "typical_use": "夜间抗老修护精华",
-      "source_section": "§2.1",
-      "source_heading": "主流底色：清透、纯净、轻金色成为“高级有效”的基础语法",
+      "typical_use": "高端夜间抗老、修护、御龄、精油或油相修护类面部精华",
+      "source_section": "§2.1-2",
+      "source_heading": "2）浅金色 / 蜂蜜色 / 淡琥珀色",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     }
   ],
   "上升": [
     {
-      "id": "d384cc19-color-5f0cbb62-86cb0e",
+      "id": "31c325ee-color-d19943d6-1998e3",
       "dimension": "颜色",
-      "name": "乳白半透明 / 云雾感",
-      "name_en": "Milky Translucent / Cloudy",
+      "name": "植物深绿",
+      "name_en": "Deep Botanical Green",
       "visual_keywords": [
-        "乳白半透明",
-        "雾感凝乳色",
-        "柔和低刺激",
-        "包裹感",
-        "科学乳化体系"
+        "羽衣甘蓝绿",
+        "小麦草绿",
+        "深植物色",
+        "轻浑浊",
+        "纤维感"
       ],
       "aesthetic_persona": "自然清体",
       "signals": [
-        "专业",
-        "安全",
-        "肤感高级",
-        "修护有底气"
+        "功能性原料",
+        "轻体健康",
+        "膳食纤维",
+        "clean eating"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "羽衣甘蓝苹果茶、小麦草饮、果蔬茶、功能型现制饮品",
+      "source_section": "§4.2",
+      "source_heading": "趋势 4：植物深绿、灰绿、黄绿成为果蔬茶代表色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-2630a1a0-6de47d",
+      "dimension": "颜色",
+      "name": "灰绿",
+      "name_en": "Muted Grey Green",
+      "visual_keywords": [
+        "灰调绿色",
+        "低饱和",
+        "天然浑浊",
+        "轻养生",
+        "非甜腻"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "克制健康感",
+        "低加工联想",
+        "功能性可信",
+        "区别于传统甜果茶"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "黄瓜茶、西芹果蔬茶、苦瓜轻体饮、果蔬奶昔",
+      "source_section": "§4.2",
+      "source_heading": "趋势 4：植物深绿、灰绿、黄绿成为果蔬茶代表色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-84a6ec5a-83cbad",
+      "dimension": "颜色",
+      "name": "黄绿",
+      "name_en": "Yellow Green",
+      "visual_keywords": [
+        "黄瓜绿",
+        "浅黄绿",
+        "清新植物感",
+        "轻体",
+        "果蔬汁色"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "清爽轻盈",
+        "蔬果新鲜度",
+        "健康功能感",
+        "夏季低负担"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "黄瓜果蔬茶、青瓜苏打、西芹黄瓜饮",
+      "source_section": "§4.2",
+      "source_heading": "趋势 4：植物深绿、灰绿、黄绿成为果蔬茶代表色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-12a1aef5-0c1956",
+      "dimension": "颜色",
+      "name": "番茄红",
+      "name_en": "Tomato Red",
+      "visual_keywords": [
+        "红中带粉",
+        "自然鲜红",
+        "果蔬打碎感",
+        "醒目",
+        "发光感"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "维生素感",
+        "鲜活健康",
+        "真实果蔬",
+        "高识别度"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "番茄芭乐果蔬茶、番茄类果汁特调、轻养生现制饮",
+      "source_section": "§4.2",
+      "source_heading": "趋势 5：番茄红、芭乐粉橘、果蔬混合色上升",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-89ece2c2-b17a4e",
+      "dimension": "颜色",
+      "name": "芭乐粉橘",
+      "name_en": "Guava Pink Orange",
+      "visual_keywords": [
+        "粉中带橘",
+        "芭乐果肉色",
+        "自然醒目",
+        "柔亮",
+        "热带果感"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "鲜活果蔬感",
+        "维生素联想",
+        "社交平台辨识度",
+        "健康但不寡淡"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "芭乐树番茄类产品、芭乐果蔬茶、热带果汁特调",
+      "source_section": "§4.2",
+      "source_heading": "趋势 5：番茄红、芭乐粉橘、果蔬混合色上升",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-30320c2c-52a37b",
+      "dimension": "颜色",
+      "name": "红菜头暗玫红",
+      "name_en": "Beetroot Dark Rose",
+      "visual_keywords": [
+        "暗玫红",
+        "红菜头色",
+        "深粉红",
+        "果蔬混合感",
+        "浓郁"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "功能性蔬果",
+        "真实打碎色",
+        "抗氧化联想",
+        "更成熟的健康感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "红菜头混合饮、果蔬茶、轻养生现制饮品",
+      "source_section": "§4.2",
+      "source_heading": "趋势 5：番茄红、芭乐粉橘、果蔬混合色上升",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-80a8704a-f75b80",
+      "dimension": "颜色",
+      "name": "咸乳米棕",
+      "name_en": "Savory Milk Beige Brown",
+      "visual_keywords": [
+        "米棕色",
+        "咸乳感",
+        "低饱和",
+        "厚重",
+        "克制"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "咸口新鲜感",
+        "厚乳质地",
+        "甜口疲劳后的平衡",
+        "熟成风味"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "咸奶茶、咸乳茶拿铁、法酪鲜奶茶",
+      "source_section": "§4.2",
+      "source_heading": "趋势 6：咸奶茶带动的奶白、米棕、焙烤褐、法酪奶酪色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-6e268ad6-8f8663",
+      "dimension": "颜色",
+      "name": "焙烤褐",
+      "name_en": "Roasted Brown",
+      "visual_keywords": [
+        "焙烤色",
+        "深暖褐",
+        "谷物烘烤感",
+        "酱香",
+        "熟成"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "烘焙香气",
+        "秋冬温暖",
+        "厚重口感",
+        "咸甜平衡"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "芝士可可、咸奶茶、焙烤谷物奶茶、茶咖融合饮",
+      "source_section": "§4.2",
+      "source_heading": "趋势 6：咸奶茶带动的奶白、米棕、焙烤褐、法酪奶酪色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-541ef52d-879262",
+      "dimension": "颜色",
+      "name": "法酪奶酪淡黄",
+      "name_en": "Fromage Cheese Pale Yellow",
+      "visual_keywords": [
+        "奶酪淡黄",
+        "黄油感",
+        "法酪色",
+        "柔和暖黄",
+        "绵厚"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "奶酪风味",
+        "高级乳脂感",
+        "熟成感",
+        "咸甜创新"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "法酪鲜奶茶、芝士奶茶、咸乳茶拿铁",
+      "source_section": "§4.2",
+      "source_heading": "趋势 6：咸奶茶带动的奶白、米棕、焙烤褐、法酪奶酪色",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-e1950240-8e613f",
+      "dimension": "颜色",
+      "name": "气泡金",
+      "name_en": "Sparkling Gold",
+      "visual_keywords": [
+        "金黄色",
+        "气泡折射",
+        "清透闪亮",
+        "鸡尾酒感",
+        "轻盈"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "轻奢感",
+        "清爽气泡",
+        "派对氛围",
+        "高级特调"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "气泡咖啡、果味苏打、无酒精特调、鸡尾酒化咖啡",
+      "source_section": "§4.3",
+      "source_heading": "咖啡特调",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-92432fa6-a3d50f",
+      "dimension": "颜色",
+      "name": "中式节气色谱",
+      "name_en": "Chinese Seasonal Color Palette",
+      "visual_keywords": [
+        "中国色彩",
+        "二十四节气",
+        "四季色",
+        "文化叙事",
+        "系列化"
+      ],
+      "aesthetic_persona": "奢华克制",
+      "signals": [
+        "文化身份",
+        "东方审美",
+        "季节限定感",
+        "故事性消费"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "中国色彩鸡尾酒、节气限定酒单、文化主题现制饮品",
+      "source_section": "§4.3",
+      "source_heading": "鸡尾酒及其他现制饮品",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-81e4cd74-dba69f",
+      "dimension": "颜色",
+      "name": "花果撞色",
+      "name_en": "Floral-Fruit Contrasting Colors",
+      "visual_keywords": [
+        "花色与果色并置",
+        "高对比",
+        "明快",
+        "社交传播",
+        "戏剧化分层"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "新鲜趣味",
+        "风味复合",
+        "高拍照价值",
+        "限定感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "花果鸡尾酒、果茶特调、节日限定饮品",
+      "source_section": "§4.3",
+      "source_heading": "鸡尾酒及其他现制饮品",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "31c325ee-color-6ef7d36c-0f4079",
+      "dimension": "颜色",
+      "name": "低酒精轻盈色",
+      "name_en": "Low-ABV Airy Light Tints",
+      "visual_keywords": [
+        "浅色系",
+        "低饱和",
+        "清透",
+        "轻盈",
+        "微醺感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "低负担饮酒",
+        "清爽易入口",
+        "轻社交",
+        "专业干净"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "低酒精鸡尾酒、无酒精特调、轻盈苏打饮",
+      "source_section": "§4.3",
+      "source_heading": "鸡尾酒及其他现制饮品",
+      "source_report": "FY2526中国饮料内容物设计趋势报告.md",
+      "product_category": "饮料"
+    },
+    {
+      "id": "a8425dfe-color-2d312a63-2e8928",
+      "dimension": "颜色",
+      "name": "功能编码白色系",
+      "name_en": "Function-Coded White Palette",
+      "visual_keywords": [
+        "小白珠联想",
+        "白珠色",
+        "低饱和白",
+        "温和白色",
+        "护理型白调",
+        "丰盈洁净感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "强韧护理",
+        "温和低刺激",
+        "丰盈发感",
+        "功能分区识别",
+        "高端基础护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "强韧洗发水、丰盈洗发水、温和护理洗发水、以颜色区分功效线的高端洗护",
+      "source_section": "§3.2",
+      "source_heading": "3.2 上升颜色方向：绿色调、粉白调、低饱和天然色",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-a3684a08-229e95",
+      "dimension": "颜色",
+      "name": "低饱和绿色系",
+      "name_en": "Low-Saturation Green Palette",
+      "visual_keywords": [
+        "绿珠联想",
+        "草本绿",
+        "柔和绿色",
+        "低饱和清新色",
+        "净澈绿调",
+        "头皮平衡色"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "头皮平衡",
+        "草本舒缓",
+        "清新净澈",
+        "天然植物成分",
+        "控油与轻盈感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "头皮平衡洗发水、草本舒缓洗发水、清爽控油洗护、绿色功能线产品",
+      "source_section": "§3.2",
+      "source_heading": "3.2 上升颜色方向：绿色调、粉白调、低饱和天然色",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-c9c2aa40-f79d21",
+      "dimension": "颜色",
+      "name": "低饱和粉白/粉色系",
+      "name_en": "Low-Saturation Pink-White / Pink Palette",
+      "visual_keywords": [
+        "粉珠联想",
+        "粉白调",
+        "柔雾粉",
+        "低饱和粉色",
+        "香氛感色彩",
+        "女性化柔护色"
+      ],
+      "aesthetic_persona": "感官甜品",
+      "signals": [
+        "柔护修护",
+        "香氛愉悦感",
+        "女性化奢养",
+        "温柔亲和",
+        "护理路径识别"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "柔护洗发水、香氛洗护、修护护理系列、女性化高端洗护线",
+      "source_section": "§3.2",
+      "source_heading": "3.2 上升颜色方向：绿色调、粉白调、低饱和天然色",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-d41f5738-9f0b40",
+      "dimension": "颜色",
+      "name": "低饱和天然色",
+      "name_en": "Low-Saturation Natural Tones",
+      "visual_keywords": [
+        "米白",
+        "浅茶色",
+        "淡草本色",
+        "低人工感",
+        "原料本色",
+        "柔和天然调"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "不过度加工",
+        "真实天然成分",
+        "温和修护",
+        "健康清洁",
+        "品牌识别化功能色"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "天然定位洗发水、有机植物洗护、温和修护产品、低刺激头皮护理",
+      "source_section": "§3.2",
+      "source_heading": "3.2 上升颜色方向：绿色调、粉白调、低饱和天然色",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-711caff6-626bb4",
+      "dimension": "颜色",
+      "name": "双相/三相分层天然渐变色",
+      "name_en": "Bi-Phase / Tri-Phase Layered Natural Gradient",
+      "visual_keywords": [
+        "双相分层",
+        "三相分层",
+        "油水界面",
+        "天然渐变",
+        "多色层次",
+        "非彩虹式渐变",
+        "活性分层色"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "配方复杂性",
+        "活性分层保存",
+        "功效可视化",
+        "高端护理科技",
+        "精华化护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "双相护发喷雾、双相发油喷雾、三相精华液、护理液、头皮精华",
+      "source_section": "§3.3",
+      "source_heading": "3.3 渐变、分层、多色视觉：上升中，但多在喷雾/精华先落地",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-2c7e4753-67322d",
+      "dimension": "颜色",
+      "name": "极浅草本绿",
+      "name_en": "Ultra-Pale Herbal Green",
+      "visual_keywords": [
+        "极浅绿",
+        "草本水色",
+        "清新绿调",
+        "低饱和植物色",
+        "净澈草本感",
+        "舒缓绿"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "植物成分",
+        "头皮舒缓",
+        "清爽净澈",
+        "天然不过度加工",
+        "温和护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "天然感洗发水、草本头皮护理、舒缓洗护、清爽控油产品",
+      "source_section": "§3.4",
+      "source_heading": "天然感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-1cf63fb5-fc0f0e",
+      "dimension": "颜色",
+      "name": "米白—茶色—水感青绿天然调色系",
+      "name_en": "Beige-White / Tea Brown / Watery Aqua-Green Natural Palette",
+      "visual_keywords": [
+        "低饱和米白",
+        "浅茶色",
+        "水感青绿",
+        "天然柔色",
+        "植物有机感",
+        "低加工色彩"
+      ],
+      "aesthetic_persona": "自然清体",
+      "signals": [
+        "有机植物趋势",
+        "天然低加工",
+        "头皮温和修护",
+        "健康清体",
+        "成分故事感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "天然品牌洗护系列、植物成分洗发水、头皮舒缓线、温和修护洗护",
+      "source_section": "§3.4",
+      "source_heading": "天然感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-a231985c-589356",
+      "dimension": "颜色",
+      "name": "冷白/银白乳浊",
+      "name_en": "Cool White / Silver-White Opalescent Milky Tone",
+      "visual_keywords": [
+        "冷白乳浊",
+        "银白调",
+        "科技白",
+        "护肤乳液感",
+        "理性洁净",
+        "精密白色"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "科学洗护",
+        "细胞级修护联想",
+        "实验室级精密",
+        "理性高端",
+        "头皮抗老护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "科技感洗发水、头皮抗老护理、细胞级修护洗护、护肤化头皮产品",
+      "source_section": "§3.4",
+      "source_heading": "科技感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-e7e33565-5ce015",
+      "dimension": "颜色",
+      "name": "微蓝调透明感",
+      "name_en": "Subtle Blue-Tinted Transparency",
+      "visual_keywords": [
+        "微蓝透明",
+        "冷感水色",
+        "高透明蓝调",
+        "净澈科技感",
+        "极淡蓝光",
+        "清爽冷调"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "科学配方",
+        "清爽净化",
+        "头皮护理专业感",
+        "高纯度",
+        "理性种草"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "科技感净澈洗发水、头皮护理液、清爽控油洗护、实验室风格高端洗护",
+      "source_section": "§3.4",
+      "source_heading": "科技感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "a8425dfe-color-57714d00-da4e6f",
+      "dimension": "颜色",
+      "name": "极简双色分层",
+      "name_en": "Minimal Two-Tone Layering",
+      "visual_keywords": [
+        "双色分层",
+        "上下界面清晰",
+        "极简配色",
+        "透明与色层对比",
+        "精华液感",
+        "科技分相"
+      ],
+      "aesthetic_persona": "可视科技",
+      "signals": [
+        "功效分区",
+        "配方科技门槛",
+        "活性成分可视化",
+        "高端精华化",
+        "理性专业感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025–2026",
+      "typical_use": "双相头皮精华、护发喷雾、轻润护发液、科技感护理产品",
+      "source_section": "§3.4",
+      "source_heading": "科技感",
+      "source_report": "FY2526中国高端洗发水内容物设计趋势报告.md",
+      "product_category": "洗发水"
+    },
+    {
+      "id": "d384cc19-color-0ff8810d-10b834",
+      "dimension": "颜色",
+      "name": "乳白半透明云雾色",
+      "name_en": "Milky Translucent Mist White",
+      "visual_keywords": [
+        "乳白半透明",
+        "云雾感",
+        "雾感凝乳色",
+        "柔和白调",
+        "低刺激视觉",
+        "半透明乳感",
+        "微乳化观感"
+      ],
+      "aesthetic_persona": "科技净澈",
+      "signals": [
+        "专业安全的敏感肌修护感",
+        "脂质修护与仿生屏障联想",
+        "科学乳化体系的可信度",
+        "柔和包裹、低刺激的肤感预期"
       ],
       "maturity": "上升",
       "year_range": "2025",
-      "typical_use": "敏感肌高端修护精华",
-      "source_section": "§2.1",
-      "source_heading": "主流底色：清透、纯净、轻金色成为“高级有效”的基础语法",
+      "typical_use": "高端屏障修护、医研融合、敏感肌修护、微乳化精华或乳液型精华",
+      "source_section": "§2.1-3",
+      "source_heading": "3）乳白半透明 / 云雾感",
       "source_report": "FY2526中国高端面部精华内容物设计趋势报告.md",
       "product_category": "面部精华"
     }
