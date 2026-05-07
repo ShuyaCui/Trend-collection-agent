@@ -42,31 +42,35 @@ if _DISABLE_SSL:
     # http.client) also skip verification.
     ssl._create_default_https_context = ssl._create_unverified_context  # noqa: SLF001
 
-    # Patch TavilyClient._search to inject verify=False into its
-    # requests.post call. This is the most reliable hook because:
-    # 1. It's a CLASS-level patch — %autoreload won't reset it (tavily
-    #    is in site-packages, so its mtime never changes).
-    # 2. It targets the exact code path that makes the HTTPS call.
-    # 3. No fragile monkey-patching of requests/urllib3 module functions.
-    # Guard: only patch once to avoid recursion on module reload.
-    if not getattr(TavilyClient._search, "_ssl_patched", False):
-        _orig = TavilyClient._search
+    # Remove env vars that would re-enable cert verification inside
+    # requests.Session.merge_environment_settings.
+    for _env_var in ("REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"):
+        os.environ.pop(_env_var, None)
 
-        def _ssl_bypass_tavily_search(self, *args, _orig_fn=_orig, **kwargs):  # noqa: ANN001
-            _real_post = requests.post
+    # Patch requests.Session.merge_environment_settings to force verify=False.
+    # Why this level:
+    #   requests.post() → Session() → session.request() →
+    #   merge_environment_settings() → session.send(verify=...)
+    # Thread-safe: each call operates on its own settings dict —
+    #   no shared mutable state, so concurrent asyncio.gather() sub-agents
+    #   cannot race each other (unlike the old requests.post swap approach).
+    # Autoreload-safe: requests is in site-packages, so %autoreload 2
+    #   does not reload it and the class-level patch persists.
+    if not getattr(requests.Session, "_ssl_patched", False):
+        _orig_merge = requests.Session.merge_environment_settings
 
-            def _post_no_verify(*a, **kw):
-                kw["verify"] = False
-                return _real_post(*a, **kw)
+        def _merge_no_verify(  # noqa: ANN001
+            self, url, proxies=None, stream=False, verify=True, cert=None,
+            *, _orig=_orig_merge,
+        ):
+            if proxies is None:
+                proxies = {}
+            settings = _orig(self, url, proxies, stream, verify, cert)
+            settings["verify"] = False
+            return settings
 
-            requests.post = _post_no_verify
-            try:
-                return _orig_fn(self, *args, **kwargs)
-            finally:
-                requests.post = _real_post
-
-        _ssl_bypass_tavily_search._ssl_patched = True  # type: ignore[attr-defined]
-        TavilyClient._search = _ssl_bypass_tavily_search
+        requests.Session.merge_environment_settings = _merge_no_verify
+        requests.Session._ssl_patched = True  # type: ignore[attr-defined]
 
 # ===== UTILITY FUNCTIONS =====
 
