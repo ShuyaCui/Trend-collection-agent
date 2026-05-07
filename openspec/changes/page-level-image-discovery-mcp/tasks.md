@@ -1,143 +1,32 @@
 # Tasks: page-level-image-discovery-mcp
 
-## Phase A — Foundations and Contracts
+## Group 1 — Schema Extension
 
-### Group A1 — Confirm Integration Boundary
+- [x] Extend `ImageResult` in `state_research.py` (via Notebook 2 `%%writefile` cell) with 4 new optional fields: `discovery_method: str = "tavily"`, `page_title: str = ""`, `alt_text: str = ""`, `figcaption: str = ""`.
+- [x] Verify all existing code that reads `ImageResult` (tool_node, compress_research, supervisor aggregation, download_images, report generation) still works with no changes — new fields have safe defaults.
 
-- [ ] Document that Notebook 2 is the primary implementation surface for discovery/enrichment logic.
-- [ ] Confirm Notebook 4 and Notebook 5 only require compatibility updates, not architecture rewrites.
-- [ ] Record runtime dependencies for browser MCP and fetch/html fallback availability.
+## Group 2 — Page Fetch and Parse Helpers
 
-Deliverable:
+- [x] Add cross-call URL skip set as `_inspected_page_urls: contextvars.ContextVar[set[str]]` in `utils.py` alongside `_last_search_images`; expose `reset_page_discovery_cache()` for test isolation.
+- [x] Add `normalize_page_image(tag, base_url: str, page_title: str) -> ImageResult | None` in `utils.py`: resolve `src` via `urljoin`, filter `data:` URIs and SVG blobs, populate `title` (alt > tag title > page_title), `description` from nearest `<figcaption>`, `source_page`, `discovery_method="httpx"`, `alt_text`, `figcaption`, `page_title`.
+- [x] Add `discover_page_images(url: str, session: httpx.Client) -> list[ImageResult]` in `utils.py`: GET with `verify=False, timeout=10, follow_redirects=True`; parse with `BeautifulSoup(html, "lxml")`; extract `img` tags + `og:image`; call `normalize_page_image` for each; cap at 10; return `[]` on any exception with a WARNING log.
+- [x] Add `batch_discover_images(urls: list[str], max_concurrent: int = 3) -> list[ImageResult]` in `utils.py`: filter already-inspected URLs via skip set; run `discover_page_images` concurrently under `ThreadPoolExecutor`; update skip set after batch completes.
 
-- Clear implementation boundary notes in change artifacts and code comments.
+## Group 3 — Pipeline Integration
 
-### Group A2 — Image Metadata Contract
+- [x] Add `merge_image_lists(tavily: list[ImageResult], page: list[ImageResult]) -> list[ImageResult]` in `utils.py`: URL dedup, backfill `source_page` and page-context fields on Tavily entries that match a page-discovered URL, preserve Tavily entry order, append new page entries after.
+- [x] Update `tavily_search` tool in `utils.py` to call `batch_discover_images(result_urls)` and then `merge_image_lists(tavily_images, page_images)` before `_last_search_images.set(merged)`. Tool uses `ThreadPoolExecutor` (sync) rather than async since `@tool` is sync.
 
-- [ ] Define optional `ImageResult` extension fields for discovery context, asset facts, and material linking.
-- [ ] Specify backward-compatibility rules so existing consumers can ignore new fields safely.
-- [ ] Define serialization contract for `images_metadata.json` with required vs optional fields.
+## Group 4 — Validation
 
-Deliverable:
+- [x] Add unit tests for `normalize_page_image`: relative URL → absolute, `data:` URI filtered, `alt` over `title` over `page_title` priority, figcaption extracted from parent `<figure>`, returns `None` for SVG blob src.
+- [x] Add unit tests for `merge_image_lists`: Tavily-only, page-only, overlap → dedup + `source_page` backfill, output order (Tavily first, then new page entries).
+- [x] Add unit tests for `batch_discover_images` with mocked httpx responses: per-page cap of 10 enforced, semaphore limits ≤3 concurrent fetches, skip set prevents re-fetching already-seen URLs, returns `[]` cleanly on HTTP error.
+- [x] Add integration smoke tests: verify `tavily_search` calls `batch_discover_images` with result URLs and passes page images through `merge_image_lists`. (28/28 tests pass.)
+- [x] Run `ruff check src/ --fix` — all checks passed after fixing import ordering in notebook cells.
 
-- Versioned metadata field contract captured in notebook-generated schema/helpers.
+## Group 5 — Review
 
-### Group A3 — Matching Catalog Inputs
-
-- [ ] Define catalog loading contract for `material_library/color.json`, `texture.json`, `decoration.json`, and `style.json`.
-- [ ] Define normalized in-memory lookup shape for dimension matching.
-- [ ] Define behavior when one or more catalog files are missing or malformed.
-
-Deliverable:
-
-- Deterministic catalog loader with graceful degradation behavior.
-
-## Phase B — Discovery, Enrichment, and Linking
-
-### Group B1 — Page Discovery Extractors
-
-- [ ] Implement browser-first page extractor for title, img src, alt, figcaption, og:image, and nearby text.
-- [ ] Implement fetch/html fallback extractor with equivalent output shape.
-- [ ] Add page-level timeout, retry, and fallback routing logic.
-
-Deliverable:
-
-- Unified extractor interface returning normalized candidate records.
-
-### Group B2 — Candidate Normalization and Dedupe
-
-- [ ] Resolve relative image URLs against source page.
-- [ ] Normalize URLs and strip bounded tracking parameters.
-- [ ] Drop malformed or unsupported URL schemes.
-- [ ] Deduplicate candidates by normalized URL + source page.
-- [ ] Preserve discovery provenance fields for auditability.
-
-Deliverable:
-
-- Stable, deduplicated candidate list per query.
-
-### Group B3 — Asset Enrichment
-
-- [ ] Fetch/download image assets with bounded timeout.
-- [ ] Extract content type, dimensions, and file size where available.
-- [ ] Add optional dominant color extraction path with bounded runtime.
-- [ ] Preserve candidates on fetch failure without blocking the run.
-
-Deliverable:
-
-- Enriched candidate list with asset facts and partial-failure resilience.
-
-### Group B4 — Material Linking Engine
-
-- [ ] Build per-dimension candidate lexicons from catalog names/keywords.
-- [ ] Implement deterministic evidence scoring from alt/caption/nearby/page-title signals.
-- [ ] Add optional color-signal boosting using dominant colors.
-- [ ] Emit `material_library_links` with confidence and evidence fields.
-- [ ] Enforce catalog-constrained linking (no generated taxonomy labels).
-
-Deliverable:
-
-- Bounded per-image links across color/texture/decoration/style dimensions.
-
-### Group B5 — Merge and State Threading
-
-- [ ] Merge MCP-discovered images with Tavily-provided images.
-- [ ] Define collision rules that prefer richer metadata on URL overlap.
-- [ ] Preserve merged images through researcher state, compression, supervisor aggregation, and full-agent output.
-
-Deliverable:
-
-- End-to-end state propagation without regressions in existing flow.
-
-### Group B6 — Report Selection and Persistence
-
-- [ ] Add ranking/selection logic to prioritize stronger material-linked images when capped.
-- [ ] Persist full enriched metadata into `images_metadata.json`.
-- [ ] Ensure report writer continues using local relative image paths when available.
-
-Deliverable:
-
-- Report-ready image set and complete metadata sidecar per session.
-
-## Phase C — Validation, Documentation, and Readiness
-
-### Group C1 — Unit Validation
-
-- [ ] Add tests for extractor output shape and fallback behavior.
-- [ ] Add tests for URL normalization, dedupe keys, and malformed URL handling.
-- [ ] Add tests for metadata precedence (`alt` > explicit title > page title; `figcaption` > nearby text).
-- [ ] Add tests for material link scoring, confidence levels, and evidence capture.
-- [ ] Add tests for catalog-constrained linking and no-match behavior.
-
-Deliverable:
-
-- Deterministic unit test coverage for all core helpers.
-
-### Group C2 — Integration and Regression Validation
-
-- [ ] Add integration tests for Tavily+MCP merge and state propagation.
-- [ ] Add integration tests for `images_metadata.json` persistence with enriched fields.
-- [ ] Add regression tests ensuring Tavily-only flow still succeeds when MCP is unavailable.
-- [ ] Validate report generation remains non-blocking under partial download/linking failures.
-
-Deliverable:
-
-- End-to-end validation of enriched image pipeline behavior.
-
-### Group C3 — Quality and Workflow Checks
-
-- [ ] Run lint and targeted validation for generated source files.
-- [ ] Verify notebook source-of-truth boundaries are respected (no direct `src/` edits).
-- [ ] Update feature notes if scope or assumptions changed during implementation.
-- [ ] Prepare follow-up execution via `/opsx:apply` with ordered task execution notes.
-
-Deliverable:
-
-- Apply-ready implementation checklist and clean handoff.
-
-## Completion Criteria
-
-- [ ] All Phase A/B/C groups completed.
-- [ ] Validation evidence recorded for unit + integration + regression coverage.
-- [ ] Metadata schema changes documented and backward compatibility verified.
-- [ ] Feature is ready to execute through `/opsx:apply` without unresolved design ambiguity.
+- [ ] Confirm `images_metadata.json` output from an end-to-end run includes `source_page` populated for page-discovered images (manual verification with one real research query).
+- [ ] Review notebook/source-of-truth boundaries before merge: all changes in notebook `%%writefile` cells, none in `src/` directly.
+- [ ] Open PR from `development` → `main` for human review.

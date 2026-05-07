@@ -30,6 +30,19 @@ class ImageResult(BaseModel):
     local_path: str | None = Field(
         description="Local file path after download", default=None
     )
+    # Page-discovery context (populated by batch_discover_images)
+    discovery_method: str = Field(
+        description="How the image was found: 'tavily' or 'httpx'", default="tavily"
+    )
+    page_title: str = Field(
+        description="<title> of the page where the image was found", default=""
+    )
+    alt_text: str = Field(
+        description="alt attribute of the <img> element", default=""
+    )
+    figcaption: str = Field(
+        description="Caption from a parent <figure> element", default=""
+    )
 
 # ===== STATE DEFINITIONS =====
 

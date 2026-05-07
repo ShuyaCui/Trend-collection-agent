@@ -9,17 +9,20 @@ import contextvars
 import json
 import logging
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
+import httpx
 import requests
 import urllib3
-from requests.exceptions import SSLError
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import InjectedToolArg, tool
+from requests.exceptions import SSLError
 from tavily import TavilyClient
 from typing_extensions import Annotated, List, Literal
 
@@ -123,6 +126,19 @@ def get_last_search_images() -> list[ImageResult]:
     without changing the tool's string return interface.
     """
     return list(_last_search_images.get())
+
+
+_inspected_page_urls: contextvars.ContextVar[set[str]] = contextvars.ContextVar(
+    "inspected_page_urls", default=set()
+)
+
+
+def reset_page_discovery_cache() -> None:
+    """Reset the cross-call URL skip set.
+
+    Call in tests for isolation between test cases.
+    """
+    _inspected_page_urls.set(set())
 
 
 def normalize_model_id(model_id: str) -> str:
@@ -398,6 +414,199 @@ def format_search_output(
 
     return formatted_output
 
+# ===== PAGE IMAGE DISCOVERY =====
+
+def normalize_page_image(
+    tag,
+    base_url: str,
+    page_title: str,
+) -> ImageResult | None:
+    """Normalise a BS4 <img> tag into an ImageResult.
+
+    Args:
+        tag: A BeautifulSoup Tag representing an <img> element.
+        base_url: Absolute URL of the source page (resolves relative srcs).
+        page_title: Page <title> text used as fallback image title.
+
+    Returns:
+        ImageResult for valid http/https image URLs; None otherwise.
+    """
+    src = tag.get("src") or tag.get("data-src") or ""
+    if not src:
+        return None
+    if src.startswith("data:") or src.strip().startswith("<svg"):
+        return None
+    url = urljoin(base_url, src.strip())
+    if not url.startswith(("http://", "https://")):
+        return None
+
+    alt = tag.get("alt", "").strip()
+    tag_title = tag.get("title", "").strip()
+    title = alt or tag_title or page_title
+
+    figcaption_text = ""
+    figure = tag.find_parent("figure")
+    if figure:
+        cap = figure.find("figcaption")
+        if cap:
+            figcaption_text = cap.get_text(strip=True)
+
+    return ImageResult(
+        url=url,
+        title=title,
+        source_page=base_url,
+        description=figcaption_text,
+        discovery_method="httpx",
+        alt_text=alt,
+        figcaption=figcaption_text,
+        page_title=page_title,
+    )
+
+
+def discover_page_images(url: str, session: httpx.Client) -> list[ImageResult]:
+    """Fetch one page and extract image candidates via BeautifulSoup.
+
+    Args:
+        url: Absolute URL of the page to inspect.
+        session: Shared httpx.Client instance.
+
+    Returns:
+        Up to 10 ImageResult objects; empty list on any failure.
+    """
+    _MAX_IMAGES_PER_PAGE = 10
+    try:
+        resp = session.get(url)
+        resp.raise_for_status()
+        html = resp.text
+    except Exception as exc:
+        logger.warning("Page fetch failed for %s: %s", url, exc)
+        return []
+
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except Exception as exc:
+        logger.warning("HTML parse failed for %s: %s", url, exc)
+        return []
+
+    page_title = ""
+    if soup.title and soup.title.string:
+        page_title = soup.title.string.strip()
+
+    results: list[ImageResult] = []
+    seen_urls: set[str] = set()
+
+    og = soup.find("meta", property="og:image")
+    if og and str(og.get("content", "")).startswith("http"):
+        og_url = str(og["content"])
+        seen_urls.add(og_url)
+        results.append(ImageResult(
+            url=og_url,
+            title=page_title,
+            source_page=url,
+            description="",
+            discovery_method="httpx",
+            page_title=page_title,
+        ))
+
+    for tag in soup.find_all("img"):
+        if len(results) >= _MAX_IMAGES_PER_PAGE:
+            break
+        img_result = normalize_page_image(tag, url, page_title)
+        if img_result and img_result.url not in seen_urls:
+            seen_urls.add(img_result.url)
+            results.append(img_result)
+
+    return results
+
+
+def batch_discover_images(
+    urls: list[str],
+    max_concurrent: int = 3,
+) -> list[ImageResult]:
+    """Fetch multiple pages concurrently and collect image candidates.
+
+    Skips URLs already in the cross-call skip set to avoid redundant fetches
+    across multiple tavily_search calls in the same research session.
+
+    Args:
+        urls: Page URLs to inspect.
+        max_concurrent: Maximum number of concurrent fetches.
+
+    Returns:
+        Flat list of ImageResult objects from all successfully fetched pages.
+    """
+    skip_set: set[str] = _inspected_page_urls.get().copy()
+    new_urls = [u for u in urls if u not in skip_set]
+
+    if not new_urls:
+        return []
+
+    all_results: list[ImageResult] = []
+
+    with httpx.Client(
+        verify=False,
+        timeout=10.0,
+        follow_redirects=True,
+        headers={"User-Agent": "Mozilla/5.0 (compatible; research-agent/1.0)"},
+    ) as session:
+        with ThreadPoolExecutor(max_workers=max_concurrent) as executor:
+            future_to_url = {
+                executor.submit(discover_page_images, u, session): u
+                for u in new_urls
+            }
+            for future in as_completed(future_to_url):
+                page_url = future_to_url[future]
+                try:
+                    all_results.extend(future.result())
+                except Exception as exc:
+                    logger.warning("Unexpected error for %s: %s", page_url, exc)
+
+    _inspected_page_urls.set(skip_set | set(new_urls))
+    return all_results
+
+
+def merge_image_lists(
+    tavily: list[ImageResult],
+    page: list[ImageResult],
+) -> list[ImageResult]:
+    """Merge Tavily-provided and page-discovered images, deduplicating by URL.
+
+    Tavily entries appear first. If a page-discovered image URL matches a
+    Tavily entry, the Tavily entry's source_page and page-context fields are
+    backfilled. Genuinely new page-discovered images are appended after.
+
+    Args:
+        tavily: ImageResult objects from extract_images_from_search_results().
+        page: ImageResult objects from batch_discover_images().
+
+    Returns:
+        Merged, deduplicated list preserving Tavily entry order.
+    """
+    page_by_url: dict[str, ImageResult] = {img.url: img for img in page}
+    merged: list[ImageResult] = []
+    seen_urls: set[str] = set()
+
+    for img in tavily:
+        seen_urls.add(img.url)
+        if img.url in page_by_url and not img.source_page:
+            page_img = page_by_url[img.url]
+            img = img.model_copy(update={
+                "source_page": page_img.source_page,
+                "alt_text": page_img.alt_text,
+                "figcaption": page_img.figcaption,
+                "page_title": page_img.page_title,
+                "discovery_method": page_img.discovery_method,
+            })
+        merged.append(img)
+
+    for img in page:
+        if img.url not in seen_urls:
+            seen_urls.add(img.url)
+            merged.append(img)
+
+    return merged
+
+
 # ===== RESEARCH TOOLS =====
 
 @tool(parse_docstring=True)
@@ -416,27 +625,28 @@ def tavily_search(
     Returns:
         Formatted string of search results with summaries
     """
-    # Execute search for single query
     search_results = tavily_search_multiple(
-        [query],  # Convert single query to list for the internal function
+        [query],
         max_results=max_results,
         topic=topic,
         include_raw_content=True,
         include_images=True,
     )
 
-    # Extract image metadata and store for retrieval by tool_node
-    images = extract_images_from_search_results(search_results)
-    _last_search_images.set(images)
+    # Extract Tavily-provided images (source_page will be empty)
+    tavily_images = extract_images_from_search_results(search_results)
 
-    # Deduplicate results by URL to avoid processing duplicate content
+    # Discover additional images from each source page
+    result_urls = [r["url"] for r in search_results if r.get("url")]
+    page_images = batch_discover_images(result_urls)
+
+    # Merge: dedup + backfill source_page on Tavily entries
+    merged_images = merge_image_lists(tavily_images, page_images)
+    _last_search_images.set(merged_images)
+
     unique_results = deduplicate_search_results(search_results)
-
-    # Process results with summarization
     summarized_results = process_search_results(unique_results)
-
-    # Format output for consumption (includes images section)
-    return format_search_output(summarized_results, images=images)
+    return format_search_output(summarized_results, images=merged_images)
 
 @tool(parse_docstring=True)
 def think_tool(reflection: str) -> str:
