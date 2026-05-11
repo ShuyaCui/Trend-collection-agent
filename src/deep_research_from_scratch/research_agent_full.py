@@ -13,6 +13,7 @@ This is the main entry point for the complete deep research system.
 import asyncio
 import os
 import uuid
+from pathlib import Path
 
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
@@ -127,7 +128,10 @@ async def final_report_generation(
 
     # Download images BEFORE report generation so local paths are available
     thread_id = configurable.get("thread_id", "") or str(uuid.uuid4())
-    output_dir = os.path.join("reports", thread_id, "images")
+    # Anchor to project root so the path is correct regardless of
+    # the working directory (e.g. when running from notebooks/).
+    _project_root = Path(__file__).resolve().parent.parent.parent
+    output_dir = _project_root / "reports" / thread_id / "images"
 
     if images:
         downloaded_images = await asyncio.to_thread(download_images, images, output_dir)
