@@ -98,7 +98,12 @@ def get_current_dir() -> Path:
 
 # ===== CONFIGURATION =====
 
-_DEFAULT_SUMMARIZATION_MODEL = "azure_openai:gpt-4.1"
+# Derive summarization model from AZURE_OPENAI_DEPLOYMENT when no explicit
+# override is set. This ensures the deployment name is always valid.
+_env_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT", "")
+_DEFAULT_SUMMARIZATION_MODEL = (
+    f"azure_openai:{_env_deployment}" if _env_deployment else "azure_openai:GPT-41-2025-04-14"
+)
 _runtime_config: contextvars.ContextVar[dict] = contextvars.ContextVar(
     "runtime_config",
     default={},
@@ -163,7 +168,8 @@ def _build_summarization_model(
     1. Explicit ``model_id`` argument
     2. Runtime ``summarization_model`` override
     3. Runtime ``research_model`` override
-    4. Default summarization model
+    4. ``AZURE_OPENAI_DEPLOYMENT`` env var (same as main research model)
+    5. Hardcoded default (GPT-41-2025-04-14)
     """
     runtime_config = get_runtime_config()
     resolved_model_id = (
