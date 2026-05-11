@@ -5,9 +5,11 @@ This module provides search and content processing utilities for the research ag
 including web search capabilities and content summarization tools.
 """
 
+import base64
 import contextvars
 import json
 import logging
+import mimetypes
 import os
 from datetime import datetime
 from pathlib import Path
@@ -572,12 +574,105 @@ def download_images(
                 logger.warning("Failed to download image %s: %s", img.url, e)
                 updated.append(img)  # keep original without local_path
 
-    # Persist structured metadata alongside downloaded images
+    # Enrich descriptions for successfully downloaded images via Gemini
+    updated = describe_images_with_gemini(updated)
+
+    # Persist structured metadata alongside downloaded images.
+    # Only include images with a local_path; only emit url, local_path, description.
     try:
         metadata_path = output_path / "images_metadata.json"
-        metadata = [i.model_dump() for i in updated]
+        metadata = [
+            {"url": i.url, "local_path": i.local_path, "description": i.description}
+            for i in updated
+            if i.local_path is not None
+        ]
         metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
     except Exception as e:
         logger.error("Failed to write images_metadata.json: %s", e)
 
     return updated
+
+# ===== GEMINI IMAGE DESCRIPTION =====
+
+_IMAGE_DESCRIPTION_PROMPT = (
+    "Describe this image concisely in 1-3 sentences. "
+    "If the image shows a juice product, include its color, texture, opacity, "
+    "and any decorations such as fruit garnish, ice, glass style, or packaging. "
+    "Focus on visually distinctive properties."
+)
+
+
+def _image_to_inline_part(path: str) -> dict:
+    """Base64-encode a local image file into a Gemini inlineData part."""
+    p = Path(path)
+    data = p.read_bytes()
+    mime, _ = mimetypes.guess_type(p.name)
+    if mime is None:
+        ext = p.suffix.lower()
+        mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+                ".webp": "image/webp", ".gif": "image/gif"}.get(ext, "image/jpeg")
+    return {"inlineData": {"mimeType": mime, "data": base64.b64encode(data).decode()}}
+
+
+def describe_images_with_gemini(images: list[ImageResult]) -> list[ImageResult]:
+    """Call Gemini 2.5 flash to generate a description for each downloaded image.
+
+    Reads NANO_BANANA_FLASH_URL from env. If unset, logs a warning and returns
+    the input list unchanged. Per-image failures are caught and logged; the image
+    is still included with an empty description.
+
+    Args:
+        images: List of ImageResult objects (may include items without local_path).
+
+    Returns:
+        Updated list with description populated for successfully described images.
+    """
+    flash_url = os.getenv("NANO_BANANA_FLASH_URL", "").strip()
+    if not flash_url:
+        logger.warning(
+            "NANO_BANANA_FLASH_URL is not set — skipping Gemini image descriptions."
+        )
+        return images
+
+    genai_token = GenAIToken().token()
+    headers = {
+        "userid": os.getenv("HEADERS_USERID", ""),
+        "project-name": os.getenv("HEADERS_PROJECT_NAME", ""),
+        "Authorization": f"Bearer {genai_token}",
+    }
+
+    result: list[ImageResult] = []
+    for img in images:
+        if not img.local_path:
+            result.append(img)
+            continue
+        try:
+            payload = {
+                "contents": [
+                    {
+                        "parts": [
+                            _image_to_inline_part(img.local_path),
+                            {"text": _IMAGE_DESCRIPTION_PROMPT},
+                        ]
+                    }
+                ],
+                "config": {"response_modalities": ["text"]},
+            }
+            with httpx.Client(trust_env=True, timeout=httpx.Timeout(60.0)) as client:
+                resp = client.post(url=flash_url, headers=headers, json=payload)
+            resp.raise_for_status()
+            data = resp.json()
+            text = (
+                data.get("candidates", [{}])[0]
+                .get("content", {})
+                .get("parts", [{}])[0]
+                .get("text", "")
+                .strip()
+            )
+            result.append(img.model_copy(update={"description": text}))
+            logger.info("Described image: %s", img.local_path)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Failed to describe image %s: %s", img.local_path, exc)
+            result.append(img)
+
+    return result
