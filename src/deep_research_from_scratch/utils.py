@@ -549,8 +549,10 @@ def batch_discover_images(
     new_urls = [u for u in urls if u not in skip_set]
 
     if not new_urls:
+        logger.info("batch_discover_images: all %d URLs already in skip set", len(urls))
         return []
 
+    logger.info("batch_discover_images: fetching %d pages (%d skipped)", len(new_urls), len(skip_set))
     all_results: list[ImageResult] = []
 
     with httpx.Client(
@@ -567,10 +569,13 @@ def batch_discover_images(
             for future in as_completed(future_to_url):
                 page_url = future_to_url[future]
                 try:
-                    all_results.extend(future.result())
+                    page_imgs = future.result()
+                    logger.info("  %s -> %d images", page_url, len(page_imgs))
+                    all_results.extend(page_imgs)
                 except Exception as exc:
                     logger.warning("Unexpected error for %s: %s", page_url, exc)
 
+    logger.info("batch_discover_images: total %d images from %d pages", len(all_results), len(new_urls))
     _thread_local.inspected_page_urls = skip_set | set(new_urls)
     return all_results
 
