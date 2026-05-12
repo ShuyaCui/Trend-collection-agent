@@ -16,12 +16,12 @@ from pydantic import BaseModel, Field
 # Constants
 # ---------------------------------------------------------------------------
 
-DIMENSIONS = ("颜色", "装饰物", "透明度与质地")
-DIMENSION_EN = {"颜色": "color", "装饰物": "decoration", "透明度与质地": "texture"}
+DIMENSIONS = ("颜色", "装饰物", "透明度与质地", "风格")
+DIMENSION_EN = {"颜色": "color", "装饰物": "decoration", "透明度与质地": "texture", "风格": "style"}
 
 MATURITY_LEVELS = ("主流", "上升", "实验性")
 
-AESTHETIC_PERSONAS = (
+AESTHETIC_STYLES = (
     "科技净澈",
     "天然奢养",
     "奢华克制",
@@ -43,6 +43,10 @@ DIMENSION_ALIASES: dict[str, str] = {
     "透明度": "透明度与质地",
     "透明度与质地": "透明度与质地",
     "质地": "透明度与质地",
+    "风格": "风格",
+    "美学风格": "风格",
+    "审美风格": "风格",
+    "风格趋势": "风格",
 }
 
 
@@ -85,15 +89,15 @@ class MaterialElement(BaseModel):
     """A single design element extracted from a trend report."""
 
     id: str = Field(default="", description="Deterministic ID; set after extraction")
-    dimension: Literal["颜色", "装饰物", "透明度与质地"]
+    dimension: Literal["颜色", "装饰物", "透明度与质地", "风格"]
     name: str = Field(description="Element name in Chinese")
     name_en: str = Field(description="Element name in English")
     visual_keywords: list[str] = Field(
         description="Scannable visual descriptors (3-8 items)",
     )
-    aesthetic_persona: Literal[
+    aesthetic_style: Literal[
         "科技净澈", "天然奢养", "奢华克制", "感官甜品", "自然清体", "可视科技"
-    ] = Field(description="Closest aesthetic persona from the predefined set")
+    ] = Field(description="Closest aesthetic style from the predefined set")
     signals: list[str] = Field(
         description="What this element communicates to consumers (2-5 items)",
     )
@@ -122,7 +126,7 @@ class MaterialElement(BaseModel):
 class ChapterExtraction(BaseModel):
     """LLM output for a single chapter (one dimension) of a report."""
 
-    dimension: Literal["颜色", "装饰物", "透明度与质地"]
+    dimension: Literal["颜色", "装饰物", "透明度与质地", "风格"]
     elements: list[MaterialElement]
 
 
@@ -156,27 +160,6 @@ class DimensionFile(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Persona catalog
-# ---------------------------------------------------------------------------
-
-class PersonaEntry(BaseModel):
-    """One aesthetic persona with description and typical element combos."""
-
-    name: str
-    description: str
-    typical_colors: list[str] = Field(default_factory=list)
-    typical_decorations: list[str] = Field(default_factory=list)
-    typical_textures: list[str] = Field(default_factory=list)
-
-
-class PersonaCatalog(BaseModel):
-    """Complete persona catalog written to personas.json."""
-
-    last_updated: str
-    personas: list[PersonaEntry]
-
-
-# ---------------------------------------------------------------------------
 # Index metadata
 # ---------------------------------------------------------------------------
 
@@ -199,60 +182,19 @@ class IndexMetadata(BaseModel):
     color_count: int = 0
     decoration_count: int = 0
     texture_count: int = 0
+    style_count: int = 0
     processed_reports: list[ProcessedReport] = Field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
-# Predefined persona catalog
+# Predefined style catalog (for prompt context only)
 # ---------------------------------------------------------------------------
 
-PERSONA_CATALOG: list[PersonaEntry] = [
-    PersonaEntry(
-        name="科技净澈",
-        description="以无色透明、高折光、极简精密为核心的科技感审美。"
-        "传达高纯度、实验室级精炼、配方自信。",
-        typical_colors=["无色透明", "冷感透明", "极浅色"],
-        typical_decorations=["微囊悬浮", "双相结构", "规则悬浮颗粒"],
-        typical_textures=["高折光水感", "清透精华感", "液晶反光"],
-    ),
-    PersonaEntry(
-        name="天然奢养",
-        description="以琥珀金、蜂蜜色、温润油感为核心的天然滋养审美。"
-        "传达珍稀植物、发酵活性、贵价天然原料。",
-        typical_colors=["浅琥珀", "蜂蜜金", "浅茶金"],
-        typical_decorations=["油珠悬浮", "植物碎片", "双相分层"],
-        typical_textures=["丝缎油感", "蜜感浓润", "半透明柔光"],
-    ),
-    PersonaEntry(
-        name="奢华克制",
-        description="以香槟微金、细腻珠光、极致均匀为核心的低调奢华审美。"
-        "传达精密工艺、稀缺成分、少即是贵。",
-        typical_colors=["香槟金微光", "浅金色", "乳白半透明"],
-        typical_decorations=["细微珠光", "微金感悬浮", "精致油珠"],
-        typical_textures=["丝缎光泽", "高密度轻盈", "柔润内发光"],
-    ),
-    PersonaEntry(
-        name="感官甜品",
-        description="以奶白、焦糖、绵密厚乳为核心的甜品化审美。"
-        "传达温暖、醇厚、甜蜜、可食用联想。",
-        typical_colors=["奶白", "焦糖色", "米白", "可可棕"],
-        typical_decorations=["奶盖", "拉花", "顶部碎料", "果肉可见"],
-        typical_textures=["绵密厚乳", "顺滑奶感", "慕斯感"],
-    ),
-    PersonaEntry(
-        name="自然清体",
-        description="以植物绿、纤维感、天然浑浊为核心的健康自然审美。"
-        "传达真实、低加工、膳食纤维、功能性。",
-        typical_colors=["植物深绿", "灰绿", "黄绿", "番茄红"],
-        typical_decorations=["纤维悬浮", "果肉颗粒", "浆感痕迹"],
-        typical_textures=["浆感浑浊", "纤维感", "轻微颗粒"],
-    ),
-    PersonaEntry(
-        name="可视科技",
-        description="以透明基底中可见结构（微囊、颗粒、分相）为核心的2026前沿审美。"
-        "传达功效可视化、靶向输送、科技门槛。",
-        typical_colors=["冷感透明", "冰透感", "极浅色基底"],
-        typical_decorations=["肉眼可见微囊", "悬浮珠粒", "凝胶中微滴"],
-        typical_textures=["凝胶结构感", "冻感流体", "液晶精华感"],
-    ),
-]
+STYLE_CATALOG: dict[str, str] = {
+    "科技净澈": "以无色透明、高折光、极简精密为核心的科技感审美。传达高纯度、实验室级精炼、配方自信。",
+    "天然奢养": "以琥珀金、蜂蜜色、温润油感为核心的天然滋养审美。传达珍稀植物、发酵活性、贵价天然原料。",
+    "奢华克制": "以香槟微金、细腻珠光、极致均匀为核心的低调奢华审美。传达精密工艺、稀缺成分、少即是贵。",
+    "感官甜品": "以奶白、焦糖、绵密厚乳为核心的甜品化审美。传达温暖、醇厚、甜蜜、可食用联想。",
+    "自然清体": "以植物绿、纤维感、天然浑浊为核心的健康自然审美。传达真实、低加工、膳食纤维、功能性。",
+    "可视科技": "以透明基底中可见结构（微囊、颗粒、分相）为核心的前沿审美。传达功效可视化、靶向输送、科技门槛。",
+}
