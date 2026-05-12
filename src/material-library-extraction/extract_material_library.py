@@ -62,11 +62,19 @@ _CATEGORY_MAP: dict[str, str] = {
 }
 
 
-def _infer_category(filename: str) -> str:
-    """Infer product category from report filename."""
+def _infer_category(report_path: Path) -> str:
+    """Infer product category from report path or content."""
     for keyword, category in _CATEGORY_MAP.items():
-        if keyword in filename:
+        if keyword in report_path.name:
             return category
+    # Filename is generic (e.g. report.md) — scan the first 500 chars of content
+    try:
+        content = report_path.read_text(encoding="utf-8")[:500]
+        for keyword, category in _CATEGORY_MAP.items():
+            if keyword in content:
+                return category
+    except OSError:
+        pass
     return "未知品类"
 
 
@@ -246,10 +254,13 @@ def _file_hash(path: Path) -> str:
 def extract_single_report(
     report_path: Path,
     model_id: str | None = None,
+    report_id: str | None = None,
 ) -> ReportExtraction:
     """Extract all design elements from one report via chapter-level LLM calls."""
     report_text = report_path.read_text(encoding="utf-8")
-    category = _infer_category(report_path.name)
+    category = _infer_category(report_path)
+    # Stable identifier used for caching / index tracking.
+    source_label = report_id or report_path.name
     chapters = _split_report_into_chapters(report_text)
 
     model = _build_model(model_id, temperature=0.0)
@@ -264,7 +275,7 @@ def extract_single_report(
         logger.info(
             "  Extracting %s from %s (%d chars)...",
             dim,
-            report_path.name,
+            source_label,
             len(content),
         )
 
@@ -283,7 +294,7 @@ def extract_single_report(
         # Post-process: set report-level fields and generate IDs
         for elem in result.elements:
             elem.dimension = dim  # Normalize
-            elem.source_report = report_path.name
+            elem.source_report = source_label
             elem.product_category = category
             elem.id = make_element_id(
                 category, dim, elem.name, elem.source_section
@@ -293,7 +304,7 @@ def extract_single_report(
         all_elements.extend(result.elements)
 
     return ReportExtraction(
-        source_report=report_path.name,
+        source_report=source_label,
         product_category=category,
         extraction_date=date.today().isoformat(),
         file_hash=_file_hash(report_path),
@@ -328,7 +339,11 @@ def extract_all_reports(
         pr.filename: pr for pr in index.processed_reports
     }
 
-    report_files = sorted(reports_dir.glob("*.md"))
+    # Support both flat layout (*.md directly in dir) and nested layout
+    # ({uuid}/report.md).  Nested takes precedence when present.
+    report_files = sorted(reports_dir.glob("*/report.md"))
+    if not report_files:
+        report_files = sorted(reports_dir.glob("*.md"))
     if not report_files:
         logger.warning("No .md files found in %s", reports_dir)
         return []
@@ -336,9 +351,23 @@ def extract_all_reports(
     all_extractions: list[ReportExtraction] = []
 
     for report_path in report_files:
+        # Use a unique identifier that survives the UUID directory layout.
+        # For nested layout: "<uuid>/report.md"; for flat: "report_name.md".
+        report_id = (
+            f"{report_path.parent.name}/{report_path.name}"
+            if report_path.parent != reports_dir
+            else report_path.name
+        )
         current_hash = _file_hash(report_path)
-        cached = processed.get(report_path.name)
-        cache_path = cache_dir / f"{report_path.stem}.json"
+        cached = processed.get(report_id)
+        # Cache filename: use UUID (parent dir name) to avoid collisions when
+        # every file is named report.md.
+        cache_key = (
+            report_path.parent.name
+            if report_path.parent != reports_dir
+            else report_path.stem
+        )
+        cache_path = cache_dir / f"{cache_key}.json"
 
         # Skip if cached and hash matches
         if (
@@ -347,15 +376,15 @@ def extract_all_reports(
             and cached.file_hash == current_hash
             and cache_path.exists()
         ):
-            logger.info("Skipping %s (unchanged)", report_path.name)
+            logger.info("Skipping %s (unchanged)", report_id)
             extraction = ReportExtraction.model_validate_json(
                 cache_path.read_text()
             )
             all_extractions.append(extraction)
             continue
 
-        logger.info("Extracting %s ...", report_path.name)
-        extraction = extract_single_report(report_path, model_id)
+        logger.info("Extracting %s ...", report_id)
+        extraction = extract_single_report(report_path, model_id, report_id=report_id)
 
         # Cache the extraction
         cache_path.write_text(
@@ -450,6 +479,10 @@ def update_index(
     for ext in extractions:
         count = len(ext.elements)
         total += count
+        # source_report may be "uuid/report.md" (nested) or "name.md" (flat).
+        # Derive the cache filename the same way extract_all_reports does.
+        src = Path(ext.source_report)
+        cache_key = src.parent.name if src.parent != Path(".") else src.stem
         reports.append(
             ProcessedReport(
                 filename=ext.source_report,
@@ -457,7 +490,7 @@ def update_index(
                 extraction_date=ext.extraction_date,
                 file_hash=ext.file_hash,
                 element_count=count,
-                cache_path=f".cache/{Path(ext.source_report).stem}.json",
+                cache_path=f".cache/{cache_key}.json",
             )
         )
 
