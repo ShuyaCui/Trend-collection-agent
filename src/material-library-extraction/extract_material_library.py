@@ -25,7 +25,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Ensure project root is on sys.path so we can import helpers.
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# File lives at src/material-library-extraction/, so go up 3 levels.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(_PROJECT_ROOT / "src"))
 
 from langchain.chat_models import init_chat_model  # noqa: E402
