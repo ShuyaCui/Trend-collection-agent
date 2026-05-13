@@ -146,7 +146,7 @@ class ThreeDimExtraction(BaseModel):
 # stale cache entries are automatically invalidated on next run.
 # ---------------------------------------------------------------------------
 
-EXTRACTION_SCHEMA_VERSION = 2
+EXTRACTION_SCHEMA_VERSION = 3
 
 
 # ---------------------------------------------------------------------------

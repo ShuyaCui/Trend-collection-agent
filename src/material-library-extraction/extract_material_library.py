@@ -18,6 +18,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 import sys
 from datetime import date, datetime
 from pathlib import Path
@@ -211,6 +212,106 @@ _STYLE_EXTRACTION_PROMPT = """你是一个审美风格分析专家。你的任�
 
 
 # ---------------------------------------------------------------------------
+# Report chunking helpers
+# ---------------------------------------------------------------------------
+
+_HEADING_RE = re.compile(r"^(#{2,3})\s+(.+)", re.MULTILINE)
+
+
+def _chunk_report(report_text: str, min_chars: int = 200) -> list[str]:
+    """Split a Markdown report into section chunks for focused LLM extraction.
+
+    Strategy (in order):
+    1. Split on H2/H3 headings — each chunk = heading + body until next heading.
+    2. If fewer than 2 heading-chunks result, fall back to paragraph splitting
+       (blank-line separated blocks).
+    3. If paragraph splitting also yields fewer than 2 chunks, return the full
+       report as a single-element list.
+
+    Chunks shorter than *min_chars* (after stripping) are discarded.
+    """
+    lines = report_text.splitlines(keepends=True)
+
+    # --- Step 1: heading-based split ---
+    heading_positions: list[int] = []
+    for i, line in enumerate(lines):
+        if _HEADING_RE.match(line):
+            heading_positions.append(i)
+
+    if len(heading_positions) >= 2:
+        chunks: list[str] = []
+        for idx, start in enumerate(heading_positions):
+            end = heading_positions[idx + 1] if idx + 1 < len(heading_positions) else len(lines)
+            chunk = "".join(lines[start:end]).strip()
+            if len(chunk) >= min_chars:
+                chunks.append(chunk)
+        if len(chunks) >= 2:
+            return chunks
+
+    # --- Step 2: paragraph-based fallback ---
+    paragraphs = [p.strip() for p in re.split(r"\n{2,}", report_text) if p.strip()]
+    para_chunks = [p for p in paragraphs if len(p) >= min_chars]
+    if len(para_chunks) >= 2:
+        return para_chunks
+
+    # --- Step 3: full-report degradation ---
+    return [report_text]
+
+
+def _build_breadcrumb(ancestor_headings: list[str]) -> str:
+    """Build a heading breadcrumb string from ancestor heading lines.
+
+    Example: ["## 一、趋势总览", "### 1. 低饱和香氛色"]
+             → "## 一、趋势总览 > ### 1. 低饱和香氛色"
+
+    Returns empty string when no ancestors are provided.
+    """
+    cleaned = [h.strip() for h in ancestor_headings if h.strip()]
+    return " > ".join(cleaned)
+
+
+def _chunks_with_breadcrumbs(report_text: str, min_chars: int = 200) -> list[tuple[str, str]]:
+    """Return list of (breadcrumb, chunk_text) pairs for all chunks in a report.
+
+    The breadcrumb for each chunk is the ordered path of ancestor H2/H3 headings
+    leading to its own heading. The chunk body does NOT include the leading heading
+    line (that is captured in the breadcrumb instead).
+    """
+    lines = report_text.splitlines(keepends=True)
+    heading_positions: list[tuple[int, str, int]] = []  # (line_idx, heading_text, level)
+    for i, line in enumerate(lines):
+        m = _HEADING_RE.match(line)
+        if m:
+            level = len(m.group(1))  # 2 for ##, 3 for ###
+            heading_positions.append((i, line.rstrip(), level))
+
+    if len(heading_positions) < 2:
+        # Degenerate case: no meaningful structure, return full text with no breadcrumb
+        return [("", report_text)]
+
+    results: list[tuple[str, str]] = []
+    for idx, (start, heading_text, level) in enumerate(heading_positions):
+        end_line = heading_positions[idx + 1][0] if idx + 1 < len(heading_positions) else len(lines)
+        body = "".join(lines[start + 1 : end_line]).strip()
+        if len(body) < min_chars:
+            continue
+        # Build breadcrumb: all ancestor headings whose level < current level,
+        # keeping only the closest ancestor per level.
+        ancestors: list[str] = []
+        seen_levels: set[int] = set()
+        for prev_line_idx, prev_heading, prev_level in reversed(heading_positions[:idx]):
+            if prev_level < level and prev_level not in seen_levels:
+                ancestors.insert(0, prev_heading)
+                seen_levels.add(prev_level)
+        breadcrumb = _build_breadcrumb(ancestors + [heading_text])
+        results.append((breadcrumb, body))
+
+    if not results:
+        return [("", report_text)]
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Core extraction
 # ---------------------------------------------------------------------------
 
@@ -255,11 +356,16 @@ def extract_single_report(
     model_id: str | None = None,
     report_id: str | None = None,
 ) -> ReportExtraction:
-    """Extract all design elements from one report via two LLM passes.
+    """Extract all design elements from one report via section-chunked two-pass LLM extraction.
 
-    Pass 1: Single call for 颜色, 装饰物, and 透明度与质地 — each element
-    self-declares its primary dimension, eliminating cross-dimension duplication.
-    Pass 2: Separate call for 风格, preserving its aesthetic_style=name invariant.
+    Pass 1: Iterate over H2/H3 sections. Each section is sent individually to the
+    LLM with a breadcrumb context prefix. Extracts 颜色, 装饰物, and 透明度与质地;
+    each element self-declares its primary dimension to avoid cross-dimension duplication.
+
+    Pass 2: Same per-section loop for 风格, preserving its aesthetic_style=name invariant.
+
+    Fallback: if the report has no heading structure, falls back to paragraph splitting;
+    if still fewer than 2 chunks, falls back to full-report extraction.
     """
     report_text = report_path.read_text(encoding="utf-8")
     category = _infer_category(report_path)
@@ -279,59 +385,89 @@ def extract_single_report(
     )
 
     all_elements: list[MaterialElement] = []
-
-    # --- Pass 1: 颜色 + 装饰物 + 透明度与质地 ---
+    chunks = _chunks_with_breadcrumbs(report_text)
     logger.info(
-        "  Pass 1 (颜色/装饰物/质地) from %s (%d chars)...",
+        "  Report %s: %d chars → %d section chunk(s)",
         source_label,
         len(report_text),
+        len(chunks),
     )
-    three_dim_model = model.with_structured_output(ThreeDimExtraction)
-    prompt1 = _THREE_DIM_EXTRACTION_PROMPT.format(
-        styles=style_list, content=report_text
-    )
-    result1: ThreeDimExtraction = _call_with_retry(
-        three_dim_model, [HumanMessage(content=prompt1)]
-    )
-    # Validate: elements should only use the three non-style dimensions
-    non_style_dims = {"颜色", "装饰物", "透明度与质地"}
-    for elem in result1.elements:
-        if elem.dimension not in non_style_dims:
-            logger.warning(
-                "Element '%s' has unexpected dimension '%s' in pass 1; skipping",
-                elem.name,
-                elem.dimension,
-            )
-            continue
-        elem.source_report = source_label
-        elem.product_category = category
-        elem.id = make_element_id(category, elem.dimension, elem.name, elem.source_section)
-        all_elements.append(elem)
-    logger.info("    → %d elements (pass 1)", len(result1.elements))
 
-    # Sanity check: warn if suspiciously few elements for a non-trivial report
-    min_expected = 3
-    if len(result1.elements) < min_expected and len(report_text) > 1000:
+    # --- Pass 1: 颜色 + 装饰物 + 透明度与质地 (per chunk) ---
+    three_dim_model = model.with_structured_output(ThreeDimExtraction)
+    non_style_dims = {"颜色", "装饰物", "透明度与质地"}
+    pass1_total = 0
+
+    for chunk_idx, (breadcrumb, chunk_body) in enumerate(chunks):
+        context = f"[章节位置: {breadcrumb}]\n\n{chunk_body}" if breadcrumb else chunk_body
+        prompt1 = _THREE_DIM_EXTRACTION_PROMPT.format(
+            styles=style_list, content=context
+        )
+        logger.info(
+            "  Pass 1 chunk %d/%d (%d chars, bc=%r)...",
+            chunk_idx + 1,
+            len(chunks),
+            len(context),
+            breadcrumb[:60] if breadcrumb else "",
+        )
+        result1: ThreeDimExtraction = _call_with_retry(
+            three_dim_model, [HumanMessage(content=prompt1)]
+        )
+        chunk_count = 0
+        for elem in result1.elements:
+            if elem.dimension not in non_style_dims:
+                logger.warning(
+                    "Element '%s' has unexpected dimension '%s' in pass 1; skipping",
+                    elem.name,
+                    elem.dimension,
+                )
+                continue
+            elem.source_report = source_label
+            elem.product_category = category
+            elem.id = make_element_id(category, elem.dimension, elem.name, elem.source_section)
+            all_elements.append(elem)
+            chunk_count += 1
+        logger.info("    → %d elements from chunk %d", chunk_count, chunk_idx + 1)
+        pass1_total += chunk_count
+
+    logger.info("  Pass 1 total: %d elements across %d chunks", pass1_total, len(chunks))
+    if pass1_total < 3 and len(report_text) > 1000:
         logger.warning(
-            "Only %d elements extracted from a %d-char report — possible LLM output issue",
-            len(result1.elements),
+            "Only %d elements in pass 1 from a %d-char report — possible LLM output issue",
+            pass1_total,
             len(report_text),
         )
 
-    # --- Pass 2: 风格 ---
-    logger.info("  Pass 2 (风格) from %s ...", source_label)
+    # --- Pass 2: 风格 (per chunk) ---
     style_model = model.with_structured_output(ChapterExtraction)
-    prompt2 = _STYLE_EXTRACTION_PROMPT.format(styles=style_list, content=report_text)
-    result2: ChapterExtraction = _call_with_retry(
-        style_model, [HumanMessage(content=prompt2)]
-    )
-    for elem in result2.elements:
-        elem.dimension = "风格"
-        elem.source_report = source_label
-        elem.product_category = category
-        elem.id = make_element_id(category, "风格", elem.name, elem.source_section)
-        all_elements.append(elem)
-    logger.info("    → %d elements (pass 2)", len(result2.elements))
+    pass2_total = 0
+
+    for chunk_idx, (breadcrumb, chunk_body) in enumerate(chunks):
+        context = f"[章节位置: {breadcrumb}]\n\n{chunk_body}" if breadcrumb else chunk_body
+        prompt2 = _STYLE_EXTRACTION_PROMPT.format(
+            styles=style_list, content=context
+        )
+        logger.info(
+            "  Pass 2 chunk %d/%d (%d chars)...",
+            chunk_idx + 1,
+            len(chunks),
+            len(context),
+        )
+        result2: ChapterExtraction = _call_with_retry(
+            style_model, [HumanMessage(content=prompt2)]
+        )
+        chunk_count = 0
+        for elem in result2.elements:
+            elem.dimension = "风格"
+            elem.source_report = source_label
+            elem.product_category = category
+            elem.id = make_element_id(category, "风格", elem.name, elem.source_section)
+            all_elements.append(elem)
+            chunk_count += 1
+        logger.info("    → %d style elements from chunk %d", chunk_count, chunk_idx + 1)
+        pass2_total += chunk_count
+
+    logger.info("  Pass 2 total: %d style elements", pass2_total)
 
     _warn_duplicates(all_elements, source_label)
 
