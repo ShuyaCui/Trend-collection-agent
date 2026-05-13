@@ -15,6 +15,17 @@ material_library/
 └── README.md
 ```
 
+## 提取架构
+
+提取使用**两轮 LLM 调用**（每份报告）：
+
+- **第一轮**：一次性提取「颜色」「装饰物」「透明度与质地」三个维度的所有元素。每个元素自主声明其主维度，prompt 包含互斥分类规则，从根源上避免同一概念被重复分配到多个维度。
+- **第二轮**：单独提取「风格」维度，保留 `aesthetic_style = 元素名称` 的不变式。
+
+旧架构（四轮 × 维度，依赖报告章节关键词切分）在报告章节名不含维度关键词时会将完整报告发给所有维度提取器，导致跨维度重复条目。新架构从根本上消除了这一问题。
+
+**缓存兼容性**：`ReportExtraction.schema_version` 字段追踪提取 schema 版本。版本不匹配的缓存条目会自动触发重新提取，无需手动清除。
+
 ## 元素卡片 Schema
 
 每个元素包含以下字段：
@@ -54,7 +65,7 @@ reports/
 
 ```bash
 # 将新报告目录放入 reports/，然后运行：
-uv run python src/material-library-extraction/extract_material_library.py
+uv run python src/material-library-extraction/extract_material_library.py   --reports-dir reports/
 # 只会提取新文件，已处理的报告会跳过
 ```
 

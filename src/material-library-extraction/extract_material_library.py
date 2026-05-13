@@ -34,6 +34,7 @@ from langchain_core.messages import HumanMessage  # noqa: E402
 from material_schema import (  # noqa: E402
     DIMENSION_EN,
     DIMENSIONS,
+    EXTRACTION_SCHEMA_VERSION,
     MATURITY_LEVELS,
     STYLE_CATALOG,
     ChapterExtraction,
@@ -42,6 +43,7 @@ from material_schema import (  # noqa: E402
     MaterialElement,
     ProcessedReport,
     ReportExtraction,
+    ThreeDimExtraction,
     make_element_id,
 )
 
@@ -116,47 +118,52 @@ def _build_model(model_id: str | None = None, **kwargs):
 # Extraction prompt
 # ---------------------------------------------------------------------------
 
-_EXTRACTION_PROMPT = """你是一个设计元素提取专家。你的任务是从以下趋势报告章节中提取结构化的设计元素卡片。
+# ---------------------------------------------------------------------------
+# Extraction prompts
+# ---------------------------------------------------------------------------
 
-## 提取规则
+_THREE_DIM_EXTRACTION_PROMPT = """你是一个设计元素提取专家。你的任务是从以下趋势报告中一次性提取所有属于「颜色」「装饰物」「透明度与质地」三个维度的设计元素卡片。
 
-1. **维度**: 你正在提取「{dimension}」维度的元素。
-   - 颜色：色相、色调、色彩语言（如"琥珀金""植物绿""无色透明"）
-   - 装饰物：液体中/表面的可见元素（如"微囊""奶盖""珠光""油珠悬浮"）
-   - 透明度与质地：通透性 + 黏度 + 流动性 + 光泽 + 表面状态（如"高折光水感""凝胶感""丝缎流动"）
+## 三个维度的定义（互斥）
 
-2. **粒度**: 每个独立的设计元素应该成为一张卡片。一个趋势段落可能包含1-3个独立元素。
-   - 例如"原料本色与低人工感色彩"包含多个具体颜色：茶棕、奶白、果橙、莓红等，每个都是独立元素。
-   - 但如果多个颜色构成一个整体概念（如"奶白—米白—焦糖—茶褐的柔和暖色系"），则作为一个元素。
+- **颜色**：色相、色调、色彩语言（如"琥珀金""植物绿""低饱和香氛色"）。主要信号是颜色本身，即使该颜色的产品恰好是透明的。
+- **装饰物**：液体中或表面的可见附加元素（如"微囊""奶盖""珠光颗粒""油珠悬浮""盐晶""花瓣"）。
+- **透明度与质地**：通透性 + 黏度 + 流动性 + 光泽 + 表面状态（如"高折光水感""凝胶感""丝缎流动""奶霜质地"）。主要信号是物质的物理形态，而非颜色。
 
-3. **成熟度判定**:
-   - "已经广泛出现""主流""当前最核心" → 主流
-   - "正在上升""上升""新兴" → 上升
+### 维度分配规则（遇到重叠时必须遵守）
+
+1. 一个设计元素只能归属于**唯一一个维度**，禁止将同一概念分配到多个维度。
+2. 判断主要信号：
+   - 如果主要在描述"是什么颜色" → 归「颜色」
+   - 如果主要在描述"有什么可见漂浮/颗粒/层次元素" → 归「装饰物」
+   - 如果主要在描述"质感如何、透不透、稠不稠、流不流动" → 归「透明度与质地」
+3. 颜色词（如"透明金色""乳白"）中，若重点是颜色 → 归「颜色」；若重点是透明度状态 → 归「透明度与质地」。
+
+## 通用提取规则
+
+- **粒度**: 每个独立的设计概念成为一张卡片。一个趋势段落可能包含1-3个独立元素。
+- **成熟度判定**:
+   - "已广泛出现""主流""当前最核心" → 主流
+   - "正在上升""新兴" → 上升
    - "实验性""概念化""尚有限制" → 实验性
+- **aesthetic_style** 必须从以下预定义列表中选择最接近的一个:
+{styles}
+- **source_heading**: 必须填写该元素对应的报告中的原始章节标题文本。
+- **source_section**: 填写章节编号（如 "§4.1", "趋势3", "3.2"）。
+- **signals**: 该元素向消费者传达的信息，2-5项。
+- **visual_keywords**: 可扫描的视觉描述词，3-8项。
+- **name_en**: 提供准确的英文翻译。
+- **typical_use**: 典型的产品/使用场景。
 
-4. **aesthetic_style** 必须从以下预定义列表中选择最接近的一个:
-   {styles}
-
-5. **source_heading**: 必须填写该元素对应的报告中的原始章节标题文本。
-
-6. **source_section**: 填写章节编号（如 "§4.1", "趋势3", "3.2"）。
-
-7. **signals**: 该元素向消费者传达的信息，2-5项。
-
-8. **visual_keywords**: 可扫描的视觉描述词，3-8项。
-
-9. **name_en**: 提供准确的英文翻译。
-
-10. **typical_use**: 典型的产品/使用场景。
-
-## 报告内容（{dimension}部分）
+## 报告内容
 
 {content}
 
 ## 输出要求
 
-请提取该章节中所有独立的设计元素。不要遗漏任何趋势项。
-每个趋势标题下至少应提取1个元素，复杂趋势可拆分为多个元素。
+提取报告中所有独立的设计元素，不要遗漏任何趋势项。
+每张卡片的 dimension 字段必须精确填写「颜色」「装饰物」或「透明度与质地」之一。
+严禁将同一概念重复出现在不同维度中。
 """
 
 _STYLE_EXTRACTION_PROMPT = """你是一个审美风格分析专家。你的任务是从以下趋势报告中识别并提取「风格」维度的元素卡片。
@@ -204,88 +211,6 @@ _STYLE_EXTRACTION_PROMPT = """你是一个审美风格分析专家。你的任�
 
 
 # ---------------------------------------------------------------------------
-# Chapter splitting
-# ---------------------------------------------------------------------------
-
-_CHAPTER_KEYWORDS: dict[str, list[str]] = {
-    "颜色": ["颜色趋势", "颜色方向", "颜色", "底色", "色彩"],
-    "装饰物": ["装饰趋势", "装饰", "可见元素", "可视化元素", "珠光", "微囊"],
-    "透明度与质地": [
-        "纹理感趋势",
-        "纹理",
-        "质地",
-        "透明度",
-        "黏度",
-        "流动",
-        "光泽",
-    ],
-    "风格": ["风格趋势", "美学风格", "审美风格", "风格", "设计语言", "审美"],
-}
-
-
-def _split_report_into_chapters(
-    report_text: str,
-) -> dict[str, str]:
-    """Split a report into dimension chapters using heading detection.
-
-    Returns a dict mapping canonical dimension names to chapter text.
-    Falls back to sending the entire report for each dimension if
-    chapter boundaries can't be detected.
-    """
-    lines = report_text.split("\n")
-    h2_indices: list[tuple[int, str]] = []
-    for i, line in enumerate(lines):
-        if line.startswith("## ") or line.startswith("# "):
-            h2_indices.append((i, line))
-
-    if not h2_indices:
-        return {dim: report_text for dim in DIMENSIONS}
-
-    chapters: dict[str, str] = {}
-
-    for dim, keywords in _CHAPTER_KEYWORDS.items():
-        canonical = dim if dim in DIMENSIONS else "透明度与质地"
-        start_idx = None
-        end_idx = None
-
-        for pos, (line_num, heading) in enumerate(h2_indices):
-            if any(kw in heading for kw in keywords):
-                start_idx = line_num
-                # Find next major heading at same or higher level
-                for next_pos in range(pos + 1, len(h2_indices)):
-                    next_line_num, next_heading = h2_indices[next_pos]
-                    # Check if this is a new major section (not a subsection)
-                    if not any(
-                        kw in next_heading
-                        for kw in keywords
-                    ):
-                        # Verify it's a different dimension's heading
-                        is_other_dim = False
-                        for other_dim, other_kws in _CHAPTER_KEYWORDS.items():
-                            if other_dim != dim and any(
-                                kw in next_heading for kw in other_kws
-                            ):
-                                is_other_dim = True
-                                break
-                        if is_other_dim:
-                            end_idx = next_line_num
-                            break
-                break
-
-        if start_idx is not None:
-            chunk = lines[start_idx : end_idx] if end_idx else lines[start_idx:]
-            chapters[canonical] = "\n".join(chunk)
-
-    # Fallback: if a dimension wasn't found, use full report
-    for dim in DIMENSIONS:
-        if dim not in chapters:
-            logger.warning("Could not find chapter for %s, using full report", dim)
-            chapters[dim] = report_text
-
-    return chapters
-
-
-# ---------------------------------------------------------------------------
 # Core extraction
 # ---------------------------------------------------------------------------
 
@@ -295,17 +220,49 @@ def _file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _call_with_retry(structured_model, messages, max_attempts: int = 2):
+    """Invoke a structured model with simple retry on failure."""
+    last_exc = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return structured_model.invoke(messages)
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+            logger.warning("LLM call failed (attempt %d/%d): %s", attempt, max_attempts, exc)
+    raise RuntimeError(f"LLM call failed after {max_attempts} attempts") from last_exc
+
+
+def _warn_duplicates(elements: list[MaterialElement], source_label: str) -> None:
+    """Log a warning for any element names that appear in more than one dimension."""
+    from collections import defaultdict
+
+    dim_by_name: dict[str, list[str]] = defaultdict(list)
+    for elem in elements:
+        dim_by_name[elem.name].append(elem.dimension)
+
+    for name, dims in dim_by_name.items():
+        if len(dims) > 1:
+            logger.warning(
+                "Duplicate element '%s' in %s across dimensions: %s",
+                name,
+                source_label,
+                ", ".join(dims),
+            )
+
+
 def extract_single_report(
     report_path: Path,
     model_id: str | None = None,
     report_id: str | None = None,
 ) -> ReportExtraction:
-    """Extract all design elements from one report via chapter-level LLM calls."""
+    """Extract all design elements from one report via two LLM passes.
+
+    Pass 1: Single call for 颜色, 装饰物, and 透明度与质地 — each element
+    self-declares its primary dimension, eliminating cross-dimension duplication.
+    Pass 2: Separate call for 风格, preserving its aesthetic_style=name invariant.
+    """
     report_text = report_path.read_text(encoding="utf-8")
     category = _infer_category(report_path)
-    # Stable identifier used for caching / index tracking.
-    # For nested layout (UUID subdir), include the parent dir name so the path
-    # is unique and traceable (e.g. "e9f1f27f-.../report.md").
     if report_id:
         source_label = report_id
     else:
@@ -315,53 +272,68 @@ def extract_single_report(
             if len(parent.name) == 36 and parent.name.count("-") == 4
             else report_path.name
         )
-    chapters = _split_report_into_chapters(report_text)
 
     model = _build_model(model_id, temperature=0.0)
-
     style_list = "\n".join(
         f"   - {name}: {desc}" for name, desc in STYLE_CATALOG.items()
     )
 
     all_elements: list[MaterialElement] = []
 
-    for dim, content in chapters.items():
-        logger.info(
-            "  Extracting %s from %s (%d chars)...",
-            dim,
-            source_label,
-            len(content),
+    # --- Pass 1: 颜色 + 装饰物 + 透明度与质地 ---
+    logger.info(
+        "  Pass 1 (颜色/装饰物/质地) from %s (%d chars)...",
+        source_label,
+        len(report_text),
+    )
+    three_dim_model = model.with_structured_output(ThreeDimExtraction)
+    prompt1 = _THREE_DIM_EXTRACTION_PROMPT.format(
+        styles=style_list, content=report_text
+    )
+    result1: ThreeDimExtraction = _call_with_retry(
+        three_dim_model, [HumanMessage(content=prompt1)]
+    )
+    # Validate: elements should only use the three non-style dimensions
+    non_style_dims = {"颜色", "装饰物", "透明度与质地"}
+    for elem in result1.elements:
+        if elem.dimension not in non_style_dims:
+            logger.warning(
+                "Element '%s' has unexpected dimension '%s' in pass 1; skipping",
+                elem.name,
+                elem.dimension,
+            )
+            continue
+        elem.source_report = source_label
+        elem.product_category = category
+        elem.id = make_element_id(category, elem.dimension, elem.name, elem.source_section)
+        all_elements.append(elem)
+    logger.info("    → %d elements (pass 1)", len(result1.elements))
+
+    # Sanity check: warn if suspiciously few elements for a non-trivial report
+    min_expected = 3
+    if len(result1.elements) < min_expected and len(report_text) > 1000:
+        logger.warning(
+            "Only %d elements extracted from a %d-char report — possible LLM output issue",
+            len(result1.elements),
+            len(report_text),
         )
 
-        structured_model = model.with_structured_output(ChapterExtraction)
+    # --- Pass 2: 风格 ---
+    logger.info("  Pass 2 (风格) from %s ...", source_label)
+    style_model = model.with_structured_output(ChapterExtraction)
+    prompt2 = _STYLE_EXTRACTION_PROMPT.format(styles=style_list, content=report_text)
+    result2: ChapterExtraction = _call_with_retry(
+        style_model, [HumanMessage(content=prompt2)]
+    )
+    for elem in result2.elements:
+        elem.dimension = "风格"
+        elem.source_report = source_label
+        elem.product_category = category
+        elem.id = make_element_id(category, "风格", elem.name, elem.source_section)
+        all_elements.append(elem)
+    logger.info("    → %d elements (pass 2)", len(result2.elements))
 
-        if dim == "风格":
-            prompt = _STYLE_EXTRACTION_PROMPT.format(
-                styles=style_list,
-                content=content,
-            )
-        else:
-            prompt = _EXTRACTION_PROMPT.format(
-                dimension=dim,
-                styles=style_list,
-                content=content,
-            )
-
-        result: ChapterExtraction = structured_model.invoke(
-            [HumanMessage(content=prompt)]
-        )
-
-        # Post-process: set report-level fields and generate IDs
-        for elem in result.elements:
-            elem.dimension = dim  # Normalize
-            elem.source_report = source_label
-            elem.product_category = category
-            elem.id = make_element_id(
-                category, dim, elem.name, elem.source_section
-            )
-
-        logger.info("    → %d elements extracted", len(result.elements))
-        all_elements.extend(result.elements)
+    _warn_duplicates(all_elements, source_label)
 
     return ReportExtraction(
         source_report=source_label,
@@ -429,19 +401,27 @@ def extract_all_reports(
         )
         cache_path = cache_dir / f"{cache_key}.json"
 
-        # Skip if cached and hash matches
+        # Skip if cached, hash matches, AND schema version is current
         if (
             not force
             and cached
             and cached.file_hash == current_hash
             and cache_path.exists()
         ):
-            logger.info("Skipping %s (unchanged)", report_id)
             extraction = ReportExtraction.model_validate_json(
                 cache_path.read_text()
             )
-            all_extractions.append(extraction)
-            continue
+            if extraction.schema_version != EXTRACTION_SCHEMA_VERSION:
+                logger.info(
+                    "Cache schema version mismatch for %s (cache=%d, current=%d) — re-extracting",
+                    report_id,
+                    extraction.schema_version,
+                    EXTRACTION_SCHEMA_VERSION,
+                )
+            else:
+                logger.info("Skipping %s (unchanged, schema v%d)", report_id, EXTRACTION_SCHEMA_VERSION)
+                all_extractions.append(extraction)
+                continue
 
         logger.info("Extracting %s ...", report_id)
         extraction = extract_single_report(report_path, model_id, report_id=report_id)

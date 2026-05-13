@@ -130,6 +130,25 @@ class ChapterExtraction(BaseModel):
     elements: list[MaterialElement]
 
 
+class ThreeDimExtraction(BaseModel):
+    """LLM output for a single-pass extraction of 颜色, 装饰物, and 透明度与质地.
+
+    Each element self-declares its primary dimension, ensuring every concept is
+    assigned to exactly one of the three non-style dimensions and cannot be
+    duplicated across them.
+    """
+
+    elements: list[MaterialElement]
+
+
+# ---------------------------------------------------------------------------
+# Schema version — bump when ReportExtraction layout changes incompatibly so
+# stale cache entries are automatically invalidated on next run.
+# ---------------------------------------------------------------------------
+
+EXTRACTION_SCHEMA_VERSION = 2
+
+
 # ---------------------------------------------------------------------------
 # Cached per-report extraction result
 # ---------------------------------------------------------------------------
@@ -137,6 +156,10 @@ class ChapterExtraction(BaseModel):
 class ReportExtraction(BaseModel):
     """Full extraction result for one report, cached for incremental rebuilds."""
 
+    schema_version: int = Field(
+        default=EXTRACTION_SCHEMA_VERSION,
+        description="Schema version; cache entries with a different version are discarded.",
+    )
     source_report: str
     product_category: str
     extraction_date: str
