@@ -2,16 +2,21 @@
 
 ### Requirement: Report is split into section chunks by heading
 
-The system SHALL split a Markdown trend report into a list of section chunks by detecting H2 (`##`) and H3 (`###`) headings. Each chunk SHALL contain the heading line plus all text until the next heading of equal or higher level. If fewer than 2 headings are detected, the system SHALL return the full report as a single chunk (graceful degradation).
+The system SHALL split a Markdown trend report into a list of section chunks by detecting H2 (`##`) and H3 (`###`) headings. Each chunk SHALL contain the heading line plus all text until the next heading of equal or higher level. If fewer than 2 heading-based chunks result, the system SHALL fall back to paragraph-based splitting (splitting on blank lines). If paragraph-based splitting also produces fewer than 2 chunks, the system SHALL return the full report as a single chunk (final degradation).
 
 #### Scenario: Normal report with multiple H2/H3 headings
 
 - **WHEN** a report contains 5 or more H2/H3 headings
 - **THEN** `_chunk_report()` returns a list of strings, one per detected section, each starting with its heading line
 
-#### Scenario: Report with fewer than 2 headings (graceful degradation)
+#### Scenario: No headings found — paragraph-based fallback
 
-- **WHEN** a report contains 0 or 1 headings
+- **WHEN** a report contains 0 or 1 H2/H3 headings
+- **THEN** `_chunk_report()` splits by blank lines into paragraphs, returning each paragraph as a chunk (if paragraph count ≥ 2)
+
+#### Scenario: Both heading and paragraph splitting fail — full report degradation
+
+- **WHEN** a report contains 0 or 1 headings AND fewer than 2 non-empty paragraphs
 - **THEN** `_chunk_report()` returns a list containing the full report text as a single element
 
 #### Scenario: Short chunks are skipped
@@ -19,14 +24,19 @@ The system SHALL split a Markdown trend report into a list of section chunks by 
 - **WHEN** a section chunk contains fewer than 200 characters (after stripping whitespace)
 - **THEN** that chunk is excluded from the returned list
 
-### Requirement: Each chunk includes a report preamble for context
+### Requirement: Each chunk includes its heading breadcrumb (H3B) for context
 
-The system SHALL prepend the first 300 characters of the full report (the preamble) to each chunk before it is sent to the LLM. This preserves global context (product category, date range, scope) within each focused chunk call.
+The system SHALL prepend the heading breadcrumb of each chunk — the ordered path of ancestor H2/H3 titles leading to the current section (e.g., `## 一、趋势总览 > ### 1. 低饱和香氛色`) — before the chunk body when sending to the LLM. This replaces prepending the first 300 characters of the full report.
 
-#### Scenario: Chunk sent to LLM includes preamble
+#### Scenario: Chunk sent to LLM includes H3B breadcrumb
 
-- **WHEN** a chunk is prepared for a Pass 1 LLM call
-- **THEN** the content passed to the prompt is `preamble + "\n\n---\n\n" + chunk_text`
+- **WHEN** a chunk is prepared for a Pass 1 or Pass 2 LLM call
+- **THEN** the content passed to the prompt is `breadcrumb + "\n\n---\n\n" + chunk_text`, where `breadcrumb` is the `>` -joined ancestor heading path
+
+#### Scenario: Top-level chunk has no ancestor headings
+
+- **WHEN** a chunk is the first section with no parent headings
+- **THEN** the chunk is sent without a breadcrumb prefix (no empty prefix prepended)
 
 ### Requirement: Pass 1 extraction iterates over chunks
 
@@ -42,28 +52,28 @@ The system SHALL call the `_THREE_DIM_EXTRACTION_PROMPT` LLM once per chunk (not
 - **WHEN** a chunk extraction returns an element whose `dimension` is not in `{颜色, 装饰物, 透明度与质地}`
 - **THEN** that element is discarded with a warning log
 
-### Requirement: Pass 2 (style) is split by H2 headings and extracted per H2 chunk
+### Requirement: Pass 2 (style) is split by H3 headings and extracted per H3 chunk
 
-The system SHALL split the report by H2 (`##`) headings only (not H3) to produce style chunks, then call `_STYLE_EXTRACTION_PROMPT` once per H2 chunk. Style MUST NOT be extracted from the full report in a single call, and MUST NOT use the finer H2/H3 chunks used by Pass 1. All style elements from all H2 chunks SHALL be accumulated and passed through `_deduplicate_elements()` before final output.
+The system SHALL split the report by H3 (`###`) headings to produce style chunks — the same granularity as Pass 1. Each H3 chunk SHALL be sent to `_STYLE_EXTRACTION_PROMPT` independently with its H3B breadcrumb prepended. All style elements from all H3 chunks SHALL be accumulated and passed through `_deduplicate_elements()` before final output.
 
-#### Scenario: Style extraction uses H2 chunks, not full report
+#### Scenario: Style extraction uses H3 chunks
 
-- **WHEN** `extract_single_report()` is called for a report with N H2 sections
-- **THEN** exactly N Pass 2 LLM calls are made, one per H2 chunk
+- **WHEN** `extract_single_report()` is called for a report with N H3 sections
+- **THEN** exactly N Pass 2 LLM calls are made, one per H3 chunk
 
-#### Scenario: Style H2 chunks include preamble for context
+#### Scenario: Style H3 chunks include H3B breadcrumb for context
 
-- **WHEN** a style H2 chunk is prepared for a Pass 2 LLM call
-- **THEN** the content passed to the prompt is `preamble + "\n\n---\n\n" + h2_chunk_text`
+- **WHEN** a style H3 chunk is prepared for a Pass 2 LLM call
+- **THEN** the content passed to the prompt is `breadcrumb + "\n\n---\n\n" + h3_chunk_text`
 
-#### Scenario: Style extraction falls back to full report when no H2 found
+#### Scenario: Style extraction falls back to full report when no H3 found
 
-- **WHEN** the report contains 0 H2 headings
+- **WHEN** the report contains 0 H3 headings
 - **THEN** a single Pass 2 LLM call is made with the full report text
 
-#### Scenario: Duplicate style elements across H2 chunks are merged
+#### Scenario: Duplicate style elements across H3 chunks are merged
 
-- **WHEN** the same style name (e.g. "科技净澈") appears in multiple H2 chunks
+- **WHEN** the same style name (e.g. "科技净澈") appears in multiple H3 chunks
 - **THEN** `_deduplicate_elements()` merges them into one entry with the highest maturity and union of signals/keywords
 
 ### Requirement: Schema version is bumped to invalidate v2 caches
