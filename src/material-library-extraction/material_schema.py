@@ -157,7 +157,7 @@ class ReportExtraction(BaseModel):
     """Full extraction result for one report, cached for incremental rebuilds."""
 
     schema_version: int = Field(
-        default=EXTRACTION_SCHEMA_VERSION,
+        default=1,
         description="Schema version; cache entries with a different version are discarded.",
     )
     source_report: str
