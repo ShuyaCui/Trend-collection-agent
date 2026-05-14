@@ -87,7 +87,7 @@ def _infer_category(report_path: Path) -> str:
 
 _DEFAULT_MODEL = os.getenv(
     "MATERIAL_EXTRACTION_MODEL",
-    "azure_openai:GPT-4O-2024-11-20",
+    "azure_openai:GPT-54-2026-03-05",
 )
 
 
