@@ -1,0 +1,7098 @@
+{
+  "schema_version": 1,
+  "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+  "product_category": "面部精华",
+  "extraction_date": "2026-05-18",
+  "file_hash": "a55b38ffa5452b015be8b182946990cc75d425382fb31529a83c8d3979a813bf",
+  "elements": [
+    {
+      "id": "d384cc19-color-bb68ac5e-79c430",
+      "dimension": "颜色",
+      "name": "琥珀金色精华语言",
+      "name_en": "Amber-Gold Serum Language",
+      "visual_keywords": [
+        "琥珀色",
+        "金棕光泽",
+        "浓缩精华",
+        "温润发光",
+        "高端韩方"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "人参滋养",
+        "发酵活性",
+        "高端抗老",
+        "珍稀植物成分"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老精华、人参修护精华",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-376b376c-77fa33",
+      "dimension": "颜色",
+      "name": "淡金韩方精华水",
+      "name_en": "Pale Golden Herbal Essence Water",
+      "visual_keywords": [
+        "淡金色",
+        "微黄水体",
+        "轻透光泽",
+        "韩方调性",
+        "精华水"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "宫廷皮肤科学",
+        "精密配方",
+        "温和滋养",
+        "高端修护"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "精华水、爽肤水、前导精华水",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-93cf7776-9689fc",
+      "dimension": "颜色",
+      "name": "乳白色乳霜",
+      "name_en": "Milky White Cream",
+      "visual_keywords": [
+        "乳白色",
+        "奶白膏体",
+        "柔雾不透",
+        "丰润面霜",
+        "温和洁净"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "丰润滋养",
+        "屏障修护",
+        "温和包裹感",
+        "高营养护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "面霜、乳液、修护霜",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-21248692-edef6d",
+      "dimension": "颜色",
+      "name": "米白色面霜",
+      "name_en": "Ivory Cream",
+      "visual_keywords": [
+        "米白色",
+        "柔和暖白",
+        "细腻膏体",
+        "低饱和",
+        "经典高端"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "克制奢华",
+        "稳健抗老",
+        "高端护理",
+        "精致配方感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老面霜、滋养修护霜",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-7ea042d6-e7eac2",
+      "dimension": "颜色",
+      "name": "淡黄色精华水",
+      "name_en": "Pale Yellow Essence Water",
+      "visual_keywords": [
+        "淡黄色",
+        "清透水感",
+        "微暖色调",
+        "发酵感",
+        "轻盈液体"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵修护",
+        "温和活性",
+        "经典高端精华水",
+        "天然来源联想"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "发酵精华水、调理液、前导液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-c0c61641-abeaea",
+      "dimension": "颜色",
+      "name": "淡黄色半透明精华",
+      "name_en": "Pale Yellow Translucent Serum",
+      "visual_keywords": [
+        "淡黄色",
+        "半透明",
+        "轻盈精华",
+        "微光液体",
+        "高端功效"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "修护抗老",
+        "发酵科技结合",
+        "温和高效",
+        "高端配方识别"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "精华、安瓶、肌底液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6e58467b-940d91",
+      "dimension": "颜色",
+      "name": "透明科技色基底",
+      "name_en": "Transparent Tech-Toned Base",
+      "visual_keywords": [
+        "无色透明",
+        "冷感纯净",
+        "极简配方",
+        "科技感",
+        "高纯度"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级精炼",
+        "高纯度功效",
+        "理性科技",
+        "安全与洁净"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "功效精华、安瓶、修护液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-fc5030f4-eca29b",
+      "dimension": "颜色",
+      "name": "微乳白科技修护色",
+      "name_en": "Soft Milky-White Tech Repair Tone",
+      "visual_keywords": [
+        "微乳白",
+        "轻浊感",
+        "柔和科技",
+        "修护联想",
+        "低刺激"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "屏障修护",
+        "温和专业",
+        "医美后护理",
+        "科技乳化体系"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "修护精华、术后护理液、乳液精华",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-586da05e-cedc1c",
+      "dimension": "颜色",
+      "name": "植物绿功能色",
+      "name_en": "Botanical Green Functional Tone",
+      "visual_keywords": [
+        "植物绿",
+        "天然功能感",
+        "健康联想",
+        "草本色调",
+        "清体感"
+      ],
+      "aesthetic_style": "自然清体",
+      "signals": [
+        "天然来源",
+        "低加工感",
+        "功能性护理",
+        "健康纯净"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025-2026",
+      "typical_use": "功能型精华、舒缓护理产品",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-nad-aaca70",
+      "dimension": "装饰物",
+      "name": "NAD脂质体可视化叙事",
+      "name_en": "Visualized NAD Liposome Narrative",
+      "visual_keywords": [
+        "脂质体概念",
+        "微观递送",
+        "悬浮想象",
+        "科技结构",
+        "长寿护肤"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向输送",
+        "高科技门槛",
+        "长寿护肤",
+        "高功效成分承载"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "NAD精华、抗老安瓶、长寿护理套装",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f85de348-5cafc1",
+      "dimension": "装饰物",
+      "name": "微囊",
+      "name_en": "Microcapsules",
+      "visual_keywords": [
+        "微小胶囊",
+        "悬浮颗粒",
+        "可见包裹体",
+        "点状结构",
+        "科技精华"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效封装",
+        "新鲜释放",
+        "精准递送",
+        "成分稳定性"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "精华、安瓶、功效护理液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-398ba7b1-84bcff",
+      "dimension": "装饰物",
+      "name": "胶原颗粒",
+      "name_en": "Collagen Beads",
+      "visual_keywords": [
+        "颗粒悬浮",
+        "弹性质点",
+        "可见胶原",
+        "珠点结构",
+        "丰盈感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "胶原补充",
+        "丰盈弹润",
+        "功效可视化",
+        "高活性护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "胶原精华、弹润安瓶、修护液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-3ef1feea-70a1e5",
+      "dimension": "装饰物",
+      "name": "果冻颗粒",
+      "name_en": "Jelly Beads",
+      "visual_keywords": [
+        "果冻颗粒",
+        "半透明颗粒",
+        "Q弹结构",
+        "悬浮感",
+        "趣味科技"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "新鲜活性",
+        "即时融化释放",
+        "年轻化科技表达",
+        "高感官记忆点"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "精华、安瓶、面膜精华液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-08f1bd12-9e458a",
+      "dimension": "装饰物",
+      "name": "金色颗粒",
+      "name_en": "Golden Particles",
+      "visual_keywords": [
+        "金色微粒",
+        "闪点颗粒",
+        "悬浮金光",
+        "奢华装饰",
+        "高端视觉"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "贵价感",
+        "稀缺成分联想",
+        "即时奢华识别",
+        "功效强化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端精华、安瓶、奢养护理液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-ed55d4cb-288660",
+      "dimension": "装饰物",
+      "name": "胶囊化可视结构",
+      "name_en": "Visible Capsule Structures",
+      "visual_keywords": [
+        "胶囊颗粒",
+        "包裹结构",
+        "可见活性",
+        "结构悬浮",
+        "分散体系"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "成分保护",
+        "缓释递送",
+        "高科技配方",
+        "功效被看见"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "精华、安瓶、功效修护液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-30141b92-dd0d04",
+      "dimension": "透明度与质地",
+      "name": "半透明精华水感",
+      "name_en": "Translucent Essence-Water Texture",
+      "visual_keywords": [
+        "半透明",
+        "流动性高",
+        "轻薄水感",
+        "清润",
+        "透亮"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高吸收感",
+        "清爽高效",
+        "精炼配方",
+        "低负担护肤"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "精华水、轻精华、前导液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-21dae6c9-34d98d",
+      "dimension": "透明度与质地",
+      "name": "浓密霜体",
+      "name_en": "Dense Cream Texture",
+      "visual_keywords": [
+        "高密度",
+        "厚实膏体",
+        "包裹感强",
+        "不透明",
+        "丰润"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "深度滋养",
+        "高营养修护",
+        "抗老厚度",
+        "夜间护理感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "面霜、晚霜、修护霜",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-83b5cf1e-fc6566",
+      "dimension": "透明度与质地",
+      "name": "透明高纯度质地",
+      "name_en": "Crystal-Clear High-Purity Texture",
+      "visual_keywords": [
+        "高度透明",
+        "纯净无杂",
+        "玻璃感",
+        "清澈液体",
+        "高折光"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室科技",
+        "高纯净度",
+        "强功效信任",
+        "极简专业"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高功效精华、安瓶、修护液",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e4a4877f-2414fa",
+      "dimension": "透明度与质地",
+      "name": "半透明科技精华质地",
+      "name_en": "Semi-Transparent Tech Serum Texture",
+      "visual_keywords": [
+        "半透明",
+        "轻凝露感",
+        "科技液体",
+        "微光泽",
+        "精密体系"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "科技配方可感知",
+        "兼顾温和与功效",
+        "现代高端护肤",
+        "轻盈递送"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "科技抗老精华、NAD精华、功效安瓶",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a548174b-56ffc4",
+      "dimension": "透明度与质地",
+      "name": "不透明丰润膏体",
+      "name_en": "Opaque Rich Balm Texture",
+      "visual_keywords": [
+        "不透明",
+        "厚润膏体",
+        "高覆盖感",
+        "绵密",
+        "滋养包覆"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "高滋养度",
+        "屏障封护",
+        "面霜价值感",
+        "修护持久性"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "面霜、修护膏、滋养霜",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-0c46be69-81b550",
+      "dimension": "透明度与质地",
+      "name": "水感精华水质地",
+      "name_en": "Watery Essence-Lotion Texture",
+      "visual_keywords": [
+        "高流动性",
+        "清水感",
+        "轻薄",
+        "快速铺展",
+        "湿润"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "清爽易吸收",
+        "日常高频使用",
+        "低负担保养",
+        "即时补水"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "精华水、爽肤水、肌底水",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e6d44cbc-39c850",
+      "dimension": "透明度与质地",
+      "name": "湿润凝胶膜质地",
+      "name_en": "Moist Gel-Film Texture",
+      "visual_keywords": [
+        "凝胶膜感",
+        "高湿润度",
+        "成膜光泽",
+        "厚敷友好",
+        "润泽包覆"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "即时补水",
+        "密集修护",
+        "面膜功效增强",
+        "水光妆效"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "面膜精华液、睡眠面膜、急救修护凝胶",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-f1265c14-2afe95",
+      "dimension": "透明度与质地",
+      "name": "术后医美后修护质地",
+      "name_en": "Post-Procedure Repair Texture",
+      "visual_keywords": [
+        "温和包裹",
+        "低刺激",
+        "柔滑修护",
+        "无负担",
+        "安抚膜感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "专业修护",
+        "敏感期适用",
+        "医美后安心感",
+        "屏障支持"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "术后修护精华、舒缓凝胶、屏障修护乳",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-33416863-9be3e1",
+      "dimension": "透明度与质地",
+      "name": "玻璃肌水光薄膜感",
+      "name_en": "Glass-Skin Dewy Veil Finish",
+      "visual_keywords": [
+        "薄膜光泽",
+        "镜面水光",
+        "贴肤成膜",
+        "高反光",
+        "平滑透亮"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "即时水光感",
+        "皮肤平整度提升",
+        "高端韩系妆效联想",
+        "精致护理完成度"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "面膜精华液、水光精华、妆前修护精华",
+      "source_section": "1",
+      "source_heading": "## 1. 执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1110ba0b-906f17",
+      "dimension": "颜色",
+      "name": "透明",
+      "name_en": "Transparent",
+      "visual_keywords": [
+        "无色",
+        "澄澈",
+        "清亮",
+        "高纯净感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度",
+        "精炼配方",
+        "轻负担",
+        "科技感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华液、化妆水、功能饮料等强调纯净配方的内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-00931fa3-779aaf",
+      "dimension": "颜色",
+      "name": "淡黄",
+      "name_en": "Pale Yellow",
+      "visual_keywords": [
+        "浅黄色",
+        "轻盈暖调",
+        "低饱和",
+        "柔和发光感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "天然来源",
+        "温和滋养",
+        "轻度活性联想"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "植物萃取精华、发酵类饮品、护理液体",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0ed0cd46-8d8173",
+      "dimension": "颜色",
+      "name": "琥珀",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "琥珀色",
+        "暖棕金调",
+        "通透深色",
+        "树脂感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物原料",
+        "高浓度活性",
+        "时间沉淀感",
+        "贵价天然"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精油、原液、发酵液、功能型饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-454b22f9-364b4b",
+      "dimension": "颜色",
+      "name": "金色",
+      "name_en": "Gold",
+      "visual_keywords": [
+        "金色光泽",
+        "暖金调",
+        "奢感亮度",
+        "贵重感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高价值感",
+        "精密工艺",
+        "奢华稀缺"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高端精华、功能饮品、油类护理产品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-c857ceec-a42505",
+      "dimension": "颜色",
+      "name": "乳白",
+      "name_en": "Milky White",
+      "visual_keywords": [
+        "奶白色",
+        "柔雾感",
+        "绵软色调",
+        "低对比"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和包裹感",
+        "滋养修护",
+        "甜品化联想",
+        "亲肤感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "乳液、奶霜精华、乳酸菌饮品、身体护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6a81dc7c-8d6171",
+      "dimension": "颜色",
+      "name": "淡粉",
+      "name_en": "Pale Pink",
+      "visual_keywords": [
+        "浅粉色",
+        "柔和粉嫩",
+        "低饱和",
+        "轻甜感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温柔亲和",
+        "愉悦感",
+        "细腻护理",
+        "年轻化"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华、乳液、风味饮品、美容液体",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-b2c712c7-0f691e",
+      "dimension": "颜色",
+      "name": "绿色",
+      "name_en": "Green",
+      "visual_keywords": [
+        "植物绿",
+        "草本感",
+        "自然鲜度",
+        "功能性色彩"
+      ],
+      "aesthetic_style": "自然清体",
+      "signals": [
+        "天然草本",
+        "健康功能",
+        "低加工感",
+        "清体联想"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "草本饮品、植物精华、清洁护理液体",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-9c9aabab-6b83d9",
+      "dimension": "颜色",
+      "name": "蓝色",
+      "name_en": "Blue",
+      "visual_keywords": [
+        "冷调蓝",
+        "清冷感",
+        "科技色相",
+        "洁净视觉"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "科技可信度",
+        "洁净感",
+        "降温舒缓",
+        "功能理性"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "补水精华、舒缓护理液、功能饮料",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-21ee29c9-1f7d66",
+      "dimension": "装饰物",
+      "name": "颗粒",
+      "name_en": "Particles",
+      "visual_keywords": [
+        "可见颗粒",
+        "点状分布",
+        "悬浮细粒",
+        "结构感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "成分真实存在",
+        "配方层次",
+        "科技门槛"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "磨砂液、功能精华、颗粒型饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-3c532709-570607",
+      "dimension": "装饰物",
+      "name": "胶囊",
+      "name_en": "Capsules",
+      "visual_keywords": [
+        "微胶囊",
+        "珠粒包裹",
+        "可见活性珠",
+        "悬浮单元"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向释放",
+        "高科技配方",
+        "新鲜封存",
+        "高功效"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "护肤精华、洗护产品、功能饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-87ae017f-ceba50",
+      "dimension": "装饰物",
+      "name": "悬浮物",
+      "name_en": "Suspended Inclusions",
+      "visual_keywords": [
+        "悬浮结构",
+        "漂浮物",
+        "分布可见",
+        "动态层次"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "真实原料感",
+        "未过度加工",
+        "视觉层次",
+        "内容物丰富"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "植物饮品、精华液、草本护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-59d484af-947a7d",
+      "dimension": "装饰物",
+      "name": "金箔",
+      "name_en": "Gold Leaf Flakes",
+      "visual_keywords": [
+        "金箔碎片",
+        "漂浮金片",
+        "高光点缀",
+        "奢感装饰"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端稀缺",
+        "贵价体验",
+        "仪式感",
+        "奢华护理"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高端精华、酒饮、美容护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-7385a85c-678a9f",
+      "dimension": "装饰物",
+      "name": "金色微粒",
+      "name_en": "Gold Micro-Particles",
+      "visual_keywords": [
+        "细碎金点",
+        "微闪颗粒",
+        "均匀悬浮",
+        "精致闪烁"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精密工艺",
+        "低调奢华",
+        "高价值感",
+        "功效暗示"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华液、安瓶、功能酒饮",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-85f8f584-472e16",
+      "dimension": "装饰物",
+      "name": "珠光",
+      "name_en": "Pearlescent Particles",
+      "visual_keywords": [
+        "珠光微粒",
+        "柔和反光",
+        "细腻光泽",
+        "云母闪感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "柔焦修饰",
+        "细腻高级",
+        "光泽护理",
+        "精致感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "身体护理液、妆前液、乳状精华",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-cea3f02b-db9118",
+      "dimension": "装饰物",
+      "name": "双相或多相",
+      "name_en": "Bi-Phase or Multi-Phase Layers",
+      "visual_keywords": [
+        "分层结构",
+        "双相液体",
+        "多相界面",
+        "上下层可见"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "配方复杂度",
+        "活性分区保存",
+        "实验感",
+        "技术壁垒"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "卸妆液、精华油、功能饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-611a9507-8f03d2",
+      "dimension": "透明度与质地",
+      "name": "清透",
+      "name_en": "Crystal Clear",
+      "visual_keywords": [
+        "高通透",
+        "清澈见底",
+        "轻盈无浊",
+        "纯净液感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯净度",
+        "轻负担",
+        "快速吸收联想",
+        "实验室级精炼"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "化妆水、精华液、清爽饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-95a913cf-754c90",
+      "dimension": "透明度与质地",
+      "name": "半透明",
+      "name_en": "Semi-Transparent",
+      "visual_keywords": [
+        "轻雾通透",
+        "朦胧可视",
+        "柔化边界",
+        "介于清透与乳浊之间"
+      ],
+      "aesthetic_style": "自然清体",
+      "signals": [
+        "天然未过度加工",
+        "柔和亲肤",
+        "适度浓度感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "凝露、草本饮品、轻乳精华",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-8dedca30-0e9d3d",
+      "dimension": "透明度与质地",
+      "name": "乳浊",
+      "name_en": "Cloudy Milky",
+      "visual_keywords": [
+        "云雾感",
+        "微浑浊",
+        "乳化状态",
+        "柔雾视觉"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "营养包裹感",
+        "滋养浓度",
+        "亲和柔润"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "乳液、发酵饮品、修护型精华",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-c3b8f768-245b08",
+      "dimension": "透明度与质地",
+      "name": "不透明",
+      "name_en": "Opaque",
+      "visual_keywords": [
+        "遮蔽感",
+        "高覆盖视觉",
+        "厚实",
+        "不可透视"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "高营养密度",
+        "强修护感",
+        "厚重滋养"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "乳霜、奶昔型饮品、厚乳护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-84961cd1-c22568",
+      "dimension": "透明度与质地",
+      "name": "水状",
+      "name_en": "Watery",
+      "visual_keywords": [
+        "低黏度",
+        "快速流动",
+        "轻薄",
+        "无负担"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "即时渗透",
+        "清爽轻盈",
+        "高吸收效率"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "爽肤水、功能水、清爽型饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-ba6efac8-a31856",
+      "dimension": "透明度与质地",
+      "name": "精华液状",
+      "name_en": "Serum-Like",
+      "visual_keywords": [
+        "微稠流动",
+        "顺滑拉丝感弱",
+        "高浓缩液感",
+        "精密配方感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高活性浓度",
+        "专业护理",
+        "高效渗透"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "面部精华、头皮精华、功能原液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-4635e043-715a9c",
+      "dimension": "透明度与质地",
+      "name": "凝露状",
+      "name_en": "Gel Essence",
+      "visual_keywords": [
+        "凝露感",
+        "轻胶体",
+        "Q弹",
+        "清润包裹"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "保湿锁水",
+        "轻盈科技感",
+        "可控释放"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "保湿凝露、啫喱精华、功能型护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-1a3ccb9e-ea2399",
+      "dimension": "透明度与质地",
+      "name": "油状",
+      "name_en": "Oily",
+      "visual_keywords": [
+        "流动油感",
+        "润泽反光",
+        "高延展",
+        "包裹性"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "深度滋养",
+        "植物精萃",
+        "高封闭修护",
+        "贵价油养"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "护肤油、护发油、功能油饮",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-81e8e369-9cdb9e",
+      "dimension": "透明度与质地",
+      "name": "乳液状",
+      "name_en": "Lotion-Like",
+      "visual_keywords": [
+        "柔滑乳感",
+        "中等黏度",
+        "均匀延展",
+        "轻盈滋养"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和滋润",
+        "日常护理",
+        "亲肤易用"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "身体乳、面部乳液、乳饮型内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-b00c7905-8dbb95",
+      "dimension": "透明度与质地",
+      "name": "霜状",
+      "name_en": "Cream-Like",
+      "visual_keywords": [
+        "厚实霜感",
+        "高稠度",
+        "绵密覆盖",
+        "缓慢流动"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "强修护",
+        "高营养密度",
+        "厚重滋养",
+        "安全包覆"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "面霜、发膜、厚乳型功能内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-c7b60f10-500841",
+      "dimension": "透明度与质地",
+      "name": "水感",
+      "name_en": "Watery Sensation",
+      "visual_keywords": [
+        "清冽",
+        "轻拍即散",
+        "高流动",
+        "清爽肤感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "极致清爽",
+        "快速吸收",
+        "低负担"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "补水精华、喷雾、爽肤型内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-cab190db-678ee8",
+      "dimension": "透明度与质地",
+      "name": "油润",
+      "name_en": "Nourishing Oil-Rich Texture",
+      "visual_keywords": [
+        "润泽包覆",
+        "柔亮反光",
+        "饱满油感",
+        "顺滑延展"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "丰润滋养",
+        "修护屏障",
+        "植物精华浓度"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华油、润肤油、护发精油",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6b52b5d0-2cbc16",
+      "dimension": "透明度与质地",
+      "name": "丝滑",
+      "name_en": "Silky Smooth",
+      "visual_keywords": [
+        "顺滑无阻",
+        "细腻铺展",
+        "低摩擦",
+        "绸缎般触感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精细工艺",
+        "高级肤感",
+        "细致护理"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华乳、身体护理液、高端护肤内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-ce497ecf-4cff3c",
+      "dimension": "透明度与质地",
+      "name": "凝胶",
+      "name_en": "Gel Texture",
+      "visual_keywords": [
+        "弹润胶体",
+        "半固态",
+        "Q弹",
+        "清凉包裹"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "保湿科技",
+        "结构稳定",
+        "新鲜感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "啫喱、凝胶精华、局部护理内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-091885db-b6b87e",
+      "dimension": "透明度与质地",
+      "name": "弹性",
+      "name_en": "Elastic Bouncy Texture",
+      "visual_keywords": [
+        "回弹感",
+        "拉伸后复位",
+        "Q弹",
+        "胶原联想"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "高活性支撑",
+        "丰盈饱满",
+        "年轻化修护"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "凝胶精华、冻膜、胶原感饮品",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-9f7f52bb-2e3ab5",
+      "dimension": "透明度与质地",
+      "name": "厚重滋养",
+      "name_en": "Rich Nourishing Texture",
+      "visual_keywords": [
+        "高密度",
+        "厚实包覆",
+        "浓养感",
+        "慢速延展"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "深层滋养",
+        "高修护力",
+        "高端养护"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "面霜、发膜、滋补型内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-bab7abdd-7a8c9b",
+      "dimension": "透明度与质地",
+      "name": "快速吸收",
+      "name_en": "Fast-Absorbing",
+      "visual_keywords": [
+        "瞬时渗透",
+        "不黏腻",
+        "轻薄留感",
+        "快速干爽"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高效递送",
+        "清爽使用感",
+        "技术精炼"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华液、乳液、轻护肤内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a0f74be2-7e2a6e",
+      "dimension": "透明度与质地",
+      "name": "爆珠感",
+      "name_en": "Bursting Bead Sensation",
+      "visual_keywords": [
+        "按压即破",
+        "释活瞬间",
+        "颗粒爆开",
+        "动态肤感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "新鲜释放",
+        "趣味交互",
+        "科技功效可感知"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "爆珠精华、功能啫喱、创新护理液",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6cd530ea-583a43",
+      "dimension": "透明度与质地",
+      "name": "膜感",
+      "name_en": "Film-Forming Finish",
+      "visual_keywords": [
+        "表面成膜",
+        "轻薄包裹",
+        "平滑封层",
+        "持久覆盖"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "锁水保护",
+        "长效留存",
+        "专业功效"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华、防护液、发丝护理内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-caf37534-5f2bc1",
+      "dimension": "透明度与质地",
+      "name": "玻璃肌光泽",
+      "name_en": "Glass-Skin Sheen",
+      "visual_keywords": [
+        "镜面反光",
+        "湿润高光",
+        "平滑发亮",
+        "通透亮泽"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高保湿",
+        "精致肤质",
+        "即时焕亮",
+        "科技抛光感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "提亮精华、妆前液、发光型护理内容物",
+      "source_section": "2.1",
+      "source_heading": "本报告只讨论“内容物本身”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-d56fb65f-807f23",
+      "dimension": "透明度与质地",
+      "name": "可直接看到内容物/质地的真实显影",
+      "name_en": "Directly Visible Product Content and Texture Reveal",
+      "visual_keywords": [
+        "透明瓶内液体",
+        "打开罐体内霜体",
+        "手部swatch",
+        "面膜质地",
+        "可见内容物"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "真实可验证",
+        "配方透明",
+        "减少想象成本",
+        "强调产品自信"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端护肤新品传播中的透明瓶精华、面霜开盖展示、手部质地展示",
+      "source_section": "2.2",
+      "source_heading": "### 2.2 证据等级说明",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-9c4f7477-80e9da",
+      "dimension": "装饰物",
+      "name": "可见颗粒",
+      "name_en": "Visible Particles",
+      "visual_keywords": [
+        "颗粒可见",
+        "悬浮颗粒",
+        "结构可视化",
+        "内容物内含物",
+        "颗粒感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效成分可视化",
+        "科技门槛",
+        "高活性添加",
+        "差异化配方"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "精华、安瓶、面膜或凝胶类护肤品中的可见颗粒展示",
+      "source_section": "2.2",
+      "source_heading": "### 2.2 证据等级说明",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-8e04d89a-ece067",
+      "dimension": "透明度与质地",
+      "name": "密集营养感质地",
+      "name_en": "Dense Nourishing Texture",
+      "visual_keywords": [
+        "高密度",
+        "营养感",
+        "厚实",
+        "包裹感",
+        "丰润"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高滋养度",
+        "修护力强",
+        "浓缩配方",
+        "更适合高端护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "面霜、精华油、晚间修护类护肤品",
+      "source_section": "2.2",
+      "source_heading": "### 2.2 证据等级说明",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-5a3a9832-46a77a",
+      "dimension": "透明度与质地",
+      "name": "清爽日常质地",
+      "name_en": "Light Daily Texture",
+      "visual_keywords": [
+        "清爽",
+        "轻薄",
+        "日常使用",
+        "无负担",
+        "易推开"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "适合高频使用",
+        "肤感轻盈",
+        "低负担",
+        "更广泛适配"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "日常精华、乳液、化妆水等轻薄型护肤产品",
+      "source_section": "2.2",
+      "source_heading": "### 2.2 证据等级说明",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-1d62e3c6-9fe1e0",
+      "dimension": "透明度与质地",
+      "name": "快速吸收型肤感",
+      "name_en": "Fast-Absorbing Skinfeel",
+      "visual_keywords": [
+        "快速吸收",
+        "渗透快",
+        "不黏腻",
+        "轻盈收敛",
+        "肤表残留少"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高效渗透",
+        "使用便捷",
+        "现代配方科技",
+        "清洁利落的结束肤感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "精华、乳液、防晒前护理等需要迅速成膜或吸收的产品",
+      "source_section": "2.2",
+      "source_heading": "### 2.2 证据等级说明",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-a38a1a6c-9584a9",
+      "dimension": "颜色",
+      "name": "琥珀金滋养色",
+      "name_en": "Amber Golden Nourishing Hue",
+      "visual_keywords": [
+        "琥珀金",
+        "蜂蜜调",
+        "暖金色泽",
+        "滋养感",
+        "贵价植物联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "人参等珍稀植萃",
+        "高营养密度",
+        "成熟抗老定位"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端抗老面霜、滋养型面霜、贵妇护理产品",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-7039eaa0-144bf7",
+      "dimension": "透明度与质地",
+      "name": "丰润奶霜质地",
+      "name_en": "Rich Creamy Balm Texture",
+      "visual_keywords": [
+        "丰润",
+        "厚乳霜感",
+        "绵密包裹",
+        "滋养膜感",
+        "缓释延展"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "深度滋养",
+        "高端修护",
+        "冬季或熟龄友好"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "rich版抗老面霜、夜间修护面霜、熟龄肌护理",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-f9994c90-6513bc",
+      "dimension": "透明度与质地",
+      "name": "滋养快吸收乳霜感",
+      "name_en": "Rich Yet Quick-Absorbing Cream Texture",
+      "visual_keywords": [
+        "滋养感",
+        "细腻乳霜",
+        "快速吸收",
+        "不厚重",
+        "眼周适配"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高效抗老科技",
+        "精密肤感平衡",
+        "高端眼周护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端眼霜、抗老眼周护理、日夜兼用眼部产品",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-db9a45bc-580b65",
+      "dimension": "装饰物",
+      "name": "脂质体可视微粒",
+      "name_en": "Visible Liposome Microcapsules",
+      "visual_keywords": [
+        "微囊",
+        "可视颗粒",
+        "悬浮结构",
+        "科技颗粒",
+        "剂型可视化"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "高科技递送",
+        "功效成分被封装",
+        "高门槛研发"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端安瓶、功效型精华、靶向输送护肤产品",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-94585d3b-61285f",
+      "dimension": "透明度与质地",
+      "name": "高浓缩流体精华感",
+      "name_en": "High-Concentration Fluid Essence Texture",
+      "visual_keywords": [
+        "高浓缩",
+        "流体感",
+        "精华黏度",
+        "顺滑延展",
+        "密度感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高活性浓度",
+        "密集修护",
+        "贵价功效护肤"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "抗老精华、安瓶、密集修护疗程产品",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-00c40c9d-c0a049",
+      "dimension": "透明度与质地",
+      "name": "发酵精华半透明水凝感",
+      "name_en": "Semi-Transparent Fermented Watery-Gel Texture",
+      "visual_keywords": [
+        "半透明",
+        "水凝感",
+        "轻盈流动",
+        "发酵液感",
+        "清润透亮"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度发酵科技",
+        "易吸收",
+        "精炼高端护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "发酵精华水、发酵精华、轻质高端修护产品",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-a753d0b2-5ed5d2",
+      "dimension": "颜色",
+      "name": "淡黄色发酵液色",
+      "name_en": "Pale Yellow Fermented Essence Hue",
+      "visual_keywords": [
+        "淡黄色",
+        "低饱和",
+        "发酵液色",
+        "温和浅金调",
+        "轻熟感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "天然发酵来源",
+        "温和活性",
+        "经典精华识别度"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "发酵精华水、肌底液、日常功效型精华",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6ab4a61a-77fed3",
+      "dimension": "透明度与质地",
+      "name": "半透明清润精华水感",
+      "name_en": "Semi-Transparent Dewy Essence-Water Texture",
+      "visual_keywords": [
+        "半透明",
+        "清润",
+        "水感流动",
+        "轻薄",
+        "通透"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "清洁配方印象",
+        "轻负担高功效",
+        "适合日常叠加护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "精华水、肌底液、轻质修护精华",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-fd181eb8-c2e98f",
+      "dimension": "颜色",
+      "name": "功效科技淡金色",
+      "name_en": "Functional Tech Pale Gold",
+      "visual_keywords": [
+        "淡金",
+        "米金",
+        "低饱和金色",
+        "半透明精华液",
+        "科技抗老",
+        "高端韩系"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "科技抗老",
+        "高端精密",
+        "贵价感",
+        "韩方奢华升级"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "高端抗老精华水、精华液、礼盒视觉主液色",
+      "source_section": "3.2",
+      "source_heading": "变化一：传统“韩方奢华金色”转向“功效科技金色/淡金色”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-cc4d6915-2cf9cd",
+      "dimension": "颜色",
+      "name": "韩方奢华金色",
+      "name_en": "Traditional Herbal Luxury Gold",
+      "visual_keywords": [
+        "金色",
+        "琥珀色",
+        "宫廷感",
+        "珍贵药材联想",
+        "韩方护肤",
+        "浓郁奢华"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "传统珍贵原料",
+        "滋养感",
+        "宫廷奢华",
+        "经典高端"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2024",
+      "typical_use": "韩方抗老护肤中的精华、面霜、礼盒主视觉",
+      "source_section": "3.2",
+      "source_heading": "变化一：传统“韩方奢华金色”转向“功效科技金色/淡金色”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0ca9fa5d-7ab027",
+      "dimension": "颜色",
+      "name": "微乳白科技色",
+      "name_en": "Translucent Milky Tech White",
+      "visual_keywords": [
+        "微乳白",
+        "浅白浑融",
+        "实验室感",
+        "功效护肤",
+        "未来感",
+        "洁净配方"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "温和功效",
+        "配方科技",
+        "洁净专业",
+        "屏障友好"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "功效精华、乳液、修护型护肤内容物颜色表达",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-9cfcae54-ca0a80",
+      "dimension": "装饰物",
+      "name": "胶囊颗粒",
+      "name_en": "Capsule Beads",
+      "visual_keywords": [
+        "可见颗粒",
+        "胶囊珠粒",
+        "悬浮结构",
+        "颗粒释放",
+        "科技感",
+        "内容物可视化"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向递送",
+        "活性封装",
+        "高科技门槛",
+        "功效可视化"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "精华、安瓶、凝胶类护肤产品中的可见活性颗粒",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-d4727d99-0795ee",
+      "dimension": "装饰物",
+      "name": "珠光颗粒",
+      "name_en": "Pearlescent Particles",
+      "visual_keywords": [
+        "珠光",
+        "闪烁微粒",
+        "细腻反光",
+        "悬浮颗粒",
+        "精致光泽",
+        "科技奢华"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高级工艺",
+        "光泽精修",
+        "贵价质感",
+        "功效与美感结合"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "精华、妆前型护肤、光泽修护类产品内容物",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-30141b92-d1e6f6",
+      "dimension": "透明度与质地",
+      "name": "半透明精华水感",
+      "name_en": "Semi-Transparent Essence Fluidity",
+      "visual_keywords": [
+        "半透明",
+        "水感流动",
+        "轻薄精华",
+        "清透折光",
+        "流体感",
+        "洁净感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度",
+        "快速吸收",
+        "科技精炼",
+        "轻负担"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗老精华水、轻质精华液",
+      "source_section": "3.2",
+      "source_heading": "变化一：传统“韩方奢华金色”转向“功效科技金色/淡金色”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-9815255d-3b6248",
+      "dimension": "透明度与质地",
+      "name": "透明实验室质地",
+      "name_en": "Transparent Laboratory Texture",
+      "visual_keywords": [
+        "透明基底",
+        "实验室视觉",
+        "高通透",
+        "未来感",
+        "洁净液态",
+        "科技护肤"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级专业感",
+        "高功效可信度",
+        "配方纯净",
+        "理性科技"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "高端功效精华、安瓶、肌底液",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-2019bd4b-4ce69d",
+      "dimension": "透明度与质地",
+      "name": "分子网络凝胶感",
+      "name_en": "Molecular Network Gel Texture",
+      "visual_keywords": [
+        "分子网络",
+        "凝胶结构",
+        "网状拉丝",
+        "未来感",
+        "半透明胶体",
+        "结构化流动"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "配方结构感",
+        "高科技递送",
+        "稳定性",
+        "功效支撑"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "高机能精华、修护凝胶、安瓶精华",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-ba80d46b-920bf9",
+      "dimension": "透明度与质地",
+      "name": "高密度快速吸收面霜质地",
+      "name_en": "High-Density Fast-Absorbing Cream Texture",
+      "visual_keywords": [
+        "高密度",
+        "丰润但不厚重",
+        "快速吸收",
+        "细腻铺展",
+        "修护面霜",
+        "专业护理感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高营养效率",
+        "修护安全感",
+        "现代高端护理",
+        "专业可信"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "高端修护面霜、抗老面霜、术后护理面霜",
+      "source_section": "3.2",
+      "source_heading": "变化三：术后/屏障/修护场景强化“高密度但快速吸收”的质地",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-fd5e14bd-5c12a0",
+      "dimension": "透明度与质地",
+      "name": "不搓泥顺滑成膜质地",
+      "name_en": "Pilling-Free Smooth Film Texture",
+      "visual_keywords": [
+        "不搓泥",
+        "顺滑铺展",
+        "贴肤成膜",
+        "细腻均匀",
+        "后续兼容",
+        "护理级稳定"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "使用专业性",
+        "配方成熟度",
+        "日常兼容性",
+        "修护安心感"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "修护面霜、屏障乳霜、医美后护肤产品",
+      "source_section": "3.2",
+      "source_heading": "变化三：术后/屏障/修护场景强化“高密度但快速吸收”的质地",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-9b48a85c-dc28ad",
+      "dimension": "颜色",
+      "name": "琥珀金棕精华色",
+      "name_en": "Amber Golden-Brown Serum Tone",
+      "visual_keywords": [
+        "琥珀色",
+        "金棕色",
+        "橙金调",
+        "暖调浓缩感",
+        "高端韩方"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "人参浓缩",
+        "珍贵滋养",
+        "发酵活性",
+        "抗老价值"
+      ],
+      "maturity": "主流",
+      "year_range": "长期",
+      "typical_use": "人参精华、安瓶类高浓缩护肤产品",
+      "source_section": "§4.1.1",
+      "source_heading": "### 4.1.1 琥珀/金棕色高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6587dbfb-67cd4f",
+      "dimension": "透明度与质地",
+      "name": "半透明中黏度精华质地",
+      "name_en": "Semi-Transparent Medium-Viscosity Serum Texture",
+      "visual_keywords": [
+        "透明至半透明",
+        "中等黏度",
+        "较水状更稠",
+        "浓缩流动感",
+        "精华感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高浓缩配方",
+        "滋养包裹感",
+        "抗老修护",
+        "成分充足感"
+      ],
+      "maturity": "主流",
+      "year_range": "长期",
+      "typical_use": "高浓缩精华液、安瓶、抗老修护类护肤产品",
+      "source_section": "§4.1.1",
+      "source_heading": "### 4.1.1 琥珀/金棕色高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-19779e7b-b978df",
+      "dimension": "颜色",
+      "name": "淡金/淡黄色",
+      "name_en": "Pale Gold / Light Yellow",
+      "visual_keywords": [
+        "淡黄",
+        "浅琥珀",
+        "香槟金",
+        "半透明暖调",
+        "轻盈发酵感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "发酵活性",
+        "温和抗老",
+        "高端感",
+        "日常屏障护理"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "发酵精华水、抗老精华、第一步精华、安瓶",
+      "source_section": "4.1.2",
+      "source_heading": "### 4.1.2 淡金/淡黄色半透明抗老精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-23657ae9-80ea0f",
+      "dimension": "透明度与质地",
+      "name": "高透明/半透明水感精华质地",
+      "name_en": "Highly Transparent / Semi-Transparent Watery Serum Texture",
+      "visual_keywords": [
+        "高透明",
+        "半透明",
+        "水状流动",
+        "轻精华感",
+        "清透",
+        "低黏度"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻盈渗透",
+        "温和易用",
+        "第一步打底",
+        "配方精炼"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华水、轻精华、发酵型抗老精华、日常屏障护理产品",
+      "source_section": "4.1.2",
+      "source_heading": "### 4.1.2 淡金/淡黄色半透明抗老精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-550aac0b-9e53b0",
+      "dimension": "颜色",
+      "name": "透明无色",
+      "name_en": "Transparent Colorless",
+      "visual_keywords": [
+        "无色液体",
+        "清澈基底",
+        "实验室观感",
+        "纯净视觉"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度",
+        "低刺激",
+        "实验室科技",
+        "皮肤科学"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高端功效精华、安瓶类护肤品内容物呈现",
+      "source_section": "4.1.3",
+      "source_heading": "微乳白/透明科技精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6a8df14c-7b5609",
+      "dimension": "颜色",
+      "name": "微乳白",
+      "name_en": "Soft Milky White",
+      "visual_keywords": [
+        "淡乳白",
+        "轻微雾感",
+        "柔和白调",
+        "低刺激联想"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "敏感肌友好",
+        "温和配方",
+        "科学护理",
+        "现代高端"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "功效型精华、轻乳液感科技护肤产品",
+      "source_section": "4.1.3",
+      "source_heading": "微乳白/透明科技精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-d01dad2f-1dedb4",
+      "dimension": "透明度与质地",
+      "name": "高清透水精华质地",
+      "name_en": "High-Clarity Watery Serum Texture",
+      "visual_keywords": [
+        "高清透",
+        "水精华",
+        "轻薄流动",
+        "清亮折光",
+        "无厚重感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "纯净配方",
+        "精准功效",
+        "高端科技",
+        "易于吸收",
+        "现代感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高端功效精华、安瓶、敏感肌友好型护肤精华",
+      "source_section": "4.1.3",
+      "source_heading": "微乳白/透明科技精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-2db4ba06-1c0b87",
+      "dimension": "透明度与质地",
+      "name": "轻精华流动感",
+      "name_en": "Light Serum Fluidity",
+      "visual_keywords": [
+        "轻盈流动",
+        "低黏度",
+        "精华液态",
+        "薄透延展",
+        "快速铺展"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "低负担",
+        "精准护理",
+        "敏感肌适配",
+        "高效现代"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "功效型精华、安瓶、日常高端护肤场景",
+      "source_section": "4.1.3",
+      "source_heading": "微乳白/透明科技精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-7385a85c-a18944",
+      "dimension": "装饰物",
+      "name": "金色微粒",
+      "name_en": "Gold Micro-Particles",
+      "visual_keywords": [
+        "金色颗粒",
+        "悬浮微粒",
+        "透明或浅金液体",
+        "闪烁点状",
+        "可见活性物"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "高级活性成分",
+        "浓缩配方",
+        "可视化功效",
+        "即时视觉记忆点"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年前已广泛出现-当前",
+      "typical_use": "精华、安瓶类内容物设计，用于提升高端功效感与奢华识别",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-3c532709-ff3e5a",
+      "dimension": "装饰物",
+      "name": "胶囊",
+      "name_en": "Capsules",
+      "visual_keywords": [
+        "可见胶囊",
+        "悬浮结构",
+        "颗粒化活性",
+        "点状包裹",
+        "递送载体"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向递送",
+        "高浓缩活性",
+        "科技含量",
+        "成分被精密封装"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年-当前",
+      "typical_use": "功效型精华、安瓶中的可视化递送系统表达",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-87ae017f-c58b47",
+      "dimension": "装饰物",
+      "name": "悬浮物",
+      "name_en": "Suspended Actives",
+      "visual_keywords": [
+        "悬浮成分",
+        "漂浮结构",
+        "液体中可见物",
+        "分散状态",
+        "内容物层次"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "高活性可见化",
+        "配方丰富度",
+        "科技递送感",
+        "强化产品辨识度"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年前已广泛出现-当前",
+      "typical_use": "精华、安瓶中通过可见悬浮结构制造功效与高端感",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-4cdaa058-3870bb",
+      "dimension": "装饰物",
+      "name": "红色人参状悬浮成分",
+      "name_en": "Red Ginseng-Like Suspended Elements",
+      "visual_keywords": [
+        "红色悬浮物",
+        "人参状成分",
+        "植物形态联想",
+        "液体内漂浮",
+        "成分可视化"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀草本成分",
+        "高价值滋养",
+        "传统本草联想",
+        "内容物真实可见"
+      ],
+      "maturity": "主流",
+      "year_range": "过往已出现-当前仍具参考性",
+      "typical_use": "人参类安瓶、草本精华中的成分可视化表达",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-ebe7108d-3b1f2c",
+      "dimension": "装饰物",
+      "name": "脂质体递送系统",
+      "name_en": "Liposomal Delivery System",
+      "visual_keywords": [
+        "微观递送系统",
+        "脂质体",
+        "不可见科技",
+        "配方结构",
+        "科技传播核心"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "精准递送",
+        "技术门槛",
+        "高功效吸收",
+        "前沿配方科技"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年-当前",
+      "typical_use": "高功效精华、安瓶中的科技传播卖点与递送系统叙事",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-7b760acd-2f2feb",
+      "dimension": "装饰物",
+      "name": "微囊递送系统",
+      "name_en": "Microcapsule Delivery System",
+      "visual_keywords": [
+        "微囊",
+        "包裹结构",
+        "递送科技",
+        "微观活性载体",
+        "功效封存"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "成分稳定封存",
+        "精准释放",
+        "科技可信度",
+        "高浓度活性管理"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年-当前",
+      "typical_use": "精华、安瓶中的高科技活性输送表达",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-e5ca43d8-a0ec4c",
+      "dimension": "颜色",
+      "name": "浅金色液体",
+      "name_en": "Pale Gold Liquid",
+      "visual_keywords": [
+        "浅金色",
+        "淡金液体",
+        "柔和金调",
+        "轻奢金感",
+        "高端精华色"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调奢华",
+        "高价值成分",
+        "精密工艺感",
+        "温和高级"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年前已广泛出现-当前",
+      "typical_use": "高端精华、安瓶内容物配色，强化贵价与光泽感",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-543823fd-c881cb",
+      "dimension": "颜色",
+      "name": "红色人参色点缀",
+      "name_en": "Red Ginseng Accent",
+      "visual_keywords": [
+        "红色点缀",
+        "人参红",
+        "草本红调",
+        "悬浮红色",
+        "成分识别色"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "草本活性识别",
+        "传统珍贵成分",
+        "滋养修护",
+        "高辨识度"
+      ],
+      "maturity": "主流",
+      "year_range": "过往已出现-当前仍具参考性",
+      "typical_use": "草本安瓶、滋养型精华中用于强调核心植物成分",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-29a4b03f-70eea8",
+      "dimension": "透明度与质地",
+      "name": "透明精华基底",
+      "name_en": "Transparent Serum Base",
+      "visual_keywords": [
+        "透明基底",
+        "高通透液体",
+        "清澈水感",
+        "可见悬浮内容",
+        "精华流动感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度",
+        "配方自信",
+        "科技精炼",
+        "洁净高效"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年前已广泛出现-当前",
+      "typical_use": "精华、安瓶中承载颗粒或悬浮物的清透基底设计",
+      "source_section": "4.1.4",
+      "source_heading": "4.1.4 颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1110ba0b-aacce0",
+      "dimension": "颜色",
+      "name": "透明",
+      "name_en": "Transparent",
+      "visual_keywords": [
+        "无色感",
+        "清透外观",
+        "纯净基底"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度",
+        "清爽轻负担",
+        "配方简洁"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华水、化妆水的清透型基础配方",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-00931fa3-f5ced7",
+      "dimension": "颜色",
+      "name": "淡黄",
+      "name_en": "Pale Yellow",
+      "visual_keywords": [
+        "轻微黄调",
+        "发酵感色泽",
+        "低饱和暖色"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵活性",
+        "天然来源",
+        "温和滋养"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "带发酵概念的精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-3b5cb3d4-8f9a20",
+      "dimension": "颜色",
+      "name": "浅金",
+      "name_en": "Light Gold",
+      "visual_keywords": [
+        "轻金色调",
+        "微暖光感",
+        "低浓度金色"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精致感",
+        "高阶护理",
+        "低调贵感"
+      ],
+      "maturity": "上升",
+      "year_range": "当前-近2年",
+      "typical_use": "带高端修护定位的精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0ed0cd46-c57b96",
+      "dimension": "颜色",
+      "name": "琥珀",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "深暖黄棕",
+        "树脂感",
+        "浓缩色泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高浓度活性",
+        "天然萃取",
+        "修护功效"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "植物油感、发酵修护类精华与安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-9fe970d1-f984a1",
+      "dimension": "颜色",
+      "name": "金棕",
+      "name_en": "Golden Brown",
+      "visual_keywords": [
+        "棕金色",
+        "暖调浓缩感",
+        "深色精华"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "强修护",
+        "高活性浓缩",
+        "原料厚度"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "抗老修护型精华、安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-cf7c44ae-e68729",
+      "dimension": "颜色",
+      "name": "淡金",
+      "name_en": "Pale Gold",
+      "visual_keywords": [
+        "浅金调",
+        "柔和金色",
+        "轻奢光感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精密工艺",
+        "高端定位",
+        "温和高效"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高端功效型精华与安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6a8df14c-6a1ee5",
+      "dimension": "颜色",
+      "name": "微乳白",
+      "name_en": "Milky White",
+      "visual_keywords": [
+        "轻乳白",
+        "柔雾色泽",
+        "低饱和奶感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和包裹感",
+        "营养滋润",
+        "乳化修护"
+      ],
+      "maturity": "上升",
+      "year_range": "当前-近2年",
+      "typical_use": "屏障修护型精华、安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1110ba0b-aacce0",
+      "dimension": "颜色",
+      "name": "透明",
+      "name_en": "Transparent",
+      "visual_keywords": [
+        "无色基底",
+        "高纯净感",
+        "极简通透"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "配方自信",
+        "高纯精炼",
+        "即时吸收"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "透明功效型精华、安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-3120fb55-d8ec03",
+      "dimension": "装饰物",
+      "name": "轻微金色颗粒",
+      "name_en": "Subtle Golden Particles",
+      "visual_keywords": [
+        "细小金色点状",
+        "轻度悬浮",
+        "微闪颗粒"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精致加料感",
+        "视觉升级",
+        "轻奢功效"
+      ],
+      "maturity": "上升",
+      "year_range": "当前-近2年",
+      "typical_use": "带可视化点缀的精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f85de348-7c7948",
+      "dimension": "装饰物",
+      "name": "微囊",
+      "name_en": "Microcapsules",
+      "visual_keywords": [
+        "可见小囊体",
+        "悬浮颗粒",
+        "封装结构"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向输送",
+        "功效可视化",
+        "科技门槛"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高功效精华、安瓶中的活性封装体系",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-21ee29c9-c331d6",
+      "dimension": "装饰物",
+      "name": "颗粒",
+      "name_en": "Visible Granules",
+      "visual_keywords": [
+        "可见颗粒",
+        "点状分布",
+        "颗粒悬浮"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "成分存在感",
+        "缓释功效",
+        "配方层次"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "功效精华、去角质或修护安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-72d850fe-ce15bf",
+      "dimension": "装饰物",
+      "name": "悬浮元素",
+      "name_en": "Suspended Elements",
+      "visual_keywords": [
+        "漂浮可见物",
+        "分布悬浮",
+        "液体中层次"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "配方复杂度",
+        "功效可视化",
+        "新奇体验"
+      ],
+      "maturity": "上升",
+      "year_range": "当前-近2年",
+      "typical_use": "强调科技感与成分可见性的精华、安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-85f8f584-2bf78b",
+      "dimension": "装饰物",
+      "name": "珠光",
+      "name_en": "Pearlescent Particles",
+      "visual_keywords": [
+        "细腻珠光",
+        "柔和反射",
+        "微闪光泽"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调奢华",
+        "精修光感",
+        "高端护理"
+      ],
+      "maturity": "上升",
+      "year_range": "当前-近2年",
+      "typical_use": "强调高端视觉质感的精华与安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-c66fff03-25900a",
+      "dimension": "透明度与质地",
+      "name": "高透明水感",
+      "name_en": "Highly Transparent Watery Texture",
+      "visual_keywords": [
+        "高通透",
+        "清水质地",
+        "澄澈液体"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻盈无负担",
+        "快速渗透",
+        "纯净高效"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "日常补水型精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-063a4f26-3c8470",
+      "dimension": "透明度与质地",
+      "name": "高流动水状",
+      "name_en": "High-Flow Watery Fluid",
+      "visual_keywords": [
+        "流动快",
+        "低黏度",
+        "水状延展"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "快速吸收",
+        "清爽打底",
+        "层叠友好"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "清爽型精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-cf64c594-bff57c",
+      "dimension": "透明度与质地",
+      "name": "透明至半透明质地",
+      "name_en": "Transparent to Semi-Transparent Texture",
+      "visual_keywords": [
+        "透明层次",
+        "半透明雾感",
+        "可见深浅变化"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "配方包容性",
+        "功效浓度差异",
+        "理性专业"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "不同功效路线的精华与安瓶基底",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-b6dae637-291b9b",
+      "dimension": "透明度与质地",
+      "name": "乳浊质地",
+      "name_en": "Milky Turbid Texture",
+      "visual_keywords": [
+        "轻浑浊",
+        "乳化雾感",
+        "不完全通透"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "滋润包覆",
+        "营养浓度",
+        "修护安心感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "滋润修护型精华、安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a316a1ad-9b3e9b",
+      "dimension": "透明度与质地",
+      "name": "中等黏度挂壁感",
+      "name_en": "Medium Viscosity with Cling",
+      "visual_keywords": [
+        "中等稠度",
+        "缓慢流动",
+        "瓶壁挂留"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "浓缩精华感",
+        "高效修护",
+        "活性密度"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "高浓度修护、抗老类精华与安瓶",
+      "source_section": "4.2",
+      "source_heading": "与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-c857ceec-9ea2e9",
+      "dimension": "颜色",
+      "name": "乳白",
+      "name_en": "Milky White",
+      "visual_keywords": [
+        "乳白色",
+        "奶感",
+        "柔和",
+        "低对比",
+        "高端护肤",
+        "洁净"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和亲肤",
+        "滋润护理",
+        "柔软舒适",
+        "经典乳液认知"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "高端韩妆乳液、保湿乳、舒缓屏障护理产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0aebe63a-7b2f98",
+      "dimension": "颜色",
+      "name": "淡米色",
+      "name_en": "Light Beige",
+      "visual_keywords": [
+        "浅米色",
+        "温润",
+        "柔雾感",
+        "低饱和",
+        "柔和奶调",
+        "自然肤感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温暖养护",
+        "柔和高级感",
+        "低刺激联想",
+        "舒适包裹感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "高端韩妆乳液、滋养型乳液、修护护理产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-cabb3cc9-c063fa",
+      "dimension": "颜色",
+      "name": "浅黄乳浊",
+      "name_en": "Pale Yellow Milky Tone",
+      "visual_keywords": [
+        "浅黄色",
+        "乳浊感",
+        "柔和暖调",
+        "营养感",
+        "轻熟感",
+        "滋养联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "营养修护",
+        "天然滋养联想",
+        "活性成分感",
+        "温润高端"
+      ],
+      "maturity": "上升",
+      "year_range": "2023-2026",
+      "typical_use": "高端韩妆乳液、滋养修护乳、套装型水乳产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e8cc6032-00c96c",
+      "dimension": "透明度与质地",
+      "name": "不透明乳浊",
+      "name_en": "Opaque Emulsion Cloudiness",
+      "visual_keywords": [
+        "不透明",
+        "乳浊",
+        "均匀雾感",
+        "遮蔽性",
+        "乳液态",
+        "稳定细腻"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "屏障包裹感",
+        "高保湿",
+        "经典乳液质感",
+        "舒适安全感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "乳液、保湿乳、修护型面部护理产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-1a8eb0f7-c1d081",
+      "dimension": "透明度与质地",
+      "name": "半透明乳浊",
+      "name_en": "Semi-Translucent Milky Haze",
+      "visual_keywords": [
+        "半透明",
+        "乳浊感",
+        "轻盈云雾",
+        "柔焦",
+        "轻乳态",
+        "通透中带包裹"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻负担保湿",
+        "精致配方感",
+        "柔润不厚重",
+        "现代轻乳液趋势"
+      ],
+      "maturity": "上升",
+      "year_range": "2023-2026",
+      "typical_use": "轻乳液、精华乳、高端韩妆水乳套装中段产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6af19526-86c87c",
+      "dimension": "透明度与质地",
+      "name": "缓慢流动乳液体",
+      "name_en": "Slow-Flowing Emulsion Texture",
+      "visual_keywords": [
+        "缓慢流动",
+        "中等黏度",
+        "介于水霜之间",
+        "顺滑延展",
+        "稳定流态",
+        "柔润挂壁"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "配方平衡",
+        "易涂抹吸收",
+        "精致护理步骤",
+        "高端套装层级感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "面部乳液、套装型水乳产品、日常保湿护理",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-d3bd9622-ea4ba2",
+      "dimension": "透明度与质地",
+      "name": "柔滑轻油润成膜",
+      "name_en": "Silky Light-Oily Film-Forming Texture",
+      "visual_keywords": [
+        "柔滑",
+        "轻油润",
+        "成膜感",
+        "不厚重",
+        "细腻包裹",
+        "柔润屏障"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "屏障修护",
+        "滋润锁水",
+        "高端舒适感",
+        "温和养护"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "修护乳液、屏障护理乳、滋润型面部保养产品",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-474469f5-752893",
+      "dimension": "透明度与质地",
+      "name": "奶感柔润屏障膜感",
+      "name_en": "Milky Soft Barrier-Film Feel",
+      "visual_keywords": [
+        "奶感",
+        "柔润",
+        "屏障膜感",
+        "舒适包裹",
+        "细腻厚薄适中",
+        "高端乳感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "高端舒适",
+        "修护屏障",
+        "温和安心",
+        "持续保湿"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "高端韩妆乳液、敏感肌修护乳、套装型护肤乳液",
+      "source_section": "§4.3",
+      "source_heading": "4.3 乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-ab64f499-747343",
+      "dimension": "颜色",
+      "name": "淡黄色精华液",
+      "name_en": "Pale Yellow Essence",
+      "visual_keywords": [
+        "淡黄色",
+        "低饱和",
+        "轻盈水感",
+        "半透明液体"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "温和活性成分",
+        "轻润易吸收",
+        "天然提取联想"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "贴片面膜中的精华液、前导型护理精华",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-cf141e87-517342",
+      "dimension": "颜色",
+      "name": "琥珀色精华液",
+      "name_en": "Amber Essence",
+      "visual_keywords": [
+        "琥珀色",
+        "暖调金棕",
+        "浓润感",
+        "高端植物感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物精萃",
+        "滋养修护",
+        "高价值天然成分"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "高端面膜精华液、修护型涂抹面膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-2943e7e1-760cf6",
+      "dimension": "颜色",
+      "name": "白色或米白乳霜体",
+      "name_en": "White or Off-White Cream Base",
+      "visual_keywords": [
+        "白色",
+        "米白色",
+        "柔和奶感",
+        "不透明膏体"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "滋养修护",
+        "丰润包裹感",
+        "温和安心"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "乳霜型面膜、睡眠面膜、修护膏膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-ac19fa0a-5a2e68",
+      "dimension": "颜色",
+      "name": "棕橙色膜体",
+      "name_en": "Brown-Orange Film Texture",
+      "visual_keywords": [
+        "棕橙色",
+        "暖褐橙调",
+        "浓缩草本感",
+        "成膜联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "草本发酵感",
+        "高浓度修护",
+        "传统植萃与功效结合"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "撕拉面膜、凝胶膜、草本修护膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6f6c5f3a-b7a983",
+      "dimension": "颜色",
+      "name": "金色膜布视觉",
+      "name_en": "Golden Mask Sheet Visual",
+      "visual_keywords": [
+        "金色",
+        "贵气光泽",
+        "高端膜布",
+        "仪式感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端护理定位",
+        "精密工艺",
+        "可见奢华感"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "高端贴片面膜、礼盒型面膜产品",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f5ef20a4-dce20e",
+      "dimension": "装饰物",
+      "name": "轻微颗粒/膜感附着",
+      "name_en": "Fine Granular Film Residue",
+      "visual_keywords": [
+        "轻微颗粒",
+        "膜感附着",
+        "表面残留",
+        "细小可见结构"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "成膜过程可见",
+        "功效沉积感",
+        "使用过程具触感记忆"
+      ],
+      "maturity": "实验性",
+      "year_range": "2024-2026",
+      "typical_use": "撕拉面膜、成膜型涂抹面膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-598bad5e-6a9eed",
+      "dimension": "装饰物",
+      "name": "霜痕残留",
+      "name_en": "Cream Streak Residue",
+      "visual_keywords": [
+        "霜痕",
+        "涂抹痕迹",
+        "残留纹路",
+        "内容物附着"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "丰厚包裹感",
+        "高滋养存在感",
+        "人工涂抹痕迹带来真实体验"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "乳霜型面膜、膜布附着型精华产品",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-9d3463e8-c79234",
+      "dimension": "透明度与质地",
+      "name": "透明可见精华液",
+      "name_en": "Visible Transparent Essence",
+      "visual_keywords": [
+        "透明",
+        "液体可见",
+        "高流动",
+        "湿润感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "清爽补水",
+        "即时渗透感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "精华液型贴片面膜、补水面膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-332fb9d1-ba2a18",
+      "dimension": "透明度与质地",
+      "name": "强浸润水感",
+      "name_en": "Intense Saturating Watery Feel",
+      "visual_keywords": [
+        "浸润感强",
+        "湿润",
+        "水感明显",
+        "即时润泽"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "快速补水",
+        "肤感即时有效",
+        "轻负担高亲肤"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "精华液型面膜、密集补水护理",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-1049755e-6f4be8",
+      "dimension": "透明度与质地",
+      "name": "厚重不透明乳霜质地",
+      "name_en": "Dense Opaque Cream Texture",
+      "visual_keywords": [
+        "不透明",
+        "厚质地",
+        "膏霜感",
+        "包裹性强"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "深度滋养",
+        "修护屏障",
+        "高浓度营养感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "乳霜型面膜、修护睡眠膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6b8a777c-cb7141",
+      "dimension": "透明度与质地",
+      "name": "半透明凝胶膜体",
+      "name_en": "Semi-Transparent Gel Film",
+      "visual_keywords": [
+        "半透明",
+        "凝胶化",
+        "成膜感",
+        "柔韧膜体"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "膜层覆盖修护",
+        "使用过程可视化",
+        "科技型成膜机制"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "凝胶膜、撕拉式面膜、成膜护理产品",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-de5a5ad3-483d6a",
+      "dimension": "透明度与质地",
+      "name": "厚敷—成膜—剥离触感",
+      "name_en": "Thick-Apply, Film-Forming, Peel-Off Tactile Sequence",
+      "visual_keywords": [
+        "厚敷",
+        "成膜",
+        "剥离",
+        "过程感强"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "即时体验强化",
+        "可操作仪式感",
+        "功效过程被感知"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "撕拉面膜、功能型涂抹面膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-821dd65a-12c7fb",
+      "dimension": "透明度与质地",
+      "name": "柔韧膜体质感",
+      "name_en": "Flexible Film Texture",
+      "visual_keywords": [
+        "柔韧",
+        "弹性膜体",
+        "完整剥离",
+        "韧性质感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "先进聚合成膜技术",
+        "完整包覆力",
+        "高功能体验"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "撕拉式面膜、凝胶膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-22e19814-5f4b47",
+      "dimension": "透明度与质地",
+      "name": "半透明精华液",
+      "name_en": "Semi-Transparent Essence",
+      "visual_keywords": [
+        "半透明",
+        "轻润液体",
+        "可见流动",
+        "水凝感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "配方真实可见",
+        "轻功效感",
+        "介于清透与滋养之间"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "贴片面膜精华液、日常修护精华型面膜",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a9f8072c-e2d4d5",
+      "dimension": "透明度与质地",
+      "name": "即时光泽表面效果",
+      "name_en": "Instant Gloss Finish",
+      "visual_keywords": [
+        "即时光泽",
+        "表面润亮",
+        "反光感",
+        "湿泽肤感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "立刻可见的护理效果",
+        "肌肤丰盈度提升",
+        "高端护理反馈明确"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2026",
+      "typical_use": "高端面膜、急救护理面膜、敷后展示场景",
+      "source_section": "4.5",
+      "source_heading": "## 4.5 面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-7f72b628-e73eb8",
+      "dimension": "透明度与质地",
+      "name": "清透流动水感",
+      "name_en": "Clear Fluid Watery Texture",
+      "visual_keywords": [
+        "清透",
+        "流动性强",
+        "轻薄水润",
+        "快速铺展",
+        "不黏腻"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高吸收效率",
+        "配方精炼",
+        "首步打底专业性",
+        "清爽无负担"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "首步精华、精华水、晨晚护肤第一步",
+      "source_section": "6.1",
+      "source_heading": "## 6.1 水感快速吸收：精华水与首步精华的主轴",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e3de5efc-2ab140",
+      "dimension": "透明度与质地",
+      "name": "轻薄可叠加质地",
+      "name_en": "Lightweight Layerable Texture",
+      "visual_keywords": [
+        "轻薄",
+        "水润",
+        "多层叠加",
+        "无厚重感",
+        "快速吸收"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "使用自由度高",
+        "适合多步骤护肤",
+        "日夜兼容",
+        "肌肤友好"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "需要多层加乘使用的精华水、导入型首步精华",
+      "source_section": "6.1",
+      "source_heading": "## 6.1 水感快速吸收：精华水与首步精华的主轴",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-455a8ded-46db8b",
+      "dimension": "透明度与质地",
+      "name": "不黏快吸收触感",
+      "name_en": "Non-Sticky Fast-Absorbing Feel",
+      "visual_keywords": [
+        "不黏",
+        "秒吸收",
+        "清爽肤感",
+        "表面干净",
+        "无残留感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高效渗透印象",
+        "晨间友好",
+        "后续上妆兼容",
+        "高级肤感控制"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "早晚第一步使用的精华水、妆前护肤型精华",
+      "source_section": "6.1",
+      "source_heading": "## 6.1 水感快速吸收：精华水与首步精华的主轴",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-50eca311-a9c4e5",
+      "dimension": "透明度与质地",
+      "name": "清透精华水感",
+      "name_en": "Clear Essence Watery Texture",
+      "visual_keywords": [
+        "高通透",
+        "轻薄水感",
+        "清澈液体",
+        "快速铺展",
+        "精华流动感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "清爽易吸收",
+        "高效渗透",
+        "现代科技护肤"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "面部精华、首步精华、肌底液",
+      "source_section": "7.1",
+      "source_heading": "## 7.1 核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-016718cc-47a56c",
+      "dimension": "透明度与质地",
+      "name": "薄膜感质地",
+      "name_en": "Film-Forming Texture",
+      "visual_keywords": [
+        "薄膜包裹",
+        "贴肤延展",
+        "表面成膜",
+        "轻盈覆盖",
+        "细腻顺滑"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "屏障保护",
+        "医美后护理感",
+        "精密配方",
+        "即刻肤感优化"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "修护精华、修护乳、面霜",
+      "source_section": "7.1",
+      "source_heading": "## 7.1 核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-ffcf40d6-f670d1",
+      "dimension": "透明度与质地",
+      "name": "润泽玻璃肌光泽",
+      "name_en": "Dewy Glass-Skin Sheen",
+      "visual_keywords": [
+        "镜面光泽",
+        "水润反光",
+        "肌表透亮",
+        "细腻亮面",
+        "均匀发光"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "水光肌效果",
+        "高保湿感",
+        "年轻弹润",
+        "韩式高端护理"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "精华、乳液、面霜、妆前护肤",
+      "source_section": "7.1",
+      "source_heading": "## 7.1 核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-3e8002dd-cc972a",
+      "dimension": "透明度与质地",
+      "name": "高密度滋养霜感",
+      "name_en": "High-Density Nourishing Cream Texture",
+      "visual_keywords": [
+        "丰润霜体",
+        "高密度膏霜",
+        "厚实却细腻",
+        "包裹感强",
+        "不显油腻"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "深度滋养",
+        "高端修护",
+        "丰厚养肤",
+        "滋润但克制"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "面霜、眼霜、Rich cream",
+      "source_section": "7.1",
+      "source_heading": "## 7.1 核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a6bb1220-24ef1a",
+      "dimension": "透明度与质地",
+      "name": "快速吸收轻盈肤感",
+      "name_en": "Fast-Absorbing Lightweight Finish",
+      "visual_keywords": [
+        "迅速吸收",
+        "轻盈无负担",
+        "不黏腻",
+        "肤表清爽",
+        "柔滑收敛"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高效渗透",
+        "日常易坚持使用",
+        "高端配方效率",
+        "厚养肤但不厚重"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "精华、乳液、面霜",
+      "source_section": "7.1",
+      "source_heading": "## 7.1 核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-c857ceec-228630",
+      "dimension": "颜色",
+      "name": "乳白",
+      "name_en": "Milky White",
+      "visual_keywords": [
+        "乳白色调",
+        "柔和不透明",
+        "干净均匀",
+        "面霜联想"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "胶原修护",
+        "丰润滋养",
+        "温和亲肤",
+        "高包裹感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "抗老面霜、修护乳霜、弹润精华",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-3353be37-164e6a",
+      "dimension": "颜色",
+      "name": "淡粉米色",
+      "name_en": "Soft Pink Beige",
+      "visual_keywords": [
+        "淡粉米色",
+        "低饱和暖调",
+        "细腻肤感",
+        "修护型色彩"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "弹力改善",
+        "抗皱护理",
+        "高级温和",
+        "精密配方感"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗皱精华、眼霜、紧致乳液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-6a8df14c-f2b12e",
+      "dimension": "颜色",
+      "name": "微乳白",
+      "name_en": "Semi-Milky White",
+      "visual_keywords": [
+        "微乳白",
+        "半透浅白",
+        "科技洁净",
+        "轻乳液观感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "脂质体递送",
+        "功效可视化",
+        "温和科技",
+        "高活性成分"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "次抛精华、导入精华、科技型乳液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-103f715d-e52a6f",
+      "dimension": "颜色",
+      "name": "琥珀色",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "琥珀色",
+        "暖调透亮",
+        "植物精粹感",
+        "发酵联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "人参韩方",
+        "天然活性",
+        "珍稀滋养",
+        "时间沉淀感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "人参精华、韩方原液、发酵护肤液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-fde51592-e38f34",
+      "dimension": "颜色",
+      "name": "淡黄色",
+      "name_en": "Pale Yellow",
+      "visual_keywords": [
+        "淡黄色",
+        "轻暖色泽",
+        "清润植物感",
+        "柔和自然"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "天然提取物",
+        "温和发酵",
+        "草本功效",
+        "低加工感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "精华水、安瓶、草本修护液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-8c177db8-f06664",
+      "dimension": "颜色",
+      "name": "金棕色",
+      "name_en": "Golden Brown",
+      "visual_keywords": [
+        "金棕色",
+        "浓郁暖色",
+        "贵价植物感",
+        "成熟发酵色"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高浓缩人参",
+        "高价值原料",
+        "深层滋补",
+        "传统韩方底蕴"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "高浓度精华、滋养安瓶、贵妇型面霜",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-42f042b0-50b7da",
+      "dimension": "颜色",
+      "name": "米白色",
+      "name_en": "Creamy Off-White",
+      "visual_keywords": [
+        "米白色",
+        "低刺激联想",
+        "柔和中性色",
+        "医疗修护感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "屏障修护",
+        "医美后护理",
+        "安全温和",
+        "稳定舒缓"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "修护面霜、屏障乳、术后护理乳",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f85de348-19e22f",
+      "dimension": "装饰物",
+      "name": "微囊",
+      "name_en": "Microcapsules",
+      "visual_keywords": [
+        "可见微囊",
+        "悬浮颗粒",
+        "爆珠结构",
+        "透明基底中分布"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向递送",
+        "活性封存",
+        "高科技门槛",
+        "功效可视化"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗老精华、安瓶、缓释护肤产品",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-70fe3f72-d90f25",
+      "dimension": "装饰物",
+      "name": "科技颗粒",
+      "name_en": "Tech Particles",
+      "visual_keywords": [
+        "功能颗粒",
+        "悬浮点状结构",
+        "可见递送体",
+        "实验室感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "递送科技",
+        "活性成分存在感",
+        "实验室验证",
+        "高功效配方"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "脂质体精华、功效安瓶、科技导入液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-21dae6c9-b9bb73",
+      "dimension": "透明度与质地",
+      "name": "浓密霜体",
+      "name_en": "Dense Cream Texture",
+      "visual_keywords": [
+        "高稠度",
+        "厚实霜体",
+        "绵密包裹",
+        "不流动质感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "高滋养度",
+        "抗老修护",
+        "强封闭保湿",
+        "丰盈弹润"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "抗老面霜、晚霜、紧致修护霜",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-cdb405cd-67dd0d",
+      "dimension": "透明度与质地",
+      "name": "弹润精华",
+      "name_en": "Bouncy Serum Texture",
+      "visual_keywords": [
+        "弹性质地",
+        "拉丝轻弹",
+        "润泽感",
+        "精华流动性"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "胶原提升",
+        "弹力改善",
+        "高活性浓缩",
+        "丰润但精致"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗皱精华、紧致精华、眼部精华",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a1b4ee44-721d45",
+      "dimension": "透明度与质地",
+      "name": "透明基底",
+      "name_en": "Transparent Base",
+      "visual_keywords": [
+        "高透明度",
+        "清澈基底",
+        "纯净液体",
+        "实验室观感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "科技递送",
+        "成分自信",
+        "清洁高效"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "科技精华、安瓶、导入液",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-91380c9f-7a91c6",
+      "dimension": "透明度与质地",
+      "name": "半透明质地",
+      "name_en": "Translucent Texture",
+      "visual_keywords": [
+        "半透明",
+        "轻雾感",
+        "可见深度",
+        "介于清透与乳感之间"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "脂质体包裹",
+        "温和科技",
+        "轻盈功效",
+        "精密配方结构"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "脂质体精华、乳状安瓶、功效凝露",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-c8001f32-cd2125",
+      "dimension": "透明度与质地",
+      "name": "柔润质地",
+      "name_en": "Soft Emollient Texture",
+      "visual_keywords": [
+        "柔润触感",
+        "顺滑延展",
+        "低摩擦",
+        "舒缓包覆"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "屏障修护",
+        "低刺激护理",
+        "舒适涂抹",
+        "温和安全"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "修护乳霜、敏感肌护理、术后修护产品",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-b3b65dfd-9f649b",
+      "dimension": "透明度与质地",
+      "name": "快速吸收质地",
+      "name_en": "Fast-Absorbing Texture",
+      "visual_keywords": [
+        "迅速成膜后吸收",
+        "不黏腻",
+        "轻薄贴肤",
+        "残留感低"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "医美后适用",
+        "低负担修护",
+        "高效渗透",
+        "日常易用"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "修护精华、舒缓乳液、术后护理产品",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-f8ccd82a-597561",
+      "dimension": "透明度与质地",
+      "name": "清透质地",
+      "name_en": "Crystal-Clear Texture",
+      "visual_keywords": [
+        "清透感",
+        "轻薄通透",
+        "水感明显",
+        "无厚重残留"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "焕亮水光",
+        "纯净高效",
+        "轻盈使用感",
+        "即刻清新"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "焕亮精华、水光精华、妆前打底护理",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-412cf895-22cd48",
+      "dimension": "透明度与质地",
+      "name": "珠光质地",
+      "name_en": "Pearly Sheen Texture",
+      "visual_keywords": [
+        "细腻珠光",
+        "柔和反光",
+        "光泽流转",
+        "焕亮膜感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "提亮肤感",
+        "精致高级",
+        "即刻光泽",
+        "细腻工艺"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "焕亮精华、妆前乳、光泽凝露",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-8d1b5986-c80b6d",
+      "dimension": "透明度与质地",
+      "name": "薄膜感",
+      "name_en": "Film-Forming Finish",
+      "visual_keywords": [
+        "轻薄成膜",
+        "表面平滑",
+        "锁水膜感",
+        "细致覆盖"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "水光效果",
+        "屏障辅助",
+        "即刻平滑",
+        "精密肤表管理"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "水光精华、焕亮凝露、妆前护肤",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-bf66be2f-b78195",
+      "dimension": "透明度与质地",
+      "name": "轻盈凝露",
+      "name_en": "Lightweight Gel Essence",
+      "visual_keywords": [
+        "凝露质地",
+        "轻盈水润",
+        "流动性适中",
+        "清爽胶感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "清爽焕亮",
+        "快速吸收",
+        "水光护理",
+        "年轻科技感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "焕亮凝露、夏季精华、日间保湿产品",
+      "source_section": "§8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-cf7c44ae-d0766a",
+      "dimension": "颜色",
+      "name": "淡金",
+      "name_en": "Pale Gold",
+      "visual_keywords": [
+        "浅金调",
+        "低饱和金色",
+        "柔和光泽",
+        "高端联想"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端礼赠感",
+        "低调奢华",
+        "精致工艺联想"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端韩妆精华、礼盒套装内容物视觉联想",
+      "source_section": "## 9",
+      "source_heading": "9. Channel and Touchpoint：渠道如何推动趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-d4a321ce-0eed48",
+      "dimension": "颜色",
+      "name": "米白",
+      "name_en": "Off-White",
+      "visual_keywords": [
+        "米白色",
+        "柔和乳感",
+        "干净细腻",
+        "温和高端"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和滋养",
+        "亲和高端",
+        "细腻肤感联想"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端韩妆乳液、面霜、礼盒套装内容物视觉联想",
+      "source_section": "## 9",
+      "source_heading": "9. Channel and Touchpoint：渠道如何推动趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0ed0cd46-bd7404",
+      "dimension": "颜色",
+      "name": "琥珀",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "琥珀色",
+        "暖棕金调",
+        "珍稀原料感",
+        "浓润高级"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍贵草本成分",
+        "滋养修护",
+        "传统奢养价值"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端韩妆精华、修护液、礼盒套装内容物视觉联想",
+      "source_section": "## 9",
+      "source_heading": "9. Channel and Touchpoint：渠道如何推动趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-3705b670-b270e8",
+      "dimension": "颜色",
+      "name": "微乳白科技精华",
+      "name_en": "Micro Milky-White Tech Serum",
+      "visual_keywords": [
+        "微乳白",
+        "低饱和白",
+        "轻雾感",
+        "科技精华",
+        "洁净提亮"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高端功效科技",
+        "温和精密配方",
+        "实验室级研发感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老精华、脂质体概念护理液",
+      "source_section": "10.1",
+      "source_heading": "### 信号一：NAD / Liposome / Skin Longevity 成为高端抗老新语言",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-8f335cde-758547",
+      "dimension": "装饰物",
+      "name": "可见微囊",
+      "name_en": "Visible Microcapsules",
+      "visual_keywords": [
+        "悬浮微囊",
+        "可见颗粒",
+        "功效封装",
+        "颗粒分布",
+        "科技可视化"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "活性成分封装",
+        "功效可视化",
+        "高技术门槛",
+        "靶向递送"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老精华、安瓶、脂质体护理产品",
+      "source_section": "10.1",
+      "source_heading": "### 信号一：NAD / Liposome / Skin Longevity 成为高端抗老新语言",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-44e29015-6f3a44",
+      "dimension": "透明度与质地",
+      "name": "半透明胶囊精华",
+      "name_en": "Semi-Transparent Capsule Serum",
+      "visual_keywords": [
+        "半透明",
+        "胶囊感",
+        "凝胶包裹",
+        "轻盈悬浮",
+        "通透质地"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "前沿递送技术",
+        "高纯度功效感",
+        "未来感护肤语言"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老精华、夜间修护精华、安瓶产品",
+      "source_section": "10.1",
+      "source_heading": "### 信号一：NAD / Liposome / Skin Longevity 成为高端抗老新语言",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1d23a323-3691f7",
+      "dimension": "颜色",
+      "name": "淡金色",
+      "name_en": "Pale Gold",
+      "visual_keywords": [
+        "淡金",
+        "柔和金调",
+        "轻奢光感",
+        "低饱和金色"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端功效感",
+        "精密配方",
+        "低调奢华"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高端抗老安瓶、精华液",
+      "source_section": "11",
+      "source_heading": "1. NAD 脂质体“慢老科技精华”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-85659e53-266040",
+      "dimension": "透明度与质地",
+      "name": "半透明脂质体精华质地",
+      "name_en": "Semi-Transparent Liposomal Serum Texture",
+      "visual_keywords": [
+        "半透明",
+        "水精华感",
+        "轻薄流动",
+        "高纯净感",
+        "科技精华"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级精炼",
+        "高活性递送",
+        "慢老科技"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高端功效抗老精华、安瓶",
+      "source_section": "11",
+      "source_heading": "1. NAD 脂质体“慢老科技精华”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-dfa58f54-44ac1b",
+      "dimension": "装饰物",
+      "name": "脂质体可视化结构",
+      "name_en": "Visible Liposome Structure",
+      "visual_keywords": [
+        "脂质体",
+        "微观递送",
+        "可视科技",
+        "活性结构可见"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向输送",
+        "科技门槛",
+        "功效可视化"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高端抗老精华、功效安瓶",
+      "source_section": "11",
+      "source_heading": "1. NAD 脂质体“慢老科技精华”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-42e70e86-2c44c3",
+      "dimension": "颜色",
+      "name": "琥珀金棕色",
+      "name_en": "Amber Golden Brown",
+      "visual_keywords": [
+        "琥珀色",
+        "金棕",
+        "暖调浓萃",
+        "草本奢养"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀草本",
+        "高浓度滋养",
+        "韩方奢华"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "人参精华、高浓缩修护精华",
+      "source_section": "11",
+      "source_heading": "2. 琥珀人参高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-632eb228-2a4c7d",
+      "dimension": "透明度与质地",
+      "name": "半透明中高黏度浓缩精华质地",
+      "name_en": "Semi-Transparent Medium-to-High Viscosity Concentrated Serum Texture",
+      "visual_keywords": [
+        "半透明",
+        "中高黏度",
+        "浓缩感",
+        "缓慢流动",
+        "厚润"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高浓度原料",
+        "滋补修护",
+        "贵价精华"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "人参精华、滋养型抗老精华",
+      "source_section": "11",
+      "source_heading": "2. 琥珀人参高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1d662b24-7f88c9",
+      "dimension": "颜色",
+      "name": "米白淡粉米色",
+      "name_en": "Off-White and Soft Pink Beige",
+      "visual_keywords": [
+        "米白",
+        "淡粉米色",
+        "柔雾奶感",
+        "修护肤色"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和修护",
+        "屏障护理",
+        "柔润安全感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024–2026",
+      "typical_use": "修护面霜、眼霜、医美后护理霜",
+      "source_section": "11",
+      "source_heading": "3. 米白高密度修护霜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-d07b7d06-87ff07",
+      "dimension": "透明度与质地",
+      "name": "不透明高密度光泽霜体",
+      "name_en": "Opaque High-Density Glossy Cream Texture",
+      "visual_keywords": [
+        "不透明",
+        "浓密",
+        "高密度",
+        "表面光泽",
+        "快吸收"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "强修护力",
+        "包裹感",
+        "高效舒缓"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "修护霜、眼霜、屏障修护产品",
+      "source_section": "11",
+      "source_heading": "3. 米白高密度修护霜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-710121a9-9b18f2",
+      "dimension": "颜色",
+      "name": "发酵淡黄色",
+      "name_en": "Fermented Light Yellow",
+      "visual_keywords": [
+        "淡黄",
+        "轻发酵色",
+        "清洁黄调",
+        "日常精华水色"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "温和发酵活性",
+        "安全日常护理",
+        "首步调理"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "精华水、前导精华、首步护理",
+      "source_section": "11",
+      "source_heading": "4. 发酵淡黄精华水",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-56b756ce-a4a29c",
+      "dimension": "透明度与质地",
+      "name": "清透水感精华水质地",
+      "name_en": "Clear Watery Essence Texture",
+      "visual_keywords": [
+        "清透",
+        "水感",
+        "轻薄",
+        "快速吸收",
+        "流动性高"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻负担高吸收",
+        "纯净配方感",
+        "高端日常护理"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "精华水、前导液、首步精华",
+      "source_section": "11",
+      "source_heading": "4. 发酵淡黄精华水",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-02061027-12e203",
+      "dimension": "装饰物",
+      "name": "金色活性颗粒/微囊",
+      "name_en": "Golden Active Particles / Microcapsules",
+      "visual_keywords": [
+        "金色颗粒",
+        "微囊",
+        "胶囊",
+        "悬浮",
+        "活性可视化",
+        "爆破释活"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "高活性封存",
+        "科技感升级",
+        "高端差异化"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高功效精华、胶囊精华、抗老安瓶",
+      "source_section": "11",
+      "source_heading": "5. 可视化活性颗粒/微囊",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-a5ac51fc-200228",
+      "dimension": "颜色",
+      "name": "棕橙色",
+      "name_en": "Brown-Orange",
+      "visual_keywords": [
+        "棕橙",
+        "暖草本色",
+        "厚敷色调",
+        "仪式感色泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "草本修护",
+        "即时滋养",
+        "厚敷护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "涂抹式面膜、面膜精华、睡眠面膜",
+      "source_section": "11",
+      "source_heading": "6. 凝胶膜/弹性面膜精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-2ef6f496-4154f7",
+      "dimension": "透明度与质地",
+      "name": "半透明湿润凝胶膜质地",
+      "name_en": "Semi-Transparent Moist Gel-Film Texture",
+      "visual_keywords": [
+        "半透明膜",
+        "凝胶",
+        "弹性",
+        "湿润",
+        "即时光泽",
+        "厚敷成膜"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "即时焕亮",
+        "成膜修护",
+        "仪式感护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "涂抹式面膜、凝胶面膜、急救护理",
+      "source_section": "11",
+      "source_heading": "6. 凝胶膜/弹性面膜精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-a84b64a5-d98d4d",
+      "dimension": "颜色",
+      "name": "淡金微囊",
+      "name_en": "Pale Gold Microcapsules",
+      "visual_keywords": [
+        "淡金色",
+        "透明基底中点状分布",
+        "微囊悬浮",
+        "低饱和金调"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "高端活性成分",
+        "珍稀修护价值",
+        "温和奢华感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "高端功效精华、抗老微囊精华",
+      "source_section": "13",
+      "source_heading": "高端透明微囊精华仍有机会",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-e07e06bc-8d10bd",
+      "dimension": "颜色",
+      "name": "淡粉微囊",
+      "name_en": "Pale Pink Microcapsules",
+      "visual_keywords": [
+        "淡粉色",
+        "透明基底中悬浮",
+        "微囊颗粒",
+        "低饱和粉调"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "屏障修护联想",
+        "温和高端感",
+        "科技活性可视化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "高端功效精华、屏障修护精华",
+      "source_section": "13",
+      "source_heading": "高端透明微囊精华仍有机会",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a1b4ee44-cbb6c9",
+      "dimension": "透明度与质地",
+      "name": "透明基底",
+      "name_en": "Transparent Base",
+      "visual_keywords": [
+        "高通透",
+        "清澈液体",
+        "无明显浑浊",
+        "玻璃感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "实验室级精炼",
+        "功效成分承载体"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "高端功效精华、微囊精华液",
+      "source_section": "13",
+      "source_heading": "高端透明微囊精华仍有机会",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f85de348-c851e4",
+      "dimension": "装饰物",
+      "name": "微囊",
+      "name_en": "Microcapsules",
+      "visual_keywords": [
+        "可见颗粒",
+        "悬浮结构",
+        "点状包裹体",
+        "均匀分散"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "靶向递送技术",
+        "高技术门槛"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "高端功效精华、抗老修护精华",
+      "source_section": "13",
+      "source_heading": "高端透明微囊精华仍有机会",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-5cd08555-1fc0f1",
+      "dimension": "颜色",
+      "name": "白色舒缓凝霜",
+      "name_en": "White Soothing Gel Cream",
+      "visual_keywords": [
+        "纯白色",
+        "低彩度",
+        "洁净白调",
+        "医疗感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "舒缓修护",
+        "医美后安心感",
+        "专业洁净感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "医美后面霜、舒缓修护霜",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-af0c8ace-61858d",
+      "dimension": "透明度与质地",
+      "name": "凝霜质地",
+      "name_en": "Gel-Cream Texture",
+      "visual_keywords": [
+        "凝胶霜感",
+        "轻盈包裹",
+        "半透明至不透明",
+        "水润延展"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻负担修护",
+        "快速吸收",
+        "医美后舒适性"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2027",
+      "typical_use": "舒缓面霜、医美后修护霜",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-7701e7b7-048117",
+      "dimension": "颜色",
+      "name": "淡粉屏障霜",
+      "name_en": "Pale Pink Barrier Cream",
+      "visual_keywords": [
+        "淡粉色",
+        "低饱和粉调",
+        "柔和肤感色",
+        "轻医美色彩"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "屏障修护",
+        "温柔镇静",
+        "精细护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "屏障修护霜、医美后面霜",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1337acf6-767e59",
+      "dimension": "颜色",
+      "name": "米白高密度面霜",
+      "name_en": "Off-White High-Density Night Cream",
+      "visual_keywords": [
+        "米白色",
+        "温和奶白",
+        "低饱和暖白",
+        "厚实夜霜色"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "夜间滋养",
+        "高营养密度",
+        "厚润修护"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "晚霜、修护型 night cream",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-b604f4ec-8d53b8",
+      "dimension": "透明度与质地",
+      "name": "高密度夜霜质地",
+      "name_en": "High-Density Night Cream Texture",
+      "visual_keywords": [
+        "高密度",
+        "厚实霜体",
+        "丰润包裹",
+        "缓慢流动"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "深度滋养",
+        "夜间封护",
+        "高价修护力"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "晚霜、修护型 night cream",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-70af51fb-7734f4",
+      "dimension": "透明度与质地",
+      "name": "轻乳化日霜质地",
+      "name_en": "Light Emulsified Day Cream Texture",
+      "visual_keywords": [
+        "轻乳化",
+        "轻盈乳霜",
+        "细腻推开",
+        "薄膜感低"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "日间轻负担",
+        "精致护理",
+        "高端克制"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "日霜、妆前保湿霜",
+      "source_section": "13",
+      "source_heading": "“医美后高端霜”内容物可以进一步细分",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-4db019d3-be1b79",
+      "dimension": "颜色",
+      "name": "淡黄透明精华水",
+      "name_en": "Pale Yellow Transparent Essence Water",
+      "visual_keywords": [
+        "淡黄色",
+        "低饱和黄调",
+        "清透水色",
+        "发酵感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵活性",
+        "温和功能性",
+        "经典精华水认知"
+      ],
+      "maturity": "主流",
+      "year_range": "2023-2027",
+      "typical_use": "发酵精华水、功能化妆水",
+      "source_section": "13",
+      "source_heading": "精华水可加入极低调的可视化元素",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-274a7943-673e4a",
+      "dimension": "装饰物",
+      "name": "极细微气泡",
+      "name_en": "Ultra-Fine Bubbles",
+      "visual_keywords": [
+        "极细气泡",
+        "稀疏分布",
+        "微光点",
+        "轻盈漂浮"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "活性新鲜感",
+        "科技轻感",
+        "差异化识别"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025-2027",
+      "typical_use": "精华水、功能化妆水",
+      "source_section": "13",
+      "source_heading": "精华水可加入极低调的可视化元素",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-0b33bb8b-34f569",
+      "dimension": "装饰物",
+      "name": "轻珠光",
+      "name_en": "Subtle Pearlescence",
+      "visual_keywords": [
+        "轻微珠光",
+        "柔和反射",
+        "细腻闪泽",
+        "低调光感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端克制",
+        "精致工艺感",
+        "温和辨识度"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "精华水、轻功能精华液",
+      "source_section": "13",
+      "source_heading": "精华水可加入极低调的可视化元素",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-e3f17488-4ac526",
+      "dimension": "透明度与质地",
+      "name": "双层摇匀质地",
+      "name_en": "Bi-Phase Shake-to-Mix Texture",
+      "visual_keywords": [
+        "双层分相",
+        "摇匀融合",
+        "流动液态",
+        "层次可见"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效分层科技",
+        "使用仪式感",
+        "视觉辨识度"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "精华水、油水双相化妆水",
+      "source_section": "13",
+      "source_heading": "精华水可加入极低调的可视化元素",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-b1016dde-9eb8bc",
+      "dimension": "透明度与质地",
+      "name": "凝胶网结构",
+      "name_en": "Gel Network Structure",
+      "visual_keywords": [
+        "网状凝胶",
+        "结构感",
+        "半透明胶体",
+        "弹性质构"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "结构化配方",
+        "高端触觉记忆",
+        "膜感科技"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "面膜精华液、高端凝胶面膜",
+      "source_section": "13",
+      "source_heading": "面膜精华液可以从“湿”升级为“结构感”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-5a590be5-bcdcfe",
+      "dimension": "透明度与质地",
+      "name": "弹力膜质地",
+      "name_en": "Elastic Film Texture",
+      "visual_keywords": [
+        "弹力拉丝",
+        "成膜感",
+        "柔韧包覆",
+        "触觉记忆"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "即时包裹修护",
+        "科技成膜力",
+        "高端体验感"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "面膜精华液、涂抹式面膜",
+      "source_section": "13",
+      "source_heading": "面膜精华液可以从“湿”升级为“结构感”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-6f516468-6ea15c",
+      "dimension": "透明度与质地",
+      "name": "胶原膜质地",
+      "name_en": "Collagen Film Texture",
+      "visual_keywords": [
+        "胶原膜感",
+        "平滑覆膜",
+        "柔润弹性",
+        "高贴肤"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "胶原修护联想",
+        "高机能膜材感",
+        "专业护理"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "胶原面膜、功能型面膜精华液",
+      "source_section": "13",
+      "source_heading": "面膜精华液可以从“湿”升级为“结构感”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-dcd71a00-8249ce",
+      "dimension": "装饰物",
+      "name": "微囊膜布",
+      "name_en": "Microcapsule Mask Sheet",
+      "visual_keywords": [
+        "膜布可见微囊",
+        "颗粒附着",
+        "结构化膜布",
+        "功能点状分布"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "膜布科技升级",
+        "高端差异化"
+      ],
+      "maturity": "实验性",
+      "year_range": "2025-2027",
+      "typical_use": "高端贴片面膜、功效面膜",
+      "source_section": "13",
+      "source_heading": "面膜精华液可以从“湿”升级为“结构感”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-895abc46-dbbbff",
+      "dimension": "透明度与质地",
+      "name": "真实液体微距质地",
+      "name_en": "Macro Liquid Texture Imagery",
+      "visual_keywords": [
+        "微距液滴",
+        "真实流动",
+        "高细节质感",
+        "放大材质表面"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "真实配方说服力",
+        "高价内容物价值",
+        "专业透明沟通"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "详情页内容物展示、精华液与化妆水视觉传播",
+      "source_section": "13",
+      "source_heading": "官方内容物图像资产不足，是高端韩妆传播短板",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-05208562-61382d",
+      "dimension": "透明度与质地",
+      "name": "真实霜体微距质地",
+      "name_en": "Macro Cream Texture Imagery",
+      "visual_keywords": [
+        "霜体峰纹",
+        "细腻抹痕",
+        "厚薄层次",
+        "微距表面光泽"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端面霜质感证明",
+        "工艺细腻度",
+        "价格合理性强化"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2027",
+      "typical_use": "详情页内容物展示、面霜视觉传播",
+      "source_section": "13",
+      "source_heading": "官方内容物图像资产不足，是高端韩妆传播短板",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-103f715d-2ac656",
+      "dimension": "颜色",
+      "name": "琥珀色",
+      "name_en": "Amber",
+      "visual_keywords": [
+        "琥珀棕金",
+        "温润发光",
+        "浓萃感",
+        "人参联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物原料",
+        "高浓缩滋养",
+        "成熟高端感"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高浓缩人参抗老精华",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-1d23a323-a35784",
+      "dimension": "颜色",
+      "name": "淡金色",
+      "name_en": "Pale Gold",
+      "visual_keywords": [
+        "浅金调",
+        "轻奢微光",
+        "精致低饱和",
+        "高端韩妆"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调奢华",
+        "精密工艺",
+        "高端定位"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高端面部护理精华与功能型护肤液",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-42f042b0-c8516d",
+      "dimension": "颜色",
+      "name": "米白色",
+      "name_en": "Off-White",
+      "visual_keywords": [
+        "米白膏体",
+        "柔和不纯白",
+        "高密度感",
+        "修护面霜"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "厚实修护",
+        "温和安心",
+        "高密度滋养"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高密度抗老修护霜",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-fde51592-6e247d",
+      "dimension": "颜色",
+      "name": "淡黄色",
+      "name_en": "Pale Yellow",
+      "visual_keywords": [
+        "发酵黄调",
+        "清透浅黄",
+        "水感精华",
+        "轻熟功效感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵活性",
+        "温和功效",
+        "长期稳定需求"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "发酵精华水与水感精华",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-a1b4ee44-6ace00",
+      "dimension": "透明度与质地",
+      "name": "透明基底",
+      "name_en": "Transparent Base",
+      "visual_keywords": [
+        "高通透",
+        "清澈液体",
+        "纯净感",
+        "科技配方"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "配方纯度高",
+        "科技功效导向",
+        "实验室级精炼"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "科技抗老精华与功能型精华液",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-2f90ba0b-039c12",
+      "dimension": "透明度与质地",
+      "name": "微乳白质地",
+      "name_en": "Slightly Milky Texture",
+      "visual_keywords": [
+        "半透乳白",
+        "柔雾感",
+        "轻乳液态",
+        "温和包裹"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "修护包裹感",
+        "温和亲肤",
+        "科技与滋养平衡"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "慢老精华与修护型精华乳",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-3c532709-c98b65",
+      "dimension": "装饰物",
+      "name": "胶囊",
+      "name_en": "Capsules",
+      "visual_keywords": [
+        "可见胶囊",
+        "悬浮结构",
+        "颗粒包裹",
+        "内容物分层视觉"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "活性成分封装",
+        "功效可视化",
+        "高科技门槛",
+        "年轻化科学感"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "功效精华与安瓶产品",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-6530390e-4defae",
+      "dimension": "装饰物",
+      "name": "脂质体",
+      "name_en": "Liposomes",
+      "visual_keywords": [
+        "微囊载体",
+        "可见包裹体",
+        "科技颗粒",
+        "缓释结构"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向输送",
+        "抗老科技升级",
+        "活性稳定性",
+        "高研发含量"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "NAD慢老精华与高机能抗老精华",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f275b34d-9606f5",
+      "dimension": "装饰物",
+      "name": "活性颗粒",
+      "name_en": "Active Particles",
+      "visual_keywords": [
+        "可视颗粒",
+        "功能颗粒",
+        "悬浮点状",
+        "配方结构可见"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效证据可见",
+        "新兴科技感",
+        "成分存在感"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "可视化功效精华与功能护理液",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-decoration-f85de348-18c373",
+      "dimension": "装饰物",
+      "name": "微囊",
+      "name_en": "Microcapsules",
+      "visual_keywords": [
+        "细小囊珠",
+        "分散悬浮",
+        "精密封装",
+        "视觉活性点"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "靶向释放",
+        "科技可信度",
+        "高功效表达"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "微囊精华与高端安瓶",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-2035a580-2626da",
+      "dimension": "透明度与质地",
+      "name": "凝胶膜质地",
+      "name_en": "Gel-Film Texture",
+      "visual_keywords": [
+        "凝胶成膜",
+        "弹性质地",
+        "贴肤包裹",
+        "膜感精华"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高保湿封存",
+        "可见质地美学",
+        "功效附着力"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "凝胶膜面膜精华",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-85e9de1d-e50d9d",
+      "dimension": "透明度与质地",
+      "name": "高密度霜体",
+      "name_en": "High-Density Cream Texture",
+      "visual_keywords": [
+        "厚实膏霜",
+        "高密度包裹",
+        "细腻均匀",
+        "丰润修护"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高强度修护",
+        "抗老充盈感",
+        "成熟奢华升级"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高密度抗老修护霜",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-5c2c0f01-a6fab8",
+      "dimension": "透明度与质地",
+      "name": "水感精华质地",
+      "name_en": "Watery Essence Texture",
+      "visual_keywords": [
+        "流动性强",
+        "轻薄水感",
+        "快速铺展",
+        "清润透亮"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "轻盈易吸收",
+        "长期稳定受欢迎",
+        "高端日常功效"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "发酵精华水与清透型精华",
+      "source_section": "§14",
+      "source_heading": "## 14. 总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-0921886a-683aa3",
+      "dimension": "颜色",
+      "name": "琥珀人参金",
+      "name_en": "Amber Ginseng Gold",
+      "visual_keywords": [
+        "琥珀金",
+        "暖金棕调",
+        "人参浓萃感",
+        "蜂蜜般光泽",
+        "高端草本色"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀草本滋养",
+        "高浓度活性原料",
+        "东方奢养底蕴"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "人参面霜、眼霜、精华等高端抗老护肤",
+      "source_section": "[1][2][12][16][17]",
+      "source_heading": "자음생크림 / 자음생아이크림 / Sulwhasoo Ultimate S cream texture image / Sulwhasoo Concentrated Ginseng serum image asset / Sulwhasoo ginseng ampoule image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-ec69dc9a-925b0f",
+      "dimension": "颜色",
+      "name": "赤红限定色",
+      "name_en": "Auspicious Crimson Red",
+      "visual_keywords": [
+        "赤红",
+        "新年限定",
+        "高饱和东方红",
+        "节庆感",
+        "强视觉符号"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "节庆仪式感",
+        "东方吉祥寓意",
+        "收藏限定价值"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "限定版精华包装与节庆护肤礼盒视觉",
+      "source_section": "[3]",
+      "source_heading": "설화수, 2026 ‘붉은 말의 해’ 윤조에센스 한정판 출시",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-7c66a306-9db324",
+      "dimension": "颜色",
+      "name": "香槟米金",
+      "name_en": "Champagne Beige Gold",
+      "visual_keywords": [
+        "香槟金",
+        "米金调",
+        "低饱和奢华",
+        "柔和金属感",
+        "均匀细腻"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调贵气",
+        "精密配方感",
+        "成熟高端定位"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "贵妇线面霜、精华、礼盒主视觉",
+      "source_section": "[11][14][15]",
+      "source_heading": "HERA Signia set image / THE WHOO NAD gift set image / THE WHOO 2025.12 product image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-color-38561db4-f682d9",
+      "dimension": "颜色",
+      "name": "乳白发酵色",
+      "name_en": "Milky Fermentation White",
+      "visual_keywords": [
+        "乳白",
+        "发酵液色",
+        "低饱和白浊",
+        "柔和雾感",
+        "洁净营养感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温和修护",
+        "营养充盈",
+        "易于亲近的护肤体验"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "发酵精华、面膜精华液、修护型护肤品",
+      "source_section": "[8][9][13]",
+      "source_heading": "[피부장벽강화] 숨37 시크릿 에센스 기획 - Olive Young / Sulwhasoo First Care Activating Mask texture image / SU:M37 Secret Essence image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-416c5eb0-e04518",
+      "dimension": "透明度与质地",
+      "name": "浓润奶霜质地",
+      "name_en": "Rich Creamy Balm Texture",
+      "visual_keywords": [
+        "厚乳霜",
+        "高延展",
+        "绵密包裹",
+        "柔润不透",
+        "丰盈膏体"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "强修护滋养",
+        "高营养密度",
+        "贵妇级包覆感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "抗老面霜、眼霜、晚霜",
+      "source_section": "[1][2][12]",
+      "source_heading": "자음생크림 / 자음생아이크림 / Sulwhasoo Ultimate S cream texture image",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-ae7bbcde-679273",
+      "dimension": "透明度与质地",
+      "name": "丝滑凝乳精华",
+      "name_en": "Silky Emulsion Serum Texture",
+      "visual_keywords": [
+        "半流动凝乳",
+        "丝滑抹展",
+        "细腻均匀",
+        "轻盈润泽",
+        "精华乳感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高吸收效率",
+        "精致工艺感",
+        "滋养与轻盈平衡"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "抗老精华、滋养型前导精华",
+      "source_section": "[16][17]",
+      "source_heading": "Sulwhasoo Concentrated Ginseng serum image asset / Sulwhasoo ginseng ampoule image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-33c1d8c3-5e9ee5",
+      "dimension": "透明度与质地",
+      "name": "高透水感精华基底",
+      "name_en": "Crystal-Clear Watery Serum Base",
+      "visual_keywords": [
+        "高透明",
+        "水感流动",
+        "清亮折光",
+        "轻薄液体",
+        "纯净基底"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "成分自信",
+        "高效渗透与洁净科技"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "前导精华、修护精华、功能性透明精华",
+      "source_section": "[18][8][13]",
+      "source_heading": "AP transparent serum image asset / [피부장벽강화] 숨37 시크릿 에센스 기획 - Olive Young / SU:M37 Secret Essence image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-52a67d45-3e58c1",
+      "dimension": "透明度与质地",
+      "name": "天然浑浊发酵液感",
+      "name_en": "Naturally Cloudy Fermented Fluid",
+      "visual_keywords": [
+        "微浑浊",
+        "发酵悬感",
+        "非完全透明",
+        "自然沉静",
+        "原液感"
+      ],
+      "aesthetic_style": "自然清体",
+      "signals": [
+        "低加工真实感",
+        "活性发酵成分",
+        "功能型健康护肤"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "发酵精华、屏障修护液、肌底液",
+      "source_section": "[8][13]",
+      "source_heading": "[피부장벽강화] 숨37 시크릿 에센스 기획 - Olive Young / SU:M37 Secret Essence image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-50e194d1-e58f18",
+      "dimension": "透明度与质地",
+      "name": "成膜啫喱面膜感",
+      "name_en": "Film-Forming Gel Mask Texture",
+      "visual_keywords": [
+        "凝胶膜感",
+        "湿润贴肤",
+        "半透明",
+        "柔亮表面",
+        "拉丝涂抹感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "即时修护",
+        "高保湿封护",
+        "专业护理体验"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "涂抹面膜、睡眠面膜、密集护理品",
+      "source_section": "[9][10]",
+      "source_heading": "Sulwhasoo First Care Activating Mask texture image / Sulwhasoo Clarifying Mask texture image",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-texture-5bd2002e-60db5e",
+      "dimension": "透明度与质地",
+      "name": "细腻珠润膏霜表面",
+      "name_en": "Fine Pearl-Lustrous Cream Surface",
+      "visual_keywords": [
+        "平滑膏面",
+        "细腻反光",
+        "无颗粒均质",
+        "珠润光泽",
+        "雕塑般表面"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端工艺控制",
+        "稳定精密乳化",
+        "奢华但不过度张扬"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端面霜、贵妇膏霜、礼赠护肤",
+      "source_section": "[4][6][7][11][14][15]",
+      "source_heading": "THE WHOO - 비첩 공식몰 카테고리 / THE WHOO 공식 홈페이지 / SHOP - 로시크숨마 - SU:M37 공식몰 / HERA Signia set image / THE WHOO NAD gift set image / THE WHOO 2025.12 product image asset",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-a6257a",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "琥珀色精华",
+        "淡金色精华水",
+        "乳白与米白霜体",
+        "浓密丰润膏霜",
+        "细腻均匀质地",
+        "低调高端光泽"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端抗老",
+        "精密工艺与成熟配方",
+        "稀缺韩方/发酵成分",
+        "滋养修护与贵价感"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "高端面部护理中的抗老精华、精华水、乳液、面霜、礼盒套装",
+      "source_section": "1",
+      "source_heading": "执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-c8b4eb",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明或半透明基底",
+        "微乳白科技质地",
+        "脂质体/微囊叙事",
+        "颗粒与胶囊可视化",
+        "果冻颗粒",
+        "玻璃肌水光薄膜感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "靶向递送与科技门槛",
+        "高功效护肤创新",
+        "长寿护肤与医美后修护联想"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高功效精华、安瓶、术后修护产品、胶原/PDRN类护肤、面膜精华液",
+      "source_section": "1",
+      "source_heading": "执行摘要：近半年最清晰的内容物趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-0b97cb",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech-Clarity",
+      "visual_keywords": [
+        "透明基底",
+        "极简精密",
+        "高纯度液体感",
+        "实验室科技联想",
+        "清透半透明",
+        "功效型安瓶/精华包装"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度高功效",
+        "实验室级研发背书",
+        "配方精炼与科技自信",
+        "高端抗老科技"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "高端安瓶、抗老精华、首步精华",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-2335cd",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Naturally Luxuriant Nourishment",
+      "visual_keywords": [
+        "琥珀金调",
+        "发酵精华联想",
+        "温润油感",
+        "人参滋养感",
+        "浓润乳霜质地",
+        "东方草本奢护"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物与草本价值",
+        "发酵活性与滋养修护",
+        "贵价天然原料认知",
+        "高端抗老养肤"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "抗老面霜、眼霜、高端发酵精华",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-858c54",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "高端礼盒感",
+        "低调贵气",
+        "均匀细腻膏体",
+        "精工抗老线",
+        "限定版奢华包装",
+        "百货专柜审美"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "少即是贵的高端感",
+        "精密工艺与品牌历史积淀",
+        "稀缺成分与高价定位",
+        "成熟 prestige 审美"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端抗老面霜、超高端精华、限定版护肤系列",
+      "source_section": "3.1",
+      "source_heading": "代表性样本品牌与高端定位依据",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-d12085",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech Purity",
+      "visual_keywords": [
+        "淡金/米金",
+        "半透明精华液",
+        "乳白乳液",
+        "极简科技感",
+        "脂质体语言",
+        "慢老生物科技"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级抗老配方",
+        "高纯度与精炼感",
+        "科技成分自信",
+        "传统奢华向功效科技升级"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "高端抗老面部精华水、精华液、乳液系列",
+      "source_section": "3.2",
+      "source_heading": "变化一：传统“韩方奢华金色”转向“功效科技金色/淡金色”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-03ff38",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明基底",
+        "微乳白",
+        "分子网络",
+        "胶囊颗粒",
+        "微粒悬浮",
+        "未来感实验室视觉"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "递送系统可信度",
+        "前沿科技门槛",
+        "靶向吸收联想",
+        "高端功效护肤专业性"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高端功效型面部精华、安瓶、修护类护肤产品",
+      "source_section": "3.2",
+      "source_heading": "变化二：内容物“可视化科技”重要性上升",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-7dee69",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "高密度霜体",
+        "细腻均匀",
+        "快速吸收",
+        "不搓泥",
+        "专业修护感",
+        "低调高端"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精密配方工艺",
+        "高端修护与安全感并存",
+        "医美后可用的专业背书",
+        "滋养但不过度厚重"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "高端修护面霜、屏障护理、术后护理场景",
+      "source_section": "3.2",
+      "source_heading": "变化三：术后/屏障/修护场景强化“高密度但快速吸收”的质地",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-e6db9c",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxury",
+      "visual_keywords": [
+        "琥珀色",
+        "金棕色",
+        "橙金光泽",
+        "半透明质地",
+        "中等黏度精华",
+        "高浓缩液感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物原料",
+        "发酵活性与滋养力",
+        "高端抗老定位",
+        "天然成分的贵价感"
+      ],
+      "maturity": "主流",
+      "year_range": "长期使用",
+      "typical_use": "人参抗老精华、安瓶类高浓缩护肤品",
+      "source_section": "4.1.1",
+      "source_heading": "琥珀/金棕色高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-cd0dcb",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxury",
+      "visual_keywords": [
+        "淡黄",
+        "浅琥珀",
+        "香槟金",
+        "高透明/半透明",
+        "水状流动感",
+        "轻精华质地",
+        "温暖发酵光泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵活性成分",
+        "高端抗老护理",
+        "温和屏障修护",
+        "珍稀天然原料感"
+      ],
+      "maturity": "主流",
+      "year_range": "当前",
+      "typical_use": "精华水、安瓶、第一步精华、日常抗老精华",
+      "source_section": "4.1.2",
+      "source_heading": "淡金/淡黄色半透明抗老精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-3ed9bb",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Pure Tech Clarity",
+      "visual_keywords": [
+        "透明无色",
+        "微乳白",
+        "高清透液体",
+        "银白实验室背景",
+        "分子结构视觉",
+        "轻薄水精华质地"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "实验室级科技感",
+        "低刺激与敏感肌友好",
+        "精准功效与皮肤科学",
+        "现代高端"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "高端功效护肤精华、安瓶、轻质科技型精华",
+      "source_section": "4.1.3",
+      "source_heading": "微乳白/透明科技精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-091a69",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明或浅金基底",
+        "可见金色微粒",
+        "胶囊/悬浮物结构",
+        "微囊与脂质体联想",
+        "分散颗粒感",
+        "科技递送可视化"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "精准递送",
+        "高科技配方门槛",
+        "活性成分浓缩"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "精华、安瓶类护肤产品",
+      "source_section": "4.1.4",
+      "source_heading": "颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-202a3d",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "浅金色液体",
+        "金色颗粒点缀",
+        "透明高光泽",
+        "精致悬浮感",
+        "均匀细腻质地",
+        "低调贵价光感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高级活性成分",
+        "贵价感",
+        "精密工艺",
+        "即时视觉记忆点"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "高端精华、水精华、安瓶产品",
+      "source_section": "4.1.4",
+      "source_heading": "颗粒/胶囊/悬浮物：从可见奢华到科技递送",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-ce2c83",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech Clarity",
+      "visual_keywords": [
+        "高透明水感",
+        "无色至淡黄",
+        "低黏度流动",
+        "极简清透",
+        "快速吸收",
+        "轻装饰感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "清爽高效吸收",
+        "实验室级精炼感"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2026",
+      "typical_use": "精华水、化妆水等打底型护肤产品",
+      "source_section": "4.2",
+      "source_heading": "精华水/化妆水：清透水感、淡黄色发酵感、低黏度吸收感 > 与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-95dfbe",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxe",
+      "visual_keywords": [
+        "淡黄色发酵感",
+        "浅金色调",
+        "高透明液体",
+        "水状流动",
+        "温和自然光泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "发酵活性成分",
+        "天然来源原料",
+        "温和滋养但不过度厚重"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "带有发酵概念的精华水、化妆水",
+      "source_section": "4.2",
+      "source_heading": "精华水/化妆水：清透水感、淡黄色发酵感、低黏度吸收感 > 与精华/安瓶的区别",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ad65045c-1de0a3",
+      "dimension": "风格",
+      "name": "感官甜品",
+      "name_en": "Sensory Dessert",
+      "visual_keywords": [
+        "乳白",
+        "浅米色",
+        "不透明乳浊",
+        "奶感",
+        "柔润",
+        "轻油润",
+        "屏障膜感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温暖舒适",
+        "醇厚滋养",
+        "亲肤柔润",
+        "高端护理体验"
+      ],
+      "maturity": "上升",
+      "year_range": "2023-2025",
+      "typical_use": "高端韩妆乳液、水乳套装中的中段护理产品",
+      "source_section": "4.3",
+      "source_heading": "乳液：乳白、浅米色、不透明，强调柔软屏障膜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-b83088",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishing Luxury",
+      "visual_keywords": [
+        "淡黄至琥珀色",
+        "棕橙色膜体",
+        "半透明精华",
+        "厚敷膏体",
+        "柔韧成膜",
+        "轻微颗粒/膜感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物与草本养护联想",
+        "高滋养修护",
+        "高端面膜仪式感",
+        "活性成分浓度可感知"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "高端涂抹式面膜、凝胶膜、精华液型面膜",
+      "source_section": "4.5",
+      "source_heading": "面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ad65045c-15fd71",
+      "dimension": "风格",
+      "name": "感官甜品",
+      "name_en": "Sensory Dessert",
+      "visual_keywords": [
+        "白色或米白",
+        "不透明乳霜",
+        "绵密厚敷",
+        "浓密膏体",
+        "柔润包裹感"
+      ],
+      "aesthetic_style": "感官甜品",
+      "signals": [
+        "温暖丰润的护理体验",
+        "深度滋养与修护",
+        "奶霜般愉悦触感",
+        "可感知的厚实配方"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "乳霜型面膜、晚间修护面膜、滋养型护理产品",
+      "source_section": "4.5",
+      "source_heading": "面膜精华液/凝胶膜：湿润、厚敷、凝胶化、即时光泽",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-674e81",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Pure Tech Clarity",
+      "visual_keywords": [
+        "清透水感",
+        "无颗粒配方",
+        "轻薄流动",
+        "快速吸收",
+        "不黏肤感",
+        "可多层叠加",
+        "极简精炼"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度精炼配方",
+        "实验室级清爽效率",
+        "第一步护肤的配方自信",
+        "以吸收感建立高级感"
+      ],
+      "maturity": "主流",
+      "year_range": "2026",
+      "typical_use": "首步精华、精华水、早晚护肤第一步",
+      "source_section": "6.1",
+      "source_heading": "水感快速吸收：精华水与首步精华的主轴",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-35eb8a",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Pure Tech Clarity",
+      "visual_keywords": [
+        "清透精华",
+        "玻璃肌光泽",
+        "薄膜感",
+        "高折光水光",
+        "快速吸收",
+        "无负担净澈肤感"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方",
+        "实验室级精炼",
+        "高效渗透吸收",
+        "功效表达清晰直接"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "高端面部精华、首步精华、水光型护理产品",
+      "source_section": "7.1",
+      "source_heading": "核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-05275d",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Luxe Nourishment",
+      "visual_keywords": [
+        "发酵活性",
+        "滋养油润感",
+        "温润光泽",
+        "高密度养肤质地",
+        "不油腻丰润感",
+        "珍稀草本联想"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物与发酵成分价值",
+        "高端滋养修护",
+        "传统草本与现代功效结合",
+        "贵价天然原料感"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高端面霜、眼霜、滋养型精华、首步调理精华",
+      "source_section": "7.1",
+      "source_heading": "核心需求状态",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-389d87",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech Clarity",
+      "visual_keywords": [
+        "透明",
+        "半透明",
+        "微乳白",
+        "微囊",
+        "科技颗粒",
+        "轻盈凝露"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级配方自信",
+        "高纯度活性递送",
+        "功效可量化",
+        "先进科技成分"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗老精华、眼霜、科技护肤精华",
+      "source_section": "8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-f9cea7",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明基底",
+        "微囊",
+        "科技颗粒",
+        "分散结构",
+        "半透明乳感",
+        "递送可视化"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "靶向输送科技",
+        "高技术门槛",
+        "成分结构被看见"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "NAD精华、脂质体护肤、功效型抗老产品",
+      "source_section": "8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-7f402e",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxury",
+      "visual_keywords": [
+        "琥珀色",
+        "淡黄",
+        "金棕",
+        "温暖色调",
+        "温润油感",
+        "韩方滋养感"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物原料",
+        "高价值天然活性",
+        "韩方养肤传统",
+        "发酵与滋养并重"
+      ],
+      "maturity": "主流",
+      "year_range": "2024-2025",
+      "typical_use": "人参面霜、韩方眼霜、滋养型抗老护肤",
+      "source_section": "8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-363b6c",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "乳白",
+        "淡粉米色",
+        "米白",
+        "浓密霜体",
+        "柔润肤感",
+        "细腻均匀"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精密工艺感",
+        "高端修护定位",
+        "低刺激高完成度",
+        "少即是贵的专业感"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2025",
+      "typical_use": "抗老面霜、屏障修护面霜、眼霜",
+      "source_section": "8",
+      "source_heading": "## 8. Claims and Evidence：功效证据如何影响内容物设计",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-27f681",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "淡金",
+        "米白",
+        "琥珀色调",
+        "高端礼盒联想",
+        "极简精致",
+        "百货专柜感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "高端定位",
+        "礼赠属性",
+        "稀缺感",
+        "百货渠道背书"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端韩妆礼盒、限定版护肤套装、百货及免税渠道陈列",
+      "source_section": "9",
+      "source_heading": "Channel and Touchpoint：渠道如何推动趋势",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-58761f",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Tech",
+      "visual_keywords": [
+        "半透明基底",
+        "可见微囊",
+        "脂质体科技感",
+        "微乳白精华",
+        "胶囊结构",
+        "实验室精密感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "靶向输送科技",
+        "高端抗老门槛",
+        "配方创新与专业背书"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老精华、胶囊精华、脂质体护理产品",
+      "source_section": "10.1",
+      "source_heading": "近半年明显增强的信号 > 信号一：NAD / Liposome / Skin Longevity 成为高端抗老新语言",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-571ba9",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Pure Tech Clarity",
+      "visual_keywords": [
+        "极简科技感",
+        "高纯度印象",
+        "精炼透明感",
+        "无负担配方视觉",
+        "实验室级洁净感",
+        "精密抗老语言"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方自信",
+        "实验室级研发能力",
+        "前沿抗老科技",
+        "高端专业形象"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "高端抗老系列、NAD护肤、Skin Longevity概念产品",
+      "source_section": "10.1",
+      "source_heading": "近半年明显增强的信号 > 信号一：NAD / Liposome / Skin Longevity 成为高端抗老新语言",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-fcb90f",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech-Pure Clarity",
+      "visual_keywords": [
+        "淡金半透明",
+        "脂质体递送",
+        "微观科技感",
+        "清透水感",
+        "精密精华质地"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级功效抗老",
+        "高纯度高精炼配方",
+        "前沿递送科技",
+        "高端功能护肤"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高端功效抗老精华、慢老科技安瓶",
+      "source_section": "11",
+      "source_heading": "1. NAD 脂质体“慢老科技精华”",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-a2d578",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Luxe Nourishment",
+      "visual_keywords": [
+        "琥珀金棕",
+        "蜂蜜感半透明",
+        "温润高浓质地",
+        "人参植物联想",
+        "滋养油润光泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物原料",
+        "高价天然滋补",
+        "韩方奢华传承",
+        "高浓度滋养修护"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "高端人参精华、滋养抗老精华",
+      "source_section": "11",
+      "source_heading": "2. 琥珀人参高浓缩精华",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-94e6c8",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "米白淡粉米色",
+        "不透明高密度",
+        "细腻光泽",
+        "均匀霜体",
+        "精致修护感"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调高端",
+        "精密修护工艺",
+        "屏障修护可信赖",
+        "少即是贵的高端感"
+      ],
+      "maturity": "主流",
+      "year_range": "2023–2026",
+      "typical_use": "高端修护面霜、眼霜、医美后修护产品",
+      "source_section": "11",
+      "source_heading": "3. 米白高密度修护霜",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-f91113",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "金色颗粒",
+        "胶囊悬浮",
+        "微囊结构可见",
+        "爆破释放",
+        "透明基底中的活性颗粒"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效成分可视化",
+        "靶向输送科技",
+        "高科技门槛",
+        "即时感知活性存在"
+      ],
+      "maturity": "上升",
+      "year_range": "2024–2026",
+      "typical_use": "高功效精华、胶囊精华、PDRN类护肤产品",
+      "source_section": "11",
+      "source_heading": "5. 可视化活性颗粒/微囊",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-9cafb8",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Purified Tech",
+      "visual_keywords": [
+        "透明基底",
+        "高透精华液",
+        "淡金/淡粉微囊",
+        "极细微气泡",
+        "实验室感",
+        "精密递送",
+        "真实液体微距"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度功效配方",
+        "实验室级精炼感",
+        "高端功效成分自信",
+        "理性科技可信度"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "高端功效精华、精华水、医美后护理产品详情页视觉表达",
+      "source_section": "13",
+      "source_heading": "未来机会与空白",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-ccd40b",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明基底可见结构",
+        "淡金/淡粉微囊",
+        "双层摇匀",
+        "轻珠光",
+        "凝胶网",
+        "胶原膜",
+        "微囊膜布"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效可视化",
+        "靶向递送科技",
+        "技术门槛可被感知",
+        "提升高价说服力"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "高端透明微囊精华、可视化精华水、高端面膜精华液与膜布结构设计",
+      "source_section": "13",
+      "source_heading": "未来机会与空白",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-83f0f4",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "极低调可视化",
+        "轻珠光",
+        "淡粉屏障霜",
+        "米白高密度霜体",
+        "轻乳化日霜",
+        "高端克制",
+        "均匀细腻"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调高级感",
+        "精密工艺与配方完成度",
+        "高端护理分层细分",
+        "少即是贵的价值感"
+      ],
+      "maturity": "上升",
+      "year_range": "2024-2026",
+      "typical_use": "医美后高端霜、精华水、日霜与晚霜的高端线产品设计",
+      "source_section": "13",
+      "source_heading": "未来机会与空白",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-ec56ca",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Tech-Clarity",
+      "visual_keywords": [
+        "透明基底",
+        "微乳白",
+        "脂质体",
+        "胶囊结构",
+        "精密精华质地",
+        "功效导向"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "实验室级抗老升级",
+        "高纯度配方自信",
+        "科技功效可验证",
+        "年轻化高端形象"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "高端抗老精华、NAD脂质体慢老精华",
+      "source_section": "14",
+      "source_heading": "总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-59fd1c",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxe",
+      "visual_keywords": [
+        "琥珀色",
+        "淡金光泽",
+        "人参联想",
+        "高浓缩精华",
+        "温润油感",
+        "成熟奢华"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物滋养",
+        "高价天然原料",
+        "深度修护抗老",
+        "东方草本奢护"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高浓缩人参精华、滋养型抗老护理",
+      "source_section": "14",
+      "source_heading": "总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-ba4290",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "米白色",
+        "高密度乳霜",
+        "细腻均匀",
+        "低饱和暖调",
+        "厚实修护感",
+        "克制奢华"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "精密修护工艺",
+        "高端抗老稳定性",
+        "少即是贵的价值感",
+        "成熟经典高端审美"
+      ],
+      "maturity": "主流",
+      "year_range": "近半年",
+      "typical_use": "高密度修护霜、面霜类抗老产品",
+      "source_section": "14",
+      "source_heading": "总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-9d984ac5-7abc04",
+      "dimension": "风格",
+      "name": "可视科技",
+      "name_en": "Visible Technology",
+      "visual_keywords": [
+        "透明或半透明基底",
+        "可视化活性颗粒",
+        "微囊结构",
+        "分散胶囊",
+        "脂质体悬浮",
+        "凝胶膜包裹感"
+      ],
+      "aesthetic_style": "可视科技",
+      "signals": [
+        "功效成分可视化",
+        "靶向输送科技",
+        "高技术门槛",
+        "差异化内容物创新"
+      ],
+      "maturity": "上升",
+      "year_range": "近半年",
+      "typical_use": "可视化活性精华、微囊精华、凝胶膜面膜精华",
+      "source_section": "14",
+      "source_heading": "总结",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-ea9064ff-ba2d8b",
+      "dimension": "风格",
+      "name": "天然奢养",
+      "name_en": "Natural Nourishment Luxury",
+      "visual_keywords": [
+        "琥珀金",
+        "蜂蜜色",
+        "温润油感",
+        "韩方草本意象",
+        "发酵精华质地",
+        "厚润膏霜光泽"
+      ],
+      "aesthetic_style": "天然奢养",
+      "signals": [
+        "珍稀植物与韩方原料",
+        "高价值滋养修护",
+        "发酵活性成分",
+        "东方草本奢护"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "高端面霜、眼霜、精华、安瓶",
+      "source_section": "## Sources",
+      "source_heading": "Sulwhasoo / THE WHOO / SU:M37 韩方与发酵修护产品案例集合",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-6f4582e3-190d77",
+      "dimension": "风格",
+      "name": "奢华克制",
+      "name_en": "Restrained Luxury",
+      "visual_keywords": [
+        "香槟金",
+        "细腻珠光",
+        "均匀膏霜表面",
+        "宫廷感金属包装",
+        "深色基底配金饰",
+        "高端礼盒陈列"
+      ],
+      "aesthetic_style": "奢华克制",
+      "signals": [
+        "低调高端定位",
+        "精密工艺感",
+        "稀缺成分价值",
+        "成熟尊贵审美"
+      ],
+      "maturity": "主流",
+      "year_range": "2025-2026",
+      "typical_use": "高端护肤套装、贵妇面霜、精华礼盒",
+      "source_section": "## Sources",
+      "source_heading": "HERA Signia / THE WHOO gift set / Sulwhasoo Ultimate S cream 等高端系列视觉",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    },
+    {
+      "id": "d384cc19-style-b7f417b7-e349c6",
+      "dimension": "风格",
+      "name": "科技净澈",
+      "name_en": "Pure Tech Clarity",
+      "visual_keywords": [
+        "无色透明",
+        "高折光液体",
+        "极简清透瓶身",
+        "实验室感纯净",
+        "水感精华",
+        "洁净留白"
+      ],
+      "aesthetic_style": "科技净澈",
+      "signals": [
+        "高纯度配方自信",
+        "实验室级精炼",
+        "功效型护肤科技",
+        "轻盈高效吸收"
+      ],
+      "maturity": "上升",
+      "year_range": "2025-2026",
+      "typical_use": "透明精华、肌底液、功能型安瓶",
+      "source_section": "## Sources",
+      "source_heading": "AP transparent serum image asset / SU:M37 Secret Essence / Sulwhasoo mask texture image",
+      "source_report": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华"
+    }
+  ]
+}

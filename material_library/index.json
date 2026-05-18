@@ -1,18 +1,42 @@
 {
-  "last_updated": "2026-05-12T06:20:41",
-  "total_elements": 26,
-  "color_count": 8,
-  "decoration_count": 8,
-  "texture_count": 8,
-  "style_count": 2,
+  "last_updated": "2026-05-18T07:30:53",
+  "total_elements": 1455,
+  "color_count": 364,
+  "decoration_count": 231,
+  "texture_count": 407,
+  "style_count": 6,
   "processed_reports": [
+    {
+      "filename": "e602b08d-bcdd-452c-95d0-823ae66e19e3/report.md",
+      "product_category": "未知品类",
+      "extraction_date": "2026-05-18",
+      "file_hash": "96748c7446ecc8b2e05d55d79858212db911f5f3183d79b527598e2fd194af8c",
+      "element_count": 298,
+      "cache_path": ".cache/e602b08d-bcdd-452c-95d0-823ae66e19e3.json"
+    },
     {
       "filename": "e9f1f27f-2779-4214-82a4-fa5c64f36343/report.md",
       "product_category": "面部精华",
-      "extraction_date": "2026-05-12",
+      "extraction_date": "2026-05-18",
       "file_hash": "b652d039a7e6638b4475d27451d3e58b6790b717df81506999d8e097a6a0dfc0",
-      "element_count": 26,
+      "element_count": 449,
       "cache_path": ".cache/e9f1f27f-2779-4214-82a4-fa5c64f36343.json"
+    },
+    {
+      "filename": "f5b757a1-2c17-4aca-bf6b-4b167b92d850/report.md",
+      "product_category": "面部精华",
+      "extraction_date": "2026-05-18",
+      "file_hash": "a55b38ffa5452b015be8b182946990cc75d425382fb31529a83c8d3979a813bf",
+      "element_count": 270,
+      "cache_path": ".cache/f5b757a1-2c17-4aca-bf6b-4b167b92d850.json"
+    },
+    {
+      "filename": "f7b105e7-cb9d-4dfa-bbd8-031590936687/report.md",
+      "product_category": "未知品类",
+      "extraction_date": "2026-05-18",
+      "file_hash": "d348989701005e0feb8542ccda52e1ef9e3ee6af86a0a602f55ec25a620bad7c",
+      "element_count": 438,
+      "cache_path": ".cache/f7b105e7-cb9d-4dfa-bbd8-031590936687.json"
     }
   ]
 }
