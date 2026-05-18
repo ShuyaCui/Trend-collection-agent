@@ -105,7 +105,7 @@ def _build_model(model_id: str | None = None, **kwargs):
         model=model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
-        api_key=GenAIToken().token(),
+        azure_ad_token_provider=lambda: GenAIToken().token(),
         api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
         default_headers={
             "project-name": os.getenv("HEADERS_PROJECT_NAME"),
@@ -765,7 +765,7 @@ def _build_embedding_model():
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         deployment="TEXT-EMBEDDING-3-SMALL",
         api_version="2024-09-01-preview",
-        api_key=GenAIToken().token(),
+        azure_ad_token_provider=lambda: GenAIToken().token(),
         default_headers={
             "project-name": os.getenv("HEADERS_PROJECT_NAME"),
             "userid": os.getenv("HEADERS_USERID"),
