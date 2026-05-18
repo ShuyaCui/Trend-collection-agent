@@ -16,19 +16,10 @@ from pydantic import BaseModel, Field
 # Constants
 # ---------------------------------------------------------------------------
 
-DIMENSIONS = ("颜色", "装饰物", "透明度与质地", "风格")
-DIMENSION_EN = {"颜色": "color", "装饰物": "decoration", "透明度与质地": "texture", "风格": "style"}
+DIMENSIONS = ("颜色", "装饰物", "透明度与质地")
+DIMENSION_EN = {"颜色": "color", "装饰物": "decoration", "透明度与质地": "texture"}
 
 MATURITY_LEVELS = ("主流", "上升", "实验性")
-
-AESTHETIC_STYLES = (
-    "科技净澈",
-    "天然奢养",
-    "奢华克制",
-    "感官甜品",
-    "自然清体",
-    "可视科技",
-)
 
 # Map Chinese dimension labels found in reports to canonical enum values.
 DIMENSION_ALIASES: dict[str, str] = {
@@ -43,10 +34,6 @@ DIMENSION_ALIASES: dict[str, str] = {
     "透明度": "透明度与质地",
     "透明度与质地": "透明度与质地",
     "质地": "透明度与质地",
-    "风格": "风格",
-    "美学风格": "风格",
-    "审美风格": "风格",
-    "风格趋势": "风格",
 }
 
 
@@ -89,7 +76,7 @@ class MaterialElement(BaseModel):
     """A single design element extracted from a trend report."""
 
     id: str = Field(default="", description="Deterministic ID; set after extraction")
-    dimension: Literal["颜色", "装饰物", "透明度与质地", "风格"]
+    dimension: Literal["颜色", "装饰物", "透明度与质地"]
     name: str = Field(description="Element name in Chinese")
     name_en: str = Field(description="Element name in English")
     visual_keywords: list[str] = Field(
@@ -125,7 +112,7 @@ class MaterialElement(BaseModel):
 class ChapterExtraction(BaseModel):
     """LLM output for a single chapter (one dimension) of a report."""
 
-    dimension: Literal["颜色", "装饰物", "透明度与质地", "风格"]
+    dimension: Literal["颜色", "装饰物", "透明度与质地"]
     elements: list[MaterialElement]
 
 
@@ -145,7 +132,7 @@ class ThreeDimExtraction(BaseModel):
 # stale cache entries are automatically invalidated on next run.
 # ---------------------------------------------------------------------------
 
-EXTRACTION_SCHEMA_VERSION = 3
+EXTRACTION_SCHEMA_VERSION = 4
 
 
 # ---------------------------------------------------------------------------
@@ -204,7 +191,6 @@ class IndexMetadata(BaseModel):
     color_count: int = 0
     decoration_count: int = 0
     texture_count: int = 0
-    style_count: int = 0
     processed_reports: list[ProcessedReport] = Field(default_factory=list)
 
 
