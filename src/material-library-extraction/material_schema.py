@@ -102,7 +102,6 @@ class MaterialElement(BaseModel):
         description="What this element communicates to consumers (2-5 items)",
     )
     maturity: Literal["主流", "上升", "实验性"]
-    year_range: str = Field(default="2025-2026")
     typical_use: str = Field(description="Typical product/usage context")
     source_section: str = Field(description="Report section heading reference")
     source_heading: str = Field(
