@@ -904,8 +904,8 @@ def migrate_cache(
     For each cached `ReportExtraction`:
     - Removes fields that no longer exist in `MaterialElement` (e.g. aesthetic_style, maturity)
       by round-tripping through the current Pydantic model (extra fields are silently dropped).
-    - Adds ``trend_time`` by making a single cheap LLM call on the report title, unless
-      the cache already has a non-empty trend_time.
+    - Adds/fixes ``trend_time`` and ``product_category`` by making a single cheap LLM call
+      on the report title, unless both fields already have non-placeholder values.
     - Writes the updated cache back with ``schema_version = EXTRACTION_SCHEMA_VERSION``.
 
     After patching all cache files, rebuilds the dimension JSONs and index (no LLM).
@@ -935,7 +935,6 @@ def migrate_cache(
 
         # Round-trip through current model — Pydantic drops unknown fields
         # (e.g. aesthetic_style, maturity) that no longer exist in the schema.
-        # model_config must allow that; use model_validate with strict=False.
         try:
             extraction = ReportExtraction.model_validate(raw)
         except Exception as exc:
@@ -943,26 +942,43 @@ def migrate_cache(
             continue
 
         needs_trend_time = not extraction.trend_time
-        if needs_trend_time:
+        needs_category = extraction.product_category in ("", "未知品类")
+
+        if needs_trend_time or needs_category:
             report_path = report_map.get(cache_key)
             if report_path and report_path.exists():
-                _, trend_time = _extract_report_metadata(report_path, model=model)
+                category, trend_time = _extract_report_metadata(report_path, model=model)
                 logger.info(
-                    "  %s → trend_time='%s'", cache_path.name, trend_time
+                    "  %s → category='%s' trend_time='%s'",
+                    cache_path.name, category, trend_time,
                 )
             else:
-                trend_time = ""
-                logger.warning("  %s: no matching report file found for trend_time", cache_path.name)
-            extraction = extraction.model_copy(update={"trend_time": trend_time})
+                category, trend_time = extraction.product_category, extraction.trend_time
+                logger.warning("  %s: no matching report file found", cache_path.name)
 
-            # Propagate trend_time to all elements
-            patched_elements = [
-                e.model_copy(update={"trend_time": trend_time})
-                for e in extraction.elements
-            ]
-            extraction = extraction.model_copy(update={"elements": patched_elements})
+            updates: dict = {}
+            if needs_trend_time and trend_time:
+                updates["trend_time"] = trend_time
+            if needs_category and category:
+                updates["product_category"] = category
+
+            if updates:
+                extraction = extraction.model_copy(update=updates)
+                # Propagate to all elements
+                patched_elements = [
+                    e.model_copy(update={
+                        k: v for k, v in updates.items() if k in ("trend_time", "product_category")
+                        and (k != "trend_time" or not e.trend_time)
+                        and (k != "product_category" or e.product_category in ("", "未知品类"))
+                    })
+                    for e in extraction.elements
+                ]
+                extraction = extraction.model_copy(update={"elements": patched_elements})
         else:
-            logger.info("  %s: trend_time already present, skipping LLM call", cache_path.name)
+            logger.info(
+                "  %s: category='%s' trend_time='%s' — no update needed",
+                cache_path.name, extraction.product_category, extraction.trend_time,
+            )
 
         # Always bump schema version and write back
         extraction = extraction.model_copy(update={"schema_version": EXTRACTION_SCHEMA_VERSION})
