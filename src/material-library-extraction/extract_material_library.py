@@ -409,9 +409,11 @@ def extract_single_report(
     return ReportExtraction(
         source_report=source_label,
         product_category=category,
+        trend_time=trend_time,
         extraction_date=date.today().isoformat(),
         file_hash=_file_hash(report_path),
         elements=all_elements,
+        schema_version=EXTRACTION_SCHEMA_VERSION,
     )
 
 
@@ -892,6 +894,117 @@ def update_index(
 # ---------------------------------------------------------------------------
 
 
+def migrate_cache(
+    reports_dir: Path,
+    output_dir: Path,
+    model_id: str | None = None,
+) -> list[ReportExtraction]:
+    """Patch existing cache entries to the current schema without re-extracting elements.
+
+    For each cached `ReportExtraction`:
+    - Removes fields that no longer exist in `MaterialElement` (e.g. aesthetic_style, maturity)
+      by round-tripping through the current Pydantic model (extra fields are silently dropped).
+    - Adds ``trend_time`` by making a single cheap LLM call on the report title, unless
+      the cache already has a non-empty trend_time.
+    - Writes the updated cache back with ``schema_version = EXTRACTION_SCHEMA_VERSION``.
+
+    After patching all cache files, rebuilds the dimension JSONs and index (no LLM).
+    Returns the list of updated extractions.
+    """
+    cache_dir = output_dir / ".cache"
+    if not cache_dir.exists():
+        logger.error("No cache directory found at %s — run extraction first", cache_dir)
+        return []
+
+    # Locate all report files so we can map cache keys → report paths
+    report_files = sorted(reports_dir.glob("*/report.md"))
+    if not report_files:
+        report_files = sorted(reports_dir.glob("*.md"))
+
+    report_map: dict[str, Path] = {}
+    for rp in report_files:
+        key = rp.parent.name if rp.parent != reports_dir else rp.stem
+        report_map[key] = rp
+
+    model = _build_model(model_id, temperature=0.0)
+    updated: list[ReportExtraction] = []
+
+    for cache_path in sorted(cache_dir.glob("*.json")):
+        raw = json.loads(cache_path.read_text(encoding="utf-8"))
+        cache_key = cache_path.stem
+
+        # Round-trip through current model — Pydantic drops unknown fields
+        # (e.g. aesthetic_style, maturity) that no longer exist in the schema.
+        # model_config must allow that; use model_validate with strict=False.
+        try:
+            extraction = ReportExtraction.model_validate(raw)
+        except Exception as exc:
+            logger.warning("Could not parse %s: %s — skipping", cache_path.name, exc)
+            continue
+
+        needs_trend_time = not extraction.trend_time
+        if needs_trend_time:
+            report_path = report_map.get(cache_key)
+            if report_path and report_path.exists():
+                _, trend_time = _extract_report_metadata(report_path, model=model)
+                logger.info(
+                    "  %s → trend_time='%s'", cache_path.name, trend_time
+                )
+            else:
+                trend_time = ""
+                logger.warning("  %s: no matching report file found for trend_time", cache_path.name)
+            extraction = extraction.model_copy(update={"trend_time": trend_time})
+
+            # Propagate trend_time to all elements
+            patched_elements = [
+                e.model_copy(update={"trend_time": trend_time})
+                for e in extraction.elements
+            ]
+            extraction = extraction.model_copy(update={"elements": patched_elements})
+        else:
+            logger.info("  %s: trend_time already present, skipping LLM call", cache_path.name)
+
+        # Always bump schema version and write back
+        extraction = extraction.model_copy(update={"schema_version": EXTRACTION_SCHEMA_VERSION})
+        cache_path.write_text(
+            json.dumps(extraction.model_dump(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        updated.append(extraction)
+        logger.info("  Patched %s (v%d)", cache_path.name, EXTRACTION_SCHEMA_VERSION)
+
+    logger.info("Migration complete: %d cache entries patched", len(updated))
+    return updated
+
+
+def rebuild_only(
+    output_dir: Path,
+    semantic_dedup: bool = True,
+) -> list[ReportExtraction]:
+    """Load all valid cache entries and rebuild dimension JSONs — no LLM calls.
+
+    Useful after a migration or manual cache edit to regenerate the output files.
+    """
+    cache_dir = output_dir / ".cache"
+    extractions: list[ReportExtraction] = []
+    for cache_path in sorted(cache_dir.glob("*.json")):
+        try:
+            extraction = ReportExtraction.model_validate_json(cache_path.read_text())
+            if extraction.schema_version != EXTRACTION_SCHEMA_VERSION:
+                logger.warning(
+                    "Skipping %s: schema v%d ≠ current v%d (run --migrate-cache first)",
+                    cache_path.name,
+                    extraction.schema_version,
+                    EXTRACTION_SCHEMA_VERSION,
+                )
+                continue
+            extractions.append(extraction)
+        except Exception as exc:
+            logger.warning("Could not parse %s: %s", cache_path.name, exc)
+    logger.info("Loaded %d cache entries for rebuild", len(extractions))
+    return extractions
+
+
 def main() -> None:
     """CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -925,6 +1038,23 @@ def main() -> None:
         action="store_true",
         help="Skip embedding-based semantic deduplication (exact-name dedup still runs)",
     )
+    parser.add_argument(
+        "--migrate-cache",
+        action="store_true",
+        help=(
+            "Patch existing cache entries to the current schema without re-extracting. "
+            "Removes obsolete fields, adds trend_time via a cheap per-report LLM call, "
+            "then rebuilds dimension JSONs."
+        ),
+    )
+    parser.add_argument(
+        "--rebuild-only",
+        action="store_true",
+        help=(
+            "Load all valid cache entries and rebuild dimension JSONs without any LLM calls. "
+            "Run --migrate-cache first if cache schema is outdated."
+        ),
+    )
     args = parser.parse_args()
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -937,13 +1067,42 @@ def main() -> None:
             encoding="utf-8",
         )
 
+    # ── migrate-cache mode ────────────────────────────────────────────────────
+    if args.migrate_cache:
+        logger.info("=== Cache Migration ===")
+        logger.info("Cache:   %s/.cache", args.output_dir)
+        extractions = migrate_cache(args.reports_dir, args.output_dir, model_id=args.model)
+        if not extractions:
+            logger.warning("No cache entries to migrate.")
+            return
+        dim_counts = build_dimension_files(
+            extractions, args.output_dir, semantic_dedup=not args.no_semantic_dedup
+        )
+        update_index(extractions, args.output_dir, dim_counts)
+        logger.info("=== Migration Done: %d elements ===", sum(dim_counts.values()))
+        return
+
+    # ── rebuild-only mode ─────────────────────────────────────────────────────
+    if args.rebuild_only:
+        logger.info("=== Rebuild Only (no LLM) ===")
+        extractions = rebuild_only(args.output_dir, semantic_dedup=not args.no_semantic_dedup)
+        if not extractions:
+            logger.warning("No valid cache entries found.")
+            return
+        dim_counts = build_dimension_files(
+            extractions, args.output_dir, semantic_dedup=not args.no_semantic_dedup
+        )
+        update_index(extractions, args.output_dir, dim_counts)
+        logger.info("=== Rebuild Done: %d elements ===", sum(dim_counts.values()))
+        return
+
+    # ── normal extraction mode ────────────────────────────────────────────────
     logger.info("=== Material Library Extraction ===")
     logger.info("Reports: %s", args.reports_dir)
     logger.info("Output:  %s", args.output_dir)
     logger.info("Force:   %s", args.force)
     logger.info("Semantic dedup: %s", not args.no_semantic_dedup)
 
-    # 1. Extract
     extractions = extract_all_reports(
         args.reports_dir,
         args.output_dir,
@@ -955,14 +1114,12 @@ def main() -> None:
         logger.warning("No reports to process.")
         return
 
-    # 2. Build dimension files
     dim_counts = build_dimension_files(
         extractions,
         args.output_dir,
         semantic_dedup=not args.no_semantic_dedup,
     )
 
-    # 3. Update index
     update_index(extractions, args.output_dir, dim_counts)
 
     logger.info("=== Done ===")

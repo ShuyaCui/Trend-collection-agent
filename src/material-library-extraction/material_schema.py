@@ -130,7 +130,7 @@ class ThreeDimExtraction(BaseModel):
 # stale cache entries are automatically invalidated on next run.
 # ---------------------------------------------------------------------------
 
-EXTRACTION_SCHEMA_VERSION = 5
+EXTRACTION_SCHEMA_VERSION = 4
 
 
 # ---------------------------------------------------------------------------
@@ -146,6 +146,7 @@ class ReportExtraction(BaseModel):
     )
     source_report: str
     product_category: str
+    trend_time: str = Field(default="", description="Trend time range from report title")
     extraction_date: str
     file_hash: str = Field(description="SHA-256 of source report content")
     elements: list[MaterialElement]
