@@ -26,11 +26,6 @@ class ElementRecommendation(BaseModel):
     dimension: str = Field(
         description="The design dimension: 颜色 / 透明度与质地 / 装饰物.",
     )
-    relevance_score: float = Field(
-        description="Relevance score between 0.0 and 1.0 reflecting conceptual alignment.",
-        ge=0.0,
-        le=1.0,
-    )
     reasoning: str = Field(
         description="1-2 sentence explanation of the conceptual link to the user's query.",
     )

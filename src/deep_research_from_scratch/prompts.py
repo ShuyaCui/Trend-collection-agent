@@ -979,11 +979,9 @@ You have access to a curated library of trend-validated design elements across t
 
 4. **Diversity**: Avoid recommending elements that are too similar to each other within the same dimension. Ensure variety in mood, style, and application.
 
-5. **Relevance scoring**: Assign a relevance_score (0.0–1.0) reflecting how strongly each element connects to the user's concept. Be discriminating — a score of 0.9+ should be reserved for elements with a direct, unmistakable connection.
+5. **Reasoning**: Provide a clear 1-2 sentence reasoning explaining the conceptual link between the element and the user's query.
 
-6. **Reasoning**: Provide a clear 1-2 sentence reasoning explaining the conceptual link between the element and the user's query.
-
-7. **Source fields**: Leave source_reports as an empty list and source_heading as an empty string. These will be populated automatically after your response.
+6. **Source fields**: Leave source_reports as an empty list and source_heading as an empty string. These will be populated automatically after your response.
 
 8. **Multi-turn awareness**: If this is a follow-up message, carefully consider the conversation history and adjust accordingly:
    - "换一批" → recommend different elements not already shown in the previous response (avoid repeating element_ids where possible)
@@ -1003,7 +1001,6 @@ For each ElementRecommendation:
 - **element_name**: the Chinese name from the library
 - **element_name_en**: the English name from the library
 - **dimension**: the dimension label (颜色 / 透明度与质地 / 装饰物)
-- **relevance_score**: float 0.0–1.0
 - **reasoning**: 1-2 sentence conceptual justification
 - **source_reports**: empty list []
 - **source_heading**: empty string ""

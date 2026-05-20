@@ -28,16 +28,9 @@ from deep_research_from_scratch.state_recommender import (
 
 load_dotenv()
 
-# ===== CONFIGURATION =====
-
-_DEFAULT_RECOMMENDER_MODEL = "azure_openai:gpt-4.1"
-
-# Path to material_library/ relative to this file:
-# src/deep_research_from_scratch/material_recommender.py -> ../../.. -> project root
+_DEFAULT_RECOMMENDER_MODEL = "azure_openai:GPT-55-2026-04-24"
 _MATERIAL_LIBRARY_DIR = Path(__file__).parent.parent.parent / "material_library"
 
-
-# ===== UTILITY FUNCTIONS =====
 
 def _normalize_model_id(model_id: str) -> str:
     """Normalize Azure model identifiers to use the expected deployment casing."""
@@ -48,11 +41,7 @@ def _normalize_model_id(model_id: str) -> str:
 
 
 def _build_model(model_id: str, **kwargs):
-    """Build an Azure OpenAI model instance from a model identifier string.
-
-    Extracts the deployment name from the model identifier using the
-    convention that model name equals deployment name.
-    """
+    """Build an Azure OpenAI model instance."""
     normalized_model_id = _normalize_model_id(model_id)
     deployment = normalized_model_id.split(":")[-1]
     return init_chat_model(
@@ -72,23 +61,8 @@ def _build_model(model_id: str, **kwargs):
 def load_material_library(library_dir: Path | None = None) -> str:
     """Load and format all material library elements for LLM context injection.
 
-    Loads color, texture, and decoration elements from the material library JSON
-    files and formats them as compact single-line text entries. Source traceability
-    fields (source_report, source_heading) are intentionally excluded from the
-    prompt context — they are added via post-hoc lookup after recommendations are
-    produced.
-
-    Args:
-        library_dir: Path to the material_library directory. Defaults to the
-            standard location relative to the project root.
-
-    Returns:
-        A formatted string containing all material library elements ready for
-        prompt injection.
-
-    Raises:
-        FileNotFoundError: If any of the required JSON files cannot be found.
-        ValueError: If any JSON file is malformed.
+    Source traceability fields are excluded from prompt context and added
+    via post-hoc lookup after recommendations are produced.
     """
     if library_dir is None:
         library_dir = _MATERIAL_LIBRARY_DIR
@@ -102,10 +76,7 @@ def load_material_library(library_dir: Path | None = None) -> str:
     lines = []
     for dimension_label, filepath in files.items():
         if not filepath.exists():
-            raise FileNotFoundError(
-                f"Material library file not found: {filepath}. "
-                f"Ensure the material_library/ directory is present at the project root."
-            )
+            raise FileNotFoundError(f"Material library file not found: {filepath}")
         try:
             with open(filepath, encoding="utf-8") as f:
                 data = json.load(f)
@@ -133,17 +104,7 @@ def load_material_library(library_dir: Path | None = None) -> str:
 
 
 def _build_element_index(library_dir: Path | None = None) -> dict[str, dict]:
-    """Build an index of all material library elements keyed by element ID.
-
-    Used for post-hoc traceability lookup after the LLM produces recommendations
-    with element_id values.
-
-    Args:
-        library_dir: Path to the material_library directory.
-
-    Returns:
-        Dictionary mapping element_id -> element dict from the JSON files.
-    """
+    """Build an index of all material library elements keyed by element ID."""
     if library_dir is None:
         library_dir = _MATERIAL_LIBRARY_DIR
 
@@ -165,42 +126,19 @@ def _enrich_with_sources(
     result: RecommendationResult,
     element_index: dict[str, dict],
 ) -> RecommendationResult:
-    """Populate source traceability fields via post-hoc element lookup.
+    """Populate source traceability fields via post-hoc element lookup."""
 
-    The LLM produces recommendations with element_id values but leaves
-    source_reports and source_heading empty. This function looks up each element
-    in the material library index and copies the traceability fields.
-
-    Args:
-        result: The LLM-produced RecommendationResult with element_ids.
-        element_index: Dict mapping element_id -> element data from JSON files.
-
-    Returns:
-        A new RecommendationResult with source_reports and source_heading
-        populated for each ElementRecommendation.
-    """
-
-    def enrich_list(
-        recs: list[ElementRecommendation],
-    ) -> list[ElementRecommendation]:
+    def enrich_list(recs: list[ElementRecommendation]) -> list[ElementRecommendation]:
         enriched = []
         for rec in recs:
             elem = element_index.get(rec.element_id, {})
             raw_source = elem.get("source_report", "")
-            # Split multiple sources separated by " + " and deduplicate
             source_reports = list(
-                dict.fromkeys(
-                    s.strip() for s in raw_source.split(" + ") if s.strip()
-                )
+                dict.fromkeys(s.strip() for s in raw_source.split(" + ") if s.strip())
             )
             source_heading = elem.get("source_heading", "")
             enriched.append(
-                rec.model_copy(
-                    update={
-                        "source_reports": source_reports,
-                        "source_heading": source_heading,
-                    }
-                )
+                rec.model_copy(update={"source_reports": source_reports, "source_heading": source_heading})
             )
         return enriched
 
@@ -213,63 +151,36 @@ def _enrich_with_sources(
 
 
 def _format_recommendations_as_text(result: RecommendationResult) -> str:
-    """Format a RecommendationResult as a readable markdown message for conversation history.
-
-    Args:
-        result: The recommendation result to format.
-
-    Returns:
-        A markdown-formatted string suitable for display.
-    """
+    """Format a RecommendationResult as readable markdown for conversation history."""
     lines = [f"**概念分析**: {result.concept_analysis}\n"]
-
-    dimension_groups = [
+    for dimension_label, recs in [
         ("候选颜色", result.colors),
         ("候选质地", result.textures),
         ("候选装饰物", result.decorations),
-    ]
-    for dimension_label, recs in dimension_groups:
+    ]:
         lines.append(f"### {dimension_label}")
         for i, rec in enumerate(recs, 1):
             source_info = ""
             if rec.source_heading:
                 report_ids = [r.split("/")[0][:8] for r in rec.source_reports]
-                source_info = (
-                    f" *(来源: {rec.source_heading}，报告: {', '.join(report_ids)})*"
-                )
+                source_info = f" *(来源: {rec.source_heading}，报告: {', '.join(report_ids)})*"
             lines.append(
-                f"{i}. **{rec.element_name}** ({rec.element_name_en})"
-                f" — 相关性: {rec.relevance_score:.2f}\n"
+                f"{i}. **{rec.element_name}** ({rec.element_name_en})\n"
                 f"   {rec.reasoning}{source_info}"
             )
         lines.append("")
-
     return "\n".join(lines)
 
-
-# ===== GRAPH NODES =====
 
 def recommend(state: RecommenderState, config: RunnableConfig) -> dict:
     """Generate material recommendations based on conversation state.
 
-    Loads the full material library, injects it into the system prompt, and
-    calls the LLM with structured output to produce recommendations. After
-    the LLM responds, source traceability fields are enriched via post-hoc
-    element lookup.
-
-    Multi-turn conversations are naturally supported: the full message history
-    in state["messages"] is passed to the LLM, allowing it to see previous
-    recommendations and user refinement requests.
+    Loads the full material library, builds the system prompt, calls LLM with
+    structured output, then enriches results with source traceability via post-hoc
+    lookup. Multi-turn conversations are supported through full message history.
 
     Model is controlled by config["configurable"]["recommender_model"]
     (default: "azure_openai:gpt-4.1").
-
-    Args:
-        state: Current RecommenderState including full message history.
-        config: LangGraph runnable config.
-
-    Returns:
-        State update dict with new messages and structured recommendations.
     """
     configurable = config.get("configurable", {})
     model = _build_model(
@@ -278,29 +189,21 @@ def recommend(state: RecommenderState, config: RunnableConfig) -> dict:
     )
     structured_model = model.with_structured_output(RecommendationResult)
 
-    # Build system prompt with full material library (no source fields)
     material_library_text = load_material_library()
-    system_content = recommender_system_prompt.format(
-        material_library=material_library_text,
-    )
+    system_content = recommender_system_prompt.format(material_library=material_library_text)
 
     messages = [SystemMessage(content=system_content)] + list(state["messages"])
     result: RecommendationResult = structured_model.invoke(messages)
 
-    # Post-hoc source enrichment (never generated by the LLM)
     element_index = _build_element_index()
     result = _enrich_with_sources(result, element_index)
 
-    # Serialize result to a human-readable AI message for multi-turn conversation history
     recommendations_text = _format_recommendations_as_text(result)
-
     return {
         "messages": [AIMessage(content=recommendations_text)],
         "recommendations": result,
     }
 
-
-# ===== GRAPH DEFINITION =====
 
 def _build_graph() -> StateGraph:
     """Construct the material recommender StateGraph."""
