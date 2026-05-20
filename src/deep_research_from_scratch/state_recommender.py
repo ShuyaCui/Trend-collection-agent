@@ -11,6 +11,13 @@ from pydantic import BaseModel, Field
 
 # ===== STRUCTURED OUTPUT SCHEMAS =====
 
+class ImageReference(BaseModel):
+    """A reference image matched to a recommended element via embedding retrieval."""
+
+    local_path: str = Field(description="Absolute local file path to the image.")
+    description: str = Field(description="Chinese visual description of the image.")
+
+
 class ElementRecommendation(BaseModel):
     """A single recommended material element from the library."""
 
@@ -36,6 +43,10 @@ class ElementRecommendation(BaseModel):
     source_heading: str = Field(
         default="",
         description="Source trend section heading — populated via post-hoc lookup, not by the LLM.",
+    )
+    reference_images: list[ImageReference] = Field(
+        default_factory=list,
+        description="Reference images matched via embedding retrieval — populated by attach_images node.",
     )
 
 
