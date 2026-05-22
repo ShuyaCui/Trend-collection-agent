@@ -1,204 +1,289 @@
-# 🧱 Deep Research From Scratch 
+# 🧱 Deep Research From Scratch
 
-Deep research has broken out as one of the most popular agent applications. [OpenAI](https://openai.com/index/introducing-deep-research/), [Anthropic](https://www.anthropic.com/engineering/built-multi-agent-research-system), [Perplexity](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research), and [Google](https://gemini.google/overview/deep-research/?hl=en) all have deep research products that produce comprehensive reports using [various sources](https://www.anthropic.com/news/research) of context. There are also many [open](https://huggingface.co/blog/open-deep-research) [source](https://github.com/google-gemini/gemini-fullstack-langgraph-quickstart) implementations. We built an [open deep researcher](https://github.com/langchain-ai/open_deep_research) that is simple and configurable, allowing users to bring their own models, search tools, and MCP servers. In this repo, we'll build a deep researcher from scratch! Here is a map of the major pieces that we will build:
+Deep research is one of the most popular agent applications today. [OpenAI](https://openai.com/index/introducing-deep-research/), [Anthropic](https://www.anthropic.com/engineering/built-multi-agent-research-system), [Perplexity](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research), and [Google](https://gemini.google/overview/deep-research/?hl=en) all ship deep research products that produce comprehensive reports from diverse sources. This repo builds a deep researcher **from scratch** — step by step through 8 tutorial notebooks — culminating in a domain-specific design-trend intelligence system powered by a multimodal knowledge graph.
 
 ![overview](https://github.com/user-attachments/assets/b71727bd-0094-40c4-af5e-87cdb02123b4)
 
-## 🚀 Quickstart 
+## 🗺️ What We Build
+
+| Phase | Notebooks | What you get |
+|-------|-----------|--------------|
+| **Core Research System** | 1 – 5 | Scoping → multi-agent research → final report |
+| **Domain Intelligence** | 6 – 8 | Trend extraction → material recommender → multimodal KG |
+
+## 🚀 Quickstart
 
 ### Prerequisites
 
-- **Node.js and npx** (required for MCP server in notebook 3):
-```bash
-# Install Node.js (includes npx)
-# On macOS with Homebrew:
-brew install node
+- **Python 3.11+** (required for LangGraph compatibility)
+  ```bash
+  python3 --version
+  ```
 
-# On Ubuntu/Debian:
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
+- **[uv](https://docs.astral.sh/uv/) package manager**
+  ```bash
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  export PATH="$HOME/.local/bin:$PATH"
+  ```
 
-# Verify installation:
-node --version
-npx --version
-```
+- **Node.js / npx** (required for MCP server in notebook 3)
+  ```bash
+  # macOS
+  brew install node
+  # Ubuntu/Debian
+  curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs
+  ```
 
-- Ensure you're using Python 3.11 or later.
-- This version is required for optimal compatibility with LangGraph.
-```bash
-python3 --version
-```
-- [uv](https://docs.astral.sh/uv/) package manager
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-# Update PATH to use the new uv version
-export PATH="/Users/$USER/.local/bin:$PATH"
-```
+- **Neo4j** (required for notebook 8 — multimodal knowledge graph)
 
 ### Installation
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/langchain-ai/deep_research_from_scratch
+git clone https://github.com/ShuyaCui/deep_research_from_scratch
 cd deep_research_from_scratch
-```
-
-2. Install the package and dependencies (this automatically creates and manages the virtual environment):
-```bash
 uv sync
 ```
 
-3. Create a `.env` file in the project root with your API keys:
+### Configuration
+
+Copy `.env.example` to `.env` and fill in your values:
+
 ```bash
-# Create .env file
-touch .env
+cp .env.example .env
 ```
 
-Add your API keys to the `.env` file:
 ```env
-# Required for research agents with external search
-TAVILY_API_KEY=your_tavily_api_key_here
+# Azure OpenAI (required)
+AZURE_OPENAI_ENDPOINT=https://<your-endpoint>/stg/v1
+AZURE_OPENAI_DEPLOYMENT=<your-deployment-name>
+AZURE_OPENAI_API_VERSION=2025-04-01-preview
+AZURE_CLIENT_ID=<your-client-id>
+AZURE_CLIENT_SECRET=<your-client-secret>
+AZURE_TENANT_ID=<your-tenant-id>
 
-# Required for model usage
-OPENAI_API_KEY=your_openai_api_key_here
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
+# GenAI platform headers (required)
+HEADERS_USERID=<your-email>
+HEADERS_PROJECT_NAME=<your-project-name>
 
-# Required for evaluation and tracing (self-hosted or Langfuse Cloud)
-LANGFUSE_PUBLIC_KEY=pk-lf-your_public_key_here
-LANGFUSE_SECRET_KEY=sk-lf-your_secret_key_here
+# Web search (required for notebooks 2–5)
+TAVILY_API_KEY=<your-tavily-key>
+
+# Multimodal VLM — Gemini via proxy (required for notebook 8)
+NANO_BANANA_URL=<gemini-flash-image-endpoint>
+NANO_BANANA_PRO_URL=<gemini-pro-image-endpoint>
+NANO_BANANA_FLASH_URL=<gemini-flash-endpoint>
+
+# Neo4j (required for notebook 8)
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=<your-neo4j-password>
+
+# Observability — optional
+LANGFUSE_PUBLIC_KEY=pk-lf-...
+LANGFUSE_SECRET_KEY=sk-lf-...
 LANGFUSE_BASE_URL=http://localhost:3000
+LANGSMITH_API_KEY=<your-langsmith-key>
+LANGSMITH_PROJECT=deep_research_from_scratch
 ```
 
-4. Run notebooks or code using uv:
+### Running Notebooks
+
 ```bash
-# Run Jupyter notebooks directly
 uv run jupyter notebook
-
-# Or activate the virtual environment if preferred
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-jupyter notebook
+# or activate the venv first
+source .venv/bin/activate && jupyter notebook
 ```
 
-## Background 
+## 🏗️ Architecture
 
-Research is an open‑ended task; the best strategy to answer a user request can’t be easily known in advance. Requests can require different research strategies and varying levels of search depth. Consider this request. 
+The system follows a three-phase pipeline:
 
-[Agents](https://langchain-ai.github.io/langgraph/tutorials/workflows/#agent) are well suited to research because they can flexibly apply different strategies, using intermediate results to guide their exploration. Open deep research uses an agent to conduct research as part of a three step process:
+```
+User Query
+    │
+    ▼
+┌─────────┐     ┌──────────────────────────────┐     ┌───────────┐
+│  Scope  │────▶│  Research (multi-agent)       │────▶│   Write   │
+│ (NB 1)  │     │  Supervisor → Sub-agents (NB 4)│     │  (NB 5)  │
+└─────────┘     └──────────────────────────────┘     └───────────┘
+                         │
+              ┌──────────┴──────────┐
+              │  Trend Intelligence  │
+              │  NB 6 → NB 7 → NB 8 │
+              └─────────────────────┘
+```
 
-1. **Scope** – clarify research scope
-2. **Research** – perform research
-3. **Write** – produce the final report
+**Key design choices:**
+- **Azure OpenAI** with Azure AD token auth (auto-refresh via `GenAIToken` in `Helper.py`)
+- **LangGraph** `StateGraph` for all agent workflows; subgraphs compose cleanly across phases
+- **Structured output** (`model.with_structured_output(PydanticSchema)`) at every decision point
+- **Parallel execution** via `asyncio.gather()` in the supervisor for concurrent sub-agents
+- **Notebooks as source of truth** — `%%writefile` cells generate `src/` automatically
 
-## 📝 Organization 
+## 📝 Repository Layout
 
-This repo contains 5 tutorial notebooks that build a deep research system from scratch:
+```
+deep_research_from_scratch/
+├── notebooks/                    # ✏️  Edit here — source of truth
+│   ├── 1_scoping.ipynb
+│   ├── 2_research_agent.ipynb
+│   ├── 3_research_agent_mcp.ipynb
+│   ├── 4_research_supervisor.ipynb
+│   ├── 5_full_agent.ipynb
+│   ├── 6_trend_skill.ipynb
+│   ├── 7_material_recommender.ipynb
+│   ├── 8_multimodal_kg.ipynb
+│   └── utils.py
+├── src/deep_research_from_scratch/  # ⚙️  Auto-generated — do not edit
+│   ├── research_agent_scope.py
+│   ├── research_agent.py
+│   ├── research_agent_mcp.py
+│   ├── multi_agent_supervisor.py
+│   ├── research_agent_full.py
+│   ├── material_recommender.py
+│   ├── kg_builder.py
+│   ├── kg_retrieval.py
+│   ├── trend_dimensions.py
+│   ├── prompts.py
+│   └── Helper.py
+├── history_trend_report/         # Input: raw trend report files
+├── trend_knowledge/              # Output: extracted trend dimensions JSON
+├── material_library/             # Input: material assets & index
+├── reports/                      # Output: generated research reports
+├── langgraph.json                # LangGraph entry points
+└── pyproject.toml
+```
 
-### 📚 Tutorial Notebooks
+> **⚠️ Development rule:** Always edit notebooks, then run `%%writefile` cells to regenerate `src/`. Never edit `src/` files directly.
 
-#### 1. User Clarification and Brief Generation (`notebooks/1_scoping.ipynb`)
-**Purpose**: Clarify research scope and transform user input into structured research briefs
+## 📚 Tutorial Notebooks
 
-**Key Concepts**:
-- **User Clarification**: Determines if additional context is needed from the user using structured output
-- **Brief Generation**: Transforms conversations into detailed research questions
-- **LangGraph Commands**: Using Command system for flow control and state updates
-- **Structured Output**: Pydantic schemas for reliable decision making
+### Phase 1 — Core Research System
 
-**Implementation Highlights**:
-- Two-step workflow: clarification → brief generation
-- Structured output models (`ClarifyWithUser`, `ResearchQuestion`) to prevent hallucination
-- Conditional routing based on clarification needs
-- Date-aware prompts for context-sensitive research
+#### Notebook 1 · Scoping (`1_scoping.ipynb`)
 
-**What You'll Learn**: State management, structured output patterns, conditional routing
+Clarifies research intent and produces a structured brief before any web search begins.
 
----
+- `ClarifyWithUser` structured output decides whether to ask a follow-up question or proceed
+- `ResearchQuestion` captures the final brief (topic, sub-questions, date context)
+- LangGraph `Command` for conditional routing between ask/proceed branches
 
-#### 2. Research Agent with Custom Tools (`notebooks/2_research_agent.ipynb`)
-**Purpose**: Build an iterative research agent using external search tools
-
-**Key Concepts**:
-- **Agent Architecture**: LLM decision node + tool execution node pattern
-- **Sequential Tool Execution**: Reliable synchronous tool execution
-- **Search Integration**: Tavily search with content summarization
-- **Tool Execution**: ReAct-style agent loop with tool calling
-
-**Implementation Highlights**:
-- Synchronous tool execution for reliability and simplicity
-- Content summarization to compress search results
-- Iterative research loop with conditional routing
-- Rich prompt engineering for comprehensive research
-
-**What You'll Learn**: Agent patterns, tool integration, search optimization, research workflow design
-
----
-
-#### 3. Research Agent with MCP (`notebooks/3_research_agent_mcp.ipynb`)
-**Purpose**: Integrate Model Context Protocol (MCP) servers as research tools
-
-**Key Concepts**:
-- **Model Context Protocol**: Standardized protocol for AI tool access
-- **MCP Architecture**: Client-server communication via stdio/HTTP
-- **LangChain MCP Adapters**: Seamless integration of MCP servers as LangChain tools
-- **Local vs Remote MCP**: Understanding transport mechanisms
-
-**Implementation Highlights**:
-- `MultiServerMCPClient` for managing MCP servers
-- Configuration-driven server setup (filesystem example)
-- Rich formatting for tool output display
-- Async tool execution required by MCP protocol (no nested event loops needed)
-
-**What You'll Learn**: MCP integration, client-server architecture, protocol-based tool access
-
----
-
-#### 4. Research Supervisor (`notebooks/4_research_supervisor.ipynb`)
-**Purpose**: Multi-agent coordination for complex research tasks
-
-**Key Concepts**:
-- **Supervisor Pattern**: Coordination agent + worker agents
-- **Parallel Research**: Concurrent research agents for independent topics using parallel tool calls
-- **Research Delegation**: Structured tools for task assignment
-- **Context Isolation**: Separate context windows for different research topics
-
-**Implementation Highlights**:
-- Two-node supervisor pattern (`supervisor` + `supervisor_tools`)
-- Parallel research execution using `asyncio.gather()` for true concurrency
-- Structured tools (`ConductResearch`, `ResearchComplete`) for delegation
-- Enhanced prompts with parallel research instructions
-- Comprehensive documentation of research aggregation patterns
-
-**What You'll Learn**: Multi-agent patterns, parallel processing, research coordination, async orchestration
+**Generates:** `research_agent_scope.py` → LangGraph entry point `scope_research`
 
 ---
 
-#### 5. Full Multi-Agent Research System (`notebooks/5_full_agent.ipynb`)
-**Purpose**: Complete end-to-end research system integrating all components
+#### Notebook 2 · Research Agent (`2_research_agent.ipynb`)
 
-**Key Concepts**:
-- **Three-Phase Architecture**: Scope → Research → Write
-- **System Integration**: Combining scoping, multi-agent research, and report generation
-- **State Management**: Complex state flow across subgraphs
-- **End-to-End Workflow**: From user input to final research report
+ReAct-style agent that iterates through search → summarise → reason cycles.
 
-**Implementation Highlights**:
-- Complete workflow integration with proper state transitions
-- Supervisor and researcher subgraphs with output schemas
-- Final report generation with research synthesis
-- Thread-based conversation management for clarification
+- Tavily search with per-result summarisation to fit context budgets
+- `think_tool` for explicit reasoning steps between searches
+- Synchronous tool execution for predictable, debuggable behaviour
 
-**What You'll Learn**: System architecture, subgraph composition, end-to-end workflows
+**Generates:** `research_agent.py` → LangGraph entry point `research_agent`
 
 ---
 
-### 🎯 Key Learning Outcomes
+#### Notebook 3 · Research Agent with MCP (`3_research_agent_mcp.ipynb`)
 
-- **Structured Output**: Using Pydantic schemas for reliable AI decision making
-- **Async Orchestration**: Strategic use of async patterns for parallel coordination vs synchronous simplicity
-- **Agent Patterns**: ReAct loops, supervisor patterns, multi-agent coordination
-- **Search Integration**: External APIs, MCP servers, content processing
-- **Workflow Design**: LangGraph patterns for complex multi-step processes
-- **State Management**: Complex state flows across subgraphs and nodes
-- **Protocol Integration**: MCP servers and tool ecosystems
+Swaps custom tools for MCP servers, keeping the same agent loop.
 
-Each notebook builds on the previous concepts, culminating in a production-ready deep research system that can handle complex, multi-faceted research queries with intelligent scoping and coordinated execution. 
+- `MultiServerMCPClient` manages stdio/HTTP MCP transports
+- Config-driven server setup — drop in any MCP-compatible tool
+- Async tool execution required by the MCP protocol
+
+**Generates:** `research_agent_mcp.py` → LangGraph entry point `research_agent_mcp`
+
+---
+
+#### Notebook 4 · Research Supervisor (`4_research_supervisor.ipynb`)
+
+Coordinates multiple research agents in parallel for complex, multi-faceted queries.
+
+- Supervisor LLM issues `ConductResearch` tool calls — one per sub-topic
+- Sub-agents run concurrently with `asyncio.gather()`; each has an isolated context window
+- `ResearchComplete` tool signals completion and collects compressed findings
+
+**Generates:** `multi_agent_supervisor.py` → LangGraph entry point `research_agent_supervisor`
+
+---
+
+#### Notebook 5 · Full End-to-End System (`5_full_agent.ipynb`)
+
+Wires Scope + Supervisor + Write into a single `StateGraph`.
+
+- Subgraphs with typed output schemas keep state transitions clean
+- `final_report_generation` node synthesises all compressed sub-agent findings
+- Thread-based conversation management for multi-turn clarification
+
+**Generates:** `research_agent_full.py` → LangGraph entry point `research_agent_full`
+
+---
+
+### Phase 2 — Domain Intelligence Layer
+
+#### Notebook 6 · Trend Dimension Extraction (`6_trend_skill.ipynb`)
+
+Extracts structured trend dimensions from raw historical trend reports.
+
+- Two-phase LLM pipeline: extract raw signals → normalise into canonical dimensions
+- Reads all files in `history_trend_report/`, writes `trend_knowledge/dimensions.json`
+- Re-run whenever new trend reports are added
+
+**Generates:** `trend_dimensions.py` (runtime loader used by Scope and Supervisor nodes)
+
+---
+
+#### Notebook 7 · Material Recommender (`7_material_recommender.ipynb`)
+
+Recommends design materials (colors, textures, decorations) from the material library based on user design queries.
+
+- Full material library injected into LLM context (no vector search needed at current scale)
+- Structured Pydantic output with post-hoc source traceability (report ID + trend heading)
+- Multi-turn conversation support; cross-category associations encouraged
+
+**Generates:** `material_recommender.py` → LangGraph entry point `material_recommender`
+
+---
+
+#### Notebook 8 · Multimodal Knowledge Graph (`8_multimodal_kg.ipynb`)
+
+Builds a Neo4j knowledge graph connecting 275 product images to 107 material trend elements via VLM classification.
+
+- **Phase A:** Upsert Neo4j nodes (products, materials, trend elements)
+- **Phase B:** VLM 3-vote closed-set classification links images to material attributes
+- `kg_retrieval.py` provides a clean retrieval interface over the graph
+- Validation suite confirms edge coverage and classification quality
+
+**Generates:** `kg_builder.py`, `kg_retrieval.py`
+
+---
+
+## 🎯 Key Learning Outcomes
+
+| Topic | Notebooks |
+|-------|-----------|
+| Structured output with Pydantic | 1, 4, 7 |
+| ReAct agent loops | 2, 3 |
+| MCP tool integration | 3 |
+| Multi-agent supervisor pattern | 4, 5 |
+| Async / parallel orchestration | 4, 5 |
+| Subgraph composition in LangGraph | 5 |
+| LLM-based information extraction | 6 |
+| Knowledge graph construction | 8 |
+| Multimodal VLM classification | 8 |
+
+## 🛠️ Development
+
+```bash
+# Install with dev dependencies (includes ruff)
+uv sync --extra dev
+
+# Lint generated source files
+ruff check src/
+
+# Auto-fix
+ruff check src/ --fix
+```
+
+Fix lint issues in the notebook `%%writefile` cells, not in `src/` directly, then rerun the cell to regenerate the file.
