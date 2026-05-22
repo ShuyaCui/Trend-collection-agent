@@ -13,4 +13,4 @@ history_trend_report/
 # Ignore the generated material library
 material_library/
 # Ignore openspec files
-openspec/
+openspec/openspec/
