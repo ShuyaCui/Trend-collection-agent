@@ -6,12 +6,14 @@ the research agent scoping workflow, including researcher state management and o
 """
 
 import operator
-from typing_extensions import Optional, Annotated, List, Sequence
 
 from langchain_core.messages import BaseMessage
 from langgraph.graph import MessagesState
 from langgraph.graph.message import add_messages
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated, Sequence
+
+from deep_research_from_scratch.state_research import ImageResult
 
 # ===== STATE DEFINITIONS =====
 
@@ -20,8 +22,7 @@ class AgentInputState(MessagesState):
     pass
 
 class AgentState(MessagesState):
-    """
-    Main state for the full multi-agent research system.
+    """Main state for the full multi-agent research system.
 
     Extends MessagesState with additional fields for research coordination.
     Note: Some fields are duplicated across different state classes for proper
@@ -29,13 +30,15 @@ class AgentState(MessagesState):
     """
 
     # Research brief generated from user conversation history
-    research_brief: Optional[str]
+    research_brief: str | None
     # Messages exchanged with the supervisor agent for coordination
     supervisor_messages: Annotated[Sequence[BaseMessage], add_messages]
     # Raw unprocessed research notes collected during the research phase
     raw_notes: Annotated[list[str], operator.add] = []
     # Processed and structured notes ready for report generation
     notes: Annotated[list[str], operator.add] = []
+    # Collected image metadata from the research phase
+    images: Annotated[list[ImageResult], operator.add] = []
     # Final formatted research report
     final_report: str
 

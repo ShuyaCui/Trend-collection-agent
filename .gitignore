@@ -4,3 +4,13 @@ __pycache__
 .langgraph_api/
 deep_research_from_scratch.egg-info/
 *.pyc
+# Ignore the generated trend dimensions file since it's a derived artifact that can be regenerated from the source documents and LLM extraction pipeline
+trend_knowledge/
+# Ignore report files
+reports/
+# Ignore history report files
+history_trend_report/
+# Ignore the generated material library
+material_library/
+# Ignore openspec files
+openspec/

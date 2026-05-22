@@ -1,0 +1,1149 @@
+"""Extract structured material library from trend reports.
+
+Reads Markdown trend reports from ``reports/``, extracts design elements
+(颜色, 装饰物, 透明度与质地, 风格) via LLM structured output, and writes
+per-dimension JSON files to ``material_library/``.
+
+Usage::
+
+    uv run python scripts/extract_material_library.py
+    uv run python scripts/extract_material_library.py --force
+    uv run python scripts/extract_material_library.py --reports-dir reports/ --output-dir material_library/
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import logging
+import os
+import re
+import sys
+from datetime import date, datetime
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Ensure project root is on sys.path so we can import helpers.
+# File lives at src/material-library-extraction/, so go up 3 levels.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(_PROJECT_ROOT / "src"))
+
+from langchain.chat_models import init_chat_model  # noqa: E402
+from langchain_core.messages import HumanMessage  # noqa: E402
+from material_schema import (  # noqa: E402
+    DIMENSION_EN,
+    DIMENSIONS,
+    EXTRACTION_SCHEMA_VERSION,
+    DimensionFile,
+    IndexMetadata,
+    MaterialElement,
+    ProcessedReport,
+    ReportExtraction,
+    ThreeDimExtraction,
+    make_element_id,
+)
+from pydantic import BaseModel, Field  # noqa: E402
+
+from deep_research_from_scratch.Helper import GenAIToken  # noqa: E402
+
+load_dotenv()
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Report metadata extraction (category + trend_time via LLM)
+# ---------------------------------------------------------------------------
+
+class _ReportMetadata(BaseModel):
+    product_category: str = Field(
+        description="产品品类，简短名称，2-6个字，如'面部护理'、'洗发水'、'饮料'、'彩妆'"
+    )
+    trend_time: str = Field(
+        description="趋势时间范围，如'2025年11月—2026年5月'，若无则留空"
+    )
+
+
+def _extract_report_metadata(report_path: Path, model=None) -> tuple[str, str]:
+    """Extract product category and trend time from the report title via LLM.
+
+    Reads the first 300 characters of the report (typically the title) and
+    asks the LLM to extract both fields in one call. Returns
+    ``(product_category, trend_time)``; falls back to ``('未知品类', '')``
+    on failure or when no model is provided.
+    """
+    try:
+        header = report_path.read_text(encoding="utf-8")[:300]
+    except OSError:
+        return "未知品类", ""
+
+    if model is not None:
+        try:
+            meta_model = model.with_structured_output(_ReportMetadata)
+            prompt = (
+                "从以下报告标题/开头中提取两项信息：\n"
+                "1. 产品品类（简短，2-6个字，例如：面部护理、洗发水、饮料、彩妆）\n"
+                "2. 趋势时间范围（例如：2025年11月—2026年5月；若标题中没有则留空）\n\n"
+                f"报告开头：\n{header}"
+            )
+            result: _ReportMetadata = meta_model.invoke([HumanMessage(content=prompt)])
+            logger.debug(
+                "Report metadata: category='%s' trend_time='%s' for %s",
+                result.product_category,
+                result.trend_time,
+                report_path.name,
+            )
+            return result.product_category, result.trend_time
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Metadata extraction failed for %s: %s", report_path.name, exc)
+
+    return "未知品类", ""
+
+
+# ---------------------------------------------------------------------------
+# LLM helpers
+# ---------------------------------------------------------------------------
+
+_DEFAULT_MODEL = os.getenv(
+    "MATERIAL_EXTRACTION_MODEL",
+    "azure_openai:GPT-54-2026-03-05",
+)
+
+
+def _build_model(model_id: str | None = None, **kwargs):
+    """Build an Azure OpenAI model instance."""
+    model_id = model_id or _DEFAULT_MODEL
+    # Normalize: uppercase the deployment portion after the provider prefix
+    provider, sep, deployment = model_id.partition(":")
+    if sep:
+        deployment = deployment.upper()
+        model_id = f"{provider}{sep}{deployment}"
+    else:
+        deployment = model_id.upper()
+    return init_chat_model(
+        model=model_id,
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        azure_deployment=deployment,
+        azure_ad_token_provider=lambda: GenAIToken().token(),
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+        default_headers={
+            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+            "userid": os.getenv("HEADERS_USERID"),
+        },
+        **kwargs,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Extraction prompt
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Extraction prompts
+# ---------------------------------------------------------------------------
+
+_THREE_DIM_EXTRACTION_PROMPT = """你是一个设计元素提取专家。你的任务是从以下趋势报告中一次性提取所有属于「颜色」「装饰物」「透明度与质地」三个维度的设计元素卡片。
+
+## 三个维度的定义（互斥）
+
+- **颜色**：色相、色调、色彩语言（如"琥珀金""植物绿""低饱和香氛色"）。主要信号是颜色本身，即使该颜色的产品恰好是透明的。
+- **装饰物**：液体中或表面的可见附加元素（如"微囊""奶盖""珠光颗粒""油珠悬浮""盐晶""花瓣"）。
+- **透明度与质地**：通透性 + 黏度 + 流动性 + 光泽 + 表面状态（如"高折光水感""凝胶感""丝缎流动""奶霜质地"）。主要信号是物质的物理形态，而非颜色。
+
+### 维度分配规则（遇到重叠时必须遵守）
+
+1. 一个设计元素只能归属于**唯一一个维度**，禁止将同一概念分配到多个维度。
+2. 判断主要信号：
+   - 如果主要在描述"是什么颜色" → 归「颜色」
+   - 如果主要在描述"有什么可见漂浮/颗粒/层次元素" → 归「装饰物」
+   - 如果主要在描述"质感如何、透不透、稠不稠、流不流动" → 归「透明度与质地」
+3. 颜色词（如"透明金色""乳白"）中，若重点是颜色 → 归「颜色」；若重点是透明度状态 → 归「透明度与质地」。
+
+## 通用提取规则
+
+- **粒度**: 每个独立的设计概念成为一张卡片。一个趋势段落可能包含1-3个独立元素。
+- **source_heading**: 必须填写该元素对应的报告中的原始章节标题文本。
+- **source_section**: 填写章节编号（如 "§4.1", "趋势3", "3.2"）。
+- **signals**: 该元素向消费者传达的信息，2-5项。
+- **visual_keywords**: 可扫描的视觉描述词，3-8项。
+- **name_en**: 提供准确的英文翻译。
+- **typical_use**: 典型的产品/使用场景。
+
+## 报告内容
+
+{content}
+
+## 输出要求
+
+提取报告中所有独立的设计元素，不要遗漏任何趋势项。
+每张卡片的 dimension 字段必须精确填写「颜色」「装饰物」或「透明度与质地」之一。
+严禁将同一概念重复出现在不同维度中。
+"""
+
+
+# ---------------------------------------------------------------------------
+# Report chunking helpers
+# ---------------------------------------------------------------------------
+
+_HEADING_RE = re.compile(r"^(#{2,3})\s+(.+)", re.MULTILINE)
+
+
+def _chunk_report(report_text: str, min_chars: int = 200) -> list[str]:
+    """Split a Markdown report into section chunks for focused LLM extraction.
+
+    Strategy (in order):
+    1. Split on H2/H3 headings — each chunk = heading + body until next heading.
+    2. If fewer than 2 heading-chunks result, fall back to paragraph splitting
+       (blank-line separated blocks).
+    3. If paragraph splitting also yields fewer than 2 chunks, return the full
+       report as a single-element list.
+
+    Chunks shorter than *min_chars* (after stripping) are discarded.
+    """
+    lines = report_text.splitlines(keepends=True)
+
+    # --- Step 1: heading-based split ---
+    heading_positions: list[int] = []
+    for i, line in enumerate(lines):
+        if _HEADING_RE.match(line):
+            heading_positions.append(i)
+
+    if len(heading_positions) >= 2:
+        chunks: list[str] = []
+        for idx, start in enumerate(heading_positions):
+            end = heading_positions[idx + 1] if idx + 1 < len(heading_positions) else len(lines)
+            chunk = "".join(lines[start:end]).strip()
+            if len(chunk) >= min_chars:
+                chunks.append(chunk)
+        if len(chunks) >= 2:
+            return chunks
+
+    # --- Step 2: paragraph-based fallback ---
+    paragraphs = [p.strip() for p in re.split(r"\n{2,}", report_text) if p.strip()]
+    para_chunks = [p for p in paragraphs if len(p) >= min_chars]
+    if len(para_chunks) >= 2:
+        return para_chunks
+
+    # --- Step 3: full-report degradation ---
+    return [report_text]
+
+
+def _build_breadcrumb(ancestor_headings: list[str]) -> str:
+    """Build a heading breadcrumb string from ancestor heading lines.
+
+    Example: ["## 一、趋势总览", "### 1. 低饱和香氛色"]
+             → "## 一、趋势总览 > ### 1. 低饱和香氛色"
+
+    Returns empty string when no ancestors are provided.
+    """
+    cleaned = [h.strip() for h in ancestor_headings if h.strip()]
+    return " > ".join(cleaned)
+
+
+def _chunks_with_breadcrumbs(report_text: str, min_chars: int = 200) -> list[tuple[str, str]]:
+    """Return list of (breadcrumb, chunk_text) pairs for all chunks in a report.
+
+    The breadcrumb for each chunk is the ordered path of ancestor H2/H3 headings
+    leading to its own heading. The chunk body does NOT include the leading heading
+    line (that is captured in the breadcrumb instead).
+    """
+    lines = report_text.splitlines(keepends=True)
+    heading_positions: list[tuple[int, str, int]] = []  # (line_idx, heading_text, level)
+    for i, line in enumerate(lines):
+        m = _HEADING_RE.match(line)
+        if m:
+            level = len(m.group(1))  # 2 for ##, 3 for ###
+            heading_positions.append((i, line.rstrip(), level))
+
+    if len(heading_positions) < 2:
+        # Degenerate case: no meaningful structure, return full text with no breadcrumb
+        return [("", report_text)]
+
+    results: list[tuple[str, str]] = []
+    for idx, (start, heading_text, level) in enumerate(heading_positions):
+        end_line = heading_positions[idx + 1][0] if idx + 1 < len(heading_positions) else len(lines)
+        body = "".join(lines[start + 1 : end_line]).strip()
+        if len(body) < min_chars:
+            continue
+        # Build breadcrumb: all ancestor headings whose level < current level,
+        # keeping only the closest ancestor per level.
+        ancestors: list[str] = []
+        seen_levels: set[int] = set()
+        for prev_line_idx, prev_heading, prev_level in reversed(heading_positions[:idx]):
+            if prev_level < level and prev_level not in seen_levels:
+                ancestors.insert(0, prev_heading)
+                seen_levels.add(prev_level)
+        breadcrumb = _build_breadcrumb(ancestors + [heading_text])
+        results.append((breadcrumb, body))
+
+    if not results:
+        return [("", report_text)]
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Core extraction
+# ---------------------------------------------------------------------------
+
+
+def _file_hash(path: Path) -> str:
+    """Return SHA-256 hex digest of a file."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _call_with_retry(structured_model, messages, max_attempts: int = 2):
+    """Invoke a structured model with simple retry on failure."""
+    last_exc = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return structured_model.invoke(messages)
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+            logger.warning("LLM call failed (attempt %d/%d): %s", attempt, max_attempts, exc)
+    raise RuntimeError(f"LLM call failed after {max_attempts} attempts") from last_exc
+
+
+def _warn_duplicates(elements: list[MaterialElement], source_label: str) -> None:
+    """Log a warning for any element names that appear in more than one dimension."""
+    from collections import defaultdict
+
+    dim_by_name: dict[str, list[str]] = defaultdict(list)
+    for elem in elements:
+        dim_by_name[elem.name].append(elem.dimension)
+
+    for name, dims in dim_by_name.items():
+        if len(dims) > 1:
+            logger.warning(
+                "Duplicate element '%s' in %s across dimensions: %s",
+                name,
+                source_label,
+                ", ".join(dims),
+            )
+
+
+def extract_single_report(
+    report_path: Path,
+    model_id: str | None = None,
+    report_id: str | None = None,
+) -> ReportExtraction:
+    """Extract all design elements from one report via section-chunked LLM extraction.
+
+    Iterates over H2/H3 sections. Each section is sent individually to the LLM
+    with a breadcrumb context prefix. Extracts 颜色, 装饰物, and 透明度与质地;
+    each element self-declares its primary dimension to avoid cross-dimension
+    duplication.
+
+    Fallback: if the report has no heading structure, falls back to paragraph
+    splitting; if still fewer than 2 chunks, falls back to full-report extraction.
+    """
+    report_text = report_path.read_text(encoding="utf-8")
+    if report_id:
+        source_label = report_id
+    else:
+        parent = report_path.parent
+        source_label = (
+            f"{parent.name}/{report_path.name}"
+            if len(parent.name) == 36 and parent.name.count("-") == 4
+            else report_path.name
+        )
+
+    model = _build_model(model_id, temperature=0.0)
+    category, trend_time = _extract_report_metadata(report_path, model=model)
+
+    all_elements: list[MaterialElement] = []
+    chunks = _chunks_with_breadcrumbs(report_text)
+    logger.info(
+        "  Report %s: %d chars → %d section chunk(s)",
+        source_label,
+        len(report_text),
+        len(chunks),
+    )
+
+    # Extract 颜色, 装饰物, and 透明度与质地 (per chunk)
+    three_dim_model = model.with_structured_output(ThreeDimExtraction)
+    valid_dims = {"颜色", "装饰物", "透明度与质地"}
+    pass1_total = 0
+
+    for chunk_idx, (breadcrumb, chunk_body) in enumerate(chunks):
+        context = f"[章节位置: {breadcrumb}]\n\n{chunk_body}" if breadcrumb else chunk_body
+        prompt1 = _THREE_DIM_EXTRACTION_PROMPT.format(content=context)
+        logger.info(
+            "  Chunk %d/%d (%d chars, bc=%r)...",
+            chunk_idx + 1,
+            len(chunks),
+            len(context),
+            breadcrumb[:60] if breadcrumb else "",
+        )
+        result1: ThreeDimExtraction = _call_with_retry(
+            three_dim_model, [HumanMessage(content=prompt1)]
+        )
+        chunk_count = 0
+        for elem in result1.elements:
+            if elem.dimension not in valid_dims:
+                logger.warning(
+                    "Element '%s' has unexpected dimension '%s'; skipping",
+                    elem.name,
+                    elem.dimension,
+                )
+                continue
+            elem.source_report = source_label
+            elem.product_category = category
+            elem.trend_time = trend_time
+            elem.id = make_element_id(category, elem.dimension, elem.name, elem.source_section)
+            all_elements.append(elem)
+            chunk_count += 1
+        logger.info("    → %d elements from chunk %d", chunk_count, chunk_idx + 1)
+        pass1_total += chunk_count
+
+    logger.info("  Total: %d elements across %d chunks", pass1_total, len(chunks))
+    if pass1_total < 3 and len(report_text) > 1000:
+        logger.warning(
+            "Only %d elements from a %d-char report — possible LLM output issue",
+            pass1_total,
+            len(report_text),
+        )
+
+    _warn_duplicates(all_elements, source_label)
+
+    return ReportExtraction(
+        source_report=source_label,
+        product_category=category,
+        trend_time=trend_time,
+        extraction_date=date.today().isoformat(),
+        file_hash=_file_hash(report_path),
+        elements=all_elements,
+        schema_version=EXTRACTION_SCHEMA_VERSION,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Batch extraction with incremental logic
+# ---------------------------------------------------------------------------
+
+
+def extract_all_reports(
+    reports_dir: Path,
+    output_dir: Path,
+    force: bool = False,
+    model_id: str | None = None,
+) -> list[ReportExtraction]:
+    """Extract all reports, skipping already-processed ones unless forced.
+
+    Returns list of all ReportExtraction objects (from cache or fresh).
+    """
+    cache_dir = output_dir / ".cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load existing index
+    index_path = output_dir / "index.json"
+    index = IndexMetadata.model_validate_json(index_path.read_text())
+
+    # Build hash map from existing processed reports
+    processed: dict[str, ProcessedReport] = {
+        pr.filename: pr for pr in index.processed_reports
+    }
+
+    # Support both flat layout (*.md directly in dir) and nested layout
+    # ({uuid}/report.md).  Nested takes precedence when present.
+    report_files = sorted(reports_dir.glob("*/report.md"))
+    if not report_files:
+        report_files = sorted(reports_dir.glob("*.md"))
+    if not report_files:
+        logger.warning("No .md files found in %s", reports_dir)
+        return []
+
+    all_extractions: list[ReportExtraction] = []
+
+    for report_path in report_files:
+        # Use a unique identifier that survives the UUID directory layout.
+        # For nested layout: "<uuid>/report.md"; for flat: "report_name.md".
+        report_id = (
+            f"{report_path.parent.name}/{report_path.name}"
+            if report_path.parent != reports_dir
+            else report_path.name
+        )
+        current_hash = _file_hash(report_path)
+        cached = processed.get(report_id)
+        # Cache filename: use UUID (parent dir name) to avoid collisions when
+        # every file is named report.md.
+        cache_key = (
+            report_path.parent.name
+            if report_path.parent != reports_dir
+            else report_path.stem
+        )
+        cache_path = cache_dir / f"{cache_key}.json"
+
+        # Skip if cached, hash matches, AND schema version is current
+        if (
+            not force
+            and cached
+            and cached.file_hash == current_hash
+            and cache_path.exists()
+        ):
+            extraction = ReportExtraction.model_validate_json(
+                cache_path.read_text()
+            )
+            if extraction.schema_version != EXTRACTION_SCHEMA_VERSION:
+                logger.info(
+                    "Cache schema version mismatch for %s (cache=%d, current=%d) — re-extracting",
+                    report_id,
+                    extraction.schema_version,
+                    EXTRACTION_SCHEMA_VERSION,
+                )
+            else:
+                logger.info("Skipping %s (unchanged, schema v%d)", report_id, EXTRACTION_SCHEMA_VERSION)
+                all_extractions.append(extraction)
+                continue
+
+        logger.info("Extracting %s ...", report_id)
+        extraction = extract_single_report(report_path, model_id, report_id=report_id)
+
+        # Cache the extraction
+        cache_path.write_text(
+            json.dumps(extraction.model_dump(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        all_extractions.append(extraction)
+
+    return all_extractions
+
+
+# ---------------------------------------------------------------------------
+# Build dimension files
+# ---------------------------------------------------------------------------
+
+_MATURITY_RANK: dict[str, int] = {"主流": 0, "上升": 1, "实验性": 2}
+
+
+def _merge_group(group: list[MaterialElement]) -> MaterialElement:
+    """Merge a group of MaterialElements into one canonical entry.
+
+    Rules:
+    - visual_keywords / signals: union, deduped, order-preserving, then trimmed
+      to at most _KEYWORD_LIMIT items by embedding similarity to the element topic
+    - trend_time: union of distinct values joined with " / "
+    - source_report: join distinct sources with " + "
+    - all other fields: taken from the first entry in the group
+    """
+    if len(group) == 1:
+        return group[0]
+
+    primary = group[0]
+
+    seen_kw: set[str] = set()
+    merged_kw: list[str] = []
+    for e in group:
+        for kw in e.visual_keywords:
+            if kw not in seen_kw:
+                seen_kw.add(kw)
+                merged_kw.append(kw)
+
+    seen_sig: set[str] = set()
+    merged_sig: list[str] = []
+    for e in group:
+        for sig in e.signals:
+            if sig not in seen_sig:
+                seen_sig.add(sig)
+                merged_sig.append(sig)
+
+    # Trim oversized keyword/signal lists by embedding similarity to the topic.
+    needs_trim = len(merged_kw) > _KEYWORD_LIMIT or len(merged_sig) > _KEYWORD_LIMIT
+    if needs_trim:
+        topic = f"{primary.name} {primary.name_en} {primary.typical_use}"
+        emb_model = _build_embedding_model()
+
+        if len(merged_kw) > _KEYWORD_LIMIT:
+            orig_kw_count = len(merged_kw)
+            merged_kw = _trim_by_similarity(merged_kw, topic, emb_model)
+            logger.info(
+                "Trimmed visual_keywords for '%s': %d → %d",
+                primary.name,
+                orig_kw_count,
+                len(merged_kw),
+            )
+
+        if len(merged_sig) > _KEYWORD_LIMIT:
+            orig_sig_count = len(merged_sig)
+            merged_sig = _trim_by_similarity(merged_sig, topic, emb_model)
+            logger.info(
+                "Trimmed signals for '%s': %d → %d",
+                primary.name,
+                orig_sig_count,
+                len(merged_sig),
+            )
+
+    sources = list(dict.fromkeys(e.source_report for e in group if e.source_report))
+    merged_source = " + ".join(sources)
+
+    trend_times = list(dict.fromkeys(e.trend_time for e in group if e.trend_time))
+    merged_trend_time = " / ".join(trend_times)
+
+    return primary.model_copy(
+        update={
+            "visual_keywords": merged_kw,
+            "signals": merged_sig,
+            "source_report": merged_source,
+            "trend_time": merged_trend_time,
+        }
+    )
+
+
+def _deduplicate_elements(elements: list[MaterialElement]) -> list[MaterialElement]:
+    """Merge elements with the same (dimension, name) across multiple reports."""
+    from collections import defaultdict
+
+    groups: dict[tuple[str, str], list[MaterialElement]] = defaultdict(list)
+    for elem in elements:
+        groups[(elem.dimension, elem.name)].append(elem)
+
+    merged: list[MaterialElement] = []
+    for (dim, name), group in groups.items():
+        result = _merge_group(group)
+        if len(group) > 1:
+            logger.info(
+                "Merged %d '%s' (%s) entries → sources=[%s]",
+                len(group),
+                name,
+                dim,
+                result.source_report,
+            )
+        merged.append(result)
+
+    return merged
+
+
+def _union_find_clusters(n: int, pairs: list[tuple[int, int]]) -> list[list[int]]:
+    """Group indices into clusters using Union-Find.
+
+    Args:
+        n: Total number of elements.
+        pairs: Index pairs (i, j) that should be in the same cluster.
+
+    Returns:
+        List of clusters, each cluster is a sorted list of indices.
+        Singletons are included as single-element lists.
+    """
+    parent = list(range(n))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x: int, y: int) -> None:
+        parent[find(x)] = find(y)
+
+    for i, j in pairs:
+        union(i, j)
+
+    from collections import defaultdict
+
+    clusters: dict[int, list[int]] = defaultdict(list)
+    for idx in range(n):
+        clusters[find(idx)].append(idx)
+    return list(clusters.values())
+
+
+_KEYWORD_LIMIT = 20
+
+
+def _trim_by_similarity(
+    items: list[str],
+    topic: str,
+    model,
+    limit: int = _KEYWORD_LIMIT,
+) -> list[str]:
+    """Return the top-`limit` items ranked by cosine similarity to `topic`.
+
+    Embeds `topic` and all `items` in a single batch call, ranks by cosine
+    similarity, and returns the top `limit` items.  Falls back to the first
+    `limit` items by insertion order if the embedding call fails.
+
+    Args:
+        items: Candidate strings to rank and trim.
+        topic: Reference string representing the element's theme.
+        model: An embeddings model with an ``embed_documents`` method.
+        limit: Maximum number of items to retain.
+
+    Returns:
+        At most `limit` items, ordered by descending similarity to `topic`.
+    """
+    import numpy as np
+
+    if len(items) <= limit:
+        return items
+
+    try:
+        all_texts = [topic] + items
+        vectors = np.array(model.embed_documents(all_texts), dtype=float)
+        norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+        norms = np.where(norms == 0, 1.0, norms)
+        unit_vecs = vectors / norms
+        topic_vec = unit_vecs[0]
+        item_vecs = unit_vecs[1:]
+        scores = item_vecs @ topic_vec
+        top_indices = sorted(range(len(items)), key=lambda i: scores[i], reverse=True)[:limit]
+        # Preserve relative insertion order among selected items
+        top_indices_ordered = sorted(top_indices)
+        return [items[i] for i in top_indices_ordered]
+    except Exception:
+        logger.warning(
+            "Embedding call failed during keyword trimming; keeping first %d items by insertion order.",
+            limit,
+        )
+        return items[:limit]
+
+
+def _build_embedding_model():
+    """Build an AzureOpenAIEmbeddings client for TEXT-EMBEDDING-3-SMALL."""
+    from langchain_openai import AzureOpenAIEmbeddings
+
+    return AzureOpenAIEmbeddings(
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        deployment="TEXT-EMBEDDING-3-SMALL",
+        api_version="2024-09-01-preview",
+        azure_ad_token_provider=lambda: GenAIToken().token(),
+        default_headers={
+            "project-name": os.getenv("HEADERS_PROJECT_NAME"),
+            "userid": os.getenv("HEADERS_USERID"),
+        },
+    )
+
+
+def _semantic_deduplicate_elements(
+    elements: list[MaterialElement],
+    threshold: float = 0.7,
+) -> list[MaterialElement]:
+    """Merge semantically similar elements within each dimension using embeddings.
+
+    For each dimension, batch-embeds all element ``name`` fields via
+    text-embedding-3-small, computes pairwise cosine similarity, and merges
+    any pair whose similarity exceeds ``threshold`` using the same rules as
+    :func:`_merge_group`.  Union-Find ensures transitive groups are handled
+    correctly and the result is order-independent.
+
+    Args:
+        elements: Elements after exact-name deduplication.
+        threshold: Cosine similarity threshold above which two elements are merged.
+
+    Returns:
+        Elements with semantic duplicates merged.
+    """
+    from collections import defaultdict
+
+    import numpy as np
+
+    embedding_model = _build_embedding_model()
+
+    by_dim: dict[str, list[MaterialElement]] = defaultdict(list)
+    for elem in elements:
+        by_dim[elem.dimension].append(elem)
+
+    result: list[MaterialElement] = []
+
+    for dim, dim_elems in by_dim.items():
+        if len(dim_elems) <= 1:
+            result.extend(dim_elems)
+            continue
+
+        names = [
+            f"{e.name} {' '.join(e.visual_keywords[:10])}".strip() if e.visual_keywords else e.name
+            for e in dim_elems
+        ]
+        vectors = np.array(embedding_model.embed_documents(names), dtype=float)
+
+        # Normalise rows for fast cosine similarity via dot product
+        norms = np.linalg.norm(vectors, axis=1, keepdims=True)
+        norms = np.where(norms == 0, 1.0, norms)
+        unit_vecs = vectors / norms
+
+        # Collect pairs above threshold (upper triangle only)
+        n = len(dim_elems)
+        above_threshold: list[tuple[int, int]] = []
+        sim_matrix = unit_vecs @ unit_vecs.T
+        for i in range(n):
+            for j in range(i + 1, n):
+                if sim_matrix[i, j] > threshold:
+                    above_threshold.append((i, j))
+
+        clusters = _union_find_clusters(n, above_threshold)
+
+        for cluster in clusters:
+            group = [dim_elems[idx] for idx in cluster]
+            merged = _merge_group(group)
+            if len(group) > 1:
+                merged_names = [e.name for e in group]
+                logger.info(
+                    "Semantic-merged %d (%s) entries %s → '%s'",
+                    len(group),
+                    dim,
+                    merged_names,
+                    merged.name,
+                )
+            result.append(merged)
+
+    return result
+
+
+def build_dimension_files(
+    extractions: list[ReportExtraction],
+    output_dir: Path,
+    semantic_dedup: bool = True,
+) -> dict[str, int]:
+    """Split all elements by dimension, deduplicate, write JSON files.
+
+    Performs two deduplication passes:
+    1. Exact-name deduplication (always).
+    2. Semantic deduplication via text-embedding-3-small (when ``semantic_dedup=True``).
+
+    Returns a dict of dimension -> element count (post-deduplication).
+    """
+    # Collect all elements
+    all_elements: list[MaterialElement] = []
+    for ext in extractions:
+        all_elements.extend(ext.elements)
+
+    # Pass 1: deduplicate exact-name matches within each dimension
+    all_elements = _deduplicate_elements(all_elements)
+
+    # Pass 2: semantic deduplication via embeddings
+    if semantic_dedup:
+        logger.info("Running semantic deduplication (threshold=0.7)…")
+        all_elements = _semantic_deduplicate_elements(all_elements)
+        logger.info("After semantic dedup: %d elements total", len(all_elements))
+
+    counts: dict[str, int] = {}
+
+    for dim in DIMENSIONS:
+        dim_elements = [e for e in all_elements if e.dimension == dim]
+        counts[dim] = len(dim_elements)
+
+        dim_file = DimensionFile(
+            dimension=dim,
+            dimension_en=DIMENSION_EN[dim],
+            last_updated=datetime.now().isoformat(timespec="seconds"),
+            elements=dim_elements,
+        )
+
+        out_path = output_dir / f"{DIMENSION_EN[dim]}.json"
+        out_path.write_text(
+            json.dumps(dim_file.model_dump(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        logger.info("Wrote %s: %d elements", out_path.name, len(dim_elements))
+
+    return counts
+
+
+# ---------------------------------------------------------------------------
+# Update index
+# ---------------------------------------------------------------------------
+
+
+def update_index(
+    extractions: list[ReportExtraction],
+    output_dir: Path,
+    dim_counts: dict[str, int],
+) -> None:
+    """Write/update index.json with processing metadata."""
+    reports = []
+    total = 0
+    for ext in extractions:
+        count = len(ext.elements)
+        total += count
+        # source_report may be "uuid/report.md" (nested) or "name.md" (flat).
+        # Derive the cache filename the same way extract_all_reports does.
+        src = Path(ext.source_report)
+        cache_key = src.parent.name if src.parent != Path(".") else src.stem
+        reports.append(
+            ProcessedReport(
+                filename=ext.source_report,
+                product_category=ext.product_category,
+                extraction_date=ext.extraction_date,
+                file_hash=ext.file_hash,
+                element_count=count,
+                cache_path=f".cache/{cache_key}.json",
+            )
+        )
+
+    index = IndexMetadata(
+        last_updated=datetime.now().isoformat(timespec="seconds"),
+        total_elements=total,
+        color_count=dim_counts.get("颜色", 0),
+        decoration_count=dim_counts.get("装饰物", 0),
+        texture_count=dim_counts.get("透明度与质地", 0),
+        processed_reports=reports,
+    )
+
+    out_path = output_dir / "index.json"
+    out_path.write_text(
+        json.dumps(index.model_dump(), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    logger.info(
+        "Updated index.json: %d total elements from %d reports",
+        total,
+        len(reports),
+    )
+
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+
+def migrate_cache(
+    reports_dir: Path,
+    output_dir: Path,
+    model_id: str | None = None,
+) -> list[ReportExtraction]:
+    """Patch existing cache entries to the current schema without re-extracting elements.
+
+    For each cached `ReportExtraction`:
+    - Removes fields that no longer exist in `MaterialElement` (e.g. aesthetic_style, maturity)
+      by round-tripping through the current Pydantic model (extra fields are silently dropped).
+    - Adds/fixes ``trend_time`` and ``product_category`` by making a single cheap LLM call
+      on the report title, unless both fields already have non-placeholder values.
+    - Writes the updated cache back with ``schema_version = EXTRACTION_SCHEMA_VERSION``.
+
+    After patching all cache files, rebuilds the dimension JSONs and index (no LLM).
+    Returns the list of updated extractions.
+    """
+    cache_dir = output_dir / ".cache"
+    if not cache_dir.exists():
+        logger.error("No cache directory found at %s — run extraction first", cache_dir)
+        return []
+
+    # Locate all report files so we can map cache keys → report paths
+    report_files = sorted(reports_dir.glob("*/report.md"))
+    if not report_files:
+        report_files = sorted(reports_dir.glob("*.md"))
+
+    report_map: dict[str, Path] = {}
+    for rp in report_files:
+        key = rp.parent.name if rp.parent != reports_dir else rp.stem
+        report_map[key] = rp
+
+    model = _build_model(model_id, temperature=0.0)
+    updated: list[ReportExtraction] = []
+
+    for cache_path in sorted(cache_dir.glob("*.json")):
+        raw = json.loads(cache_path.read_text(encoding="utf-8"))
+        cache_key = cache_path.stem
+
+        # Round-trip through current model — Pydantic drops unknown fields
+        # (e.g. aesthetic_style, maturity) that no longer exist in the schema.
+        try:
+            extraction = ReportExtraction.model_validate(raw)
+        except Exception as exc:
+            logger.warning("Could not parse %s: %s — skipping", cache_path.name, exc)
+            continue
+
+        needs_trend_time = not extraction.trend_time
+        needs_category = extraction.product_category in ("", "未知品类")
+
+        if needs_trend_time or needs_category:
+            report_path = report_map.get(cache_key)
+            if report_path and report_path.exists():
+                category, trend_time = _extract_report_metadata(report_path, model=model)
+                logger.info(
+                    "  %s → category='%s' trend_time='%s'",
+                    cache_path.name, category, trend_time,
+                )
+            else:
+                category, trend_time = extraction.product_category, extraction.trend_time
+                logger.warning("  %s: no matching report file found", cache_path.name)
+
+            updates: dict = {}
+            if needs_trend_time and trend_time:
+                updates["trend_time"] = trend_time
+            if needs_category and category:
+                updates["product_category"] = category
+
+            if updates:
+                extraction = extraction.model_copy(update=updates)
+                # Propagate to all elements
+                patched_elements = [
+                    e.model_copy(update={
+                        k: v for k, v in updates.items() if k in ("trend_time", "product_category")
+                        and (k != "trend_time" or not e.trend_time)
+                        and (k != "product_category" or e.product_category in ("", "未知品类"))
+                    })
+                    for e in extraction.elements
+                ]
+                extraction = extraction.model_copy(update={"elements": patched_elements})
+        else:
+            logger.info(
+                "  %s: category='%s' trend_time='%s' — no update needed",
+                cache_path.name, extraction.product_category, extraction.trend_time,
+            )
+
+        # Always bump schema version and write back
+        extraction = extraction.model_copy(update={"schema_version": EXTRACTION_SCHEMA_VERSION})
+        cache_path.write_text(
+            json.dumps(extraction.model_dump(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        updated.append(extraction)
+        logger.info("  Patched %s (v%d)", cache_path.name, EXTRACTION_SCHEMA_VERSION)
+
+    logger.info("Migration complete: %d cache entries patched", len(updated))
+    return updated
+
+
+def rebuild_only(
+    output_dir: Path,
+    semantic_dedup: bool = True,
+) -> list[ReportExtraction]:
+    """Load all valid cache entries and rebuild dimension JSONs — no LLM calls.
+
+    Useful after a migration or manual cache edit to regenerate the output files.
+    """
+    cache_dir = output_dir / ".cache"
+    extractions: list[ReportExtraction] = []
+    for cache_path in sorted(cache_dir.glob("*.json")):
+        try:
+            extraction = ReportExtraction.model_validate_json(cache_path.read_text())
+            if extraction.schema_version != EXTRACTION_SCHEMA_VERSION:
+                logger.warning(
+                    "Skipping %s: schema v%d ≠ current v%d (run --migrate-cache first)",
+                    cache_path.name,
+                    extraction.schema_version,
+                    EXTRACTION_SCHEMA_VERSION,
+                )
+                continue
+            extractions.append(extraction)
+        except Exception as exc:
+            logger.warning("Could not parse %s: %s", cache_path.name, exc)
+    logger.info("Loaded %d cache entries for rebuild", len(extractions))
+    return extractions
+
+
+def main() -> None:
+    """CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="Extract structured material library from trend reports.",
+    )
+    parser.add_argument(
+        "--reports-dir",
+        type=Path,
+        default=_PROJECT_ROOT / "reports",
+        help="Directory containing Markdown trend reports",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=_PROJECT_ROOT / "material_library",
+        help="Output directory for material library JSON files",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Force re-extraction of all reports",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default=None,
+        help="Override LLM model ID (e.g. azure_openai:gpt-4o-2024-11-20)",
+    )
+    parser.add_argument(
+        "--no-semantic-dedup",
+        action="store_true",
+        help="Skip embedding-based semantic deduplication (exact-name dedup still runs)",
+    )
+    parser.add_argument(
+        "--migrate-cache",
+        action="store_true",
+        help=(
+            "Patch existing cache entries to the current schema without re-extracting. "
+            "Removes obsolete fields, adds trend_time via a cheap per-report LLM call, "
+            "then rebuilds dimension JSONs."
+        ),
+    )
+    parser.add_argument(
+        "--rebuild-only",
+        action="store_true",
+        help=(
+            "Load all valid cache entries and rebuild dimension JSONs without any LLM calls. "
+            "Run --migrate-cache first if cache schema is outdated."
+        ),
+    )
+    args = parser.parse_args()
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Ensure index.json exists
+    index_path = args.output_dir / "index.json"
+    if not index_path.exists():
+        index_path.write_text(
+            json.dumps(IndexMetadata(last_updated="").model_dump(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+    # ── migrate-cache mode ────────────────────────────────────────────────────
+    if args.migrate_cache:
+        logger.info("=== Cache Migration ===")
+        logger.info("Cache:   %s/.cache", args.output_dir)
+        extractions = migrate_cache(args.reports_dir, args.output_dir, model_id=args.model)
+        if not extractions:
+            logger.warning("No cache entries to migrate.")
+            return
+        dim_counts = build_dimension_files(
+            extractions, args.output_dir, semantic_dedup=not args.no_semantic_dedup
+        )
+        update_index(extractions, args.output_dir, dim_counts)
+        logger.info("=== Migration Done: %d elements ===", sum(dim_counts.values()))
+        return
+
+    # ── rebuild-only mode ─────────────────────────────────────────────────────
+    if args.rebuild_only:
+        logger.info("=== Rebuild Only (no LLM) ===")
+        extractions = rebuild_only(args.output_dir, semantic_dedup=not args.no_semantic_dedup)
+        if not extractions:
+            logger.warning("No valid cache entries found.")
+            return
+        dim_counts = build_dimension_files(
+            extractions, args.output_dir, semantic_dedup=not args.no_semantic_dedup
+        )
+        update_index(extractions, args.output_dir, dim_counts)
+        logger.info("=== Rebuild Done: %d elements ===", sum(dim_counts.values()))
+        return
+
+    # ── normal extraction mode ────────────────────────────────────────────────
+    logger.info("=== Material Library Extraction ===")
+    logger.info("Reports: %s", args.reports_dir)
+    logger.info("Output:  %s", args.output_dir)
+    logger.info("Force:   %s", args.force)
+    logger.info("Semantic dedup: %s", not args.no_semantic_dedup)
+
+    extractions = extract_all_reports(
+        args.reports_dir,
+        args.output_dir,
+        force=args.force,
+        model_id=args.model,
+    )
+
+    if not extractions:
+        logger.warning("No reports to process.")
+        return
+
+    dim_counts = build_dimension_files(
+        extractions,
+        args.output_dir,
+        semantic_dedup=not args.no_semantic_dedup,
+    )
+
+    update_index(extractions, args.output_dir, dim_counts)
+
+    logger.info("=== Done ===")
+    total = sum(dim_counts.values())
+    logger.info("Total elements: %d", total)
+    for dim, count in dim_counts.items():
+        logger.info("  %s: %d", dim, count)
+
+
+if __name__ == "__main__":
+    main()

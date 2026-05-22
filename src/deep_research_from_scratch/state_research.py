@@ -1,22 +1,53 @@
 
-"""
-State Definitions and Pydantic Schemas for Research Agent
+"""State Definitions and Pydantic Schemas for Research Agent.
 
 This module defines the state objects and structured schemas used for
 the research agent workflow, including researcher state management and output schemas.
 """
 
 import operator
-from typing_extensions import TypedDict, Annotated, List, Sequence
-from pydantic import BaseModel, Field
+
 from langchain_core.messages import BaseMessage
 from langgraph.graph.message import add_messages
+from pydantic import BaseModel, Field
+from typing_extensions import Annotated, List, Sequence, TypedDict
+
+# ===== IMAGE METADATA SCHEMA =====
+
+class ImageResult(BaseModel):
+    """Schema for image metadata collected during research."""
+
+    url: str = Field(description="URL of the image")
+    title: str = Field(
+        description="Title or alt text of the image", default=""
+    )
+    source_page: str = Field(
+        description="URL of the page where the image was found", default=""
+    )
+    description: str = Field(
+        description="Brief description of the image content", default=""
+    )
+    local_path: str | None = Field(
+        description="Local file path after download", default=None
+    )
+    # Page-discovery context (populated by batch_discover_images)
+    discovery_method: str = Field(
+        description="How the image was found: 'tavily' or 'httpx'", default="tavily"
+    )
+    page_title: str = Field(
+        description="<title> of the page where the image was found", default=""
+    )
+    alt_text: str = Field(
+        description="alt attribute of the <img> element", default=""
+    )
+    figcaption: str = Field(
+        description="Caption from a parent <figure> element", default=""
+    )
 
 # ===== STATE DEFINITIONS =====
 
 class ResearcherState(TypedDict):
-    """
-    State for the research agent containing message history and research metadata.
+    """State for the research agent containing message history and research metadata.
 
     This state tracks the researcher's conversation, iteration count for limiting
     tool calls, the research topic being investigated, compressed findings,
@@ -27,10 +58,10 @@ class ResearcherState(TypedDict):
     research_topic: str
     compressed_research: str
     raw_notes: Annotated[List[str], operator.add]
+    images: Annotated[List[ImageResult], operator.add]
 
 class ResearcherOutputState(TypedDict):
-    """
-    Output state for the research agent containing final research results.
+    """Output state for the research agent containing final research results.
 
     This represents the final output of the research process with compressed
     research findings and all raw notes from the research process.
@@ -38,6 +69,7 @@ class ResearcherOutputState(TypedDict):
     compressed_research: str
     raw_notes: Annotated[List[str], operator.add]
     researcher_messages: Annotated[Sequence[BaseMessage], add_messages]
+    images: Annotated[List[ImageResult], operator.add]
 
 # ===== STRUCTURED OUTPUT SCHEMAS =====
 
