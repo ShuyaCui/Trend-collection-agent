@@ -52,11 +52,15 @@ def get_neo4j_driver() -> Driver:
 # ── Schema initialisation ─────────────────────────────────────────────────────
 
 def init_kg_schema(driver: Driver) -> None:
-    """Create unique constraints for Image.path and Material.id."""
+    """Create unique constraints for Image.path, SkippedImage.path, and Material.id."""
     with driver.session() as session:
         session.run(
             "CREATE CONSTRAINT IF NOT EXISTS "
             "FOR (i:Image) REQUIRE i.path IS UNIQUE"
+        )
+        session.run(
+            "CREATE CONSTRAINT IF NOT EXISTS "
+            "FOR (s:SkippedImage) REQUIRE s.path IS UNIQUE"
         )
         session.run(
             "CREATE CONSTRAINT IF NOT EXISTS "
@@ -212,10 +216,10 @@ def check_has_visible_content(
 
 
 def _mark_no_content(driver: Driver, image_path: str) -> None:
-    """Set no_content=true on the Image node so it is skipped in future runs."""
+    """Create a SkippedImage node so this path is never reprocessed."""
     with driver.session() as session:
         session.run(
-            "MATCH (i:Image {path: $path}) SET i.no_content = true",
+            "MERGE (:SkippedImage {path: $path})",
             path=image_path,
         )
 
@@ -366,14 +370,12 @@ def build_kg(
 ) -> None:
     """Run full KG building pipeline with incremental skip for existing images."""
     init_kg_schema(driver)
-    upsert_image_nodes(driver, images_meta)
     upsert_material_nodes(driver, materials)
 
-    # An image is "done" if it has ≥1 outgoing relationship OR was flagged no_content
+    # "done" = Image nodes (visible content, edges built) OR SkippedImage nodes (no content)
     with driver.session() as session:
         result = session.run(
-            "MATCH (i:Image) WHERE (i)-[r]->() OR i.no_content = true "
-            "RETURN i.path AS path"
+            "MATCH (n) WHERE n:Image OR n:SkippedImage RETURN n.path AS path"
         )
         done_paths = {record["path"] for record in result}
 
@@ -400,6 +402,8 @@ def build_kg(
                 logger.info("No visible content — skipping %s", image_path)
                 _mark_no_content(driver, image_path)
                 continue
+            # Only insert the Image node after confirming visible content
+            upsert_image_nodes(driver, [img_meta])
             runs_by_dim = run_vlm_match(image_path, materials)
             consensus_by_dim = {
                 dim: compute_consensus(runs)
