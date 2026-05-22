@@ -131,21 +131,6 @@ class DimensionMatches(BaseModel):
     matched_material_ids: list[str]
 
 
-def _image_to_base64(image_path: str) -> tuple[str, str]:
-    """Return (base64_data, mime_type) for an image file."""
-    path = Path(image_path)
-    suffix = path.suffix.lower().lstrip(".")
-    mime_map = {
-        "jpg": "image/jpeg", "jpeg": "image/jpeg",
-        "png": "image/png", "webp": "image/webp",
-        "gif": "image/gif", "bmp": "image/bmp",
-    }
-    mime = mime_map.get(suffix, "image/jpeg")
-    with open(path, "rb") as f:
-        b64 = base64.b64encode(f.read()).decode()
-    return b64, mime
-
-
 _MATCH_SYSTEM_PROMPT = """You are an expert in beauty product visual analysis.
 Your task: analyse the CONTENTS of a product image (liquid, cream, gel, scrub particles etc.)
 and identify which trend material elements are visually represented.
@@ -157,14 +142,27 @@ IMPORTANT rules:
 - It is OK to return an empty list if nothing matches
 """
 
+def _image_to_inline_part(path: str) -> dict:
+    """Base64-encode a local image file into a Gemini inlineData part."""
+    import mimetypes
+    p = Path(path)
+    data = p.read_bytes()
+    mime, _ = mimetypes.guess_type(p.name)
+    if mime is None:
+        ext = p.suffix.lower()
+        mime = {
+            ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+            ".webp": "image/webp", ".gif": "image/gif", ".bmp": "image/bmp",
+        }.get(ext, "image/jpeg")
+    return {"inlineData": {"mimeType": mime, "data": base64.b64encode(data).decode()}}
+
+
 def build_dimension_prompt(
-    image_b64: str,
-    mime_type: str,
+    image_path: str,
     materials: list[dict],
     dimension_label: str,
 ) -> list[dict]:
     """Build Gemini contents payload for closed-set dimension matching."""
-    # Format material list compactly
     mat_lines = []
     for m in materials:
         kws = ", ".join(m.get("visual_keywords", [])[:10])
@@ -177,20 +175,19 @@ def build_dimension_prompt(
         f"Material candidates:\n{mat_text}\n\n"
         "Look at the image. Which of the above materials are visually present in "
         "the product contents?\n"
-        "Return JSON: {\"matched_material_ids\": [\"id1\", \"id2\"]}"
+        'Return JSON only: {"matched_material_ids": ["id1", "id2"]}'
     )
     return [
         {
             "parts": [
-                {"inline_data": {"mime_type": mime_type, "data": image_b64}},
+                _image_to_inline_part(image_path),
                 {"text": prompt_text},
             ]
         }
     ]
 
 
-async def _call_vlm_once(
-    client: httpx.AsyncClient,
+def _call_vlm_once(
     url: str,
     headers: dict,
     contents: list[dict],
@@ -199,12 +196,10 @@ async def _call_vlm_once(
     """Call VLM once and return list of valid matched material IDs."""
     payload = {
         "contents": contents,
-        "generationConfig": {
-            "temperature": 0.7,
-            "responseMimeType": "application/json",
-        },
+        "config": {"response_modalities": ["text"]},
     }
-    resp = await client.post(url, headers=headers, json=payload, timeout=60.0)
+    with httpx.Client(trust_env=True, timeout=httpx.Timeout(60.0)) as client:
+        resp = client.post(url, headers=headers, json=payload)
     resp.raise_for_status()
     data = resp.json()
     text = (
@@ -214,17 +209,20 @@ async def _call_vlm_once(
         .get("text", "{}")
         .strip()
     )
+    # Strip markdown code fences if present
+    if text.startswith("```"):
+        text = "\n".join(text.split("\n")[1:])
+        text = text.rstrip("`").strip()
     try:
         parsed = json.loads(text)
         ids = parsed.get("matched_material_ids", [])
-        # Filter to only valid IDs from the candidate list
         return [i for i in ids if i in valid_ids]
     except json.JSONDecodeError:
         logger.warning("VLM returned non-JSON: %s", text[:200])
         return []
 
 
-async def run_vlm_match(
+def run_vlm_match(
     image_path: str,
     materials: dict[str, list[dict]],
 ) -> dict[str, list[list[str]]]:
@@ -237,32 +235,25 @@ async def run_vlm_match(
     if not nano_url:
         raise ValueError("NANO_BANANA_URL is not set.")
 
-    token = GenAIToken().token()
     headers = {
-        "Authorization": f"Bearer {token}",
         "userid": os.getenv("HEADERS_USERID", ""),
         "project-name": os.getenv("HEADERS_PROJECT_NAME", ""),
-        "Content-Type": "application/json",
+        "Authorization": f"Bearer {GenAIToken().token()}",
     }
 
-    image_b64, mime_type = _image_to_base64(image_path)
     results: dict[str, list[list[str]]] = {}
-
-    async with httpx.AsyncClient(trust_env=True) as client:
-        for dim_key, dim_materials in materials.items():
-            valid_ids = {m["id"] for m in dim_materials}
-            contents = build_dimension_prompt(
-                image_b64, mime_type, dim_materials, DIMENSION_LABEL[dim_key]
-            )
-            runs = []
-            for _ in range(3):
-                try:
-                    matched = await _call_vlm_once(client, nano_url, headers, contents, valid_ids)
-                    runs.append(matched)
-                except Exception as exc:
-                    logger.warning("VLM call failed for %s / %s: %s", image_path, dim_key, exc)
-                    runs.append([])
-            results[dim_key] = runs
+    for dim_key, dim_materials in materials.items():
+        valid_ids = {m["id"] for m in dim_materials}
+        contents = build_dimension_prompt(image_path, dim_materials, DIMENSION_LABEL[dim_key])
+        runs = []
+        for _ in range(3):
+            try:
+                matched = _call_vlm_once(nano_url, headers, contents, valid_ids)
+                runs.append(matched)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("VLM call failed for %s / %s: %s", image_path, dim_key, exc)
+                runs.append([])
+        results[dim_key] = runs
 
     return results
 
@@ -306,7 +297,7 @@ def get_processed_image_paths(driver: Driver) -> set[str]:
 
 # ── Full pipeline ─────────────────────────────────────────────────────────────
 
-async def build_kg(
+def build_kg(
     driver: Driver,
     images_meta: list[dict],
     materials: dict[str, list[dict]],
@@ -337,11 +328,11 @@ async def build_kg(
     for img_meta in tqdm(new_images, desc="Building KG edges"):
         image_path = img_meta["local_path"]
         try:
-            runs_by_dim = await run_vlm_match(image_path, materials)
+            runs_by_dim = run_vlm_match(image_path, materials)
             consensus_by_dim = {
                 dim: compute_consensus(runs)
                 for dim, runs in runs_by_dim.items()
             }
             upsert_edges(driver, image_path, consensus_by_dim)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             logger.error("Failed to process %s: %s", image_path, exc)
