@@ -131,6 +131,16 @@ class DimensionMatches(BaseModel):
     matched_material_ids: list[str]
 
 
+_VISIBILITY_PROMPT = """You are an expert in beauty product visual analysis.
+Look at this product image and decide whether any product formula or contents are \
+CLEARLY VISIBLE — e.g. liquid, cream, lotion, gel, serum, powder, scrub particles, \
+balm, oil, foam, emulsion, or any similar material body (料体).
+
+Answer with JSON only. Examples:
+  {"has_visible_content": true}   ← product formula is clearly visible
+  {"has_visible_content": false}  ← only closed packaging, bottle exterior, or no product shown
+"""
+
 _MATCH_SYSTEM_PROMPT = """You are an expert in beauty product visual analysis.
 Your task: analyse the CONTENTS of a product image (liquid, cream, gel, scrub particles etc.)
 and identify which trend material elements are visually represented.
@@ -155,6 +165,59 @@ def _image_to_inline_part(path: str) -> dict:
             ".webp": "image/webp", ".gif": "image/gif", ".bmp": "image/bmp",
         }.get(ext, "image/jpeg")
     return {"inlineData": {"mimeType": mime, "data": base64.b64encode(data).decode()}}
+
+
+def check_has_visible_content(
+    image_path: str,
+    url: str,
+    headers: dict,
+) -> bool:
+    """Single VLM call: does this image show visible product formula/contents?
+
+    Returns True if product material body (料体) is clearly visible, False otherwise.
+    On any error, defaults to True (proceed with matching) to avoid silent data loss.
+    """
+    contents = [
+        {
+            "parts": [
+                _image_to_inline_part(image_path),
+                {"text": _VISIBILITY_PROMPT},
+            ]
+        }
+    ]
+    payload = {
+        "contents": contents,
+        "config": {"response_modalities": ["text"]},
+    }
+    try:
+        with httpx.Client(trust_env=True, timeout=httpx.Timeout(60.0)) as client:
+            resp = client.post(url, headers=headers, json=payload)
+        resp.raise_for_status()
+        data = resp.json()
+        text = (
+            data.get("candidates", [{}])[0]
+            .get("content", {})
+            .get("parts", [{}])[0]
+            .get("text", "")
+            .strip()
+        )
+        if text.startswith("```"):
+            text = "\n".join(text.split("\n")[1:]).rstrip("`").strip()
+        parsed = json.loads(text)
+        return bool(parsed.get("has_visible_content", True))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Visibility check failed for %s: %s — defaulting to True", image_path, exc)
+        return True
+
+
+def _mark_no_content(driver: Driver, image_path: str) -> None:
+    """Set no_content=true on the Image node so it is skipped in future runs."""
+    with driver.session() as session:
+        session.run(
+            "MATCH (i:Image {path: $path}) SET i.no_content = true",
+            path=image_path,
+        )
+
 
 
 def build_dimension_prompt(
@@ -308,10 +371,11 @@ def build_kg(
     upsert_image_nodes(driver, images_meta)
     upsert_material_nodes(driver, materials)
 
-    # An image is considered "done" if it has at least one outgoing relationship
+    # An image is "done" if it has ≥1 outgoing relationship OR was flagged no_content
     with driver.session() as session:
         result = session.run(
-            "MATCH (i:Image)-[r]->() RETURN DISTINCT i.path AS path"
+            "MATCH (i:Image) WHERE (i)-[r]->() OR i.no_content = true "
+            "RETURN i.path AS path"
         )
         done_paths = {record["path"] for record in result}
 
@@ -328,6 +392,16 @@ def build_kg(
     for img_meta in tqdm(new_images, desc="Building KG edges"):
         image_path = img_meta["local_path"]
         try:
+            nano_url = os.getenv("NANO_BANANA_URL", "").strip()
+            headers = {
+                "userid": os.getenv("HEADERS_USERID", ""),
+                "project-name": os.getenv("HEADERS_PROJECT_NAME", ""),
+                "Authorization": f"Bearer {GenAIToken().token()}",
+            }
+            if not check_has_visible_content(image_path, nano_url, headers):
+                logger.info("No visible content — skipping %s", image_path)
+                _mark_no_content(driver, image_path)
+                continue
             runs_by_dim = run_vlm_match(image_path, materials)
             consensus_by_dim = {
                 dim: compute_consensus(runs)
