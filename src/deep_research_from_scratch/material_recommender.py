@@ -1,5 +1,4 @@
 
-
 """Material Recommendation Agent.
 
 This module implements a LangGraph-based recommendation agent that suggests
@@ -8,8 +7,6 @@ based on user product design queries. It supports multi-turn conversations
 and provides source traceability for all recommendations via post-hoc lookup.
 """
 
-import base64
-import io
 import json
 import os
 import urllib.parse  # noqa: F401 — pre-load before urllib3 can shadow it
@@ -22,7 +19,6 @@ from langchain_core.messages import AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_openai import AzureOpenAIEmbeddings
 from langgraph.graph import END, START, StateGraph
-from PIL import Image
 
 from deep_research_from_scratch.Helper import GenAIToken
 from deep_research_from_scratch.prompts import recommender_system_prompt
@@ -280,70 +276,28 @@ def _enrich_with_sources(
     )
 
 
-_THUMBNAIL_MAX_WIDTH = 300
-
-
-def _image_to_data_uri(local_path: str) -> str | None:
-    """Read a local image, resize to thumbnail, and return a base64 data URI."""
-    try:
-        path = Path(local_path)
-        if not path.exists():
-            return None
-        with Image.open(path) as img:
-            if img.width > _THUMBNAIL_MAX_WIDTH:
-                ratio = _THUMBNAIL_MAX_WIDTH / img.width
-                new_size = (int(img.width * ratio), int(img.height * ratio))
-                img = img.resize(new_size, Image.LANCZOS)
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
-            buf = io.BytesIO()
-            img.save(buf, format="JPEG", quality=75)
-            encoded = base64.b64encode(buf.getvalue()).decode("ascii")
-        return f"data:image/jpeg;base64,{encoded}"
-    except (OSError, Exception):
-        return None
-
-
-def _format_recommendations_as_content(result: RecommendationResult) -> list[dict]:
-    """Format a RecommendationResult as multimodal content blocks for AIMessage.
-
-    Emits one text block per element followed immediately by its image blocks,
-    so images appear inline next to each element rather than batched at the bottom.
-    """
-    blocks: list[dict] = []
-
-    blocks.append({
-        "type": "text",
-        "text": f"**概念分析**: {result.concept_analysis}\n",
-    })
-
+def _format_recommendations_as_text(result: RecommendationResult) -> str:
+    """Format a RecommendationResult as readable markdown for conversation history."""
+    lines = [f"**概念分析**: {result.concept_analysis}\n"]
     for dimension_label, recs in [
         ("候选颜色", result.colors),
         ("候选质地", result.textures),
         ("候选装饰物", result.decorations),
     ]:
-        blocks.append({"type": "text", "text": f"\n### {dimension_label}\n"})
+        lines.append(f"### {dimension_label}")
         for i, rec in enumerate(recs, 1):
             source_info = ""
             if rec.source_heading:
                 report_ids = [r.split("/")[0][:8] for r in rec.source_reports]
                 source_info = f" *(来源: {rec.source_heading}，报告: {', '.join(report_ids)})*"
-            blocks.append({
-                "type": "text",
-                "text": (
-                    f"**{i}. {rec.element_name}** ({rec.element_name_en})\n"
-                    f"{rec.reasoning}{source_info}\n"
-                ),
-            })
+            lines.append(
+                f"{i}. **{rec.element_name}** ({rec.element_name_en})\n"
+                f"   {rec.reasoning}{source_info}"
+            )
             for img in rec.reference_images:
-                data_uri = _image_to_data_uri(img.local_path)
-                if data_uri:
-                    blocks.append({"type": "image_url", "image_url": {"url": data_uri}})
-                    blocks.append({"type": "text", "text": f"*{img.description}*\n"})
-                else:
-                    blocks.append({"type": "text", "text": f"📷 {img.description}\n"})
-
-    return blocks
+                lines.append(f"   📷 {img.description} ({img.local_path})")
+        lines.append("")
+    return "\n".join(lines)
 
 
 def recommend(state: RecommenderState, config: RunnableConfig) -> dict:
@@ -408,9 +362,9 @@ def attach_images(state: RecommenderState) -> dict:
         decorations=attach_to_list(result.decorations),
     )
 
-    recommendations_content = _format_recommendations_as_content(enriched_result)
+    recommendations_text = _format_recommendations_as_text(enriched_result)
     return {
-        "messages": [AIMessage(content=recommendations_content)],
+        "messages": [AIMessage(content=recommendations_text)],
         "recommendations": enriched_result,
     }
 
