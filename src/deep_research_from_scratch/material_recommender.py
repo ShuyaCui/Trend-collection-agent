@@ -54,7 +54,7 @@ def _build_model(model_id: str, **kwargs):
         model=normalized_model_id,
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
         azure_deployment=deployment,
-        api_key=GenAIToken().token(),
+        azure_ad_token_provider=lambda: GenAIToken().token(),
         api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
         default_headers={
             "project-name": os.getenv("HEADERS_PROJECT_NAME"),
