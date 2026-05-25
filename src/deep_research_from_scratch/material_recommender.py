@@ -1,4 +1,5 @@
 
+
 """Material Recommendation Agent.
 
 This module implements a LangGraph-based recommendation agent that suggests
@@ -306,45 +307,41 @@ def _image_to_data_uri(local_path: str) -> str | None:
 def _format_recommendations_as_content(result: RecommendationResult) -> list[dict]:
     """Format a RecommendationResult as multimodal content blocks for AIMessage.
 
-    Uses text blocks for markdown and image_url blocks for inline thumbnails,
-    which LangGraph Studio can render natively.
+    Emits one text block per element followed immediately by its image blocks,
+    so images appear inline next to each element rather than batched at the bottom.
     """
     blocks: list[dict] = []
-    text_lines = [f"**概念分析**: {result.concept_analysis}\n"]
+
+    blocks.append({
+        "type": "text",
+        "text": f"**概念分析**: {result.concept_analysis}\n",
+    })
 
     for dimension_label, recs in [
         ("候选颜色", result.colors),
         ("候选质地", result.textures),
         ("候选装饰物", result.decorations),
     ]:
-        text_lines.append(f"\n### {dimension_label}")
+        blocks.append({"type": "text", "text": f"\n### {dimension_label}\n"})
         for i, rec in enumerate(recs, 1):
             source_info = ""
             if rec.source_heading:
                 report_ids = [r.split("/")[0][:8] for r in rec.source_reports]
                 source_info = f" *(来源: {rec.source_heading}，报告: {', '.join(report_ids)})*"
-            text_lines.append(
-                f"{i}. **{rec.element_name}** ({rec.element_name_en})\n"
-                f"   {rec.reasoning}{source_info}"
-            )
-            # Flush text before images
-            image_uris = []
+            blocks.append({
+                "type": "text",
+                "text": (
+                    f"**{i}. {rec.element_name}** ({rec.element_name_en})\n"
+                    f"{rec.reasoning}{source_info}\n"
+                ),
+            })
             for img in rec.reference_images:
                 data_uri = _image_to_data_uri(img.local_path)
                 if data_uri:
-                    image_uris.append((data_uri, img.description))
+                    blocks.append({"type": "image_url", "image_url": {"url": data_uri}})
+                    blocks.append({"type": "text", "text": f"*{img.description}*\n"})
                 else:
-                    text_lines.append(f"   📷 {img.description} ({img.local_path})")
-
-            if image_uris:
-                blocks.append({"type": "text", "text": "\n".join(text_lines)})
-                text_lines = []
-                for uri, desc in image_uris:
-                    blocks.append({"type": "image_url", "image_url": {"url": uri, "detail": "low"}})
-                    blocks.append({"type": "text", "text": f"*{desc}*\n"})
-
-    if text_lines:
-        blocks.append({"type": "text", "text": "\n".join(text_lines)})
+                    blocks.append({"type": "text", "text": f"📷 {img.description}\n"})
 
     return blocks
 
