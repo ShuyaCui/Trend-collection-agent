@@ -1,7 +1,11 @@
 """Gradio chat UI for the material recommender agent."""
 
+import os
 import uuid
 from pathlib import Path
+
+# Must be set before Gradio imports so it uses a writable temp directory.
+os.environ.setdefault("GRADIO_TEMP_DIR", str(Path.home() / ".gradio_tmp"))
 
 import gradio as gr
 from langchain_core.messages import HumanMessage
