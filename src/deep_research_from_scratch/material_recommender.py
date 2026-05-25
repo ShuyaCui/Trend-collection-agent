@@ -8,8 +8,8 @@ and provides source traceability for all recommendations via post-hoc lookup.
 """
 
 import base64
+import io
 import json
-import mimetypes
 import os
 import urllib.parse  # noqa: F401 — pre-load before urllib3 can shadow it
 from pathlib import Path
@@ -21,6 +21,7 @@ from langchain_core.messages import AIMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_openai import AzureOpenAIEmbeddings
 from langgraph.graph import END, START, StateGraph
+from PIL import Image
 
 from deep_research_from_scratch.Helper import GenAIToken
 from deep_research_from_scratch.prompts import recommender_system_prompt
@@ -278,48 +279,74 @@ def _enrich_with_sources(
     )
 
 
+_THUMBNAIL_MAX_WIDTH = 300
+
+
 def _image_to_data_uri(local_path: str) -> str | None:
-    """Read a local image file and return a base64 data URI for inline rendering."""
+    """Read a local image, resize to thumbnail, and return a base64 data URI."""
     try:
         path = Path(local_path)
         if not path.exists():
             return None
-        mime_type, _ = mimetypes.guess_type(str(path))
-        if not mime_type or not mime_type.startswith("image/"):
-            mime_type = "image/jpeg"
-        with open(path, "rb") as f:
-            encoded = base64.b64encode(f.read()).decode("ascii")
-        return f"data:{mime_type};base64,{encoded}"
-    except OSError:
+        with Image.open(path) as img:
+            if img.width > _THUMBNAIL_MAX_WIDTH:
+                ratio = _THUMBNAIL_MAX_WIDTH / img.width
+                new_size = (int(img.width * ratio), int(img.height * ratio))
+                img = img.resize(new_size, Image.LANCZOS)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
+            buf = io.BytesIO()
+            img.save(buf, format="JPEG", quality=75)
+            encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+        return f"data:image/jpeg;base64,{encoded}"
+    except (OSError, Exception):
         return None
 
 
-def _format_recommendations_as_text(result: RecommendationResult) -> str:
-    """Format a RecommendationResult as readable markdown for conversation history."""
-    lines = [f"**概念分析**: {result.concept_analysis}\n"]
+def _format_recommendations_as_content(result: RecommendationResult) -> list[dict]:
+    """Format a RecommendationResult as multimodal content blocks for AIMessage.
+
+    Uses text blocks for markdown and image_url blocks for inline thumbnails,
+    which LangGraph Studio can render natively.
+    """
+    blocks: list[dict] = []
+    text_lines = [f"**概念分析**: {result.concept_analysis}\n"]
+
     for dimension_label, recs in [
         ("候选颜色", result.colors),
         ("候选质地", result.textures),
         ("候选装饰物", result.decorations),
     ]:
-        lines.append(f"### {dimension_label}")
+        text_lines.append(f"\n### {dimension_label}")
         for i, rec in enumerate(recs, 1):
             source_info = ""
             if rec.source_heading:
                 report_ids = [r.split("/")[0][:8] for r in rec.source_reports]
                 source_info = f" *(来源: {rec.source_heading}，报告: {', '.join(report_ids)})*"
-            lines.append(
+            text_lines.append(
                 f"{i}. **{rec.element_name}** ({rec.element_name_en})\n"
                 f"   {rec.reasoning}{source_info}"
             )
+            # Flush text before images
+            image_uris = []
             for img in rec.reference_images:
                 data_uri = _image_to_data_uri(img.local_path)
                 if data_uri:
-                    lines.append(f"   ![{img.description}]({data_uri})")
+                    image_uris.append((data_uri, img.description))
                 else:
-                    lines.append(f"   📷 {img.description} ({img.local_path})")
-        lines.append("")
-    return "\n".join(lines)
+                    text_lines.append(f"   📷 {img.description} ({img.local_path})")
+
+            if image_uris:
+                blocks.append({"type": "text", "text": "\n".join(text_lines)})
+                text_lines = []
+                for uri, desc in image_uris:
+                    blocks.append({"type": "image_url", "image_url": {"url": uri, "detail": "low"}})
+                    blocks.append({"type": "text", "text": f"*{desc}*\n"})
+
+    if text_lines:
+        blocks.append({"type": "text", "text": "\n".join(text_lines)})
+
+    return blocks
 
 
 def recommend(state: RecommenderState, config: RunnableConfig) -> dict:
@@ -384,9 +411,9 @@ def attach_images(state: RecommenderState) -> dict:
         decorations=attach_to_list(result.decorations),
     )
 
-    recommendations_text = _format_recommendations_as_text(enriched_result)
+    recommendations_content = _format_recommendations_as_content(enriched_result)
     return {
-        "messages": [AIMessage(content=recommendations_text)],
+        "messages": [AIMessage(content=recommendations_content)],
         "recommendations": enriched_result,
     }
 
