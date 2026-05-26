@@ -2,7 +2,6 @@
 
 import base64
 import os
-import uuid
 from pathlib import Path
 
 # Must be set before Gradio imports so it uses a writable temp directory.
@@ -10,7 +9,6 @@ os.environ.setdefault("GRADIO_TEMP_DIR", str(Path.home() / ".gradio_tmp"))
 
 import gradio as gr
 from langchain_core.messages import HumanMessage
-from langgraph.checkpoint.memory import MemorySaver
 
 from deep_research_from_scratch.material_recommender import _build_graph
 from deep_research_from_scratch.state_recommender import (
@@ -18,9 +16,8 @@ from deep_research_from_scratch.state_recommender import (
     RecommendationResult,
 )
 
-# Compile with MemorySaver so thread_id persists conversation history across turns.
-_checkpointer = MemorySaver()
-_agent = _build_graph().compile(checkpointer=_checkpointer)
+# Compiled without checkpointer — we manage message history explicitly via gr.State.
+_agent = _build_graph().compile()
 
 _MIME = {
     ".jpg": "image/jpeg",
@@ -87,13 +84,15 @@ def _results_html(result: RecommendationResult) -> str:
     return analysis + body
 
 
-def chat_fn(message, history, thread_id):
-    """Handle a user chat message and return updated UI state."""
-    config = {"configurable": {"thread_id": thread_id}}
-    result = _agent.invoke(
-        {"messages": [HumanMessage(content=message)]},
-        config=config,
-    )
+def chat_fn(message, history, lc_messages):
+    """Handle a user chat message and return updated UI state.
+
+    lc_messages is a list of LangChain message objects accumulated across turns.
+    We pass the full history + new message to the agent, then store the updated
+    history (result["messages"]) back into gr.State for the next turn.
+    """
+    input_messages = lc_messages + [HumanMessage(content=message)]
+    result = _agent.invoke({"messages": input_messages})
 
     agent_text = result["messages"][-1].content
     history = history + [
@@ -103,18 +102,21 @@ def chat_fn(message, history, thread_id):
 
     recs: RecommendationResult | None = result.get("recommendations")
     html = _results_html(recs) if recs else "<i>无推荐结果</i>"
-    return history, html
+
+    # Persist the full accumulated message history for the next turn.
+    return history, html, result["messages"]
 
 
 def new_chat_fn():
     """Reset all UI state and start a new session."""
-    return [], "<i>等待推荐结果…</i>", str(uuid.uuid4())
+    return [], "<i>等待推荐结果…</i>", []
 
 
 with gr.Blocks(title="材料推荐助手") as demo:
     gr.Markdown("# 🎨 材料推荐助手")
 
-    thread_id_state = gr.State(value=str(uuid.uuid4()))
+    # Stores the accumulated LangChain message list across turns.
+    lc_messages_state = gr.State(value=[])
 
     with gr.Row():
         # Left: chat
@@ -133,24 +135,24 @@ with gr.Blocks(title="材料推荐助手") as demo:
         with gr.Column(scale=1):
             results_html = gr.HTML("<i>等待推荐结果…</i>")
 
-    outputs = [chatbot, results_html]
+    chat_outputs = [chatbot, results_html, lc_messages_state]
 
     send_btn.click(
         fn=chat_fn,
-        inputs=[msg_box, chatbot, thread_id_state],
-        outputs=outputs,
+        inputs=[msg_box, chatbot, lc_messages_state],
+        outputs=chat_outputs,
     ).then(lambda: "", outputs=msg_box)
 
     msg_box.submit(
         fn=chat_fn,
-        inputs=[msg_box, chatbot, thread_id_state],
-        outputs=outputs,
+        inputs=[msg_box, chatbot, lc_messages_state],
+        outputs=chat_outputs,
     ).then(lambda: "", outputs=msg_box)
 
     new_chat_btn.click(
         fn=new_chat_fn,
         inputs=[],
-        outputs=outputs + [thread_id_state],
+        outputs=[chatbot, results_html, lc_messages_state],
     )
 
 
