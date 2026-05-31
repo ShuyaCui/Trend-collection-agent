@@ -1,6 +1,6 @@
-# 🧱 Trend Agent
+# 🧱 Design trend intelligence agent
 
-Deep research is one of the most popular agent applications today. [OpenAI](https://openai.com/index/introducing-deep-research/), [Anthropic](https://www.anthropic.com/engineering/built-multi-agent-research-system), [Perplexity](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research), and [Google](https://gemini.google/overview/deep-research/?hl=en) all ship deep research products that produce comprehensive reports from diverse sources. This repo builds a deep researcher **from scratch** — step by step through 8 tutorial notebooks — culminating in a domain-specific design-trend intelligence system powered by a multimodal knowledge graph.
+This repo builds a deep researcher based on "deep research from scratch" from LangChain — culminating in a domain-specific design-trend intelligence system powered by a multimodal knowledge graph.
 
 ![overview](https://github.com/user-attachments/assets/b71727bd-0094-40c4-af5e-87cdb02123b4)
 
@@ -39,8 +39,8 @@ Deep research is one of the most popular agent applications today. [OpenAI](http
 ### Installation
 
 ```bash
-git clone https://github.com/ShuyaCui/trend_agent
-cd trend_agent
+git clone https://github.com/ShuyaCui/Trend-collection-agent
+cd Trend-collection-agent
 uv sync
 ```
 
@@ -79,11 +79,9 @@ NEO4J_USER=neo4j
 NEO4J_PASSWORD=<your-neo4j-password>
 
 # Observability — optional
-LANGFUSE_PUBLIC_KEY=pk-lf-...
-LANGFUSE_SECRET_KEY=sk-lf-...
+LANGFUSE_PUBLIC_KEY=<>
+LANGFUSE_SECRET_KEY=<>
 LANGFUSE_BASE_URL=http://localhost:3000
-LANGSMITH_API_KEY=<your-langsmith-key>
-LANGSMITH_PROJECT=trend_agent
 ```
 
 ### Running Notebooks
