@@ -1,8 +1,6 @@
-# 🧱 Trend Agent
+# 🧱 Design trend intelligence agent
 
-Deep research is one of the most popular agent applications today. [OpenAI](https://openai.com/index/introducing-deep-research/), [Anthropic](https://www.anthropic.com/engineering/built-multi-agent-research-system), [Perplexity](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research), and [Google](https://gemini.google/overview/deep-research/?hl=en) all ship deep research products that produce comprehensive reports from diverse sources. This repo builds a deep researcher **from scratch** — step by step through 8 tutorial notebooks — culminating in a domain-specific design-trend intelligence system powered by a multimodal knowledge graph.
-
-![overview](https://github.com/user-attachments/assets/b71727bd-0094-40c4-af5e-87cdb02123b4)
+This repo builds a deep researcher based on "deep research from scratch" from LangChain — culminating in a domain-specific design-trend intelligence system powered by a multimodal knowledge graph.
 
 ## 🗺️ What We Build
 
@@ -39,8 +37,8 @@ Deep research is one of the most popular agent applications today. [OpenAI](http
 ### Installation
 
 ```bash
-git clone https://github.com/ShuyaCui/trend_agent
-cd trend_agent
+git clone https://github.com/ShuyaCui/Trend-collection-agent
+cd Trend-collection-agent
 uv sync
 ```
 
@@ -79,11 +77,9 @@ NEO4J_USER=neo4j
 NEO4J_PASSWORD=<your-neo4j-password>
 
 # Observability — optional
-LANGFUSE_PUBLIC_KEY=pk-lf-...
-LANGFUSE_SECRET_KEY=sk-lf-...
+LANGFUSE_PUBLIC_KEY=<>
+LANGFUSE_SECRET_KEY=<>
 LANGFUSE_BASE_URL=http://localhost:3000
-LANGSMITH_API_KEY=<your-langsmith-key>
-LANGSMITH_PROJECT=trend_agent
 ```
 
 ### Running Notebooks
@@ -94,76 +90,6 @@ uv run jupyter notebook
 source .venv/bin/activate && jupyter notebook
 ```
 
-### LangGraph Studio
-
-LangGraph Studio lets you interactively run and inspect any agent graph registered in `langgraph.json` — including the **material recommender** (notebook 7) — without writing code.
-
-#### Start the local dev server
-
-Run from the **repo root** (not from inside `notebooks/`):
-
-```bash
-UV_LINK_MODE=copy uvx --refresh --from "langgraph-cli[inmem]" --with-editable . \
-  --python 3.11 langgraph dev
-```
-
-The server starts at `http://127.0.0.1:2024`. You should see:
-
-```
-Ready!
-- API: http://127.0.0.1:2024
-- Docs: http://127.0.0.1:2024/docs
-- LangGraph Studio: https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024
-```
-
-> **Note:** `UV_LINK_MODE=copy` is required on shared filesystems where hardlinking across mount points is not permitted.
-
-#### Open the Studio UI
-
-1. Sign in at [smith.langchain.com](https://smith.langchain.com) (free LangSmith account required).
-2. Open: **https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024**
-3. Select a graph from the dropdown — all entries in `langgraph.json` appear here.
-
-#### Remote server setup
-
-If `langgraph dev` runs on a **remote server** (e.g., via VS Code Remote SSH), the browser on your local machine cannot reach `127.0.0.1:2024` directly. You need port forwarding:
-
-**Option A — VS Code PORTS panel (recommended):**
-1. Open the **PORTS** tab in the VS Code bottom panel *(View → Terminal → Ports, or `Ctrl+Shift+P` → "Focus on Ports View")*.
-2. Click **"Forward a Port"** → enter `2024` → press Enter.
-3. VS Code tunnels the remote `127.0.0.1:2024` to your local `localhost:2024`.
-
-**Option B — SSH command (on your local terminal):**
-```bash
-ssh -L 2024:127.0.0.1:2024 <user>@<remote-server-ip> -N
-```
-
-After forwarding, verify `http://localhost:2024` returns `{"ok":true}` in your local browser, then open Studio.
-
-#### Troubleshooting: Studio UI shows empty / "Failed to fetch"
-
-If the API works (`http://localhost:2024` returns `{"ok":true}`) but Studio shows nothing:
-
-1. **Check `.env`** — `LANGSMITH_API_KEY` must be set (Studio needs it for auth). To keep data local, also set `LANGCHAIN_TRACING_V2=false`:
-   ```env
-   LANGSMITH_API_KEY=lsv2_pt_...
-   LANGCHAIN_TRACING_V2=false  # Studio auth works, but no trace data is uploaded
-   ```
-
-2. **Chrome blocks private network requests** — navigate to `chrome://flags/#block-insecure-private-network-requests`, set to **Disabled**, and restart Chrome.
-
-3. **Try both URL variants** — `localhost` vs `127.0.0.1`:
-   ```
-   https://smith.langchain.com/studio/?baseUrl=http://localhost:2024
-   https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024
-   ```
-
-4. **Check browser DevTools** (F12 → Network tab) for blocked/red requests to confirm the issue.
-
-5. **LangGraph Desktop app** (macOS only, avoids all browser restrictions):
-   ```bash
-   brew install --cask langgraph-studio
-   ```
 
 #### Available graphs
 
